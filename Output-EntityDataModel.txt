@@ -1,0 +1,10 @@
+﻿Generated model file: Reget.edmx.
+Loading metadata from the database took 00:00:00.6079331.
+Generating the model took 00:00:06.5759786.
+Added the connection string to the App.Config file.
+Generated model file: Reget.edmx.
+Loading metadata from the database took 00:00:00.4363928.
+Generating the model took 00:00:06.0073051.
+Generated model file: Reget.edmx.
+Loading metadata from the database took 00:00:00.5314574.
+Generating the model took 00:00:05.9874952.

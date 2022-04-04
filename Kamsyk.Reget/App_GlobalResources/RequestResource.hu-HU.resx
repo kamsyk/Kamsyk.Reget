@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualPrice" xml:space="preserve">
+    <value>Tényleges ár</value>
+  </data>
+  <data name="AddInvoice" xml:space="preserve">
+    <value>Számla hozzáadása</value>
+  </data>
+  <data name="AddLimit" xml:space="preserve">
+    <value>Limit hozzáadása</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Cím</value>
+  </data>
+  <data name="AddToShopBasket" xml:space="preserve">
+    <value>Kosárba tesz</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Összes</value>
+  </data>
+  <data name="AllowPaging" xml:space="preserve">
+    <value>Táblázatszámozás engedélyezése </value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Összeg</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Jóváhagyás</value>
+  </data>
+  <data name="ApprovalMatrix" xml:space="preserve">
+    <value>Jóváhagyás-mátrix</value>
+  </data>
+  <data name="ApprovalRequestMail" xml:space="preserve">
+    <value>Jóváhagyás kérése</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Jóváhagy</value>
+  </data>
+  <data name="ApproveConfirm" xml:space="preserve">
+    <value>Biztosan jóvá akarja hagyni a kérést?</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Jóváhagyva</value>
+  </data>
+  <data name="ApproveMan" xml:space="preserve">
+    <value>Jóváhagyó</value>
+  </data>
+  <data name="ApproverRemark" xml:space="preserve">
+    <value>Jóváhagyói megjegyzés</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Április</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Térség</value>
+  </data>
+  <data name="Attachements" xml:space="preserve">
+    <value>Csatolmányok</value>
+  </data>
+  <data name="AttachmentLoadQuery" xml:space="preserve">
+    <value>Szeretné csatolni a kiválasztott fájlt?</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Augusztus</value>
+  </data>
+  <data name="AxisX" xml:space="preserve">
+    <value>X tengely</value>
+  </data>
+  <data name="AxisY" xml:space="preserve">
+    <value>Y tengely</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Vissza</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Naptár</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
+  <data name="CancelChanges" xml:space="preserve">
+    <value>Változtatások elvetése</value>
+  </data>
+  <data name="CancelConfirm" xml:space="preserve">
+    <value>Biztosan törölni akarja a kérést?</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Törölve</value>
+  </data>
+  <data name="CanceledByOrderer" xml:space="preserve">
+    <value>A megrendelő által törölve</value>
+  </data>
+  <data name="CanceledByRequestor" xml:space="preserve">
+    <value>A kérelmező által törölve</value>
+  </data>
+  <data name="CanceledConfirm" xml:space="preserve">
+    <value>Biztosan törölni akarja a kérést?</value>
+  </data>
+  <data name="CancelPaging" xml:space="preserve">
+    <value>Táblázatszámozás törlése</value>
+  </data>
+  <data name="CatalogAdmin" xml:space="preserve">
+    <value>Katalóguskezelés</value>
+  </data>
+  <data name="Centre" xml:space="preserve">
+    <value>Központ</value>
+  </data>
+  <data name="Centres" xml:space="preserve">
+    <value>Központok</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>Módosította</value>
+  </data>
+  <data name="ChangedDate" xml:space="preserve">
+    <value>Utolsó módosítás dátuma</value>
+  </data>
+  <data name="ChangesWereSaved" xml:space="preserve">
+    <value>A módosítások sikeresen mentésre kerültek</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Város</value>
+  </data>
+  <data name="ClickOnRequest" xml:space="preserve">
+    <value>Kattintson a kérésszám hivatkozására, majd miután a kérés megnyílt, hagyja jóvá, vesse el vagy küldje vissza a kérést a kérelmezőnek.</value>
+  </data>
+  <data name="ClickOnRequestOrder" xml:space="preserve">
+    <value>Kattintson a kérésszámra, majd miután a kérés megnyílt, hozzon létre egy megrendelést vagy küldje vissza a megrendelést a kérelmezőnek. </value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Bezárás</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Biztosan be akarja zárni a kérést?</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Bezárva</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kapcsolat</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>Kapcsolattartó személy</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Ország</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Pénznem</value>
+  </data>
+  <data name="CurrentUser" xml:space="preserve">
+    <value>Felhasználó</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Nap</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="DefaultFilter" xml:space="preserve">
+    <value>Alapértelmezett szűrő</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
+  <data name="DeleteAttConfirm" xml:space="preserve">
+    <value>Biztosan törölni akarja a csatolmányt?</value>
+  </data>
+  <data name="Delivered" xml:space="preserve">
+    <value>Leszállítva</value>
+  </data>
+  <data name="DeliveredMail" xml:space="preserve">
+    <value>A kért anyagok/szolgáltatások leszállításra/teljesítésre kerültek.</value>
+  </data>
+  <data name="DeliveriedDate" xml:space="preserve">
+    <value>Leszállítva</value>
+  </data>
+  <data name="DIC" xml:space="preserve">
+    <value>VAT Id</value>
+  </data>
+  <data name="DisplayAllSuppliers" xml:space="preserve">
+    <value>Az összes beszállító megjelenítése</value>
+  </data>
+  <data name="DisplayHistory" xml:space="preserve">
+    <value>Előzmények megjelenítése</value>
+  </data>
+  <data name="DisplayPrice" xml:space="preserve">
+    <value>A becsült ár megjelenítése a megrendelésben</value>
+  </data>
+  <data name="DisplayPurchseGroup" xml:space="preserve">
+    <value>Beszerzési csoportok megjelenítése</value>
+  </data>
+  <data name="DisplayRequests" xml:space="preserve">
+    <value>Kérések megjelenítése</value>
+  </data>
+  <data name="DisplayStatistics" xml:space="preserve">
+    <value>Statisztika megjelenítése</value>
+  </data>
+  <data name="DisplayTop" xml:space="preserve">
+    <value>Ugrás az oldal tetejére</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>Dokumentáció</value>
+  </data>
+  <data name="DoNotReplyMail" xml:space="preserve">
+    <value>Ne válaszoljon erre a levélre! Ez egy automatikus üzenet, amely a következő e-mail címről érkezett {0}</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Piszkozat</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Szerkesztés</value>
+  </data>
+  <data name="EndCatalogAdminMode" xml:space="preserve">
+    <value>Katalógus admin mód befejezése</value>
+  </data>
+  <data name="EndUserDocumentation" xml:space="preserve">
+    <value>Felhasználói dokumentáció befejezése</value>
+  </data>
+  <data name="EnterSearchedSuppNameId" xml:space="preserve">
+    <value>Adja meg a keresett beszállító nevét vagy azonosítóját</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Hiba történt az alkalmazásban.</value>
+  </data>
+  <data name="EstimatedPrice" xml:space="preserve">
+    <value>Becsült ár</value>
+  </data>
+  <data name="EstPrice" xml:space="preserve">
+    <value>Becs. ár</value>
+  </data>
+  <data name="ExportApprovalMatrix" xml:space="preserve">
+    <value>A jóváhagyás-mátrix exportálása</value>
+  </data>
+  <data name="ExportApprovalMatrixtoExcel" xml:space="preserve">
+    <value>A jóváhagyás-mátrix exportálása Excel-fájlként</value>
+  </data>
+  <data name="ExportPriceChangeConfirm" xml:space="preserve">
+    <value>Biztosan menteni akarja a beállításokat?\r\nHa menti a beállításokat, következő kérésében az -&gt; #E# opciónál automatikusan a #S# beszállító kerül beállításra.</value>
+  </data>
+  <data name="ExportPriceToOrder" xml:space="preserve">
+    <value>A becsült ár megjelenítése a megrendelésben</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Exportálás Excel-fájlként</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Február</value>
+  </data>
+  <data name="FillFixValues" xml:space="preserve">
+    <value>Töltse ki és rögzítse a kiemelt mezők értékeit.</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Szűrő</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Péntek</value>
+  </data>
+  <data name="FromTo_From" xml:space="preserve">
+    <value>'-tól</value>
+  </data>
+  <data name="FromTo_To" xml:space="preserve">
+    <value>'-ig</value>
+  </data>
+  <data name="GeneratedBy" xml:space="preserve">
+    <value>Otis Belső Kérések Rendszere</value>
+  </data>
+  <data name="GenerateOrder" xml:space="preserve">
+    <value>Megrendelés létrehozása</value>
+  </data>
+  <data name="GenerateOrderConfirm" xml:space="preserve">
+    <value>Biztosan létre akarja hozni a megrendelést?</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Óra</value>
+  </data>
+  <data name="ICO" xml:space="preserve">
+    <value>Supplier Id</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="InProcessRequestList" xml:space="preserve">
+    <value>Folyamatban lévő kérések</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Beilleszt</value>
+  </data>
+  <data name="InSum" xml:space="preserve">
+    <value>Összesen</value>
+  </data>
+  <data name="InternalRequestList" xml:space="preserve">
+    <value>Belső kérések listája</value>
+  </data>
+  <data name="InvoiceMissing" xml:space="preserve">
+    <value>A kérést nem lehet bezárni. Nem adott meg számlát.</value>
+  </data>
+  <data name="InvoiceNr" xml:space="preserve">
+    <value>Számla száma</value>
+  </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>Kiállított dátum</value>
+  </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>Tételek számlálása</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Január</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Július</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>Június</value>
+  </data>
+  <data name="LeadTime" xml:space="preserve">
+    <value>Igényelt határidő</value>
+  </data>
+  <data name="Less" xml:space="preserve">
+    <value>kevesebb</value>
+  </data>
+  <data name="LoadAll" xml:space="preserve">
+    <value>Összes betöltése</value>
+  </data>
+  <data name="LoadingData" xml:space="preserve">
+    <value>Adatok betöltése ...</value>
+  </data>
+  <data name="LowerLimit" xml:space="preserve">
+    <value>Alsó limit</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Levél</value>
+  </data>
+  <data name="MailAutomaticGenerate" xml:space="preserve">
+    <value>Ez egy automatikus üzenet {0}-tól/-től.</value>
+  </data>
+  <data name="MailBodyDelivered" xml:space="preserve">
+    <value>A  {0} számú kérésben szereplő anyagok/szolgáltatások leszállításra/teljesítésre kerültek.</value>
+  </data>
+  <data name="MailBodyL" xml:space="preserve">
+    <value>A {0} felhasználó kéri, hogy hagyja jóvá a köv. számú kérését: {1}</value>
+  </data>
+  <data name="MailBodyOrder" xml:space="preserve">
+    <value>A {0} felhasználó megrendelés létrehozását kéri a köv. számú kérésből: {1}</value>
+  </data>
+  <data name="MailBodyRejected" xml:space="preserve">
+    <value>A {0} felhasználó elutasította a köv. számú kérését: {1}.</value>
+  </data>
+  <data name="MailBodySentBack" xml:space="preserve">
+    <value>A {0} felhasználó átdolgozásra visszaküldte {1} számú kérését.</value>
+  </data>
+  <data name="MailLanguage" xml:space="preserve">
+    <value>Levelezés nyelve</value>
+  </data>
+  <data name="MailLoginInfo" xml:space="preserve">
+    <value>Amennyiben egy bejelentkezési ablak ugrik fel, miután a kérésszámra kattintott, a következő formátumban adja meg bejelentkezési nevét: „EUOTIS\name“</value>
+  </data>
+  <data name="MailRecipient" xml:space="preserve">
+    <value>Címzett</value>
+  </data>
+  <data name="MailRequestAlreadyApprovedBy" xml:space="preserve">
+    <value>A kérést {0} már jóváhagyta.</value>
+  </data>
+  <data name="ManagerSubstitution" xml:space="preserve">
+    <value>Intéző helyettesítés</value>
+  </data>
+  <data name="MandatoryComboValue" xml:space="preserve">
+    <value>A mező kitöltése kötelező. Válasszon egy értéket.</value>
+  </data>
+  <data name="MandatoryTextField" xml:space="preserve">
+    <value>A mező kitöltése kötelező. Adjon meg egy értéket.</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Március</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Május</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Perc</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Mobiltelefon</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Hétfő</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Hónap</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>több</value>
+  </data>
+  <data name="MultiOrdererInfo" xml:space="preserve">
+    <value>A kérés jóváhagyását követően valamennyi megrendelőnek elküldésre kerül. A kéréssel az azt elsőként megnyitó megrendelőt bízzák meg.</value>
+  </data>
+  <data name="MyRequestsOnly" xml:space="preserve">
+    <value>Csak a saját kérések</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Megnevezés</value>
+  </data>
+  <data name="NewInternalRequest" xml:space="preserve">
+    <value>Új belső kérés</value>
+  </data>
+  <data name="NoAttachmentSelected" xml:space="preserve">
+    <value>Csatolmány nem került kiválasztásra.</value>
+  </data>
+  <data name="NoLimit" xml:space="preserve">
+    <value>Korlátlan</value>
+  </data>
+  <data name="NoRequestMeetsCriterions" xml:space="preserve">
+    <value>Egy kérés sem felel meg a szűrési kritériumoknak.</value>
+  </data>
+  <data name="NoSupplierMatchCriterions" xml:space="preserve">
+    <value>Nincs találat beszállítóra</value>
+  </data>
+  <data name="NotAllowedToApprove" xml:space="preserve">
+    <value>Nincs engedélye a kérés jóváhagyására!</value>
+  </data>
+  <data name="NotAllowedUser" xml:space="preserve">
+    <value>A „{0}” felhasználó nem használhatja az alkalmazást.</value>
+  </data>
+  <data name="NotDelivered" xml:space="preserve">
+    <value>Nincs leszállítva</value>
+  </data>
+  <data name="NotDisplayPrice" xml:space="preserve">
+    <value>Ne mutassa a becsült árát a megrendelésben</value>
+  </data>
+  <data name="NotOrdered" xml:space="preserve">
+    <value>Nincs megrendelve</value>
+  </data>
+  <data name="NotRequired" xml:space="preserve">
+    <value>Nem kötelező</value>
+  </data>
+  <data name="NotSavedInvoices" xml:space="preserve">
+    <value>Mentetlen módosítások vannak a kérés számláiban. Kívánja folytatni?</value>
+  </data>
+  <data name="NotSavedInvoicesCannotClose" xml:space="preserve">
+    <value>Mentetlen módosítások vannak a kérés számláiban. A kérést nem lehet bezárni.</value>
+  </data>
+  <data name="NotSent" xml:space="preserve">
+    <value>Nincs elküldve</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Október</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Nyitva</value>
+  </data>
+  <data name="OpenFileTip" xml:space="preserve">
+    <value>Amennyiben a kért fájl nem nyílik meg automatikusan, kattintson a következő hivatkozásra.</value>
+  </data>
+  <data name="OpenHistoryInfo" xml:space="preserve">
+    <value>Kattintson a képre a kért előzmény megnyitásához</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Megrendelés</value>
+  </data>
+  <data name="OrderConfirm" xml:space="preserve">
+    <value>Biztosan létre kívánja hozni a megrendelést és be akarja zárni a kérést?</value>
+  </data>
+  <data name="Ordered" xml:space="preserve">
+    <value>Megrendelt</value>
+  </data>
+  <data name="OrderedConfirm" xml:space="preserve">
+    <value>Biztosan \„Megrendelt”\-re kívánja módosítani a kérést?</value>
+  </data>
+  <data name="Orderer" xml:space="preserve">
+    <value>Megrendelő</value>
+  </data>
+  <data name="OrdererAttachment" xml:space="preserve">
+    <value>Megrendelések csatolmányai</value>
+  </data>
+  <data name="OrdererMail" xml:space="preserve">
+    <value>Megrendelés kérése </value>
+  </data>
+  <data name="OrdererRemark" xml:space="preserve">
+    <value>Megrendelő megjegyzései</value>
+  </data>
+  <data name="OrdererRequestHandedOverByOrderer" xml:space="preserve">
+    <value>A megrendelést {0} megrendelő már átadta.</value>
+  </data>
+  <data name="Orderers" xml:space="preserve">
+    <value>Megrendelők</value>
+  </data>
+  <data name="OrdererSupplier" xml:space="preserve">
+    <value>Megrendelők beszállítóra beállítva </value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Egyebek</value>
+  </data>
+  <data name="OtisInternalRequest" xml:space="preserve">
+    <value>Belső kérések</value>
+  </data>
+  <data name="OtisItemsCatalog" xml:space="preserve">
+    <value>Otis katalógus</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Időszak</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Ár</value>
+  </data>
+  <data name="PriceChangedSendBack" xml:space="preserve">
+    <value>Az árat emelték, új jóváhagyás szükséges. Küldje vissza a kérést a kérelmezőnek.</value>
+  </data>
+  <data name="PriceOverflow" xml:space="preserve">
+    <value>A kérés nem feldolgozható. A max. pénzügyi limit a „{0}” esetében {1}</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Nyomtatás</value>
+  </data>
+  <data name="ProfylaxNr" xml:space="preserve">
+    <value>Profylax sz.</value>
+  </data>
+  <data name="PurchaseGroup" xml:space="preserve">
+    <value>Beszerzési csoport</value>
+  </data>
+  <data name="PurchMatIncluded" xml:space="preserve">
+    <value>A beszerzett anyagok szerepeltetése a FIX ESZKÖZÖK között</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Elutasítás</value>
+  </data>
+  <data name="RejectConfirm" xml:space="preserve">
+    <value>Biztosan el akarja utasítani a kérést?</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Elutasítva</value>
+  </data>
+  <data name="RejectMail" xml:space="preserve">
+    <value>Elutasítva</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Megjegyzések</value>
+  </data>
+  <data name="RemoveLimit" xml:space="preserve">
+    <value>Limit eltávolítása</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Kérés</value>
+  </data>
+  <data name="RequestCanceled" xml:space="preserve">
+    <value>A kérés törölve.</value>
+  </data>
+  <data name="RequestCount" xml:space="preserve">
+    <value>Kérésszámlálás</value>
+  </data>
+  <data name="RequestDate" xml:space="preserve">
+    <value>Kérés dátuma</value>
+  </data>
+  <data name="RequestForCentre" xml:space="preserve">
+    <value>Kér. a központhoz</value>
+  </data>
+  <data name="RequestHistory" xml:space="preserve">
+    <value>A kérésszám előzménye</value>
+  </data>
+  <data name="RequestNr" xml:space="preserve">
+    <value>Kérésszám</value>
+  </data>
+  <data name="Requestor" xml:space="preserve">
+    <value>Kérelmező</value>
+  </data>
+  <data name="RequestorAttachment" xml:space="preserve">
+    <value>Kérelmező csatolmányai</value>
+  </data>
+  <data name="Requestors" xml:space="preserve">
+    <value>Kérelmezők</value>
+  </data>
+  <data name="RequestRejected" xml:space="preserve">
+    <value>A kérés elutasítva!!!</value>
+  </data>
+  <data name="RequestSentBack" xml:space="preserve">
+    <value>A kérést átírásra, kiegészítésre visszaküldve ...</value>
+  </data>
+  <data name="RequestSentForApproval" xml:space="preserve">
+    <value>A kérés jóváhagyásra sikeresen elküldve.</value>
+  </data>
+  <data name="RequestStatus" xml:space="preserve">
+    <value>Kérés státusza</value>
+  </data>
+  <data name="RequestText" xml:space="preserve">
+    <value>Kérés szövege</value>
+  </data>
+  <data name="ReturnRequestTo" xml:space="preserve">
+    <value>Kérés visszaküldése a következőnek:</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Szombat</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Mentés</value>
+  </data>
+  <data name="SaveAsDraft" xml:space="preserve">
+    <value>Mentés piszkozatként</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Módosítások mentése</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>A mentés során hiba történt!!! Az adat nem került mentésre!!! </value>
+  </data>
+  <data name="SearchSupplierTitle" xml:space="preserve">
+    <value>Beszállító keresése</value>
+  </data>
+  <data name="SearchSupplierWatermark" xml:space="preserve">
+    <value>Név, ID</value>
+  </data>
+  <data name="SelectApproveMan" xml:space="preserve">
+    <value> &lt;&lt;&lt; Jóváhagyó kiválasztása &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectArea" xml:space="preserve">
+    <value>Terület kiválasztása</value>
+  </data>
+  <data name="SelectFromList" xml:space="preserve">
+    <value>Kiválasztás listából</value>
+  </data>
+  <data name="SelectOrderer" xml:space="preserve">
+    <value> &lt;&lt;&lt; Megrendelő kiválasztása &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectPurchaseGroup" xml:space="preserve">
+    <value> &lt;&lt;&lt; Beszerzési csoport kiválasztása &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstitute" xml:space="preserve">
+    <value> &lt;&lt;&lt; Helyettes kiválasztása &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstituted" xml:space="preserve">
+    <value> &lt;&lt;&lt; Helyettesített kiválasztása &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSupplier" xml:space="preserve">
+    <value> &lt;&lt;&lt; Beszállító kiválasztása &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectValue" xml:space="preserve">
+    <value> &lt;&lt;&lt; Érték kiválasztása &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelfOrderedCategory" xml:space="preserve">
+    <value>A kérelmező megrendeli a kérést</value>
+  </data>
+  <data name="SendBackConfirm" xml:space="preserve">
+    <value>Biztos, hogy vissza akarja küldeni a kérést átírásra, kiegészítésre, ...?</value>
+  </data>
+  <data name="SendBackMail" xml:space="preserve">
+    <value>Visszaküldés a kérelmezőnek</value>
+  </data>
+  <data name="SendBackReason" xml:space="preserve">
+    <value>Visszaküldés oka</value>
+  </data>
+  <data name="SendBackToRequestor" xml:space="preserve">
+    <value>Visszaküldés a kérelmezőnek</value>
+  </data>
+  <data name="SendConfirm" xml:space="preserve">
+    <value>Biztosan el akarja küldeni a kérést jóváhagyásra?</value>
+  </data>
+  <data name="SendForApproval" xml:space="preserve">
+    <value>Jóváhagyásra küld</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Szeptember</value>
+  </data>
+  <data name="ShipToAddress" xml:space="preserve">
+    <value>Szállítási cím</value>
+  </data>
+  <data name="ShoppingCart" xml:space="preserve">
+    <value>Kosár</value>
+  </data>
+  <data name="SortAscend" xml:space="preserve">
+    <value>Listázás emelkedő sorrendben</value>
+  </data>
+  <data name="SortDescsend" xml:space="preserve">
+    <value>Listázás csökkenő sorrendben</value>
+  </data>
+  <data name="StatExchangeRateMissing" xml:space="preserve">
+    <value>A statisztikai adatok nem teljesek, mivel hiányzik a  {0} és az {1} közötti átváltási ráta.</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statisztika</value>
+  </data>
+  <data name="StatisticsType" xml:space="preserve">
+    <value>Statisztika típusa</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Utca</value>
+  </data>
+  <data name="Substitute" xml:space="preserve">
+    <value>Helyettes</value>
+  </data>
+  <data name="Substituted" xml:space="preserve">
+    <value>Helyettesített</value>
+  </data>
+  <data name="SubstituteMsg" xml:space="preserve">
+    <value>Mostantól „{0}” helyettesíti. A helyettesítést a „Helyettes” oldalon tudja törölni.</value>
+  </data>
+  <data name="SumCostCount" xml:space="preserve">
+    <value>Teljes költség/kérésszámlálás</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Vasárnap</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Beszállító</value>
+  </data>
+  <data name="SupplierInfo" xml:space="preserve">
+    <value>Beszállítói információ</value>
+  </data>
+  <data name="SupplierOutOfList" xml:space="preserve">
+    <value>Beszállító a listáról</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>Beszállítók</value>
+  </data>
+  <data name="SuppliersSynchronized" xml:space="preserve">
+    <value>A beszállítói lista frissítésre került.</value>
+  </data>
+  <data name="SupplierUpdate" xml:space="preserve">
+    <value>Beszállítók frissítése</value>
+  </data>
+  <data name="SupplierUpdateConfirm" xml:space="preserve">
+    <value>Biztosan frissíteni akarja a beszállítói listát? Lehet, hogy sok időt vesz igénybe.</value>
+  </data>
+  <data name="TakeOverConfirm" xml:space="preserve">
+    <value>Biztosan át akarja venni a kérést?</value>
+  </data>
+  <data name="TakeOverRequest" xml:space="preserve">
+    <value>Kérés átvétele</value>
+  </data>
+  <data name="Thustday" xml:space="preserve">
+    <value>Csütörtök</value>
+  </data>
+  <data name="TooLargeAttachements" xml:space="preserve">
+    <value>A kérés olyan csatolmányokat is tartalmaz, amelyek nem kerültek elküldésre, mivel túl nagyok.</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Teljes</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Kedd</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Egységár</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Frissítés</value>
+  </data>
+  <data name="UpperLimit" xml:space="preserve">
+    <value>Felső limit</value>
+  </data>
+  <data name="WaitForApproval" xml:space="preserve">
+    <value>Jóváhagyásra várakozik</value>
+  </data>
+  <data name="WaitForOrder" xml:space="preserve">
+    <value>Megrendelésre várakozik</value>
+  </data>
+  <data name="Wendesday" xml:space="preserve">
+    <value>Szerda</value>
+  </data>
+  <data name="WoVat" xml:space="preserve">
+    <value>Áfa nélkül</value>
+  </data>
+  <data name="WrongDataTypeDecimal" xml:space="preserve">
+    <value>Hibás adattípus. Adjon meg egy számot.</value>
+  </data>
+  <data name="WrongDataTypeInteger" xml:space="preserve">
+    <value>Hibás adattípus. Adjon meg egy egész számot.</value>
+  </data>
+  <data name="WrongDate" xml:space="preserve">
+    <value>Hibás dátum</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Év</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Irányítószám</value>
+  </data>
+  <data name="CompanyPrivate" xml:space="preserve">
+    <value>rendszere</value>
+  </data>
+</root>

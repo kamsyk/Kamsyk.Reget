@@ -1,0 +1,47 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+
+@{
+    var baseController = ViewContext.Controller as BaseController;
+}
+
+<div style="display:none;">
+    <input id="WarningText" value="@RequestResource.Warning" />
+    <input id="ErrorOccuredText" value="@RequestResource.Error" />
+    <input id="CloseText" value="@RequestResource.Close" />
+    <input id="EnterDateText" value="@RequestResource.EnterDate" />
+    <input id="EnterDateTimeText" value="@RequestResource.EnterDateTime" />
+    <input id="DatePickerFormatMomentText" value="@baseController.DatePickerFormatMoment" />
+    <input id="DateTimePickerFormatMomentText" value="@baseController.DateTimePickerFormatMoment" />
+    <input id="EditText" value="@RequestResource.Edit" />
+    <input id="DeleteText" value="@RequestResource.Delete" />
+    <input id="SaveText" value="@RequestResource.Save" />
+    <input id="CancelText" value="@RequestResource.Cancel" />
+    <input id="DataCannotBeSavedText" value="@RequestResource.DataCannotBeSaved" />
+    <input id="DataWasSavedText" value="@RequestResource.DataWasSaved" />
+    <input id="ConfirmationText" value="@RequestResource.Confirmation" />
+    <input id="YesText" value="@RequestResource.Yes" />
+    <input id="NoText" value="@RequestResource.No" />
+    <input id="LoadingDataText" value="@RequestResource.LoadingData" />
+    <input id="HideText" value="@RequestResource.Hide" />
+    <input id="DisplayText" value="@RequestResource.Display" />
+
+    <input id="MsgNotAuthorizedPerformActionText" value="@RequestResource.NotAuthorizedPerformAction" />
+    <input id="MsgMissingMandatoryFieldText" value="@RequestResource.MissingMandatoryValue" />
+    <input id="MsgRequestCannotBeRevertedText" value="@RequestResource.RequestCannotBeReverted" />
+
+    <input id="DecimalSeparator" value="@BaseController.DecimalSeparator" />
+    <input id="CultureCode" value="@baseController.CurrentCultureCode" />
+
+    <input id="DateFormatText" value="@baseController.DatePickerFormatMoment" />
+    <input id="DateTimeFormatText" value="@baseController.DateTimePickerFormatMoment" />
+
+
+    <input id="txtCurrentUserName" value="@baseController.CurrentUser.ParticipantNameSurnameFirst" />
+    <input id="txtCurrentUserId" value="@baseController.CurrentUser.ParticipantId" />
+    <input id="txtCurrentUserPhotoUrl" value="@baseController.GetParticipantPhotoUrl()" />
+    <input id="DateTimeMomentFormatText" value="@baseController.DateTimePickerFormatMoment" />
+
+    <input id="FileSizeOverLimitText" value="@RequestResource.FileSizeOverLimit" />
+</div>

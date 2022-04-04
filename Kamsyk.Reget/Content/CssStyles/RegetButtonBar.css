@@ -1,0 +1,35 @@
+﻿.reget-button-bar {
+    margin-right: auto;
+    margin-left: auto;
+    width:100%;
+    padding-right: 60px;
+}
+
+
+
+@media (min-width: 768px) {
+    .reget-button-bar {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .reget-button-bar {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .reget-button-bar {
+        width: 1170px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .reget-button-bar {
+        width: 90%;
+        min-width: 90%;
+    }
+
+}
+

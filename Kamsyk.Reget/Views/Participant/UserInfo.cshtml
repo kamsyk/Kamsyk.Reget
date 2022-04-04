@@ -1,0 +1,217 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var participantController = ViewContext.Controller as ParticipantController;
+    var strAutoUserItem = "<div>" +
+                "<img src=\"{{item.country_flag}}\" style=\"width:24px;height:16px;vertical-align: middle;\" />" +
+                "<span md-highlight-text=\"searchstringusertobereplaced\" md-highlight-flags=\"i\" style=\"vertical-align: middle; margin-left:5px;\">{{item.surname}} {{item.first_name}}</span>" +
+             "</div>";
+    var isEditable = (participantController.CurrentUser.IsParticipantCompanyAdmin && (ViewBag.ActionDesc == null || ViewBag.ActionDesc != "CurrentUserInfo"));
+    var strDivStyle = (isEditable) ? "margin-top:15px;margin-bottom:15px" : "margin-bottom:15px";
+}
+
+<script>
+    function togleReplaceDiv(element) {
+        var strElIdParts = element.id.split('_');
+        var replId = strElIdParts[1];
+
+        var divReplace = 'divReplace_' + replId;
+        var imgExpandCollapse = 'impReplaceCollExp_' + replId;
+
+
+        if ($("#" + divReplace).is(':visible')) {
+            $("#" + divReplace).slideUp();
+            $("#" + imgExpandCollapse).attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+            $("#" + imgExpandCollapse).attr("title", "@Html.Raw(RequestResource.Display)");
+
+        } else {
+            $("#" + divReplace).show("slow");
+            $("#" + imgExpandCollapse).attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+            $("#" + imgExpandCollapse).attr("title", "@Html.Raw(RequestResource.Hide)");
+
+        }
+    }
+
+</script>
+
+<form name="frmUserRoles" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="UserInfoController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div class="reget-panel-box-pad" style="margin-bottom:15px;">
+            <div style="padding-left:15px;padding-right:15px;">
+                
+                <div style="@strDivStyle">
+                    @{
+                        if (isEditable) {
+
+                            MdAutocomplete mdAutoUser = new MdAutocomplete();
+                            mdAutoUser.RootTagId = "agUser";
+                            mdAutoUser.IsMandatory = true;
+                            mdAutoUser.LabelLeft = RequestResource.User;
+                            mdAutoUser.LabelLeftCssClass = "reget-ang-lbl-control-left-100";
+                            mdAutoUser.MdSelectItem = "angCtrl.selectedUserToBeReplaced";
+                            mdAutoUser.MdSearchText = "angCtrl.searchstringusertobereplaced";
+                            mdAutoUser.OnSelectedItemChange = "angCtrl.userToBeReplacedSelectedItemChange(item, 'agUser" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                            mdAutoUser.MdItems = "item in angCtrl.searchParticipant(angCtrl.searchstringusertobereplaced)";
+                            mdAutoUser.MdItemText = "item.name_surname_first";
+                            mdAutoUser.Placeholder = RequestResource.User;
+                            mdAutoUser.MdInputId = "txtUserToBeReplaced";
+                            mdAutoUser.MdItemTemplate = strAutoUserItem;
+                            mdAutoUser.OnBlur = "angCtrl.userToBeReplacedOnBlur('agUser" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                            mdAutoUser.CssClass = "reget-dropdown-auto";
+                            mdAutoUser.ContainerClass = "reget-ang-div-container-15";
+                            mdAutoUser.MinLength = 0;
+
+
+                            @Html.Raw(mdAutoUser.RenderControlHtml())
+
+                        } else {
+
+                            @*MdLabel mdLblUser = new MdLabel();
+                            mdLblUser.FormName = "frmUserRoles";
+                            mdLblUser.NgModel = "angCtrl.selectedUserToBeReplaced";
+                            mdLblUser.LabelLeft = RequestResource.User;
+                            mdLblUser.RootTagId = "ToBeReplaced";
+                            mdLblUser.IsMandatory = true;
+                            mdLblUser.LabelLeftCssClass = "reget-ang-lbl-control-left-100";
+
+                            @Html.Raw(mdLblUser.RenderControlHtml())*@
+                            <div style="font-size:1.5em;">{{angCtrl.selectedUserToBeReplaced}}</div>
+                        }
+                    }
+                </div>
+
+                <div>
+                    @{
+                        if (isEditable) {
+                            <div ng-hide="angCtrl.userInfo==null" class="control-label hidden-xs reget-ang-lbl-control-left-100" style="float:left;">&nbsp;</div>
+                         }
+                    }
+                    <div ng-hide="angCtrl.userInfo==null" style="padding-bottom:10px;">
+                        <table>
+                            <tr>
+                                <td style="margin-top:5px;padding:5px;border:solid 1px #DDD;" ng-hide="angCtrl.isStringValueNullOrEmpty(angCtrl.userInfo.photo240_url)">
+                                    <img src="@participantController.GetRootUrl()Participant/UserPhoto?userId={{angCtrl.userInfo.photo240_url}}" width="96" />
+                                </td>
+                                <td ng-style="{'padding-left' : angCtrl.isStringValueNullOrEmpty(angCtrl.userInfo.photo240_url) ? '10px' : '20px' }">
+                                    <table>
+
+                                        <tr ng-hide="angCtrl.isStringValueNullOrEmpty(angCtrl.userInfo.email)">
+                                            <td style="padding-right:5px;"><img src="~/Content/Images/Info/mail.png" /></td>
+                                            <td style="padding:5px;"><a href="mailto:{{angCtrl.userInfo.email}}">{{angCtrl.userInfo.email}}</a></td>
+                                        </tr>
+
+                                        <tr ng-hide="angCtrl.isStringValueNullOrEmpty(angCtrl.userInfo.phone)">
+                                            <td style="padding-right:5px;"><img src="~/Content/Images/Info/phone.png" /></td>
+                                            <td style="padding:5px;">{{angCtrl.userInfo.phone}}</td>
+                                        </tr>
+
+                                        <tr ng-hide="angCtrl.isStringValueNullOrEmpty(angCtrl.userInfo.office_name)">
+                                            <td style="padding-right:5px;"><img src="{{angCtrl.userInfo.country_flag}}" style="width:20px;border:1px solid #DDD" /></td>
+                                            <td style="padding:5px;">{{angCtrl.userInfo.office_name}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        @*<hr ng-hide="angCtrl.selectedUserToBeReplaced==null" />*@
+
+        <!-- Requestors -->
+        <div id="divRequestorPanel" name="divRequestorPanel" class="reget-panel-box-spaceafter" style="margin-top:0px;" ng-show="(angCtrl.selectedUserToBeReplaced != null && angCtrl.replaceEntities.cg_requestors.length > 0)">
+            <div id="divRequestorHeader_divRequestor" class="reget-box-header reget-bold" onclick="togleReplaceDiv(this);">
+                <img id="impReplaceCollExp_divRequestor" src="~/Content/Images/Panel/Collapse.png" title="@RequestResource.Hide" class="reget-appmatrix-expcolimg" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.Requestor {{angCtrl.selectedUserToBeReplaced.name_surname_first}}</span>
+            </div>
+
+
+            <div id="divReplace_divRequestor" style="padding:15px;">
+                <div id="wrapRequestors" class="reget-ang-div-container-readonly">
+                    <label id="lblRequestors" class="control-label hidden-xs reget-ang-lbl-control-left-100">@RequestResource.Area :</label>
+                    <md-input-container id="ctCgParticipants" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.Area</label>
+
+                        <ul class="reget-ul" style="margin-top:2px;margin-left:5px;">
+                            <li flex="150" style="margin-bottom:5px;" ng-repeat="item in angCtrl.replaceEntities.cg_requestors">
+                                <a href="@participantController.GetRootUrl()RegetAdmin/CentreGroup?cgId={{item.cg_id}}" target="_blank">{{ item.name }} {{ item.centres }}</a>
+                                
+                            </li>
+                        </ul>
+
+                    </md-input-container>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- AppMan -->
+        <div id="divAppManPanel" name="divAppManPanel" class="reget-panel-box-spaceafter" ng-show="(angCtrl.selectedUserToBeReplaced != null && angCtrl.replaceEntities.cg_app_men.length > 0)">
+            <div id="divAppManHeader_divAppMan" class="reget-box-header reget-bold" onclick="togleReplaceDiv(this);">
+                <img id="impReplaceCollExp_divAppMan" src="~/Content/Images/Panel/Collapse.png" title="@RequestResource.Hide" class="reget-appmatrix-expcolimg" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.ApproveMan {{angCtrl.selectedUserToBeReplaced.name_surname_first}}</span>
+            </div>
+            <div id="divReplace_divAppMan" style="padding:15px;">
+                <div id="wrapAppMen" class="reget-ang-div-container-readonly">
+                    <label id="lblAppMen" class="control-label hidden-xs reget-ang-lbl-control-left-100">@RequestResource.Area :</label>
+                    <md-input-container id="ctCgAppMen" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.Area</label>
+                                                
+                        <ul class="reget-ul" style="margin-top:2px;margin-left:5px;">
+                            <li flex="150" style="margin-bottom:5px;" ng-repeat="item in angCtrl.replaceEntities.cg_app_men">
+                                <a href="@participantController.GetRootUrl()RegetAdmin/CentreGroup?cgId={{item.cg_id}}" target="_blank">{{ item.name }} {{ item.centres }}</a>
+                            </li>
+                        </ul>
+
+                    </md-input-container>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Orderer -->
+        <div id="divOrdererPanel" name="divOrdererPanel" class="reget-panel-box-spaceafter" ng-show="(angCtrl.selectedUserToBeReplaced != null && angCtrl.replaceEntities.cg_orderers.length > 0)">
+            <div id="divOrdererHeader_divOrderer" class="reget-box-header reget-bold" onclick="togleReplaceDiv(this);">
+                <img id="impReplaceCollExp_divOrderer" src="~/Content/Images/Panel/Collapse.png" title="@RequestResource.Hide" class="reget-appmatrix-expcolimg" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.Orderer {{angCtrls.selectedUserToBeReplaced.name_surname_first}}</span>
+            </div>
+
+            <div id="divReplace_divOrderer" class="reget-ang-div-container-readonly" style="padding:15px;">
+                <label id="lblOrderer" class="control-label hidden-xs reget-ang-lbl-control-left-100">@RequestResource.Area :</label>
+                <md-input-container id="ctCgAppMen" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                    <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.Area</label>
+                                        
+                    <ul class="reget-ul" style="margin-top:2px;margin-left:5px;">
+                        <li flex="150" style="margin-bottom:5px;" ng-repeat="item in angCtrl.replaceEntities.cg_orderers">
+                            <a href="@participantController.GetRootUrl()RegetAdmin/CentreGroup?cgId={{item.cg_id}}" target="_blank">{{ item.name }} {{ item.centres }}</a>
+                        </li>
+                    </ul>
+
+                </md-input-container>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div style="display:none;">
+            <input id="UserToBeReplacedId" value="@ViewBag.ParticipantId" />
+            <input id="UserToBeReplacedName" value="@ViewBag.ParticipantName" />
+
+            <input id="WarningText" value="@RequestResource.Warning" />
+            @*<input id="ErrorOccuredText" value="@RequestResource.Error" />*@
+            <input id="CloseText" value="@RequestResource.Close" />
+
+        </div>
+    </div>
+</form>

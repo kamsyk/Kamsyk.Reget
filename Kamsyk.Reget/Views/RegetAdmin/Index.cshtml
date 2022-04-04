@@ -1,0 +1,1112 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+@using Kamsyk.Reget.Model.DataDictionary
+
+@{
+    var regetAdminController = ViewContext.Controller as RegetAdminController;
+    var isAllCgReadOnly = !regetAdminController.CurrentUser.IsParticipantAreaAdmin;
+    var isNew = ViewBag.IsNew != null && ViewBag.IsNew;
+}
+
+<script>
+    var isCancelEvent = false;
+
+    $(document).ready(function () {
+
+        $("#divCgDetailCollHeader").click(function () {
+            //$("#divCgParam").collapse('toggle');
+            if ($("#divCgParam").is(':visible')) {
+                $("#divCgParam").slideUp();
+                $("#imgCgExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+                $("#imgCgExpand").attr("title", "@Html.Raw(RequestResource.Display)");
+            } else {
+                $("#divCgParam").show("slow");
+                $("#imgCgExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+                $("#imgCgExpand").attr("title", "@Html.Raw(RequestResource.Hide)");
+            }
+        });
+
+
+        $("#divCgMatrixCollHeader").click(function () {
+            //$("#divCgAppMatrix").collapse('toggle');
+            if ($("#divCgAppMatrix").is(':visible')) {
+                $("#divCgAppMatrix").slideUp();
+                $("#imgCgMatrixExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+                $("#imgCgMatrixExpand").attr("title", "@Html.Raw(RequestResource.Display)");
+            } else {
+                $("#divCgAppMatrix").show("slow");
+                $("#imgCgMatrixExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+                $("#imgCgMatrixExpand").attr("title", "@Html.Raw(RequestResource.Hide)");
+            }
+        });
+
+
+        $("#divCgParam").on('shown.bs.collapse', function () {
+            $("#imgCgExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+            $("#imgCgExpand").attr("title", "@Html.Raw(RequestResource.Hide)");
+        });
+        //$("#divCgParam").on('hide.bs.collapse', function () {
+        //    alert('The collapsible content is about to be hidden.');
+        //});
+        $("#divCgParam").on('hidden.bs.collapse', function () {
+            $("#imgCgExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+            $("#imgCgExpand").attr("title", "@Html.Raw(RequestResource.Display)");
+        });
+
+        $("#divCgAppMatrix").on('shown.bs.collapse', function (e) {
+            if ($(this).is(e.target)) {
+                $("#imgCgMatrixExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+                $("#imgCgMatrixExpand").attr("title", "@Html.Raw(RequestResource.Hide)");
+            }
+        });
+
+        $("#divCgAppMatrix").on('hidden.bs.collapse', function (e) {
+            if ($(this).is(e.target)) {
+                $("#imgCgMatrixExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+                $("#imgCgMatrixExpand").attr("title", "@Html.Raw(RequestResource.Display)");
+            }
+        });
+    });
+
+
+
+</script>
+
+<form name="frmCgAdmin" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="CgAdminController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+
+        <div ng-hide="angCtrl.isNewCg">
+            <div class="reget-panel-box-pad" style="padding:15px;">
+                <div style="display:inline-block;vertical-align:bottom;margin-right:10px;float:left;margin-top:4px;">
+                    @{
+                        MdSelect mdCmbCentreGroups = new MdSelect();
+                        mdCmbCentreGroups.RootTagId = "CgList";
+                        mdCmbCentreGroups.FormName = "frmCgAdmin";
+                        mdCmbCentreGroups.AgSourceList = "angCtrl.centreGroupList";
+                        mdCmbCentreGroups.AgModel = "angCtrl.selectedCentreGroupId";
+                        mdCmbCentreGroups.AgIdItem = "id";
+                        mdCmbCentreGroups.AgTextItem = "name";
+                        mdCmbCentreGroups.OnSelectFunct = "angCtrl.getCentreGroupData()";
+                        mdCmbCentreGroups.LabelLeft = RequestResource.Area;
+                        mdCmbCentreGroups.LabelTop = RequestResource.SelectArea;
+                        mdCmbCentreGroups.LabelLeftCssClass = "reget-ang-lbl-control-left-nowidth";
+                        //mdCmbCentreGroups.IsReadOnly = false;
+                        //mdCmbCentreGroups.IsMandatory = false;
+                        mdCmbCentreGroups.IsDisplayNoneSelect = true;
+                        //mdCmbCentreGroups.IsLeftLabelDisplayed = true;
+                        //mdCmbCentreGroups.IsBold = false;
+                        mdCmbCentreGroups.ItemHtml = "<img ng-src=\"{{liElement.flag_url}}\" class=\"reget-img-border-dark\" style=\"width:24px;height:16px;vertical-align:middle;margin-bottom:3px;\">" +
+                         "<img ng-src=\"{{liElement.status_url}}\" style=\"vertical-align:middle;margin-bottom:3px;margin-left:5px;\">" +
+                         "<img id=\"imgDis_{{liElement.id}}\" ng-hide=\"liElement.is_active\" src=\"" + regetAdminController.GetRootUrl() + "Content/Images/Controll/disablecircle16.png\" style=\"vertical-align:middle;margin-bottom:3px;margin-left:5px;\">" +
+                         "<span style=\"vertical-align: middle; margin-left:5px;\">{{liElement.name}}</span>";
+                    }
+                    @Html.Raw(mdCmbCentreGroups.RenderControlHtml())
+
+
+                </div>
+
+                <div style="float:left;">
+                    <table style="margin-top:4px;">
+                        <tr>
+                            <td>
+                                <md-autocomplete id="appCentre"
+                                                 md-input-minlength="1"
+                                                 md-min-length="1"
+                                                 md-no-cache="true"
+                                                 md-selected-item="angCtrl.selectedSearchCentre"
+                                                 md-search-text="angCtrl.searchstringcentre"
+                                                 md-selected-item-change="angCtrl.centreSelectedItemChange(item)"
+                                                 md-items="item in angCtrl.centreQuerySearch(angCtrl.searchstringcentre)"
+                                                 md-item-text="item.name"
+                                                 md-delay="300"
+                                                 placeholder="@RequestResource.Centre"
+                                                 class="reget-autocomplete-white"
+                                                 style="width:120px;min-width:1px;display:none;box-shadow:none;">
+                                    <md-item-template>
+                                        <div>
+                                            <span md-highlight-text="angCtrl.searchstringcentre" md-highlight-flags="i">{{item.name}}</span>
+                                        </div>
+                                    </md-item-template>
+
+                                    <md-not-found>
+                                        {{angCtrl.searchstringcentre}} @RequestResource.NotFound
+                                    </md-not-found>
+
+                                </md-autocomplete>
+
+                            </td>
+                            <td>
+                                <md-button id="btnFindCentre"
+                                           type="button"
+                                           class="btn btn-primary reget-btn-find reget-md-btn-float"
+                                           style="padding-right:0px;min-width:1px;width:32px;margin-left:0px;min-height:1px;margin-top:5px;height:32px;margin-right:15px;"
+                                           ng-click="angCtrl.displaySearchCentre()">
+                                    <md-tooltip>@RequestResource.SearchCentre</md-tooltip>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <div style="display:inline-block;vertical-align:bottom;margin-top:7px;margin-bottom:6px;">
+                    <input id="btnRefresh"
+                           type="button"
+                           class="btn btn-primary reget-btn-refresh reget-btn-float-5"
+                           style="display:none;margin-right:15px;"
+                           value="@RequestResource.Refresh"
+                           ng-click="angCtrl.getCentreGroupData('@RequestResource.LoadDataError')" />
+
+                    <input id="btnExportExcel"
+                           type="button"
+                           class="btn btn-primary reget-btn-excel reget-btn-float-5"
+                           ng-hide="angCtrl.selectedCentreGroupId == null"
+                           style="margin-right:15px;"
+                           value="@RequestResource.ExportToExcel"
+                           ng-click="angCtrl.exportToExcel()" />
+
+                    <input id="btnCgDelete"
+                           type="button"
+                           value="@RequestResource.Delete"
+                           class="btn reget-btn reget-btn-img reget-btn-red reget-btn-delete reget-btn-float-5"
+                           ng-hide="angCtrl.selectedCentreGroupId == null || !angctrl.isCgPropertyAdmin"
+                           ng-click="DeleteCentreGroup()" />
+                </div>
+
+                <div style="clear:both;"></div>
+
+                @{
+                    if (regetAdminController.CurrentUser.IsParticipantAreaPropAdmin || regetAdminController.CurrentUser.IsParticipantCompanyAdmin) {
+                        @*<div class="hidden-xs" style="float:left;margin-left:0px;margin-right:15px;margin-top:5px;">&nbsp;</div>*@
+                        <div style="float:left;">
+                            <md-checkbox aria-label="DisplayDeactivatedCentreGroups" class="reget-blue" style="margin-bottom:3px;margin-top:10px"
+                                         ng-checked="angCtrl.isDeactivatedCgDisplayed"
+                                         ng-click="angCtrl.toggleDisplayDeactivatedCg();">
+                                @RequestResource.DisplayDeactivatedCentreGroups
+                            </md-checkbox>
+                        </div>
+                        <div style="clear:both;"></div>
+                    }
+                }
+            </div>
+            <hr />
+        </div>
+
+        @{
+            var strCgDetailStyle = (ViewBag.IsNew != null && ViewBag.IsNew == true) ? "" : "display:none";
+        }
+
+
+        <div id="divCgDetailPanel" class="reget-panel-box" style="@strCgDetailStyle">
+            <div id="divCgDetailCollHeader" ng-class="angCtrl.centreGroup.is_active ? 'reget-box-header reget-bold' : 'reget-box-header-disabled reget-bold'">
+                <img id="imgCgExpand" src="~/Content/Images/Panel/Collapse.png" class="reget-appmatrix-expcolimg" data-toggle="collapse tooltip" data-target="#divCgParam" title="@RequestResource.Hide" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.Settings > {{angCtrl.centreGroup.name}}</span>
+            </div>
+
+            <div id="divCgParam" class="collapse in" style="margin:15px">
+
+                <div style="padding-bottom:5px;">
+                    @{
+                        MdInputContainer mdTxtCgName = new MdInputContainer();
+                        mdTxtCgName.FormName = "frmCgAdmin";
+                        mdTxtCgName.NgModel = "angCtrl.centreGroup.name";
+                        mdTxtCgName.AgIsReadOnly = "!angCtrl.isCgPropertyAdmin";
+                        mdTxtCgName.LabelLeft = RequestResource.Name;
+                        mdTxtCgName.RootTagId = "CgName";
+                        mdTxtCgName.IsMandatory = true;
+                        mdTxtCgName.InputCssClass = "reget-cgname";
+                        mdTxtCgName.MaxLength = CentreGroupData.NAME_LENGTH;
+                    }
+                    @Html.Raw(mdTxtCgName.RenderControlHtml())
+
+
+                </div>
+                <hr ng-if="angCtrl.isCgPropertyAdmin" />
+
+                <div id="divOffice" style="padding-bottom:5px;">
+                    @{
+                        MdSelect mdCmbOffice = new MdSelect();
+                        mdCmbOffice.FormName = "frmCgAdmin";
+                        mdCmbOffice.AgSourceList = "angCtrl.offices";
+                        mdCmbOffice.AgModel = "angCtrl.selectedOfficeId";
+                        mdCmbOffice.AgIdItem = "company_id";
+                        mdCmbOffice.AgTextItem = "country_code";
+                        mdCmbOffice.AgSelectedText = "angCtrl.selectedOfficeName";
+                        mdCmbOffice.AgIsReadOnly = "!angCtrl.isCgPropertyAdmin";
+                        mdCmbOffice.RootTagId = "CgOffice";
+                        mdCmbOffice.OnSelectFunct = "angCtrl.setOffice()";
+                        mdCmbOffice.LabelLeft = RequestResource.Company;
+                        mdCmbOffice.LabelLeftCssClass = "reget-ang-lbl-control-left";
+                        mdCmbOffice.IsMandatory = true;
+                    }
+                    @Html.Raw(mdCmbOffice.RenderControlHtml())
+
+                </div>
+
+                <hr ng-if="angCtrl.isCgPropertyAdmin" />
+
+                <div id="wrapCgCentres" class="reget-ang-div-container-readonly" style="float:left;margin-right:25px;">
+                    <label id="lblLCgCentres" class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.Centres :</label>
+                    <md-input-container id="ctCgCentres" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">@RequestResource.Centres</label>
+                        <div>
+                            <ul id="ulCgCentres" class="reget-ul" style="width:100px;" ng-hide="!angCtrl.getIsOfficeReadOnly()">
+
+                                <li ng-repeat="centre in angCtrl.centreGroup.centre">
+                                    <span>{{centre.name}}</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="reget-ang-top" style="float:left;">
+                            <centre ng-repeat="centre in angCtrl.centreGroup.centre"
+                                    deletecentre="angCtrl.deleteCentre(centre.id, $index)"
+                                    name="{{centre.name}}"
+                                    removetext="@RequestResource.Delete"
+                                    rooturl="@regetAdminController.GetRootUrl()"
+                                    style="float:left;"
+                                    ng-hide="angCtrl.getIsOfficeReadOnly()"
+                                    class="">
+                            </centre>
+                        </div>
+                        <md-button id="btnAddCentre"
+                                   class="md-fab md-mini reget-circle-btn"
+                                   ng-hide="angCtrl.isCgReadOnly"
+                                   aria-label="@RequestResource.Add"
+                                   style="background-color:#4caf50;float:left;"
+                                   ng-click="angCtrl.displayCentreAutoCompl();">
+                            <img ng-src="@regetAdminController.GetRootUrl()Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                            <md-tooltip>@RequestResource.Add</md-tooltip>
+                        </md-button>
+                    </md-input-container>
+                </div>
+
+                <div class="reget-autocomplete-l-button" style="width:300px;float:left;" ng-hide="angCtrl.getIsOfficeReadOnly()">
+                    <md-autocomplete id="autoCentre"
+                                     md-input-minlength="0"
+                                     md-min-length="0"
+                                     md-item-text="item.name"
+                                     md-search-text="angCtrl.searchstringnotassignedcentre"
+                                     md-items="item in angCtrl.searchNotAssignedCentre(angCtrl.searchstringnotassignedcentre)"
+                                     md-selected-item="angCtrl.selectedNotAssignedCentre"
+                                     md-no-cache="true"
+                                     md-delay="300"
+                                     placeholder="@RequestResource.AddCentre"
+                                     md-input-id="txtAutoCgCentre"
+                                     md-input-name="txtAutoCgCentre"
+                                     md-selected-item-change="angCtrl.centreCgSelectedItemChange(item)"
+                                     class="reget-autocomplete"
+                                     style="margin-top:5px;display:none;background-color:#fff;width:150px;">
+                        <md-item-template>
+                            <div>
+                                <span md-highlight-text="angCtrl.searchstringcentre" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.name}}</span>
+                            </div>
+                        </md-item-template>
+
+                        <md-not-found>
+                            "{{angCtrl.searchstringnotassignedcentre}}" @RequestResource.NotFound.
+                        </md-not-found>
+
+                    </md-autocomplete>
+                </div>
+
+                <div style="clear:both;"></div>
+                <hr ng-if="angCtrl.isCgPropertyAdmin" />
+
+                <div id="divCurrency" style="padding-top:1px;">
+                    @{
+                        MdSelect mdCmbCurrency = new MdSelect();
+                        mdCmbCurrency.FormName = "frmCgAdmin";
+                        mdCmbCurrency.AgSourceList = "angCtrl.currenciesList";
+                        mdCmbCurrency.AgModel = "angCtrl.selectedCurrencyId";
+                        mdCmbCurrency.AgIdItem = "id";
+                        mdCmbCurrency.AgTextItem = "currency_code_name";
+                        mdCmbCurrency.AgSelectedText = "angCtrl.selectedCurrencyCodeName";
+                        mdCmbCurrency.AgIsReadOnly = "!angCtrl.isCgPropertyAdmin";
+                        mdCmbCurrency.RootTagId = "CgCurrency";
+                        mdCmbCurrency.OnSelectFunct = "angCtrl.setCurrency()";
+                        mdCmbCurrency.LabelLeft = RequestResource.Currency;
+                        mdCmbCurrency.LabelLeftCssClass = "reget-ang-lbl-control-left";
+                        mdCmbCurrency.IsMandatory = true;
+                    }
+                    @Html.Raw(mdCmbCurrency.RenderControlHtml())
+
+                    <div id="wrapCgForeignCurrencies" class="reget-ang-div-container-readonly" style="padding-top:5px!important;min-width:250px;" ng-hide="(!angCtrl.isCgPropertyAdmin && !angCtrl.isForeignCurrency()) || !angCtrl.isForeignCurrencyAvailable()">
+                        <label id="lblLForeignCurrencies" class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.ForeignCurrency :</label>
+                        <md-input-container id="ctCgCentres" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;min-width:250px;">@RequestResource.ForeignCurrency</label>
+
+                            <div flex-xs flex="50" style="width:300px" ng-hide="!angCtrl.isCgPropertyAdmin || !angCtrl.isForeignCurrencyAvailable()">
+                                <md-checkbox aria-label="@RequestResource.SelectAll"
+                                             ng-checked="angCtrl.isAllCurreenciesChecked()"
+                                             md-indeterminate="angCtrl.isCurrenciesIndeterminate()"
+                                             ng-click="angCtrl.toggleAllForeignCurrencies()">
+                                    @RequestResource.SelectAll
+                                </md-checkbox>
+                            </div>
+
+                            <div flex="100" ng-repeat="item in angCtrl.centreGroup.currency" ng-hide="!angCtrl.isCgPropertyAdmin || item.id==angCtrl.selectedCurrencyId">
+
+                                <md-checkbox id="curr_{{item.id}}" aria-label="{{item.currency_code}}" class="reget-blue"
+                                             ng-checked="item.is_set" ng-click="angCtrl.toggleForeignCurrency(item)">
+                                    {{ item.currency_code }}
+                                </md-checkbox>
+                            </div>
+
+                            <ul class="reget-ul" ng-hide="angCtrl.isCgPropertyAdmin">
+                                <li flex="150" ng-repeat="item in angCtrl.centreGroup.currency" ng-if="item.is_set && item.id != angCtrl.selectedCurrencyId">
+                                    {{ item.currency_code }}
+                                </li>
+                            </ul>
+
+
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <hr ng-hide="!angCtrl.isCgPropertyAdmin && (angCtrl.centreGroup.deputy_orderer == null || angCtrl.centreGroup.deputy_orderer.length == 0)" />
+
+
+                <div class="reget-ang-div-container-readonly" style="float:left;margin-right:15px;" ng-hide="!angCtrl.isCgPropertyAdmin">
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.DeputyOrderer :</label>
+                    <md-input-container class="reget-ang-md-input-container-readonly  md-input-has-value">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.DeputyOrderer</label>
+                        <div>
+                            <app_manager ng-repeat="managerRole in angCtrl.centreGroup.deputy_orderer"
+                                         deleteappman="angCtrl.deleteDeputyOrderer(managerRole.id, $index)"
+                                         userid="{{managerRole.participant_id}}"
+                                         surname="{{managerRole.surname}}"
+                                         firstname="{{managerRole.first_name}}"
+                                         removetext="@RequestResource.Delete"
+                                         rooturl="@regetAdminController.GetRootUrl()"
+                                         style="float:left;">
+                            </app_manager>
+
+                            <md-button id="btnAddDeputyOrderer"
+                                       class="md-fab md-mini reget-circle-btn"
+                                       ng-hide="angCtrl.isReadOnly"
+                                       aria-label="@RequestResource.Add"
+                                       style="background-color:#4caf50;float:left;"
+                                       ng-click="angCtrl.displayDeputyOrdererAutoCompl();">
+                                <img ng-src="@regetAdminController.GetRootUrl()Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                                <md-tooltip>@RequestResource.Add</md-tooltip>
+                            </md-button>
+
+                        </div>
+
+                    </md-input-container>
+
+                </div>
+
+                <div class="reget-autocomplete-l-button" style="float:left;" ng-hide="!angCtrl.isCgPropertyAdmin">
+                    <md-autocomplete id="autoDeputyOrderer"
+                                     md-input-minlength="2"
+                                     md-min-length="2"
+                                     md-item-text="item.name_surname_first"
+                                     md-search-text="angCtrl.searchstringdeputyorderer"
+                                     md-items="item in angCtrl.searchParticipant(angCtrl.searchstringdeputyorderer)"
+                                     md-selected-item="angCtrl.selectedDeputyOrderer"
+                                     md-no-cache="true"
+                                     md-delay="300"
+                                     placeholder="@RequestResource.WhoIsDeputyOrderer"
+                                     md-selected-item-change="angCtrl.deputyOrdererSelectedItemChange(item)"
+                                     class="reget-autocomplete"
+                                     style="min-width:300px;margin-top:5px;display:none;background-color:#fff">
+                        <md-item-template>
+                            <div>
+                                <img ng-src="{{item.country_flag}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                <span md-highlight-text="angCtrl.searchstringdeputyorderer" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                            </div>
+                        </md-item-template>
+
+                        <md-not-found>
+                            "{{angCtrl.searchstringdeputyorderer}}" @RequestResource.NotFound.
+                        </md-not-found>
+
+                    </md-autocomplete>
+                </div>
+
+                <div style="clear:both;"></div>
+
+                <div class="reget-ang-div-container-readonly" style="float:left;min-width:250px;" ng-hide="IsCgPropertyAdmin || (CentreGroup.DeputyOrderer == null || CentreGroup.DeputyOrderer.length == 0)">
+
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left" style="margin-top:0px;">@RequestResource.DeputyOrderer :</label>
+                    <md-input-container class="reget-ang-md-input-container-readonly  md-input-has-value">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;min-width:250px;">@RequestResource.DeputyOrderer</label>
+                        <ul class="reget-ul">
+                            <li ng-repeat="deputyOrderer in angCtrl.centreGroup.deputy_orderer">
+                                {{deputyOrderer.surname}} {{deputyOrderer.first_name}}
+                            </li>
+                        </ul>
+                    </md-input-container>
+                </div>
+
+                <div style="clear:both;"></div>
+
+                <hr ng-hide="!angCtrl.isCgPropertyAdmin && (angCtrl.centreGroup.orderer_supplier_appmatrix == null || angCtrl.centreGroup.orderer_supplier_appmatrix.length == 0)" />
+
+                <div id="divOrdererSupplier" class="reget-ang-div-container-readonly" style="float:left;margin-right:15px;" ng-hide="!angCtrl.isCgPropertyAdmin">
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.OrdererSupplier :</label>
+                    <md-input-container class="reget-ang-md-input-container-readonly  md-input-has-value">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.OrdererSupplier</label>
+                        <div>
+                            <orderersupplier ng-repeat="ordererSupplier in angCtrl.centreGroup.orderer_supplier_appmatrix"
+                                             deleteorderersupplier="angCtrl.deleteOrdererSupplier()"
+                                             userid="{{ordererSupplier.participant_id}}"
+                                             surname="{{ordererSupplier.surname}}"
+                                             firstname="{{ordererSupplier.first_name}}"
+                                             supplierid="{{ordererSupplier.supplier_id}}"
+                                             suppliername="{{ordererSupplier.supplier_name}}"
+                                             removetext="@RequestResource.Delete"
+                                             rooturl="@regetAdminController.GetRootUrl()"
+                                             style="float:left;">
+                            </orderersupplier>
+
+                            <md-button id="btnOrdererSupplier"
+                                       class="md-fab md-mini reget-circle-btn"
+                                       ng-hide="IsReadOnly"
+                                       aria-label="@RequestResource.Add"
+                                       style="background-color:#4caf50;float:left;"
+                                       ng-click="angCtrl.displayOrdererSupplierAutoCompl();">
+                                <img ng-src="@regetAdminController.GetRootUrl()Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                                <md-tooltip>@RequestResource.Add</md-tooltip>
+                            </md-button>
+
+                        </div>
+                    </md-input-container>
+                </div>
+
+
+                <div id="divOrdererSupplierAuto" class="reget-autocomplete-l-button-padding" style="display:none;padding-bottom:4px;float:left;">
+
+                    <div style="margin-top:2px;margin-bottom:2px;">
+                        <md-autocomplete id="agOrdererSupplierSupplier"
+                                         md-input-minlength="2"
+                                         md-min-length="2"
+                                         ng-disabled="false"
+                                         md-no-cache="true"
+                                         md-selected-item="angCtrl.selectedOrdererSupplierSupplier"
+                                         md-search-text="angCtrl.searchstringorderersuppliersupplier"
+                                         md-selected-item-change="angCtrl.ordererSupplierSelectedItemChange()"
+                                         md-items="item in angCtrl.defaultSupplierQuerySearch(angCtrl.searchstringorderersuppliersupplier)"
+                                         md-item-text="item.supp_name"
+                                         md-delay="300"
+                                         placeholder="@RequestResource.Supplier?"
+                                         md-input-id="txtOrdererSupplierSupplier"
+                                         class="reget-autocomplete-white reget-pgname"
+                                         style="min-width:300px;margin-top:5px;background-color:#fff;float:left;">
+                            <md-item-template>
+                                <span md-highlight-text="angCtrl.searchstringorderersuppliersupplier" md-highlight-flags="i">{{item.supp_name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                "{{angCtrl.searchstringorderersuppliersupplier}}" @RequestResource.NotFound.
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+
+                    <div style="margin-top:2px;margin-bottom:2px;">
+                        <md-autocomplete id="autoOrdererSupplierOrderer"
+                                         md-input-minlength="2"
+                                         md-min-length="2"
+                                         md-item-text="item.name_surname_first"
+                                         md-search-text="angCtrl.searchstringorderersupplierorderer"
+                                         md-items="item in angCtrl.searchParticipant(angCtrl.searchstringorderersupplierorderer)"
+                                         md-selected-item="angCtrl.selectedOrdererSupplierOrderer"
+                                         md-no-cache="true"
+                                         md-delay="300"
+                                         placeholder="@RequestResource.Orderer?"
+                                         md-selected-item-change="angCtrl.ordererSupplierSelectedItemChange()"
+                                         class="reget-autocomplete"
+                                         style="min-width:300px;margin-top:5px;background-color:#fff;float:left;">
+                            <md-item-template>
+                                <div>
+                                    <img ng-src="{{item.country_flag}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                    <span md-highlight-text="angCtrl.searchstringorderersupplierorderer" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                                </div>
+                            </md-item-template>
+
+                            <md-not-found>
+                                "{{angCtrl.searchstringorderersupplierorderer}}" @RequestResource.NotFound.
+                            </md-not-found>
+
+                        </md-autocomplete>
+                    </div>
+
+                </div>
+
+
+                <div class="reget-ang-div-container-readonly" style="float:left;min-width:250px;" ng-hide="IsCgPropertyAdmin || (CentreGroup.OrdererSupplierAppMatrix == null || CentreGroup.OrdererSupplierAppMatrix.length == 0)">
+
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left" style="margin-top:0px;">@RequestResource.OrdererSupplier :</label>
+                    <md-input-container class="reget-ang-md-input-container-readonly  md-input-has-value">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;min-width:250px;">@RequestResource.OrdererSupplier</label>
+                        <ul class="reget-ul">
+                            <li ng-repeat="ordererSupplier in angCtrl.centreGroup.orderer_supplier_appmatrix">
+                                {{ordererSupplier.supplier_name}} -> {{ordererSupplier.surname}} {{ordererSupplier.first_name}}
+                            </li>
+                        </ul>
+                    </md-input-container>
+
+                </div>
+
+                <div style="clear:both;"></div>
+                <hr ng-if="angCtrl.isCgPropertyAdmin" />
+
+                <div>
+                    <div class="hidden-xs reget-ang-control-left-space" ng-if="angCtrl.isCgPropertyAdmin" style="margin-right:10px;">&nbsp;</div>
+
+                    @{
+                        MdCheckBox mdCkbFreeSupp = new MdCheckBox(regetAdminController.GetRootUrl());
+                        mdCkbFreeSupp.RootTagId = "ckbAllowFreeSupplier";
+                        mdCkbFreeSupp.CkbText = RequestResource.AllowFreeSupplier;
+                        mdCkbFreeSupp.AgIsChecked = "angCtrl.centreGroup.allow_free_supplier";
+                        mdCkbFreeSupp.AgIsReadOnly = "!angCtrl.isCgPropertyAdmin";
+                        //mdCkbFreeSupp.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        mdCkbFreeSupp.OnClick = "angCtrl.toggleFreeSupplier();";
+                    }
+                    @Html.Raw(mdCkbFreeSupp.RenderControlHtml())
+
+                </div>
+
+                <div style="clear:both;"></div>
+                <hr ng-if="angCtrl.isCgPropertyAdmin" />
+
+                <div>
+                    <div class="hidden-xs reget-ang-control-left-space" ng-if="angCtrl.isCgPropertyAdmin" style="margin-right:10px;">&nbsp;</div>
+                    <div ng-class="angCtrl.centreGroup.is_active?'active-cg':'non-active-cg'" ng-style="{'float': (angCtrl.isCgPropertyAdmin) ? 'left' : 'none'}" style="padding-bottom:5px;">
+                        @{
+                            MdCheckBox mdCkbArea = new MdCheckBox(regetAdminController.GetRootUrl());
+                            mdCkbArea.RootTagId = "ckbActiveArea";
+                            mdCkbArea.CkbText = RequestResource.Active + " " + RequestResource.Area;
+                            mdCkbArea.AgIsChecked = "angCtrl.centreGroup.is_active";
+                            mdCkbArea.AgIsReadOnly = "!angCtrl.isCgPropertyAdmin";
+                            mdCkbArea.OnClick = "angCtrl.toggleActive();";
+                        }
+                        @Html.Raw(mdCkbArea.RenderControlHtml())
+
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+                <hr ng-if="angCtrl.isCgPropertyAdmin" />
+
+                <div>
+                    <div>
+                        <div class="reget-ang-div-container-readonly" style="float:left;" ng-hide="!angCtrl.isCgPropertyAdmin">
+                            <label class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.AreaAdministrators :</label>
+                            <md-input-container class="reget-ang-md-input-container-readonly  md-input-has-value">
+                                <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.AreaAdministrators</label>
+                                <div style="min-width:300px">
+
+                                    <cgadmin ng-repeat="managerRole in angCtrl.centreGroup.cg_admin"
+                                             expandcgadmin="angCtrl.displayCgAdminDetail(managerRole.id)"
+                                             collapsecgadmin="angCtrl.hideCgAdminDetail(managerRole.id)"
+                                             deletecgadmin="angCtrl.deleteCgAdmin(managerRole.id, $index, managerRole.is_company_admin)"
+                                             cgpropadmintoggle="angCtrl.checkCgPropAdminToggle(managerRole.id)"
+                                             appmatrixadmintoggle="angCtrl.checkAppMatrixAdminToggle(managerRole.id)"
+                                             requestoradmintoggle="angCtrl.checkRequestorAdminToggle(managerRole.id)"
+                                             ordereradmintoggle="angCtrl.checkOrdererAdminToggle(managerRole.id)"
+                                             userid="{{managerRole.id}}"
+                                             surname="{{managerRole.surname}}"
+                                             firstname="{{managerRole.first_name}}"
+                                             iscompanyadmin="{{managerRole.is_company_admin}}"
+                                             iscgpropadmin="{{managerRole.is_cg_prop_admin}}"
+                                             isappmatrixadmin="{{managerRole.is_appmatrix_admin}}"
+                                             isordereradmin="{{managerRole.is_orderer_admin}}"
+                                             isrequestoradmin="{{managerRole.is_requestor_admin}}"
+                                             removetext="@RequestResource.Delete"
+                                             appmatrixadmintext="{{angCtrl.appMatrixAdminText}}"
+                                             requestoradmintext="{{angCtrl.requestorAdminText}}"
+                                             ordereradmintext="{{angCtrl.ordererAdminText}}"
+                                             cgadmintext="{{angCtrl.centreGroupPropertyAdminText}}"
+                                             displaydetailtext="{{angCtrl.displayDetailText}}"
+                                             hidedetailtext="{{angCtrl.hideDetailText}}"
+                                             rooturl="@regetAdminController.GetRootUrl()"
+                                             style="float:left;">
+                                    </cgadmin>
+
+                                    <md-button class="md-fab md-mini reget-circle-btn"
+                                               ng-hide="!angCtrl.isCgPropertyAdmin"
+                                               aria-label="@RequestResource.Add"
+                                               style="background-color:#4caf50;float:left;"
+                                               ng-click="angCtrl.displayCgAdminAutoCompl();">
+                                        <img ng-src="@regetAdminController.GetRootUrl()Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                                        <md-tooltip>@RequestResource.Add</md-tooltip>
+                                    </md-button>
+
+                                </div>
+                            </md-input-container>
+
+                        </div>
+
+                        <div style="float:left;margin-top:6px;" ng-hide="!angCtrl.isCgPropertyAdmin">
+                            <md-autocomplete id="autoCgAdmin"
+                                             md-input-minlength="2"
+                                             md-min-length="2"
+                                             md-item-text="item.name_surname_first"
+                                             md-search-text="angCtrl.searchstringcgadmin"
+                                             md-items="item in angCtrl.searchParticipant(angCtrl.searchstringcgadmin)"
+                                             md-selected-item="angCtrl.selectedCgAdmin"
+                                             md-no-cache="true"
+                                             md-delay="300"
+                                             placeholder="@RequestResource.WhoIsAreaAdministrator"
+                                             md-selected-item-change="angCtrl.cgAdminSelectedItemChange(item)"
+                                             class="reget-autocomplete"
+                                             style="min-width:300px;margin-top:5px;display:none;background-color:#fff">
+                                <md-item-template>
+                                    <div>
+                                        <img ng-src="{{item.country_flag}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                        <span md-highlight-text="angCtrl.searchstringcgadmin" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                                    </div>
+                                </md-item-template>
+
+                                <md-not-found>
+                                    "{{searchstringcgadmin}}" @RequestResource.NotFound.
+                                </md-not-found>
+
+                            </md-autocomplete>
+                        </div>
+
+                        <div style="clear:both;"></div>
+
+
+                        <div class="reget-ang-div-container-readonly" style="float:left;min-width:250px;margin-bottom:10px;" ng-hide="angCtrl.isCgPropertyAdmin || (angCtrl.centreGroup.orderer_supplier_appmatrix == null || angCtrl.centreGroup.orderer_supplier_appmatrix.length == 0)">
+
+                            <label class="control-label hidden-xs reget-ang-lbl-control-left" style="margin-top:0px;">@RequestResource.AreaAdministrators :</label>
+                            <md-input-container class="reget-ang-md-input-container-readonly  md-input-has-value">
+                                <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;min-width:250px;">@RequestResource.AreaAdministrators</label>
+                                <ul class="reget-ul">
+                                    <li ng-repeat="managerRole in angCtrl.centreGroup.cg_admin">
+                                        {{managerRole.surname}} {{managerRole.first_name}}
+                                    </li>
+                                </ul>
+                            </md-input-container>
+
+                        </div>
+                    </div>
+
+
+                    @{
+                        if (!isAllCgReadOnly) {
+                            <hr id="hrCgDetail" />
+                        }
+                    }
+
+
+                    <input id="btnSaveCgDetails"
+                           type="button"
+                           ng-hide="!angCtrl.isCgPropertyAdmin"
+                           class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save"
+                           style="margin-left:10px;"
+                           value="@RequestResource.Save"
+                           ng-click="angCtrl.saveCentreGroupDetails(
+                                    '@RequestResource.DataWasSaved',
+                                    '@RequestResource.MandatoryValueIsMissing',
+                                    '@RequestResource.SaveError')" />
+                    @*ng-disabled="(frmCgAdmin.txtCgName.$dirty && frmCgAdmin.txtCgName.$invalid) || (frmCgAdmin.cmbCgOffice.$dirty && frmCgAdmin.cmbCgOffice.$invalid)" />*@
+
+                    <div class="ng-binding reget-ang-controll-invalid-msg-no-ag">
+                        {{angCtrl.cgPropErrMsg}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+
+        <div id="divCgAppMatrixPanel" name="divCgAppMatrixPanel" class="reget-panel-box" style="display:none;">
+            <div id="divCgMatrixCollHeader" ng-class="angCtrl.centreGroup.is_active ? 'reget-box-header reget-bold' : 'reget-box-header-disabled reget-bold'">
+                <img id="imgCgMatrixExpand" src="~/Content/Images/Panel/Collapse.png" class="reget-appmatrix-expcolimg" data-toggle="collapse tooltip" data-target="#divCgAppMatrix" title="@RequestResource.Hide" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.ApprovalMatrix > {{angCtrl.centreGroup.name}}</span>
+            </div>
+
+            <div id="divCgAppMatrix" class="reget-appmatrix-content-box">
+
+                <div ng-hide="angCtrl.isReadOnly">
+                    <md-checkbox aria-label="DisplayDeactivatedPg" class="reget-blue"
+                                 ng-checked="angCtrl.isDeactivatedPgDisplayed" style="margin-bottom:1px;margin-left:15px;"
+                                 ng-click="angCtrl.toggleDisplayDeactivatedPg()">
+                        @RequestResource.DisplayDeactivatedPurchaseGroups
+                    </md-checkbox>
+                    <hr />
+                </div>
+
+                <div ng-repeat="pgItem in angCtrl.purchaseGroupList">
+                    <div id="divAppMatrix_{{pgItem.id}}" class="reget-panel-box" ng-style="(pgItem.id > -1 && pgItem.is_visible==true) ? {'display' : 'block'} : {'display' : 'none'}">
+                        <div id="divCgMatrixCollHeader_{{pgItem.id}}" ng-class="angCtrl.getPurchaseGroupHeaderBkgColor(pgItem)" ng-click="angCtrl.togleAppMatrix(pgItem.id);">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="width:30px;max-width:30px;">
+                                        <img id="impAppMatrixCollExp_{{pgItem.id}}" src="~/Content/Images/Panel/Expand.png" class="reget-appmatrix-expcolimg" data-target="#divCgParam" title="@RequestResource.Display" style="float:left;vertical-align:middle;" />
+                                    </td>
+                                    <td style="width:35px;padding-left:5px;padding-top:2px;">
+                                        <div ng-if="pgItem.is_approval_needed" style="min-height:12px;min-width:12px;background-color:#fff;border-radius:8px;border:1px solid #fff;margin-right:5px;float:left;">
+                                            <md-tooltip md-direction="left">@RequestResource.ApprovalIsNeeded</md-tooltip>
+                                        </div>
+                                        <div ng-if="!pgItem.is_approval_needed" style="min-height:12px;min-width:12px;border-radius:8px;border:1px solid #fff;float:left;margin-right:5px;">
+                                            <md-tooltip md-direction="left">@RequestResource.ApprovalNotNeeded</md-tooltip>
+                                        </div>
+                                        <div ng-if="pgItem.is_order_needed" style="min-height:12px;min-width:12px;background-color:#fff;border-radius:8px;border:1px solid #fff;float:left;">
+                                            <md-tooltip md-direction="left">@RequestResource.OrderIsNeeded</md-tooltip>
+                                        </div>
+                                        <div ng-if="!pgItem.is_order_needed" style="min-height:12px;min-width:12px;border-radius:8px;border:1px solid #fff;float:left;">
+                                            <md-tooltip md-direction="left">@RequestResource.OrderNotNeeded</md-tooltip>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img id="imgDis_{{pgItem.id}}" ng-hide="pgItem.is_active" src="~/Content/Images/Controll/disablecircle_white.png" title="@RequestResource.NonActive" style="vertical-align: middle;float:left;margin-left:5px;" />
+                                        <img id="imgEdit_{{pgItem.id}}" src="~/Content/Images/Panel/Edit.png" title="@RequestResource.Edit" style="vertical-align: middle;float:left;margin-left:5px;display:none;" />
+                                        <div style="margin-left:10px;margin-top:4px;vertical-align: middle;float:left;" ng-if="pgItem.id >= 0">{{pgItem.local_text[0].text}}</div>
+                                        <div style="margin-left:10px;margin-top:4px;vertical-align: middle;float:left;" ng-if="pgItem.id < 0">New Purchase Group</div>
+                                    </td>
+                                    <td style="min-width:65px;">
+                                        <img src="~/Content/Images/Panel/CollapseAll.png" title="@RequestResource.CollapseAll" class="reget-appmatrix-expcolallimg" style="vertical-align: middle;float:right;margin-left:5px;" ng-click="angCtrl.toggleAllPurchaseGroups(true);" />
+                                        <img src="~/Content/Images/Panel/ExpandAll.png" title="@RequestResource.ExpandAll" class="reget-appmatrix-expcolallimg" style="vertical-align: middle;float:right;margin-left:5px;" ng-click="angCtrl.toggleAllPurchaseGroups(false);" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+                        <div id="phAppMatrix_{{pgItem.id}}" class="reget-appmatrix" style="display:none;">
+                            <div id="divAppMatrixRO_{{pgItem.id}}" style="overflow-x:auto;" ng-if="pgItem.is_html_show">
+                                @*<div ng-if="pgItem.purchase_type!=0" style="margin-bottom:15px;">
+                                        <span><b>@RequestResource.PurchaseType:</b></span>
+                                        <span>@RequestResource.ApprovalOnly</span>
+                                    </div>*@
+
+                                <table id="tbAppMatrix_{{pgItem.id}}" ng-show="pgItem.is_approval_needed" style="margin-bottom:20px;">
+                                    <thead>
+                                        <tr class="reget-tr-underline-header">
+                                            <th class="reget-td-readonly">
+                                                <span class="hidden-xs">@RequestResource.LowerLimit</span>
+                                                <span class="hidden-sm hidden-md hidden-lg">@RequestResource.From</span> ({{angCtrl.selectedCurrencyCode}})
+                                            </th>
+                                            <th class="reget-td-readonly">
+                                                <span class="hidden-xs">@RequestResource.UpperLimit</span>
+                                                <span class="hidden-sm hidden-md hidden-lg">@RequestResource.To</span> ({{angCtrl.selectedCurrencyCode}})
+                                            </th>
+                                            <th class="reget-td-readonly">@RequestResource.ApproveMan</th>
+                                        </tr>
+                                    </thead>
+                                    <tr ng-repeat="limitItem in pgItem.purchase_group_limit" m.prototype.$digest ng-class="limitItem.is_visible ? 'reget-tr-underline' : 'reget-hidden'">
+                                        <td class="reget-td-readonly" style="text-align:right;">
+                                            <span ng-hide="limitItem.is_bottom_unlimited || !limitItem.is_limit_bottom_multipl" style="float:right;">*</span>
+                                            <span style="padding-left:10px;padding-left:10px;float:right;" ng-class="limitItem.is_bottom_unlimited ? 'reget-hidden' : 'reget-display'">{{limitItem.limit_bottom_text_ro}}</span>
+                                            <span ng-show="limitItem.is_bottom_unlimited">
+                                                @RequestResource.NoLimit
+                                            </span>
+                                        </td>
+                                        <td class="reget-td-readonly" style="text-align:right;">
+                                            <span ng-hide="limitItem.is_top_unlimited || !limitItem.is_limit_top_multipl" style="float:right;">*</span>
+                                            <span style="padding-left:10px;padding-left:10px;float:right;" ng-class="limitItem.is_top_unlimited ? 'reget-hidden' : 'reget-display'">{{limitItem.limit_top_text_ro}}</span>
+                                            <span ng-show="limitItem.is_top_unlimited">
+                                                @RequestResource.NoLimit
+                                            </span>
+
+                                        </td>
+                                        <td class="reget-td-readonly">
+                                            <div ng-repeat="appMan in limitItem.manager_role">
+                                                <div>
+                                                    {{appMan.participant.surname}} {{appMan.participant.first_name}}
+                                                    <span ng-hide="(angCtrl.isStringValueNullOrEmpty(appMan.participant.substituted_by))">&nbsp;(@RequestResource.ManagerSubstitution {{appMan.participant.substituted_by}} @RequestResource.To {{appMan.participant.substituted_until}})</span>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <hr ng-show="pgItem.is_approval_needed" />
+
+                                <table class="hidden-xs">
+                                    <tr ng-repeat="centre in pgItem.centre">
+                                        <td style="vertical-align:top;">
+                                            <b>@RequestResource.Requestors {{centre.name}}:</b>
+                                        </td>
+                                        <td>
+                                            <div style="float:left;margin-left:5px;" ng-repeat="requestor in pgItem.requestor" ng-if="requestor.centre_id == centre.id">
+                                                <span style="float:left">{{requestor.first_name}} {{requestor.surname}}</span>
+                                                <span style="float:left" ng-class="$index == (pgItem.requestor.length - 1) ? 'reget-hidden' : 'reget-display'">, </span>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div class="hidden-sm hidden-md hidden-lg" style="padding-top:1px;">
+                                    <div ng-repeat="centre in pgItem.centre" class="reget-ang-div-container-readonly">
+
+                                        <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth" style="margin-left:0px;">{{angCtrl.requestorsText}} {{centre.name}}:</label>
+                                        <md-input-container class="reget-ang-md-input-container md-input-has-value" style="min-width:300px;">
+                                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.requestorsText}} {{centre.name}}</label>
+
+
+                                            <div style="float:left;margin-left:5px;" ng-repeat="requestor in pgItem.requestor" ng-if="requestor.centre_id == centre.id">
+                                                <span style="float:left">{{requestor.first_name}} {{requestor.surname}}</span>
+                                                <span style="float:left" ng-hide="$index == (pgItem.requestor.length - 1)">, </span>
+
+                                            </div>
+
+                                        </md-input-container>
+
+                                    </div>
+                                </div>
+
+                                <div ng-show="pgItem.is_order_needed">
+                                    <hr ng-if="pgItem.orderer.length>0 || pgItem.self_ordered" />
+
+                                    <div class="hidden-xs" ng-if="pgItem.orderer.length>0 || pgItem.self_ordered">
+                                        <table>
+                                            <tr>
+                                                <td style="vertical-align:top;">
+                                                    <b>@RequestResource.Orderers:</b>
+                                                </td>
+                                                <td>
+                                                    <div style="float:left;margin-left:5px;" ng-repeat="orderer in pgItem.orderer" ng-if="!pgItem.self_ordered">
+                                                        <span style="float:left">{{orderer.first_name}} {{orderer.surname}}</span>
+                                                        <span style="float:left" ng-hide="angCtrl.isStringValueNullOrEmpty(orderer.substituted_by)">&nbsp;(@RequestResource.ManagerSubstitution {{orderer.substituted_by}} @RequestResource.To {{orderer.substituted_until}})</span>
+                                                        <span style="float:left" ng-class="$index == (pgItem.orderer.length - 1) ? 'reget-hidden' : 'reget-display'">, </span>
+                                                    </div>
+                                                    <div style="float:left;margin-left:5px;" ng-if="pgItem.self_ordered">
+                                                        @RequestResource.SelfOrderedCategory
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+
+                                    <div class="reget-ang-div-container-readonly hidden-sm hidden-md hidden-lg" style="padding-top:10px;" ng-if="(pgItem.orderer.length>0 || pgItem.self_ordered) && pgItem.is_order_needed">
+                                        <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth" style="margin-left:0px;">@RequestResource.Orderers:</label>
+                                        <md-input-container class="reget-ang-md-input-container md-input-has-value" style="min-width:300px;">
+                                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">@RequestResource.Orderers</label>
+
+                                            <div style="float:left;margin-left:5px;" ng-repeat="orderer in pgItem.orderer" ng-if="!pgItem.self_ordered">
+                                                <span style="float:left">{{orderer.first_name}} {{orderer.surname}}</span>
+                                                <span style="float:left" ng-hide="angCtrl.isStringValueNullOrEmpty(orderer.substituted_by)">&nbsp;(@RequestResource.ManagerSubstitution {{orderer.substituted_by}} @RequestResource.To {{orderer.substituted_until}})</span>
+                                                <span style="float:left" ng-class="$index == (pgItem.orderer.length - 1) ? 'reget-hidden' : 'reget-display'">, </span>
+                                            </div>
+                                            <div style="float:left;margin-left:5px;" ng-if="pgItem.self_ordered">
+                                                @RequestResource.SelfOrderedCategory
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+
+                                    <div style="clear:both"></div>
+
+                                    <hr ng-show="!angCtrl.isValueNullOrUndefined(pgItem.default_supplier) && pgItem.is_order_needed" />
+
+                                    <div class="hidden-xs" ng-if="!angCtrl.isValueNullOrUndefined(pgItem.default_supplier) && pgItem.is_order_needed">
+                                        <table>
+                                            <tr>
+                                                <td style="vertical-align:top;">
+                                                    <b>@RequestResource.DefaultSupplier:</b>
+                                                </td>
+                                                <td style="padding-left:5px;">
+                                                    <span>{{orderer.first_name}} {{pgItem.default_supplier.supp_name}}</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+
+                                    <div id="pgDefSupp_{{pgItem.id}}" ng-if="!angCtrl.isValueNullOrUndefined(pgItem.default_supplier)" class="reget-ang-div-container-readonly hidden-sm hidden-md hidden-lg" style="padding-top:10px;">
+
+                                        <md-input-container class="reget-ang-md-input-container md-input-has-value" style="min-width:300px;">
+                                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">@RequestResource.DefaultSupplier</label>
+
+
+                                            <div>
+                                                {{pgItem.default_supplier.supp_name}}
+                                            </div>
+
+                                            <div style="clear:both"></div>
+                                        </md-input-container>
+
+                                    </div>
+                                </div>
+
+                                @{ if (regetAdminController.CurrentUser.IsParticipantAreaAdmin) {
+
+                                        <hr ng-hide="angCtrl.isReadOnly" />
+
+                                        <div>
+                                            <input type="button"
+                                                   value="@RequestResource.Edit"
+                                                   ng-show="angCtrl.isCgPropertyAdmin || angCtrl.isCgAppMatrixAdmin || angCtrl.isCgOrdererAdmin || angCtrl.isCgRequestorAdmin"
+                                                   class="btn reget-btn reget-btn-img reget-btn-blue reget-btn-edit"
+                                                   style="margin-right:20px;"
+                                                   ng-click="angCtrl.editAppMatrix(pgItem, $event)" />
+
+                                            <input type="button"
+                                                   ng-show="angCtrl.isCgAppMatrixAdmin"
+                                                   value="@RequestResource.Delete"
+                                                   class="btn reget-btn reget-btn-img reget-btn-red reget-btn-delete"
+                                                   ng-click="angCtrl.deletePurchaseGroup(
+                                                    pgItem.id,
+                                                    pgItem.group_loc_name,
+                                                    $index,
+                                                    $event,
+                                                    '@RequestResource.DeletePgTitle',
+                                                    '@RequestResource.DeletePgMsg',
+                                                    '@RequestResource.Delete',
+                                                    '@RequestResource.Back',
+                                                    '@RequestResource.PurchaseGroupWasDeleted')" />
+                                        </div>
+                                    }
+                                }
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+
+                @{
+                    if (regetAdminController.CurrentUser.IsParticipantMatrixAdmin) {
+                        <md-button id="btnAddNewPg"
+                                   ng-hide="angCtrl.isReadOnly || angCtrl.isNewCg"
+                                   class="md-fab md-mini reget-circle-btn"
+                                   aria-label="@RequestResource.Add"
+                                   style="background-color:#4caf50;float:left;"
+                                   ng-click="angCtrl.addPurchaseGroup($event);">
+                            <img ng-src="@regetAdminController.GetRootUrl()Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                            <md-tooltip>@RequestResource.Add</md-tooltip>
+                        </md-button>
+                    }
+                }
+            </div>
+
+
+        </div>
+
+
+
+        <div id="divPgLoading" style="display:none;">@RequestResource.LoadingData</div>
+
+        @{
+            if (isAllCgReadOnly) {
+                @Html.Raw("<span id=\"spanIsAllCgReadOnly\" style=\"display:none;\">1</span>");
+            } else {
+                @Html.Raw("<span id=\"spanIsAllCgReadOnly\" style=\"display:none;\">0</span>");
+            }
+
+            if (regetAdminController.CurrentUser.IsParticipantAppAdmin) {
+                @Html.Raw("<span id=\"spanIsAppAdmin\" style=\"display:none;\">1</span>");
+            } else {
+                @Html.Raw("<span id=\"spanIsAppAdmin\" style=\"display:none;\">0</span>");
+            }
+        }
+
+        @Html.Partial("_LocalizationTextBasic")
+
+        <div style="display:none;">
+            <input id="SelfOrderedText" value="@RequestResource.SelfOrderedCategory" />
+            <input id="ParticipantId" value="@regetAdminController.CurrentUser.Participant.id" />
+            <input id="LoadDataErrorText" value="@RequestResource.LoadDataError" />
+            <input id="LoadingPurchaseGroupText" value="@RequestResource.LoadingPurchaseGroups" />
+            <input id="MoveCentreHeaderText" value="@RequestResource.MoveCentreConfirmHeader" />
+            <input id="MoveCentreMsgText" value="@RequestResource.MoveCentreConfirmMsg" />
+            <input id="CancelText" value="@RequestResource.Cancel" />
+            <input id="MoveText" value="@RequestResource.Move" />
+            <input id="WarningText" value="@RequestResource.Warning" />
+            <input id="NotificationText" value="@RequestResource.Notification" />
+            <input id="CloseText" value="@RequestResource.Close" />
+            <input id="DeleteText" value="@RequestResource.Delete" />
+            <input id="BackText" value="@RequestResource.Back" />
+            <input id="CannotDeleteCompanyAdminText" value="@RequestResource.CannotDeleteCompanyAdmin" />
+            <input id="CancelSelectText" value="@RequestResource.CancelSelect" />
+            <input id="CgDeleteConfirmationText" value="@RequestResource.CgDeleteConfirmation" />
+            <input id="CgDeleteConfirmationHeaderText" value="@RequestResource.CgDeleteConfirmationHeader" />
+            <input id="PurchaseGroupDisabledText" value="@RequestResource.PurchaseGroupDisabled" />
+            <input id="CentreGroupDisabledText" value="@RequestResource.CentreGroupDisabled" />
+            <input id="PurchaseGroupDeletedText" value="@RequestResource.PurchaseGroupDeleted" />
+            <input id="CentreGroupDeletedText" value="@RequestResource.CentreGroupDeleted" />
+            <input id="ActiveText" value="@RequestResource.Active" />
+
+            <input id="PurchaseGroupEditingText" value="@RequestResource.PurchaseGroupEditing" />
+            <input id="LowerLimitText" value="@RequestResource.LowerLimit" />
+            <input id="UpperLimitText" value="@RequestResource.UpperLimit" />
+
+            <input id="ApproveManText" value="@RequestResource.ApproveMan" />
+            <input id="MandatoryTextFieldText" value="@RequestResource.MandatoryTextField" />
+            <input id="NoLimitText" value="@RequestResource.NoLimit" />
+            <input id="AddText" value="@RequestResource.Add" />
+            <input id="DeleteText" value="@RequestResource.Delete" />
+            <input id="UpText" value="@RequestResource.Up" />
+            <input id="DownText" value="@RequestResource.Down" />
+            <input id="WhoIsAppManText" value="@RequestResource.WhoIsAppMan" />
+            <input id="SaveText" value="@RequestResource.Save" />
+            <input id="BackText" value="@RequestResource.Back" />
+            <input id="DataWasSavedText" value="@RequestResource.DataWasSaved" />
+            <input id="DisplayDetailsText" value="@RequestResource.DisplayDetails" />
+            <input id="HideDetailsText" value="@RequestResource.HideDetails" />
+            <input id="NameText" value="@RequestResource.Name" />
+            <input id="ParentPgNameText" value="@RequestResource.ParentPg" />
+            <input id="AllRequestorText" value="@RequestResource.AllRequestor" />
+            <input id="AllOrdererText" value="@RequestResource.AllOrderer" />
+            <input id="DefaultOrdererText" value="@RequestResource.DefaultOrderer" />
+            <input id="DeleteAllRequestorTitleText" value="@RequestResource.DeleteAllRequestorTitle" />
+            <input id="DeleteAllRequestorMsgText" value="@RequestResource.DeleteAllRequestorMsg" />
+            <input id="SelectRequestoText" value="@RequestResource.SelectRequestor" />
+            <input id="DeleteAllOrdererTitleText" value="@RequestResource.DeleteAllOrdererTitle" />
+            <input id="DeleteAllOrdererMsgText" value="@RequestResource.DeleteAllOrdererMsg" />
+            <input id="SelectOrdererPlaceholderText" value="@RequestResource.SelectOrdererPlaceholder" />
+            <input id="RequestorsText" value="@RequestResource.Requestors" />
+            <input id="OrderersText" value="@RequestResource.Orderers" />
+            <input id="DefaultSupplierText" value="@RequestResource.DefaultSupplier" />
+            <input id="WhoIsDefaultSupplierText" value="@RequestResource.WhoIsDefaultSupplier" />
+            <input id="TranslationText" value="@RequestResource.Translation" />
+            <input id="SaveErrorText" value="@RequestResource.SaveError" />
+            <input id="LoadingDataText" value="@RequestResource.LoadingData" />
+            <input id="NotFoundText" value="@RequestResource.NotFound" />
+            <input id="AppMatrixAdminText" value="@RequestResource.ApprovalMatrixAdmin" />
+            <input id="RequestorAdminText" value="@RequestResource.RequestorAdmin" />
+            <input id="OrdererAdminText" value="@RequestResource.OrdererAdmin" />
+            <input id="CentreGroupPropertyAdminText" value="@RequestResource.CentreGroupPropertyAdmin" />
+            <input id="ManagerSubstitutionText" value="@RequestResource.ManagerSubstitution" />
+            <input id="ToText" value="@RequestResource.To" />
+            <input id="DisplayText" value="@RequestResource.Display" />
+            <input id="HideText" value="@RequestResource.Hide" />
+            <input id="CollapseAllText" value="@RequestResource.CollapseAll" />
+            <input id="ExpandAllText" value="@RequestResource.ExpandAll" />
+            <input id="FromText" value="@RequestResource.From" />
+            <input id="ToText" value="@RequestResource.To" />
+            <input id="AprovalLevelText" value="@RequestResource.AprovalLevel" />
+            <input id="ApprovalOnlyText" value="@RequestResource.ApprovalOnly" />
+            <input id="OrderAllowedText" value="@RequestResource.OrderAllowed" />
+            <input id="ApprovalNeededText" value="@RequestResource.ApprovalIsNeeded" />
+            <input id="MultiplText" value="@RequestResource.LimitMultipl" />
+            <input id="NameText" value="@RequestResource.Name" />
+            <input id="CompanyText" value="@RequestResource.Company" />
+            <input id="EnterText" value="@RequestResource.Enter" />
+            <input id="CurrencyText" value="@RequestResource.Currency" />
+            <input id="EnterDecimalNumberText" value="@RequestResource.EnterDecimalNumber" />
+
+
+
+
+            <input id="CgId" value="@ViewBag.CgId" />
+            @{ if (ViewBag.IsNew != null && ViewBag.IsNew) {
+                    <input id="IsNewCg" value="1" />
+                } else {
+                    <input id="IsNewCg" value="0" />
+                }
+            }
+            @*<input id="CgName" value="@ViewBag.CgName" />*@
+        </div>
+    </div>
+
+</form>
+
+
+

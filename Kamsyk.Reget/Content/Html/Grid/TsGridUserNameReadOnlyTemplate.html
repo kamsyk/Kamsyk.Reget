@@ -1,0 +1,58 @@
+﻿
+
+<div ng-if="grid.appScope.isNewRowActive()==false"><!--<div ng-mouseover="rowStyle={'background-color': (rowRenderIndex%2 == 1) ? '#76BED6' : '#BFDAE3'};" ng-mouseleave="rowStyle={}" ng-style="selectedStyle={'background-color': (row.isSelected) ? '#379DBF' : ''}" style="width:100%;">-->
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display:table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow"
+         class="reget-disabled"
+         style="height:30px;display: table; width:100%;">
+        
+        <table>
+            <tr>
+                <td style="vertical-align:top;">
+                    <md-button id="btnUserLookup"
+                               class="btn btn-primary reget-btn-refresh reget-btn-blue"
+                               aria-label="Back"
+                               style="margin-right:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;padding:0px;width:20px;min-width:1px;min-height:30px;"
+                               ng-click="grid.appScope.getParticipantFromActiveDirectory(MODEL_COL_FIELD)">
+                        <md-tooltip>Load data from AD</md-tooltip>
+                    </md-button>
+                </td>
+                <td style="padding-left:5px;">
+                    {{COL_FIELD}}
+                </td>
+            </tr>
+        </table>
+         
+    </div>
+    
+</div>
+
+<div ng-if="grid.appScope.isNewRowActive()==true">
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display:table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow" style="height:30px;display:table;width:100%;">
+
+        <div>
+            <md-button id="btnUserLookup"
+                       class="btn btn-primary reget-btn-find reget-btn-blue"
+                       aria-label="Back"
+                       style="margin-right:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;padding:0px;width:20px;min-width:1px;margin-left:0px;min-height:30px;"
+                       ng-click="grid.appScope.getUserByUsername(MODEL_COL_FIELD)">
+                <md-tooltip>Find user in AD</md-tooltip>
+            </md-button>
+        </div>
+
+        <div style="vertical-align: middle;display:table-cell;">
+            <input type="text" style="height:30px;width:100%;padding-left:5px;" ng-model="MODEL_COL_FIELD" aria-label="{{COL_FIELD}}" class="reget-grid-edit-cell-mandatory" />
+        </div>
+    </div>   
+</div>

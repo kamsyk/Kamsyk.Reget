@@ -1,0 +1,37 @@
+﻿<table>
+    <tr>
+        <td class="hidden-sm hidden-md hidden-lg" style="min-width:50px;">
+
+        </td>
+        <td>
+            <div class="reget-ang-div-container-15" id="{{containerid}}" ng-if="isreadonly!='true'">
+                
+                    <label class="control-label hidden-xs {{leftlabelcss}}">{{label}}&nbsp;:</label>
+                    <md-input-container class="reget-ang-md-input-container md-input-has-placeholder md-input-has-value">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{label}}</label>
+                        <input ng-model="text" />
+                    </md-input-container>
+               
+            </div>
+
+            <div class="reget-ang-div-container-15-readonly" ng-if="isreadonly=='true'">
+                <table >
+                    <tbody>
+                        <tr>
+                            <td class="hidden-xs" style="vertical-align:top;">
+                                <label id="lblLDeliveryDate" class="control-label hidden-xs reget-ang-lbl-control-left-150">{{label}}&nbsp;:</label>
+                            </td>
+                            <td style="padding-bottom:4px;">
+                                <md-input-container id="ctDeliveryDate" class="reget-ang-md-input-container-label md-input-has-value">
+                                    <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{label}}</label>
+                                    <div class="ng-binding">{{text}}</div>
+                                </md-input-container>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+<hr class="reget-hr-request-sep" />

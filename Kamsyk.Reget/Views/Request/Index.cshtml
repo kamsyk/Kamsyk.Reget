@@ -1,0 +1,1298 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.Model.Common;
+@using Kamsyk.Reget.AgControls;
+@using Kamsyk.Reget.Model.Repositories;
+
+@{
+    var requestController = ViewContext.Controller as RequestController;
+    var isNew = ViewBag.IsNew != null && ViewBag.IsNew;
+    var isReadOnly = false; //not used because of the page is not posted back and reload on sttaus change, that is why the isReadOnly sttaus is not updated after sttaus change
+    var isPrivacyReadOnly = true;
+    var requestId = DataNulls.INT_NULL;
+
+    var reqReqId = Request.QueryString["id"];
+    if (reqReqId != null) {
+        requestId = ConvertData.ToInt32(reqReqId);
+    }
+
+    string requestorName = null;
+    if (requestId == DataNulls.INT_NULL) {
+        isPrivacyReadOnly = false;
+    } else {
+
+        int requestorId = requestController.GetRequestRequestor(requestId, out requestorName);
+        var requestStatus = requestController.GetRequestStatus(requestId);
+        if (requestorId == requestController.CurrentUser.ParticipantId) {
+            isPrivacyReadOnly = false;
+        }
+    }
+
+    
+    var strSupplierItem = "<div>" 
+        + "<span md-highlight-text=\"angCtrl.searchstringsupplier\" md-highlight-flags=\"i\" style=\"vertical-align: middle; margin-left:5px;\">{{item.supp_name}}</span>" 
+        + "</div>";
+
+   
+}
+
+<script>
+    var isGoTopBottom = true;
+    document.onscroll = function () {
+        
+        if (document.documentElement.scrollTop + window.innerHeight == document.documentElement.scrollHeight) {
+           
+            $("#btnTop").show();
+            $("#btnBottom").fadeOut();
+        
+            isGoTopBottom = true;
+        } else if (document.documentElement.scrollTop == 0) {
+            
+            $("#btnTop").fadeOut();
+            $("#btnBottom").show();
+
+            isGoTopBottom = true;
+        } else {
+            if (isGoTopBottom == true) {
+                
+                $("#btnTop").show();
+                $("#btnBottom").show();
+
+                isGoTopBottom = false;
+            } 
+        }
+ 
+    }
+
+    document.onload = function () {
+        if (!isScrollBar()) {
+            $("#btnTop").fadeOut();
+            $("#btnBottom").fadeOut();
+        }
+    }
+
+    window.onload = function () {
+        if (!isScrollBar()) {
+            $("#btnTop").fadeOut();
+            $("#btnBottom").fadeOut();
+        }
+        dragElement(document.getElementById("divAppMatrix"));
+    }
+
+    window.onresize = function () {
+        if (isScrollBar()) {
+            $("#btnTop").fadeOut();
+            $("#btnBottom").show();
+        }
+    }
+
+    function goTop() {
+        window.scroll(0, 0);
+
+        if (isScrollBar()) {
+            $("#btnTop").fadeOut();
+            $("#btnBottom").show();
+        } else {
+            $("#btnTop").fadeOut();
+            $("#btnBottom").fadeOut();
+        }
+
+        isGoTopBottom = true;
+    }
+
+    function goBottom() {
+        
+        window.scrollTo(0, document.querySelector(".reget-body").scrollHeight);
+
+        if (isScrollBar()) {
+            $("#btnTop").show();
+            $("#btnBottom").fadeOut();
+        } else {
+            $("#btnTop").fadeOut();
+            $("#btnBottom").fadeOut();
+        }
+
+        isGoTopBottom = true;
+    }
+
+    //function displayAppMatrix() {
+    //    $("#divAppMatrix").show();
+    //}
+
+    function isScrollBar() {
+        if ($(document).height() > $(window).height()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    //dragElement(document.getElementById("divAppMatrix"));
+
+    function dragElement(elmnt) {
+        //alert('ok');
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById("divAppMatrixheader") != null) {
+            //alert('ok1');
+            /* if present, the header is where you move the DIV from:*/
+            document.getElementById("divAppMatrixheader").onmousedown = dragMouseDown;
+        } else {
+            /* otherwise, move the DIV from anywhere inside the DIV:*/
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            //alert('ok');
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            /* stop moving when mouse button is released:*/
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+</script>
+
+<form name="frmRequest" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="RequestController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+
+        <div class="reget-panel-box-pad" id="divRequestPlaceholder" style="padding-left:15px;padding-right:15px;display:none;"
+             ng-style="{'background-color':(angCtrl.isRequestCanceled==true)?'#DDD':'#FFF'}">
+
+            @*<div style="display:flex;flex-wrap:wrap;justify-content:center;">
+            <div style="float:left;"><div><img src="~/Content/Images/Request/Workflow/WaitMiddle.png" style="height:24px;width:48px;" /></div><div style="font-size:0.8em">Kamil Sykora</div></div>
+            <div style="float:left;"><img src="~/Content/Images/Request/Workflow/WaitMiddle.png" style="height:24px;width:48px;" /></div>
+        </div>*@
+
+            <div ng-show="angCtrl.isRequestCanceled==true">
+                <div style="display:flex;flex-wrap:wrap;justify-content:center;">
+                    <table>
+                        <tr>
+                            <td><img src="~/Content/Images/Request/RequestStatus/Canceled.png" style="width:24px;margin-right:10px;" /></td>
+                            <td style="vertical-align:middle;"><span style="font-size:1.8em;font-weight:bold;">@RequestResource.Canceled</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div ng-show="angCtrl.isRequestRejected==true" style="margin-bottom:10px;">
+                <div style="display:flex;flex-wrap:wrap;justify-content:center;">
+                    <table>
+                        <tr>
+                            <td><img src="~/Content/Images/Request/RequestStatus/Rejected.png" style="width:24px;margin-right:10px;border-radius:12px;" /></td>
+                            <td style="vertical-align:middle;"><span style="font-size:1.8em;font-weight:bold;">@RequestResource.Rejected</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div ng-show="angCtrl.isWorkflowDisplayed==true">
+                <div style="display:flex;flex-wrap:wrap;justify-content:center;">
+                    <div ng-repeat="workflowitem in angCtrl.request.workflow_items" style="float:left;">
+                        <div ng-if="$first"><img ng-if="workflowitem.status_id==0" src="~/Content/Images/Request/Workflow/WaitFirst.png" style="height:24px;width:96px;" /></div>
+                        <div ng-if="$first"><img ng-if="workflowitem.status_id==1" src="~/Content/Images/Request/Workflow/ProcessingFirst.png" style="height:24px;width:96px;" /></div>
+                        <div ng-if="$first"><img ng-if="workflowitem.status_id==2" src="~/Content/Images/Request/Workflow/FinishedFirst.png" style="height:24px;width:96px;" /></div>
+
+                        <div ng-if="$middle"><img ng-if="workflowitem.status_id==0" src="~/Content/Images/Request/Workflow/WaitMiddle.png" style="height:24px;width:96px;" /></div>
+                        <div ng-if="$middle"><img ng-if="workflowitem.status_id==1" src="~/Content/Images/Request/Workflow/ProcessingMiddle.png" style="height:24px;width:96px;" /></div>
+                        <div ng-if="$middle"><img ng-if="workflowitem.status_id==2" src="~/Content/Images/Request/Workflow/FinishedMiddle.png" style="height:24px;width:96px;" /></div>
+
+                        <div ng-if="$last"><img ng-if="workflowitem.status_id==0" src="~/Content/Images/Request/Workflow/WaitLast.png" style="height:24px;width:96px;" /></div>
+                        <div ng-if="$last"><img ng-if="workflowitem.status_id==1" src="~/Content/Images/Request/Workflow/ProcessingLast.png" style="height:24px;width:96px;" /></div>
+                        <div ng-if="$last"><img ng-if="workflowitem.status_id==2" src="~/Content/Images/Request/Workflow/FinishedLast.png" style="height:24px;width:96px;" /></div>
+                        <div style="font-size:0.8em;max-width:92px;text-align:center;">{{workflowitem.resp_man}}</div>
+                    </div>
+
+                    <div ng-if="angCtrl.isWorkflowRemindDisplayed">
+                        <md-button class="btn-primary md-fab md-mini md-button" style="margin:0px;width:36px;height:36px;min-height:36px;line-height:36px;" aria-label="Remind"
+                                   ng-click="angCtrl.remindMan()">
+                            <img src="@requestController.GetRootUrl()Content/Images/Controll/Button/Remind.png" style="width:24px;margin-bottom:2px;" />
+                            <md-tooltip>{{angCtrl.remindText}}</md-tooltip>
+                        </md-button>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+                <hr class="reget-request-status-hr" />
+            </div>
+
+            <div>
+                <table>
+                    <tr>
+                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;">
+                            <img style="width:35px;" src="~/Content/Images/Request/Requestor.png" />
+                        </td>
+                        <td>
+                            @*Requestor*@
+                            @{
+                                MdLabel lblRequestor = new MdLabel();
+                                lblRequestor.FormName = "frmRequest";
+                                lblRequestor.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                lblRequestor.LabelLeft = RequestResource.Requestor;
+                                lblRequestor.IsMandatory = true;
+                                lblRequestor.NgModel = "angCtrl.requestorName";
+                                lblRequestor.ContainerClass = "reget-ang-div-container-15-readonly";
+                            }
+                            @Html.Raw(lblRequestor.RenderControlHtml())
+                        </td>
+                    </tr>
+                </table>
+
+                <hr class="reget-hr-request-sep" />
+
+                @*Centre*@
+                <table>
+                    <tr>
+                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;">
+                            <img src="~/Content/Images/Request/Centre.png" style="width:35px;" />
+                        </td>
+                        <td>
+
+                            @{
+                                MdSelect cmbCentre = new MdSelect();
+                                cmbCentre.FormName = "frmRequest";
+                                cmbCentre.AgSourceList = "angCtrl.requestorCentres";
+                                cmbCentre.AgModel = "angCtrl.selectedCentreId";
+                                cmbCentre.AgIdItem = "id";
+                                cmbCentre.AgTextItem = "name";
+                                cmbCentre.AgSelectedText = "angCtrl.centreName";
+                                //cmbCentre.AgIsMandatory = "angCtrl.isMandatoryCheck";
+                                cmbCentre.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                cmbCentre.LabelLeft = RequestResource.Centre;
+                                //cmbCentre.Placeholder = RequestResource.Centre;
+                                //cmbCentre.LabelTop = RequestResource.Centre;
+                                cmbCentre.RootTagId = "RequestorCentre";
+                                cmbCentre.IsReadOnly = isReadOnly;
+                                cmbCentre.AgIsReadOnly = "angCtrl.isRequestorCentreReadOnly";
+                                cmbCentre.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                cmbCentre.ContainerClass = "reget-ang-div-container-15";
+                                cmbCentre.OnSelectFunct = "angCtrl.centreChanged()";
+                                cmbCentre.IsMandatory = true;
+                            }
+                            @Html.Raw(cmbCentre.RenderControlHtml())
+                        </td>
+                    </tr>
+                </table>
+
+                <hr class="reget-hr-request-sep" />
+
+                @*Commodity*@
+                <table>
+                    <tr>
+                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;">
+                            <img src="~/Content/Images/Request/ShopBag.png" style="width:35px;" />
+                        </td>
+                        <td>
+                            @{
+                                MdSelect cmbCommodity = new MdSelect();
+                                cmbCommodity.FormName = "frmRequest";
+                                cmbCommodity.AgSourceList = "angCtrl.purchaseGroupsCmb";
+                                cmbCommodity.AgModel = "angCtrl.pgId";
+                                cmbCommodity.AgIdItem = "id";
+                                cmbCommodity.AgTextItem = "name";
+                                cmbCommodity.AgSelectedText = "angCtrl.pgName";
+                                cmbCommodity.LabelLeft = RequestResource.PurchaseGroup;
+                                cmbCommodity.RootTagId = "Commodity";
+                                cmbCommodity.IsReadOnly = isReadOnly;
+                                //cmbCommodity.AgIsMandatory = "angCtrl.isMandatory";
+                                cmbCommodity.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                cmbCommodity.AgIsReadOnly = "angCtrl.isNewRequestOrDraft==false";
+                                cmbCommodity.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                cmbCommodity.IsMandatory = true;
+                                cmbCommodity.OnSelectFunct = "angCtrl.selectPg()";
+                                cmbCommodity.Width = 150;
+                                cmbCommodity.ContainerClass = "reget-ang-div-container-15";
+
+                                //mdCmbCgSource.ItemHtml = "<img src=\"{{liElement.flag_url}}\" class=\"reget-img-border-dark\" style=\"width:24px;height:16px;vertical-align:middle;margin-bottom:3px;\">" +
+                                //             "<img src=\"{{liElement.status_url}}\" style=\"vertical-align:middle;margin-bottom:3px;margin-left:5px;\">" +
+                                //             "<img id=\"imgDis_{{liElement.id}}\" ng-hide=\"liElement.is_active\" src=\"" + regetAdminController.GetRootUrl() + "Content/Images/Controll/disablecircle16.png\" style=\"vertical-align:middle;margin-bottom:3px;margin-left:5px;\">" +
+                                //             "<span style=\"vertical-align: middle; margin-left:5px;\">{{liElement.name}}</span>";
+                            }
+                            <div ng-hide="angCtrl.selectedCentreId==null">
+                                @Html.Raw(cmbCommodity.RenderControlHtml())
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <hr class="reget-hr-request-sep" />
+
+                @*Estimated Price*@
+                <table>
+                    <tr>
+                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;">
+                            <img src="~/Content/Images/Request/Money.png" style="width:35px;" />
+                        </td>
+                        <td>
+                            @{
+                                MdInputDecimalContainer txtEstPrice = new MdInputDecimalContainer(BaseController.DecimalSeparator);
+                                txtEstPrice.FormName = "frmRequest";
+                                txtEstPrice.NgModel = "angCtrl.request.estimated_price_text";
+                                txtEstPrice.LabelLeft = RequestResource.EstimatedPrice;
+                                txtEstPrice.RootTagId = "EstimatedPrice";
+                                txtEstPrice.IsMandatory = true;
+                                txtEstPrice.IsReadOnly = isReadOnly;
+                                txtEstPrice.AgIsReadOnly = "angCtrl.isPgStandard==false";
+                                //txtEstPrice.AgIsMandatory = "angCtrl.isMandatoryCheck";
+                                txtEstPrice.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                txtEstPrice.Width = 150;
+                                txtEstPrice.ContainerClass = "reget-ang-div-container-15";
+                                txtEstPrice.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                //txtEstPrice.OnChange = "angCtrl.priceWasChanged(" +
+                                //    "angCtrl.request.estimated_price_text, angCtrl.angScopeAny.frmRequest['txtEstimatedPrice'])";
+
+                                MdSelect cmbCurrency = new MdSelect();
+                                cmbCurrency.FormName = "frmRequest";
+                                cmbCurrency.AgSourceList = "angCtrl.currencyList";
+                                cmbCurrency.AgModel = "angCtrl.currencyId";
+                                cmbCurrency.AgIdItem = "id";
+                                cmbCurrency.AgTextItem = "name";
+                                cmbCurrency.AgSelectedText = "angCtrl.currencyCode";
+                                //cmbCurrency.AgIsMandatory = "angCtrl.isMandatoryCheck";
+                                cmbCurrency.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                cmbCurrency.LabelLeft = RequestResource.Currency;
+                                cmbCurrency.RootTagId = "Currency";
+                                cmbCurrency.IsReadOnly = isReadOnly;
+                                cmbCurrency.IsMandatory = true;
+                                cmbCurrency.OnSelectFunct = "angCtrl.selectCurrency()";
+                                cmbCurrency.Width = 125;
+                                cmbCurrency.IsLeftLabelDisplayed = false;
+                                cmbCurrency.IsTopLabelDisplayed = false;
+                                cmbCurrency.ContainerClass = "reget-ang-div-container-15";
+                                cmbCurrency.AgIsReadOnly = "angCtrl.isPgStandard==false || angCtrl.isCurrencyOnlyOne==true";
+                            }
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.Raw(txtEstPrice.RenderControlHtml())
+                                    </td>
+                                    <td @*style="vertical-align:top;"*@>
+                                        <div ng-class="angCtrl.isCurrencyOnlyOne ? 'reget-req-curr-ro':''">
+                                            @Html.Raw(cmbCurrency.RenderControlHtml())
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <hr class="reget-hr-request-sep" />
+
+                <customfield ng-repeat="custField in angCtrl.selectedPg.custom_field"
+                             containerid="customfiled_{{custField.id}}"
+                             leftlabelcss="reget-ang-lbl-control-left-150"
+                             label="{{custField.label}}"
+                             isreadonly="{{angCtrl.isCustomFieldReadOnly}}"
+                             text="custField.string_value">
+
+                </customfield>
+
+                @*<hr class="reget-hr-request-sep" ng-show="angCtrl.isCustomFieldVisible" />*@
+
+                @*Request Items*@
+                <div ng-if="angCtrl.isPgItemOrder==true">
+
+
+                    <div style="margin-top:10px;margin-bottom:10px;">
+                        <div class="reget-header-upper-text">
+                            @RequestResource.RequestItems
+                        </div>
+                        <div>
+                            @{
+                                MdInputContainer txtItemName = new MdInputContainer();
+                                txtItemName.FormName = "frmRequest";
+                                txtItemName.NgModel = "angCtrl.requestItemName";
+                                txtItemName.LabelLeft = RequestResource.ItemName;
+                                txtItemName.RootTagId = "ItemName";
+                                txtItemName.Placeholder = RequestResource.ItemName;
+                                txtItemName.IsMandatory = true;
+                                txtItemName.Width = 350;
+                                txtItemName.LabelLeftCssClass = "reget-ang-lbl-control-left-150-alignleft";
+                            }
+                            @Html.Raw(txtItemName.RenderControlHtml())
+                        </div>
+
+                        <div>
+                            @{
+                                MdInputDecimalContainer txtAmount = new MdInputDecimalContainer(BaseController.DecimalSeparator);
+                                txtAmount.FormName = "frmRequest";
+                                txtAmount.NgModel = "angCtrl.requestItemAmount";
+                                txtAmount.LabelLeft = RequestResource.Amount;
+                                txtAmount.Placeholder = RequestResource.Amount;
+                                txtAmount.RootTagId = "ItemAmount";
+                                txtAmount.IsMandatory = true;
+                                txtAmount.Width = 125;
+                                txtAmount.LabelLeftCssClass = "reget-ang-lbl-control-left-150-alignleft";
+
+                                MdSelect cmbUnit = new MdSelect();
+                                cmbUnit.FormName = "frmRequest";
+                                cmbUnit.AgSourceList = "angCtrl.unitList";
+                                cmbUnit.AgModel = "angCtrl.requestItemUnitId";
+                                cmbUnit.AgIdItem = "id";
+                                cmbUnit.AgTextItem = "name";
+                                cmbUnit.AgSelectedText = "angCtrl.unitCode";
+                                cmbUnit.LabelLeft = RequestResource.UnitOfMeasurement;
+                                cmbUnit.RootTagId = "Unit";
+                                cmbUnit.IsReadOnly = isReadOnly;
+                                cmbUnit.LabelLeftCssClass = "reget-ang-lbl-control-left-150-alignleft";
+                                cmbUnit.IsMandatory = true;
+                                cmbUnit.Width = 125;
+                                cmbUnit.IsLeftLabelDisplayed = false;
+                            }
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.Raw(txtAmount.RenderControlHtml())
+                                    </td>
+                                    <td>
+                                        @Html.Raw(cmbUnit.RenderControlHtml())
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <div>
+                            @{
+                                MdInputDecimalContainer txtUnitPrice = new MdInputDecimalContainer(BaseController.DecimalSeparator);
+                                txtUnitPrice.FormName = "frmRequest";
+                                txtUnitPrice.NgModel = "angCtrl.requestItemUnitPrice";
+                                txtUnitPrice.LabelLeft = RequestResource.UnitPrice;
+                                txtUnitPrice.RootTagId = "UnitCost";
+                                txtUnitPrice.IsMandatory = true;
+                                txtUnitPrice.Width = 125;
+                                txtUnitPrice.LabelLeftCssClass = "reget-ang-lbl-control-left-150-alignleft";
+
+                                MdSelect cmbItemCurrency = new MdSelect();
+                                cmbItemCurrency.FormName = "frmRequest";
+                                cmbItemCurrency.AgSourceList = "angCtrl.itemCurrencyList";
+                                cmbItemCurrency.AgModel = "angCtrl.requestItemCurrencyId";
+                                cmbItemCurrency.AgIdItem = "id";
+                                cmbItemCurrency.AgTextItem = "name";
+                                cmbItemCurrency.AgSelectedText = "angCtrl.itemCurrencyCode";
+                                cmbItemCurrency.LabelLeft = RequestResource.Currency;
+                                cmbItemCurrency.RootTagId = "ItemCurrency";
+                                cmbItemCurrency.IsMandatory = true;
+                                cmbItemCurrency.Width = 125;
+                                cmbItemCurrency.IsLeftLabelDisplayed = false;
+
+                            }
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.Raw(txtUnitPrice.RenderControlHtml())
+                                    </td>
+                                    <td>
+                                        @Html.Raw(cmbItemCurrency.RenderControlHtml())
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:25px;">
+                        <md-button id="btnAddItem"
+                                   class="btn btn-primary reget-btn reget-btn-add"
+                                   ng-click="angCtrl.addRequestItem()">
+                            @RequestResource.Add
+                        </md-button>
+
+                        <div id="divErrMsg" class="ng-binding reget-ang-controll-invalid-msg-no-ag">
+                            {{angCtrl.errRequestItem}}
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+                    @{
+                        UiGrid uiGrid = new UiGrid(requestController.GetRootUrl());
+                        uiGrid.RootTagId = "grdRequestItem";
+                        uiGrid.AgControlerName = "angCtrl";
+                        uiGrid.Title = RequestResource.RequestItems + " - " + RequestResource.Price + " " + "{{angCtrl.request.est_price_text}}";
+                        uiGrid.GridType = UiGrid.Gridtype.Simple;
+                        uiGrid.AddNewText = null;
+                    }
+
+                    <div ng-if="angCtrl.isRequestItemsDisplayed==true">
+                        @Html.Raw(uiGrid.RenderControlHtml())
+
+                    </div>
+
+                    <hr class="reget-hr-dark" style="margin-top:25px;margin-bottom:25px" />
+                </div>
+
+                @*Supplier*@
+                <table style="width:100%">
+                    <tr>
+                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;width:45px;">
+                            <img src="~/Content/Images/Request/Supplier.png" style="width:35px;" />
+                        </td>
+                        <td>
+                            @{
+                                MdAutocomplete autoSupplier = new MdAutocomplete();
+                                autoSupplier.RootTagId = "agSupplier";
+                                autoSupplier.IsMandatory = true;
+                                //autoSupplier.AgIsMandatory = "angCtrl.isMandatory";
+                                autoSupplier.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                autoSupplier.LabelLeft = RequestResource.Supplier;
+                                autoSupplier.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                autoSupplier.MdSelectItem = "angCtrl.strSelectedSupplier";
+                                autoSupplier.MdSearchText = "angCtrl.searchstringsupplier";
+                                autoSupplier.OnSelectedItemChange = "angCtrl.supplierSelectedItemChange(item, 'agSupplier" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                                autoSupplier.MdItems = "item in angCtrl.searchSupplier(angCtrl.searchstringsupplier)";
+                                autoSupplier.MdItemText = "item.supp_name";
+                                autoSupplier.Placeholder = RequestResource.Supplier;
+                                autoSupplier.MdInputId = "txtSupplier";
+                                autoSupplier.MdItemTemplate = strSupplierItem;
+                                autoSupplier.IsReadOnly = isReadOnly;
+                                autoSupplier.AgIsReadOnly = "angCtrl.isNewRequestOrDraft==false";
+                                autoSupplier.OnBlur = "angCtrl.supplierOnBlur('agSupplier" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                                autoSupplier.CssClass = "reget-dropdown-auto";
+                                autoSupplier.ContainerClass = "reget-ang-div-container-15";
+                                autoSupplier.MinLength = 2;
+
+                                MdCheckBox mdCkbFreeSupp = new MdCheckBox(requestController.GetRootUrl());
+                                mdCkbFreeSupp.RootTagId = "ckbFreeSupplier";
+                                mdCkbFreeSupp.CkbText = RequestResource.FreeSupplier;
+                                mdCkbFreeSupp.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                mdCkbFreeSupp.ContainerClass = "reget-ang-div-container-15";
+                                mdCkbFreeSupp.AgIsChecked = "angCtrl.isFreeSupplier";
+                                mdCkbFreeSupp.IsReadOnly = isReadOnly;
+                                //mdCkbFreeSupp.AgIsReadOnly = "!angCtrl.isCgPropertyAdmin";
+                                mdCkbFreeSupp.OnClick = "angCtrl.toggleFreeSupplier();";
+                                mdCkbFreeSupp.YesText = RequestResource.Yes;
+                                mdCkbFreeSupp.NoText = RequestResource.No;
+
+                                MdCheckBox mdCkbFreeSupp1 = new MdCheckBox(requestController.GetRootUrl());
+                                mdCkbFreeSupp1.RootTagId = "ckbFreeSupplier";
+                                mdCkbFreeSupp1.CkbText = RequestResource.FreeSupplier;
+                                mdCkbFreeSupp1.LabelLeft = RequestResource.Supplier;
+                                mdCkbFreeSupp1.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                mdCkbFreeSupp1.ContainerClass = "reget-ang-div-container-15";
+                                mdCkbFreeSupp1.AgIsChecked = "angCtrl.isFreeSupplier";
+                                mdCkbFreeSupp1.IsReadOnly = isReadOnly;
+                                //mdCkbFreeSupp.AgIsReadOnly = "!angCtrl.isCgPropertyAdmin";
+                                mdCkbFreeSupp1.ContainerClass = "reget-ang-div-container-15";
+                                mdCkbFreeSupp1.OnClick = "angCtrl.toggleFreeSupplier();";
+                                mdCkbFreeSupp1.YesText = RequestResource.Yes;
+                                mdCkbFreeSupp1.NoText = RequestResource.No;
+
+                                MdTextArea mdSupplierText = new MdTextArea();
+                                mdSupplierText.FormName = "frmRequest";
+                                mdSupplierText.NgModel = "angCtrl.supplierText";
+                                //mdSupplierText.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                mdSupplierText.IsReadOnly = isReadOnly;
+                                mdSupplierText.AgIsReadOnly = "angCtrl.isNewRequestOrDraft==false";
+                                mdSupplierText.LabelLeft = RequestResource.Supplier + " " + RequestResource.Remarks.ToLower();
+                                mdSupplierText.RootTagId = "SupplierText";
+                                mdSupplierText.InputCssClass = "reget-text-area";
+                                mdSupplierText.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                mdSupplierText.Height = 100;
+                                mdSupplierText.IsMandatory = false;
+                                //mdSupplierText.PrevControlHtml = mdCkbFreeSupp1.RenderControlHtml();
+
+                            }
+
+                            <div ng-style="{'padding-top':(angCtrl.isNewRequestOrDraft==true) ? '' : ''}" ng-hide="angCtrl.selectedCentreId==null || angCtrl.isFreeSupplier">
+                                @Html.Raw(autoSupplier.RenderControlHtml())
+                            </div>
+                            <div ng-show="angCtrl.isFreeSupplierAllowed && angCtrl.isFreeSupplier==false" class="control-label hidden-xs reget-ang-lbl-control-left-150" style="float:left;margin-left:0px;margin-top:5px;">&nbsp;</div>
+                            <div ng-show="angCtrl.isFreeSupplierAllowed && angCtrl.isFreeSupplier==false">@Html.Raw(mdCkbFreeSupp.RenderControlHtml())</div>
+                            <div ng-show="angCtrl.isFreeSupplierAllowed && angCtrl.isFreeSupplier==true">@Html.Raw(mdCkbFreeSupp1.RenderControlHtml())</div>
+                            <div ng-show="angCtrl.isFreeSupplier">@Html.Raw(mdSupplierText.RenderControlHtml())</div>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <hr class="reget-hr-request-sep" />
+
+                @*Delivery Date*@
+                <table>
+                    <tr>
+                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;">
+                            <img src="~/Content/Images/Request/Calendar.png" style="width:35px;" />
+                        </td>
+                        <td>
+                            <div ng-style="{'padding-top':(angCtrl.isNewRequestOrDraft==true) ? '' : ''}">
+                                @{
+                                    MdDatePicker dateDelivery = new MdDatePicker(requestController.GetRootUrl(), Request.Browser.Browser);
+                                    dateDelivery.FormName = "frmRequest";
+                                    dateDelivery.NgModel = "angCtrl.selectedDeliveryDate";
+                                    //dateDelivery.AgIsMandatory = "angCtrl.isMandatory";
+                                    dateDelivery.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                    dateDelivery.LabelLeft = RequestResource.DeliveryDate;
+                                    dateDelivery.RootTagId = "DeliveryDate";
+                                    dateDelivery.IsMandatory = true;
+                                    dateDelivery.AgControlerName = "angCtrl";
+                                    dateDelivery.IsReadOnly = isReadOnly;
+                                    dateDelivery.AgIsReadOnly = "angCtrl.isNewRequestOrDraft==false";
+                                    dateDelivery.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                    dateDelivery.ContainerClass = "reget-ang-div-container-15";
+                                }
+                                @Html.Raw(dateDelivery.RenderControlHtml())
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <hr class="reget-hr-request-sep" />
+
+                @* Request Text *@
+                @*<div ng-style="{'margin-top':(angCtrl.isNewRequestOrDraft==true) ? '15px' : '', 'margin-bottom':(angCtrl.isNewRequestOrDraft==true) ? '15px' : ''}">*@
+                <div>
+                    @{
+                        MdTextArea mdRequestText = new MdTextArea();
+                        mdRequestText.FormName = "frmRequest";
+                        mdRequestText.NgModel = "angCtrl.requestText";
+                        mdRequestText.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                        mdRequestText.IsReadOnly = isReadOnly;
+                        mdRequestText.AgIsReadOnly = "angCtrl.isNewRequestOrDraft==false";
+                        mdRequestText.LabelLeft = RequestResource.RequestText;
+                        mdRequestText.RootTagId = "RequestText";
+                        mdRequestText.InputCssClass = "reget-text-area";
+                        mdRequestText.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        mdRequestText.ContainerClass = "reget-ang-div-container-15";
+                        mdRequestText.Height = 175;
+                        mdRequestText.IsMandatory = true;
+                    }
+                    @Html.Raw(mdRequestText.RenderControlHtml())
+                </div>
+
+                <hr class="reget-hr-request-sep" ng-show="angCtrl.isAttachmentDisplayed" />
+
+                @* Attachment *@
+                @{
+                    var strAttPadding = (isReadOnly) ? "padding-top:0px;" : "padding-top:10px;";
+                }
+                <div class="reget-ang-div-container reget-app-men" id="wrapAttachment" ng-show="angCtrl.isAttachmentDisplayed==true" style="@strAttPadding">
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td style="vertical-align: top;" class="hidden-xs"><label class="control-label hidden-xs reget-ang-lbl-control-left-150" id="lblAttachment">@RequestResource.Attachements:</label></td>
+                                <td style="width: 100%;vertical-align: top;padding-left:5px;">
+
+                                    <md-input-container class="reget-ang-md-input-container md-input-has-value hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" id="ctAttachment" style="width: 100%;">
+                                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width: 150px;margin-top:15px;">@RequestResource.Attachements</label>
+                                    </md-input-container>
+
+                                    <div ng-show="angCtrl.isAttachmentEditable==true">
+                                        <div ngf-drop="" ngf-select=""
+                                             ng-model="files" class="drop-box"
+                                             ngf-drag-over-class="dragover"
+                                             ngf-multiple="true" ngf-allow-dir="true"
+                                             style="cursor:pointer;margin-bottom:15px;background-color:#f2fde4;color:#000;border:4px dashed #888"
+                                             accept="*">
+
+                                            <table>
+                                                <tr>
+                                                    <td style="padding-right:25px;">
+                                                        <img src="~/Content/Images/Controll/Drop.png" />
+                                                    </td>
+                                                    <td>
+                                                        @*<a href="#" onclick="document.getElementById('getFile').click()">@RequestResource.DragDropInfo</a>*@
+                                                        <span ngf-no-file-drop!="">@RequestResource.DragDropInfo</span>
+                                                        <div ngf-no-file-drop="">@RequestResource.SelectAttachment</div>
+                                                        <div ngf-no-file-drop="">(@RequestResource.DragDropNotSupported)</div>
+                                                        <input type='file' id="getFile" style="display:none">
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <md-progress-linear md-mode="determinate" value="{{angCtrl.progressPercentage}}" ng-hide="angCtrl.isUploadFileProgressBarVisible==false" style="margin-top:20px"></md-progress-linear>
+                                        </div>
+                                    </div>
+
+                                    @*<div ng-show="angCtrl.request.attachments!=null && angCtrl.request.attachments.length>0" class="hidden-xs reget-ang-control-left-space-150 ng-scope" style="margin-right: 10px;">&nbsp;</div>*@
+                                    <div style="float:left;padding-left:5px;">
+                                        <div ng-repeat="att in angCtrl.request.attachments" style="margin-bottom:5px;">
+                                            <a href="#" ng-click="angCtrl.openAttachment(att.id)" style="margin-right:10px;">
+                                                <span><img src="{{att.icon_url}}" style="margin-bottom:2px;margin-right:2px;height:24px;" /></span>
+                                                <span>{{att.file_name}}</span>
+                                                <span>&nbsp;({{att.size_kb}} kB)</span>
+
+                                            </a>
+                                            <span>
+                                                <md-button class="reget-btn-grid-delete reget-transparent-button" style="min-width:20px;min-height:20px;" aria-label="Delete" ng-if="att.is_can_be_deleted" ng-click="angCtrl.deleteAttachment(att.id)">
+                                                    <md-tooltip>{{angCtrl.locDeleteText}}</md-tooltip>
+                                                </md-button>
+                                            </span>
+
+
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+                <div style="clear:both;"></div>
+
+                <hr class="reget-hr-dark" ng-show="angCtrl.isAppManOrdererDisplayed" />
+
+                <div style="clear:both;"></div>
+
+                @*Approval Men*@
+                <table>
+                    <tr>
+                        <td>
+                            <div ng-show="angCtrl.is_approval_needed">
+                                <table>
+                                    <tr>
+                                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;">
+                                            <img src="~/Content/Images/Request/AppMan.png" style="width:35px;" />
+                                        </td>
+                                        <td>
+                                            <div id="wrapRequestAppMen">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="vertical-align: top;padding-right:5px;" class="hidden-xs"><label class="control-label hidden-xs reget-ang-lbl-control-left-150" id="lblAppMen">@RequestResource.ApproveMen:</label></td>
+                                                            <td style="width: 100%;vertical-align: top;">
+                                                                <div class="reget-ang-div-container-15-readonly">
+                                                                    <md-input-container class="reget-ang-md-input-container  md-input-has-value" id="ctAppMen" style="width: 100%;">
+                                                                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width: 150px;margin-top:15px;">@RequestResource.ApproveMen</label>
+                                                                        <div class="reget-intput-list">
+
+                                                                            <div ng-repeat="requestAppMan in angCtrl.requestAppMen">
+                                                                                <span>
+                                                                                    {{requestAppMan.participant.surname}}&nbsp;{{requestAppMan.participant.first_name}}
+                                                                                </span>
+                                                                                <span ng-if="requestAppMan.substituted!=null">
+                                                                                    (@RequestResource.SubstitutionFor:&nbsp;{{requestAppMan.substituted.surname}}&nbsp;{{requestAppMan.substituted.first_name}})
+                                                                                </span>
+                                                                                <span ng-show="requestAppMan.approve_status==angCtrl.appStatusApproved">
+                                                                                    <span> <img src="~/Content/Images/Controll/Grid/Approve.png" style="width:16px;height:16px;margin-bottom:2px;" /></span>
+                                                                                    <span>(@RequestResource.Approved</span>
+                                                                                    <span ng-show="requestAppMan.approve_status==angCtrl.appStatusApproved || requestAppMan.approve_status==angCtrl.appStatusRejected">{{requestAppMan.modif_date_text}})</span>
+                                                                                </span>
+                                                                                <span ng-show="requestAppMan.approve_status==angCtrl.appStatusRejected">
+                                                                                    <span><img src="~/Content/Images/Controll/Grid/Reject.png" style="width:16px;height:16px;margin-bottom:2px;" /></span>
+                                                                                    <span>(@RequestResource.Rejected</span>
+                                                                                    <span ng-show="requestAppMan.approve_status==angCtrl.appStatusApproved || requestAppMan.approve_status==angCtrl.appStatusRejected">{{requestAppMan.modif_date_text}})</span>
+                                                                                </span>
+                                                                            </div>
+
+                                                                            @*<div ng-repeat="pgLimit in angCtrl.pgLimits">{{pgLimit.limit_id}}</div>*@
+                                                                        </div>
+                                                                    </md-input-container>
+
+                                                                    <div id="divErrAppMen" class="md-input-message-animation ng-scope ng-enter ng-enter-active" style="position:relative;color:maroon;display:none;" role="alert">
+                                                                        <div style="line-height:14px;color:rgb(221,24,0);padding-top:5px;font-size:12px;">
+                                                                            <div class="reget-ang-controll-invalid-msg">
+                                                                                @RequestResource.MissingMandatoryValue
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div style="clear:both;"></div>
+
+                            <hr class="reget-hr-request-sep" ng-show="angCtrl.is_order_needed==true" style="border-color: transparent!important;" />
+
+                            @*Orderers*@
+                            <div ng-show="angCtrl.is_order_needed && !angCtrl.is_multi_orderer">
+                                <table>
+                                    <tr>
+                                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;">
+                                            <img src="~/Content/Images/Request/Buyer.png" style="width:35px;" />
+                                        </td>
+                                        <td>
+                                            <div id="wrapOrderer">
+                                                <table style="width: 100%;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="vertical-align: top;padding-right:5px;" class="hidden-xs"><label class="control-label hidden-xs reget-ang-lbl-control-left-150" id="lblOrderer">@RequestResource.Orderers:</label></td>
+                                                            <td style="width: 100%;vertical-align: top;">
+                                                                <div class="reget-ang-div-container-15-readonly">
+                                                                    <md-input-container class="reget-ang-md-input-container  md-input-has-value" id="ctOrderer" style="width: 100%;">
+                                                                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width: 150px;margin-top:15px;">@RequestResource.Orderers</label>
+                                                                        <div class="reget-intput-list">
+                                                                            <div ng-repeat="orderer in angCtrl.orderers">
+                                                                                <span>
+                                                                                    {{orderer.surname}}&nbsp;{{orderer.first_name}}
+                                                                                </span>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </md-input-container>
+                                                                </div>
+
+                                                                <div id="divErrOrderer" class="md-input-message-animation ng-scope ng-enter ng-enter-active" style="position:relative;color:maroon;display:none;" role="alert">
+                                                                    <div style="line-height:14px;color:rgb(221,24,0);padding-top:5px;font-size:12px;">
+                                                                        <div class="reget-ang-controll-invalid-msg">
+                                                                            @RequestResource.MissingMandatoryValue
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+                                            @{
+                                                MdSelect cmbOrderer = new MdSelect();
+                                                cmbOrderer.FormName = "frmRequest";
+                                                cmbOrderer.AgSourceList = "angCtrl.orderers";
+                                                cmbOrderer.AgModel = "angCtrl.selectedOrdererId";
+                                                cmbOrderer.AgIdItem = "id";
+                                                cmbOrderer.AgTextItem = "surname";
+                                                cmbOrderer.AgSelectedText = "angCtrl.selectedOrdererName";
+                                                //cmbOrderer.AgIsMandatory = "angCtrl.isMandatory";
+                                                cmbOrderer.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                                cmbOrderer.LabelLeft = RequestResource.Orderer;
+                                                cmbOrderer.RootTagId = "Orderer";
+                                                cmbOrderer.IsReadOnly = isReadOnly;
+                                                cmbOrderer.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                                cmbOrderer.IsMandatory = true;
+                                                cmbOrderer.OnSelectFunct = "angCtrl.selectOrderer()";
+                                                cmbOrderer.Width = 150;
+
+                                            }
+                                            <div ng-show="angCtrl.is_multi_orderer_cmb_dispalyed">
+                                                @Html.Raw(cmbOrderer.RenderControlHtml())
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                        <td style="vertical-align:top;">
+                            <md-button id="btnAppMatrixInfo"
+                                       class="btn-primary md-fab md-button reget-btn-info-icon"
+                                       style="margin-left:10px;margin-top:2px;"
+                                       ng-show="angCtrl.is_approval_needed && angCtrl.isNewRequestOrDraft"
+                                       ng-click="angCtrl.displayAppMatrix()">
+                                <img id="imgAppMatrix" src="@requestController.GetRootUrl()Content/Images/Controll/Button/info.png" style="width:20px;line-height:0px" />
+                                <md-tooltip>@RequestResource.ApprovalMatrix</md-tooltip>
+                            </md-button>
+
+                            <div id="divAppMatrix" class="div-movable-wrap" style="display:none;">
+                                <div id="divAppMatrixheader" class="div-movable-header">@RequestResource.ApprovalMatrix</div>
+
+                                <div>
+                                    <div ng-class="reget-box-header reget-box-header-level1">
+                                        <div style="margin-left:10px;margin-right:10px;margin-top:4px;vertical-align: middle;font-weight:bold;text-transform: uppercase;">{{angCtrl.selectedPg.group_name}}</div>
+                                    </div>
+                                    <table style="margin:10px;">
+                                        <thead>
+                                            <tr class="reget-tr-underline-header">
+                                                <th class="reget-td-readonly">
+                                                    <span class="hidden-xs">@RequestResource.LowerLimit</span>
+                                                    <span class="hidden-sm hidden-md hidden-lg">@RequestResource.From</span> ({{angCtrl.currencyCode}})
+                                                </th>
+                                                <th class="reget-td-readonly">
+                                                    <span class="hidden-xs">@RequestResource.UpperLimit</span>
+                                                    <span class="hidden-sm hidden-md hidden-lg">@RequestResource.To</span> ({{angCtrl.currencyCode}})
+                                                </th>
+                                                <th class="reget-td-readonly">@RequestResource.ApproveMan</th>
+                                            </tr>
+                                            <tr ng-repeat="limitItem in angCtrl.selectedPg.purchase_group_limit" m.prototype.$digest class="reget-tr-underline">
+                                                <td class="reget-td-readonly" style="text-align:right;">
+                                                    <span ng-hide="limitItem.is_bottom_unlimited || !limitItem.is_limit_bottom_multipl" style="float:right;">*</span>
+                                                    <span style="padding-left:10px;padding-left:10px;float:right;" ng-class="limitItem.is_bottom_unlimited ? 'reget-hidden' : 'reget-display'">{{limitItem.limit_bottom_loc_curr_text_ro}}</span>
+                                                    <span ng-show="limitItem.is_bottom_unlimited">
+                                                        @RequestResource.NoLimit
+                                                    </span>
+                                                </td>
+                                                <td class="reget-td-readonly" style="text-align:right;">
+                                                    <span ng-hide="limitItem.is_top_unlimited || !limitItem.is_limit_top_multipl" style="float:right;">*</span>
+                                                    <span style="padding-left:10px;padding-left:10px;float:right;" ng-class="limitItem.is_top_unlimited ? 'reget-hidden' : 'reget-display'">{{limitItem.limit_top_loc_curr_text_ro}}</span>
+                                                    <span ng-show="limitItem.is_top_unlimited">
+                                                        @RequestResource.NoLimit
+                                                    </span>
+
+                                                </td>
+                                                <td class="reget-td-readonly">
+                                                    <div ng-repeat="appMan in limitItem.manager_role">
+                                                        <div>
+                                                            {{appMan.participant.surname}} {{appMan.participant.first_name}}
+                                                            <span ng-hide="(angCtrl.isStringValueNullOrEmpty(appMan.participant.substituted_by))">&nbsp;(@RequestResource.ManagerSubstitution {{appMan.participant.substituted_by}} @RequestResource.To {{appMan.participant.substituted_until}})</span>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div>
+                                    <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-blue reget-btn-close"
+                                               aria-label="Close"
+                                               style="margin-left:0px;margin-top:0px;"
+                                               ng-click="angCtrl.hideAppMatrix()">
+                                        @RequestResource.Close
+                                    </md-button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <hr class="reget-hr-dark" />
+
+                @*Ship To Address*@
+                <div ng-if="angCtrl.isAddressDisplayed">
+                    <table>
+                        <tr>
+                            <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;vertical-align:middle;">
+                                <img src="~/Content/Images/Request/Address.png" style="width:35px;" />
+                            </td>
+                            <td>
+                                <div id="wrapAddress">
+                                    <table style="width: 100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top;padding-right:5px;" class="hidden-xs"><label class="control-label hidden-xs reget-ang-lbl-control-left-150" id="lblOrderer">@RequestResource.ShipToAddress:</label></td>
+                                                <td style="width: 100%;vertical-align: top;">
+                                                    <div class="reget-ang-div-container-15-readonly">
+                                                        <md-input-container class="reget-ang-md-input-container  md-input-has-value" id="ctAddress" style="width: 100%;">
+                                                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width: 150px;margin-top:15px;">@RequestResource.ShipToAddress</label>
+                                                            @{
+                                                                //if (!isReadOnly) {
+                                                                <div class="reget-intput-list" ng-if="angCtrl.isNewRequestOrDraft">
+                                                                    <shiptoaddress ng-repeat="address in angCtrl.shipToAddress"
+                                                                                   addressitem="address"
+                                                                                   addresscheck="angCtrl.addressCheck(address)"
+                                                                                   isonlyone="{{angCtrl.shipAddressIsOnlyOne}}"
+                                                                                   style="float:left;margin-right:25px;">
+                                                                    </shiptoaddress>
+                                                                </div>
+                                                                //} else {
+                                                                <div class="reget-intput-list" ng-if="!angCtrl.isNewRequestOrDraft">
+                                                                    <div>{{angCtrl.request.ship_to_address_company_name}}</div>
+                                                                    <div>{{angCtrl.request.ship_to_address_street}}</div>
+                                                                    <div>{{angCtrl.request.ship_to_address_city}}</div>
+                                                                    <div>{{angCtrl.request.ship_to_address_zip}}</div>
+                                                                </div>
+                                                                //}
+                                                            }
+                                                        </md-input-container>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div id="divErrMsgAddress" class="md-input-message-animation ng-scope ng-enter ng-enter-active" style="position:relative;color:maroon;display:none;" role="alert">
+                                        <div style="line-height:14px;color:rgb(221,24,0);padding-top:5px;font-size:12px;">
+                                            <div class="reget-ang-controll-invalid-msg">
+                                                @RequestResource.SelectAddress
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <hr class="reget-hr-dark" />
+
+                @*Privacy*@
+                <table>
+                    <tr>
+                        <td class="hidden-sm hidden-md hidden-lg" style="padding-right:15px;">
+                            <img src="~/Content/Images/Request/Privacy.png" style="width:35px;" />
+                        </td>
+                        <td>
+                            @{
+                                MdSelect cmbPrivacy = new MdSelect();
+                                cmbPrivacy.FormName = "frmRequest";
+                                cmbPrivacy.AgSourceList = "angCtrl.privacyList";
+                                cmbPrivacy.AgModel = "angCtrl.privacyId";
+                                cmbPrivacy.AgIdItem = "id";
+                                cmbPrivacy.AgTextItem = "name";
+                                cmbPrivacy.AgSelectedText = "angCtrl.privacyName";
+                                cmbPrivacy.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                                cmbPrivacy.LabelLeft = RequestResource.RequestVisibility;
+
+                                cmbPrivacy.RootTagId = "Privacy";
+                                cmbPrivacy.IsReadOnly = isReadOnly;
+                                cmbPrivacy.AgIsReadOnly = "angCtrl.isPrivacyReadOnly";
+                                cmbPrivacy.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                cmbPrivacy.IsMandatory = true;
+                                cmbPrivacy.OnSelectFunct = "angCtrl.selectPrivacy()";
+                                cmbPrivacy.ContainerClass = "reget-ang-div-container-15";
+                                cmbPrivacy.Width = 150;
+
+                            }
+                            <div style="margin-top:5px;margin-bottom:5px;">
+                                @Html.Raw(cmbPrivacy.RenderControlHtml())
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <hr class="reget-hr-dark" />
+
+                @* Remark *@
+                <div style="margin-top:25px;margin-bottom:15px;" ng-if="!angCtrl.isDiscussionVisible">
+                    @{
+                        MdTextArea mdTextRemark = new MdTextArea();
+                        mdTextRemark.FormName = "frmRequest";
+                        mdTextRemark.NgModel = "angCtrl.requestRemark";
+                        mdTextRemark.LabelLeft = RequestResource.Remarks;
+                        mdTextRemark.RootTagId = "RequestRemark";
+                        mdTextRemark.InputCssClass = "reget-text-area";
+                        mdTextRemark.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        mdTextRemark.Height = 100;
+                    }
+                    @Html.Raw(mdTextRemark.RenderControlHtml())
+                </div>
+
+                <div ng-if="angCtrl.isDiscussionVisible">
+                    <div style="clear:both;"></div>
+
+                    <div style="margin-top:20px;">
+                        <discussion discussionitems="angCtrl.discussion.discussion_items"
+                                    additem="angCtrl.addRemark()"
+                                    newitem="angCtrl.newRemarkItem"
+                                    addtext="@RequestResource.Send"
+                                    commenttext="@RequestResource.Comment">
+                        </discussion>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div ng-style="{'background-color':(angCtrl.isRequestCanceled==true)?'#DDD':'#FFF'}">
+                    <hr class="reget-btn-hr" />
+
+                    <div>
+                        <md-button id="btnBottom"
+                                   class="btn-primary md-fab md-button reget-btn-bottom"
+                                   onclick="goBottom()">
+                            <img src="@requestController.GetRootUrl()Content/Images/Controll/Button/bottom.png" style="width:25px;" />
+                            <md-tooltip>@RequestResource.ScrollBottom</md-tooltip>
+                        </md-button>
+
+                        <md-button id="btnTop"
+                                   class="btn-primary md-fab md-button reget-btn-top"
+                                   style="display:none;"
+                                   onclick="goTop()">
+                            <img src="@requestController.GetRootUrl()Content/Images/Controll/Button/top.png" style="width:25px;" />
+                            <md-tooltip>@RequestResource.ScrollTop</md-tooltip>
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-save-disk-big"
+                                   ng-if="angCtrl.isSendForApprovalVisible"
+                                   aria-label="SaveDraft"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.saveDraft()">
+                            @RequestResource.SaveAsDraft
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-revert-big"
+                                   ng-if="angCtrl.isRevertVisible"
+                                   aria-label="Revert"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.revert()">
+                            @RequestResource.Revert
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-green reget-btn-send-big"
+                                   ng-if="angCtrl.isSendForApprovalVisible"
+                                   aria-label="SendForApproval"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.sendForApproval()">
+                            @RequestResource.SendForApproval
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-blue reget-btn-send-back-big"
+                                   ng-if="angCtrl.isApprovable"
+                                   aria-label="SendForApproval"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.sendForApproval()">
+                            @RequestResource.SendBackToRequestor
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-green reget-btn-approve-big"
+                                   ng-if="angCtrl.isApprovable"
+                                   aria-label="SendBackToRequestor"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.approveRequest()">
+                            @RequestResource.Approve
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-red reget-btn-reject-big"
+                                   ng-if="angCtrl.isApprovable"
+                                   aria-label="SendForApproval"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.rejectRequest()">
+                            @RequestResource.Reject
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-blue reget-btn-generate-order-big"
+                                   ng-if="angCtrl.isGenerateOrderAvailable"
+                                   aria-label="GenerateOrder"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.openOrder()">
+                            @RequestResource.GenerateOrder
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-green reget-btn-send-big"
+                                   ng-if="angCtrl.isGenerateOrderAvailable"
+                                   aria-label="GenerateOrder"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.generateOrder()">
+                            @RequestResource.SendOrder
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-red reget-btn-delete-big"
+                                   ng-if="angCtrl.isDeleteVisible"
+                                   aria-label="Cancel"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.cancelRequest()">
+                            @RequestResource.Cancel
+                        </md-button>
+
+                        <md-button ng-show="angCtrl.isActivatedDisplayed==true" class="btn btn-primary reget-btn-mp-width100 reget-btn-green reget-btn-activate-big"
+                                   aria-label="Activate"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.activate()">
+                            @RequestResource.Activate
+                        </md-button>
+
+                        <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-blue reget-btn-close-big"
+                                   aria-label="Close"
+                                   style="margin-left:0px;margin-top:0px;"
+                                   ng-click="angCtrl.close()">
+                            @RequestResource.Close
+                        </md-button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="divNotAuthorizedPlaceholder" class="reget-panel-box-pad" style="display:none;">
+            <table>
+                <tr>
+                    <td style="vertical-align:top;padding-right:20px;">
+                        <img src="~/Content/Images/Controll/AccessDenied.png" style="width:35px;" />
+                    </td>
+                    <td style="vertical-align:middle;font-size:16px;">
+                        <div><span>@RequestResource.YouAreNotAuthorizedToDisplayRequest</span>
+                             <span ng-show="angCtrl.isAccessRequestSent==true"> @RequestResource.AccessRequestWasSent {{angCtrl.strAccessRequestDate}}</span>
+                        <span ng-show="angCtrl.isAccessRequestSentWaitForApproval==true"> (@RequestResource.WaitForApproval)</span>
+                        <span ng-show="angCtrl.isAccessRequestSentRejected==true"> (@RequestResource.Rejected)</span></div>
+                        <div style="margin-bottom:15px;"><span>@RequestResource.RequestOwner:</span><span>@requestorName</span></div>
+                        <div>
+                            <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-blue reget-btn-send-blue"
+                                       aria-label="Close"
+                                       style="margin-left:0px;margin-top:0px;"
+                                       ng-click="angCtrl.sendRequestForAccess()">
+                                @RequestResource.AskForRequestAccess
+                            </md-button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div style="clear:both;"></div>
+
+        @Html.Partial("_LocalizationTextBasic")
+
+        <div style="display:none;">
+            @*<input id="WarningText" value="@RequestResource.Warning" />
+        <input id="ErrMsgText" value="@RequestResource.Error" />
+        <input id="CloseText" value="@RequestResource.Close" />*@
+            <input id="MissingRequestItemNameText" value="@RequestResource.Missing @RequestResource.ItemName" />
+            <input id="MissingRequestAmountText" value="@RequestResource.Missing @RequestResource.Amount" />
+            <input id="MissingRequestUnitText" value="@RequestResource.Missing @RequestResource.UnitOfMeasurement" />
+            <input id="MissingRequestPriceText" value="@RequestResource.Missing @RequestResource.UnitPrice" />
+            <input id="MissingRequestCurrencyText" value="@RequestResource.Missing @RequestResource.Currency" />
+            <input id="MissingRequestText" value="@RequestResource.Missing @RequestResource.RequestText" />
+            <input id="ItemNameText" value="@RequestResource.ItemName" />
+            <input id="AmountText" value="@RequestResource.Amount" />
+            <input id="UnitText" value="@RequestResource.UnitOfMeasurement" />
+            <input id="UnitPriceText" value="@RequestResource.UnitPrice" />
+            <input id="CurrencyText" value="@RequestResource.Currency" />
+            <input id="NotAuthorizedPerformActionText" value="@RequestResource.NotAuthorizedPerformAction" />
+            <input id="ExchangeRateMissingText" value="@RequestResource.ExchangeRateMissing" />
+            <input id="SelectCentreText" value="@RequestResource.SelectCentre" />
+            @*<input id="FileSizeOverLimitText" value="@RequestResource.FileSizeOverLimit" />*@
+            <input id="EnterMandatoryValuesText" value="@RequestResource.EnterMandatoryValues" />
+            <input id="RevertText" value="@RequestResource.Revert" />
+            <input id="RevertRequestConfirmText" value="@RequestResource.RevertRequestConfirm" />
+            <input id="RequestWasRevertedText" value="@RequestResource.RequestWasReverted" />
+            <input id="RemindAppManText" value="@RequestResource.RemindAppMan" />
+            <input id="RemindOrdererText" value="@RequestResource.RemindOrderer" />
+            <input id="ResendApprovalRequestConfirmText" value="@RequestResource.ResendApprovalRequestConfirm" />
+            <input id="ResendOrderRequestConfirmText" value="@RequestResource.ResendOrderRequestConfirm" />
+            <input id="SendText" value="@RequestResource.Send" />
+            <input id="SentText" value="@RequestResource.Sent" />
+            <input id="CanceledConfirmText" value="@RequestResource.CanceledConfirm" />
+            <input id="CanceledByRequestorText" value="@RequestResource.CanceledByRequestor" />
+            <input id="ActivateConfirmText" value="@RequestResource.ActivateConfirm" />
+            <input id="FreeSupplierText" value="@RequestResource.FreeSupplier" />
+            <input id="AskAcessRequestConfirmText" value="@RequestResource.AskAcessRequestConfirm" />
+            <input id="AccessRequestWasSentText" value="@RequestResource.AccessRequestWasSent" />
+            <input id="ApproveConfirmText" value="@RequestResource.ApproveConfirm" />
+            <input id="RejectConfirmText" value="@RequestResource.RejectConfirm" />
+            <input id="ApprovedText" value="@RequestResource.Approved" />
+            <input id="RejectedText" value="@RequestResource.Rejected" />
+        </div>
+    </div>
+
+    <div style="display:none">
+        @*<input id="RequestId" value="@requestId" readonly />*@
+
+    </div>
+
+    
+</form>

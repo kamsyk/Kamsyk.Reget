@@ -1,0 +1,309 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var participantController = ViewContext.Controller as ParticipantController;
+
+    
+}
+
+<form name="frmUserSubstitutionDetail" id="frmUserSubstitutionDetail" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="UserSubstitutionDetailController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div class="reget-panel-box no-print" style="padding-right:25px;padding-left:25px;margin-bottom:25px;">
+            <div style="margin-left:10px;">
+                <div>
+                    @{
+                        MdLabel mdLblSubstituted = new MdLabel();
+                        mdLblSubstituted.FormName = "frmUserSubstitutionDetail";
+                        mdLblSubstituted.NgModel = "angCtrl.substitution.substituted_name_surname_first";
+                        mdLblSubstituted.LabelLeft = RequestResource.Substituted;
+                        mdLblSubstituted.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblSubstituted.RenderControlHtml())
+                    }
+                </div>
+
+                <div>
+                    @{
+                        MdLabel mdLblSubstitutee = new MdLabel();
+                        mdLblSubstitutee.FormName = "frmUserSubstitutionDetail";
+                        mdLblSubstitutee.NgModel = "angCtrl.substitution.substitutee_name_surname_first";
+                        mdLblSubstitutee.LabelLeft = RequestResource.Substitutee;
+                        mdLblSubstitutee.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblSubstitutee.RenderControlHtml())
+                    }
+                </div>
+
+                <div ng-hide="angCtrl.isFromDateEdit==true">
+                    @{
+                        MdLabel mdLblFrom = new MdLabel();
+                        mdLblFrom.FormName = "frmUserSubstitutionDetail";
+                        mdLblFrom.NgModel = "angCtrl.substitution.substitute_start_date_text";
+                        mdLblFrom.LabelLeft = RequestResource.FromTo_From;
+                        mdLblFrom.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblFrom.RenderControlHtml())
+                    }
+                </div>
+
+                <div ng-show="angCtrl.isFromDateEdit==true">
+                    <datetimedirective id="dtFrom"
+                                       ismandatory="true"
+                                       ng-model="angCtrl.substitution.substitute_start_date"
+                                       datetimeerrmsg="angCtrl.fromDateErrMsg"
+                                       label="@RequestResource.FromTo_From"
+                                       leftlabelcss="reget-ang-lbl-control-left-150"
+                                       placeholder="@RequestResource.EnterDate"
+                                       dateerrmsgtext="@participantController.GetDateErrorMsg()"
+                                       datetimerangeerrmsgtext="angCtrl.minValueErrMsg"
+                                       isreadonly="angCtrl.isReadOnly"
+                                       datetimeformat="@participantController.DateTimePickerFormatMoment"
+                                       ngcontroller="angCtrl"
+                                       controlindex="0"
+                                       mindate="angCtrl.dateFromMin"
+                                       isvalid="angCtrl.isDateFromValid"
+                                       options="angCtrl.dirToOptions"
+                                       style="float:left;">
+                    </datetimedirective>
+
+                </div>
+
+                <div style="clear:both;"></div>
+
+                <div ng-show="angCtrl.isReadOnly==true">
+                    @{
+                        MdLabel mdLblTo = new MdLabel();
+                        mdLblTo.FormName = "frmUserSubstitutionDetail";
+                        mdLblTo.NgModel = "angCtrl.substitution.substitute_end_date_text";
+                        mdLblTo.LabelLeft = RequestResource.FromTo_To;
+                        mdLblTo.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblTo.RenderControlHtml())
+                    }
+                </div>
+
+                <div ng-hide="angCtrl.isReadOnly==true">
+                    <datetimedirective id="dtTo"
+                                       ismandatory="true"
+                                       ng-model="angCtrl.substitution.substitute_end_date"
+                                       datetimeerrmsg="angCtrl.fromDateErrMsg"
+                                       label="@RequestResource.FromTo_To"
+                                       leftlabelcss="reget-ang-lbl-control-left-150"
+                                       placeholder="@RequestResource.EnterDate"
+                                       dateerrmsgtext="@participantController.GetDateErrorMsg()"
+                                       datetimerangeerrmsgtext="angCtrl.minValueErrMsg"
+                                       isreadonly="angCtrl.isReadOnly"
+                                       datetimeformat="@participantController.DateTimePickerFormatMoment"
+                                       ngcontroller="angCtrl"
+                                       controlindex="1"
+                                       mindate="angCtrl.dateToMin"
+                                       isvalid="angCtrl.isDateToValid"
+                                       options="angCtrl.dirToOptions"
+                                       style="float:left;">
+                    </datetimedirective>
+
+                </div>
+
+                <div style="clear:both;"></div>
+
+                <div>
+                    <div class="control-label hidden-xs reget-ang-lbl-control-left-150" style="float:left;margin-left:0px;margin-top:5px;">&nbsp;</div>
+                    <div style="float:left;margin-top:15px;margin-left:2px;">
+                        @{
+                            MdCheckBox mdCkbHandOver = new MdCheckBox(participantController.GetRootUrl());
+                            mdCkbHandOver.RootTagId = "ckbHandOver";
+                            mdCkbHandOver.CkbText = RequestResource.AllowSubsToTakeOver;
+                            mdCkbHandOver.AgIsChecked = "angCtrl.substitution.is_allow_take_over";
+                            mdCkbHandOver.AgIsReadOnly = "!angCtrl.isEditableAuthor";
+                            mdCkbHandOver.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                            mdCkbHandOver.YesText = RequestResource.Yes;
+                            mdCkbHandOver.NoText = RequestResource.No;
+                            mdCkbHandOver.OnClick = "angCtrl.handOverCheck()";
+                        }
+                        @Html.Raw(mdCkbHandOver.RenderControlHtml())
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+
+                <hr />
+
+                <div>
+                    @{
+                        MdLabel mdLblAppStatus = new MdLabel();
+                        mdLblAppStatus.FormName = "frmUserSubstitutionDetail";
+                        mdLblAppStatus.NgModel = "angCtrl.substitution.approval_status_text";
+                        mdLblAppStatus.LabelLeft = RequestResource.ApprovalStatus;
+                        mdLblAppStatus.IsMandatory = true;
+                        mdLblAppStatus.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblAppStatus.RenderControlHtml())
+                    }
+                </div>
+
+                <div ng-if="angCtrl.substitution.approval_men!=null">
+                    @{
+                        MdLabel mdLblAppMen = new MdLabel();
+                        mdLblAppMen.FormName = "frmUserSubstitutionDetail";
+                        mdLblAppMen.NgModel = "angCtrl.substitution.approval_men";
+                        mdLblAppMen.LabelLeft = RequestResource.ApproveMan;
+                        mdLblAppMen.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblAppMen.RenderControlHtml())
+                    }
+                </div>
+
+
+
+                <div style="float:left;margin-right:5px;">
+                    @{
+                        MdLabel mdLblStatus = new MdLabel();
+                        mdLblStatus.FormName = "frmUserSubstitutionDetail";
+                        mdLblStatus.NgModel = "angCtrl.substitution.active_status_text";
+                        mdLblStatus.LabelLeft = RequestResource.Status;
+                        mdLblStatus.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblStatus.RenderControlHtml())
+                    }
+
+                </div>
+                <div class="reget-status-green hidden-xs" ng-if="angCtrl.isActive==true" style="float:left;margin-top:14px;">&nbsp;</div>
+                <div class="reget-status-green hidden-lg hidden-md hidden-sm" ng-if="angCtrl.isActive==true" style="float:left;margin-top:34px;">&nbsp;</div>
+
+                <img src="~/Content/Images/Controll/disablecircle16.png" ng-if="angCtrl.isActive!=true && angCtrl.isWaitForApproval==false" class="hidden-xs" style="float:left;margin-top:14px;" />
+                <img src="~/Content/Images/Controll/disablecircle16.png" ng-if="angCtrl.isActive!=true && angCtrl.isWaitForApproval==false" class="hidden-lg hidden-md hidden-sm" style="float:left;margin-top:34px;" />
+
+
+                <div style="clear:both;"></div>
+
+                <hr />
+
+                <div style="clear:both;">
+                    @{
+                        MdLabel mdLblLastChange = new MdLabel();
+                        mdLblLastChange.FormName = "frmUserSubstitutionDetail";
+                        mdLblLastChange.NgModel = "angCtrl.substitution.modified_date_text";
+                        mdLblLastChange.LabelLeft = RequestResource.ModifyDate;
+                        mdLblLastChange.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblLastChange.RenderControlHtml())
+                    }
+                </div>
+
+                <div style="clear:both;">
+                    @{
+                        MdLabel mdLblModifUser = new MdLabel();
+                        mdLblModifUser.FormName = "frmUserSubstitutionDetail";
+                        mdLblModifUser.NgModel = "angCtrl.substitution.modified_user_name";
+                        mdLblModifUser.LabelLeft = RequestResource.ModifyUser;
+                        mdLblModifUser.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                        @Html.Raw(mdLblModifUser.RenderControlHtml())
+                    }
+                </div>
+
+            </div>
+
+            <div style="clear:both;"></div>
+
+            <hr />
+
+            <div style="margin-left:10px;margin-top:20px;">
+                <discussion
+                            discussionitems="angCtrl.discussion.discussion_items"
+                            additem="angCtrl.addRemark()"
+                            newitem="angCtrl.newRemarkItem"
+                            addtext="@RequestResource.Send"
+                            commenttext="@RequestResource.Comment">
+                </discussion>
+                @*<div>
+                    @{
+                        MdTextArea mdTextRemark = new MdTextArea();
+                        mdTextRemark.FormName = "frmUserSubstitutionDetail";
+                        mdTextRemark.NgModel = "angCtrl.remark";
+                        mdTextRemark.LabelLeft = RequestResource.Comment;
+                        mdTextRemark.RootTagId = "SubstRemark";
+                        mdTextRemark.InputCssClass = "reget-text-area";
+                        mdTextRemark.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                    }
+                    @Html.Raw(mdTextRemark.RenderControlHtml())
+                </div>
+
+                <div>
+                    <div class="control-label hidden-xs reget-ang-lbl-control-left-150" style="float:left;margin-left:0px;margin-top:5px;">&nbsp;</div>
+                    <md-button id="btnAddRemark"
+                               class="reget-btn-h30 reget-btn-img reget-btn-blue reget-btn-add-remark"
+                               style="margin-left:2px;"
+                               ng-click="">
+                        @RequestResource.Approve
+                    </md-button>
+                </div>*@
+            </div>
+
+            <hr class="reget-btn-hr" />
+
+            <div style="margin-bottom:20px;">
+                <md-button id="btnApprove"
+                           class="reget-btn-img reget-btn-green reget-btn-approve"
+                           ng-if="angCtrl.isApproveButonVisible"
+                           ng-click="angCtrl.approveDialog()">
+                    @RequestResource.Approve
+                </md-button>
+
+                <md-button id="btnReject"
+                           class="reget-btn-img reget-btn-red reget-btn-reject"
+                           ng-if="angCtrl.isApproveButonVisible"
+                           ng-click="angCtrl.rejectDialog()">
+                    @RequestResource.Reject
+                </md-button>
+
+                <md-button id="btnSave"
+                           class="reget-btn-img reget-btn-green reget-btn-save-big"
+                           ng-if="angCtrl.isEditableAuthor"
+                           ng-click="angCtrl.saveSubstitution()">
+                    @RequestResource.Save
+                </md-button>
+
+                <md-button id="btnDeactivate"
+                           class="reget-btn-img reget-btn-red reget-btn-delete-big"
+                           ng-if="angCtrl.isDeactivateButonVisible"
+                           ng-click="angCtrl.deactivateDialog()">
+                    @RequestResource.Deactivate
+                </md-button>
+
+                <md-button id="btnBack"
+                           class="reget-btn-img reget-btn-blue reget-btn-back-big"
+                           ng-click="angCtrl.goBack()">
+                    @RequestResource.Back
+                </md-button>
+
+                <div id="divErrMsg" class="ng-binding reget-ang-controll-invalid-msg-no-ag" style="margin-left:8px;">
+                    {{angCtrl.substErrMsg}}
+                </div>
+            </div>
+
+        </div>
+
+        @Html.Partial("_LocalizationTextBasic")
+
+        <div style="display:none;">
+            <input id="MinDateText" value="@RequestResource.MinDate" />
+            <input id="ConfirmationText" value="@RequestResource.Confirmation" />
+            <input id="SubstDeactivateConfirmText" value="@RequestResource.SubstDeactivateConfirm" />
+            <input id="DeactivateText" value="@RequestResource.Deactivate" />
+            <input id="ActiveText" value="@RequestResource.Active" />
+            <input id="NonActiveText" value="@RequestResource.NonActive" />
+            <input id="NotAuthorizedPerformActionText" value="@RequestResource.NotAuthorizedPerformAction" />
+            <input id="FromText" value="@RequestResource.From" />
+            <input id="ToText" value="@RequestResource.To" />
+            <input id="MissingDateFromText" value="@RequestResource.EnterDate @RequestResource.From" />
+            <input id="MissingDateToText" value="@RequestResource.EnterDate @RequestResource.To" />
+            <input id="SubstitutionPastText" value="@RequestResource.EnterDate @RequestResource.SubstitutionPast" />
+            <input id="ApproveConfirmText" value="@RequestResource.SubstApprovalConfirmation" />
+            <input id="RejectConfirmText" value="@RequestResource.SubstRejectConfirmation" />
+            <input id="ApprovedText" value="@RequestResource.Approved" />
+            <input id="RejectedText" value="@RequestResource.Rejected" />
+           
+            @*<input id="CurrentUserName" value="@participantController.CurrentUser.ParticipantNameSurnameFirst" />
+            <input id="DateTimeMomentFormatText" value="@participantController.DateTimePickerFormatMoment" />*@
+
+        </div>
+    </div>
+</form>
+

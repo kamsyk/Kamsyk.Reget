@@ -1,0 +1,6 @@
+https://owa.utc.com/Download.aspx?Identity=Kamil.Sykora@otis.com&handlerClass=UserPhotoDownloadHandler&preview=false
+
+
+https://owa.utc.com/ecp/ecp/PersonalSettings/~/Download.aspx?Identity=Kamil.Sykora@otis.com&handlerClass=UserPhotoDownloadHandler&preview=false 
+
+https://owa.utc.com//owa/service.svc/s/GetPersonaPhoto?email=lucie.dufkova%40otis.com&UA=0&size=HR240x240

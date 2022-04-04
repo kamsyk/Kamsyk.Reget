@@ -1,0 +1,93 @@
+﻿
+<div class="reget-ang-div-container" ng-hide="isreadonly" style="margin-bottom:5px;">
+    
+        <label id="lblL{{id}}" class="control-label hidden-xs {{leftlabelcss}}">{{labelMan}} :</label>
+        <md-input-container id="ct{{id}}" class="reget-ang-md-input-container" style="min-width:125px;" ng-show="ismandatory">
+            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width:50px;margin-right:0px;">{{label}}</label>
+            <md-datepicker id="dtp{{id}}"
+                           name="dtp{{id}}"
+                           ng-model="ngModel"
+                           ng-blur="dateTimeBlur()"
+                           ng-class="ismandatory?'reget-ang-mandatory-datepicker-field md-input-has-value':'reget-ang-md-input-container md-input-has-value'"
+                           ng-change="dateChanged()"
+                           md-hide-icons="calendar"
+                           md-placeholder="{{placeholder}}"
+                           style="float:left;"
+                           required="true">
+            </md-datepicker>
+
+            <div style="clear:both;"></div>
+
+            <div id="msgDate{{id}}" class="md-input-messages-animation" style="color:maroon;max-width:125px;"
+                 ng-hide="isDateValid()" role="alert">
+                <div class="md-input-message-animation ng-scope" style="margin-top: 0px; opacity: 1;"><div class="reget-ang-controll-invalid-msg">{{dateerrmsgtext}}</div></div>
+            </div>
+
+        </md-input-container>
+
+
+        <md-input-container id="cth{{id}}" class="reget-ang-md-input-container" style="max-width:40px;min-width:40px;vertical-align:top;" ng-show="ismandatory">
+            <input id="txtHour{{id}}" ng-model="strHour" required
+                   ng-change="hourChanged()"
+                   class="reget-ang-mandatory-field"
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+            <div class="reget-numeric-arrows">
+                <span class="reget-numeric-arrow" ng-click="hourUp()"> ▲ </span><span class="reget-numeric-arrow" ng-click="hourDown()"> ▼ </span>
+            </div>
+
+            <div style="clear:both;"></div>
+
+            <div id="msgDate{{id}}" class="md-input-messages-animation" style="color:maroon;max-width:125px;"
+                 ng-hide="isHourValid()" role="alert">
+                <div class="reget-ang-controll-invalid-msg md-input-message-animation ng-scope" style="margin-top: 0px; opacity: 1;">HH</div>
+            </div>
+        </md-input-container>
+
+        <span class="reget-datetime-element">:</span>
+
+        <md-input-container id="ctm{{id}}" class="reget-ang-md-input-container" style="max-width:40px;min-width:40px;vertical-align:top;" ng-show="ismandatory">
+            <input id="txtMinute{{id}}" ng-model="strMinute" required
+                   ng-change="minuteChanged()"
+                   class="reget-ang-mandatory-field"
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+            <div class="reget-numeric-arrows">
+                <span class="reget-numeric-arrow" ng-click="minuteUp()"> ▲ </span><span class="reget-numeric-arrow" ng-click="minuteDown()"> ▼ </span>
+            </div>
+
+            <div style="clear:both;"></div>
+
+            <div id="msgDate{{id}}" class="md-input-messages-animation" style="color:maroon;max-width:125px;"
+                 ng-hide="isMinuteValid()" role="alert">
+                <div class="reget-ang-controll-invalid-msg md-input-message-animation ng-scope" style="margin-top: 0px; opacity: 1;">mm</div>
+            </div>
+        </md-input-container>
+
+        <!--<img src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/DateTimePickerCalendar.png" class="reget-datetime-element" />-->
+        <div class="hidden-xs reget-datetime-element-clock" style="display:inline-block;vertical-align:top;margin-top:3px;">&nbsp;</div>
+        <div class="hidden-sm hidden-md hidden-lg reget-datetime-element-clock" style="display:inline-block;vertical-align:top;margin-top:8px;">&nbsp;</div>
+
+
+        <div style="clear:both"></div>
+        <!--<label id="lblLRangeErrMsg{{id}}" class="control-label hidden-xs {{leftlabelcss}}" style="float:left;margin-right:10px;">&nbsp;</label>-->
+        <!--<md-input-container style="margin:0px;">
+            <div id="msgDateRange{{id}}" class="md-input-messages-animation" style="color:maroon;float:left;"
+                 ng-hide="isDateRangeValid()" role="alert">
+                <div class="md-input-message-animation ng-scope" style="margin-top: 0px; opacity: 1;"><div class="reget-ang-controll-invalid-msg">{{rangeErrMsg}}</div></div>
+            </div>
+        </md-input-container>-->
+    
+        <!--<div ng-hide="isDateRangeValid()" style="min-height:25px;">
+            &nbsp;
+        </div>-->
+</div>
+
+
+<div class="reget-ang-div-container" ng-show="isreadonly">
+    <label id="lblLRO{{id}}" class="control-label hidden-xs {{leftlabelcss}}">{{labelMan}} :</label>
+    <md-input-container id="ctRO{{id}}" class="reget-ang-md-input-container-label  md-input-has-value" style="min-width:125px;" ng-show="ismandatory">
+        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width:50px;margin-right:0px;">{{label}}</label>
+        <div class="ng-binding">{{getDateTimeText()}}</div>
+    </md-input-container>
+</div>
+
+

@@ -1,0 +1,309 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var participantController = ViewContext.Controller as ParticipantController;
+
+    var strAutoUserItem = "<div>" +
+                "<img src=\"{{item.country_flag}}\" style=\"width:24px;height:16px;vertical-align: middle;\" />" +
+                "<span md-highlight-text=\"angCtrl.searchstringusertobereplaced\" md-highlight-flags=\"i\" style=\"vertical-align: middle; margin-left:5px;\">{{item.surname}} {{item.first_name}}</span>" +
+             "</div>";
+
+    //var strDateErrMsg = String.Format(RequestResource.EnterDateInFormat, participantController.DatePickerFormat, DateTime.Now.ToString(participantController.DatePickerFormat));
+
+    bool isEditEnabled = (participantController.CurrentUser.IsParticipantAppAdmin
+        || participantController.CurrentUser.IsParticipantCompanyAdmin
+        || participantController.CurrentUser.IsParticipantSubstituteManager
+        || participantController.CurrentUser.IsParticipantAppMan
+        || participantController.CurrentUser.IsParticipantOrderer);
+
+    bool isSubsManager = (participantController.CurrentUser.IsParticipantAppAdmin
+        || participantController.CurrentUser.IsParticipantCompanyAdmin
+        || participantController.CurrentUser.IsParticipantSubstituteManager);
+}
+
+
+<form name="frmUserSubstitution" id="frmUserSubstitution" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="UserSubstitutionController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        @if (isEditEnabled) {
+            <div id="divNewSubsPanel" class="reget-panel-box no-print" style="overflow:auto">
+                <div id="divNewSubstHeader" class="reget-box-header reget-bold" ng-click="angCtrl.boxHeaderClick('divAddSubstContent', 'imgSubstExpand')">
+                    <img id="imgSubstExpand" src="~/Content/Images/Panel/Collapse.png" data-toggle="collapse tooltip" title="@RequestResource.Hide" class="reget-appmatrix-expcolimg" style="vertical-align: middle;" />
+                    <span style="margin-left:10px;vertical-align: middle;">@RequestResource.NewSubstitution</span>
+                </div>
+                <div id="divAddSubstContent" class="collapse in" style="margin-bottom:25px;margin-left:25px;margin-right:25px;margin-top:5px;">
+                    <div style="margin-bottom:25px;">
+                        <div style="margin-right:20px;margin-top:25px;margin-bottom:10px;">
+                            @if (isSubsManager) {
+
+                                MdAutocomplete mdAutoSubstitutedUser = new MdAutocomplete();
+                                mdAutoSubstitutedUser.RootTagId = "agSubstitutedUser";
+                                mdAutoSubstitutedUser.IsMandatory = true;
+                                mdAutoSubstitutedUser.LabelLeft = RequestResource.Substituted;
+                                mdAutoSubstitutedUser.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                mdAutoSubstitutedUser.MdSelectItem = "angCtrl.strSelectedsubstitutedUser";
+                                mdAutoSubstitutedUser.MdSearchText = "angCtrl.searchstringusersubtituted";
+                                mdAutoSubstitutedUser.OnSelectedItemChange = "angCtrl.substitutedItemChange(item, 'agSubstitutedUser" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                                mdAutoSubstitutedUser.MdItems = "item in angCtrl.substitutedQuerySearch(angCtrl.searchstringusersubtituted)";
+                                mdAutoSubstitutedUser.MdItemText = "item.name_surname_first";
+                                mdAutoSubstitutedUser.Placeholder = RequestResource.WhoWillBeSubstituted;
+                                mdAutoSubstitutedUser.MdInputId = "txtUserSubstituted";
+                                mdAutoSubstitutedUser.MdItemTemplate = strAutoUserItem;
+                                mdAutoSubstitutedUser.OnBlur = "angCtrl.substitutedUserOnBlur('agSubstitutedUser" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                                mdAutoSubstitutedUser.CssClass = "reget-user-auto";
+                                mdAutoSubstitutedUser.MinLength = 0;
+                                @Html.Raw(mdAutoSubstitutedUser.RenderControlHtml())
+
+
+                            } else {
+                                MdLabel mdLblSubstituted = new MdLabel();
+                                mdLblSubstituted.FormName = "frmUserSubstitution";
+                                mdLblSubstituted.NgModel = "angCtrl.currentUserName";
+                                mdLblSubstituted.LabelLeft = RequestResource.Substituted;
+                                mdLblSubstituted.RootTagId = "Substituted";
+                                mdLblSubstituted.IsMandatory = true;
+                                mdLblSubstituted.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                @Html.Raw(mdLblSubstituted.RenderControlHtml())
+
+
+
+                            }
+                        </div>
+
+                        <div style="margin-top:25px;margin-bottom:10px;">
+                            @{
+                                MdAutocomplete mdAutoSubstituteeUser = new MdAutocomplete();
+                                mdAutoSubstituteeUser.RootTagId = "agSubstituteeUser";
+                                mdAutoSubstituteeUser.IsMandatory = true;
+                                mdAutoSubstituteeUser.LabelLeft = RequestResource.Substitutee;
+                                mdAutoSubstituteeUser.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                                mdAutoSubstituteeUser.MdSelectItem = "angCtrl.strSelectedsubstituteeUser";
+                                mdAutoSubstituteeUser.MdSearchText = "angCtrl.searchstringusersubtitutee";
+                                mdAutoSubstituteeUser.OnSelectedItemChange = "angCtrl.substituteeItemChange(item, 'agSubstituteeUser" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                                mdAutoSubstituteeUser.MdItems = "item in angCtrl.searchParticipant(angCtrl.searchstringusersubtitutee)";
+                                mdAutoSubstituteeUser.MdItemText = "item.name_surname_first";
+                                mdAutoSubstituteeUser.Placeholder = RequestResource.WhoWillBeSubstitutee;
+                                mdAutoSubstituteeUser.MdInputId = "txtUserSubstitutee";
+                                mdAutoSubstituteeUser.MdItemTemplate = strAutoUserItem;
+                                mdAutoSubstituteeUser.OnBlur = "angCtrl.substituteeUserOnBlur('agSubstituteeUser" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                                mdAutoSubstituteeUser.CssClass = "reget-user-auto";
+                                mdAutoSubstituteeUser.MinLength = 0;
+                            }
+                            @Html.Raw(mdAutoSubstituteeUser.RenderControlHtml())
+
+
+                        </div>
+
+
+                        <div style="clear:both;"></div>
+
+                        <div style="margin-top:10px;">
+                            <datetimedirective id="dtFrom"
+                                               ismandatory="true"
+                                               ng-model="angCtrl.fromDate"
+                                               datetimeerrmsg="angCtrl.fromDateErrMsg"
+                                               label="@RequestResource.FromTo_From"
+                                               leftlabelcss="reget-ang-lbl-control-left-150"
+                                               placeholder="@RequestResource.EnterDate"
+                                               dateerrmsgtext="@participantController.GetDateErrorMsg()"
+                                               datetimerangeerrmsgtext="angCtrl.minFromValueErrMsg"
+                                               mindate="angCtrl.dateFromMin"
+                                               ngcontroller="angCtrl"
+                                               controlindex="0"
+                                               datetimeformat="@participantController.DateTimePickerFormatMoment"
+                                               isvalid="angCtrl.isDateFromValid"
+                                               options="angCtrl.dirFromOptions"
+                                               style="margin-right:30px;margin-top:20px;margin-bottom:-25px;">
+                            </datetimedirective>
+                        </div>
+
+                        <div style="clear:both;"></div>
+
+                        <div>
+                            <datetimedirective id="dtTo"
+                                               ismandatory="true"
+                                               ng-model="angCtrl.toDate"
+                                               label="@RequestResource.FromTo_To"
+                                               leftlabelcss="reget-ang-lbl-control-left-150"
+                                               placeholder="@RequestResource.EnterDate"
+                                               dateerrmsgtext="@participantController.GetDateErrorMsg()"
+                                               datetimerangeerrmsgtext="angCtrl.minToValueErrMsg"
+                                               mindate="angCtrl.dateToMin"
+                                               inputid="txtDtToDate"
+                                               ngcontroller="angCtrl"
+                                               controlindex="1"
+                                               isvalid="angCtrl.isDateToValid"
+                                               datetimeformat="@participantController.DateTimePickerFormatMoment"
+                                               options="angCtrl.dirToOptions"
+                                               style="margin-right:30px;margin-top:20px;margin-bottom:-25px;">
+                            </datetimedirective>
+                        </div>
+
+                        <div style="clear:both;"></div>
+
+                        <div class="control-label hidden-xs reget-ang-lbl-control-left-150" style="float:left;margin-left:0px;margin-top:5px;">&nbsp;</div>
+                        <div style="float:left;margin-top:0px;margin-left:2px;">
+                            @{
+                                MdCheckBox mdCkbHandOver = new MdCheckBox(participantController.GetRootUrl());
+                                mdCkbHandOver.RootTagId = "ckbHandOver";
+                                mdCkbHandOver.CkbText = RequestResource.AllowSubsToTakeOver;
+                                mdCkbHandOver.AgIsChecked = "angCtrl.isTakeOver";
+                                mdCkbHandOver.AgIsReadOnly = "angCtrl.isReadOnly";
+                                mdCkbHandOver.OnClick = "angCtrl.toggleTakeOver();";
+                            }
+                            @Html.Raw(mdCkbHandOver.RenderControlHtml())
+
+                        </div>
+
+
+                        <div style="clear:both;"></div>
+
+                        <div style="margin-top:35px;">
+                            @{
+                                MdTextArea mdTextRemark = new MdTextArea();
+                                mdTextRemark.FormName = "frmUserSubstitution";
+                                mdTextRemark.NgModel = "angCtrl.remark";
+                                mdTextRemark.LabelLeft = RequestResource.Comment;
+                                mdTextRemark.RootTagId = "SubstRemark";
+                                mdTextRemark.InputCssClass = "reget-text-area";
+                                mdTextRemark.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                            }
+                            @Html.Raw(mdTextRemark.RenderControlHtml())
+
+                        </div>
+
+                        <div style="margin-top:25px;" ng-hide="angCtrl.isValueNullOrUndefined(angCtrl.selectedsubstitutedUser)">
+                            @{
+                                MdLabel mdLblAppMen = new MdLabel();
+                                mdLblAppMen.FormName = "frmUserSubstitution";
+                                mdLblAppMen.NgModel = "angCtrl.approversText";
+                                mdLblAppMen.LabelLeft = RequestResource.Approval;
+                                mdLblAppMen.RootTagId = "AppMan";
+                                mdLblAppMen.IsMandatory = false;
+                                mdLblAppMen.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                            }
+                            @Html.Raw(mdLblAppMen.RenderControlHtml())
+
+                        </div>
+
+                    </div>
+                                       
+                    <hr />
+
+                    <div style="margin-bottom:25px;">
+                        <md-button id="btnAddSubst"
+                                   class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save"
+                                   style="margin-right:15px;"
+                                   ng-click="angCtrl.addSubstitution()">
+                            @RequestResource.Save
+                        </md-button>
+
+                        <div id="divErrMsg" class="ng-binding reget-ang-controll-invalid-msg-no-ag">
+                            {{angCtrl.substErrMsg}}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        <div style="margin-bottom:75px;padding:5px;">
+            @{
+                UiGrid uiGrid = new UiGrid(participantController.GetRootUrl());
+                uiGrid.RootTagId = "grdUserSubstitution";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.ManagerSubstitution;
+                uiGrid.AddNewText = null;
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+
+            @*@Html.Raw(participantController.GetDataGridTs(
+                "grdUserSubstitution",
+                "angCtrl",
+                RequestResource.ManagerSubstitution,
+                null))*@
+        </div>
+
+        @Html.Partial("_LocalizationTextBasic")
+        @Html.Partial("_DataGrid")
+
+
+        <div style="display:none;">
+            <input id="SubstitutedText" value="@RequestResource.Substituted" />
+            <input id="SubstituteeText" value="@RequestResource.Substitute" />
+            <input id="FromText" value="@RequestResource.From" />
+            <input id="ToText" value="@RequestResource.To" />
+            <input id="PendigRequestsText" value="@RequestResource.PendigRequests" />
+            <input id="MissingSubstitutedText" value="@RequestResource.WhoWillBeSubstituted" />
+            <input id="MissingSubstituteeText" value="@RequestResource.WhoWillBeSubstitutee" />
+            <input id="MissingDateFromText" value="@RequestResource.EnterDate @RequestResource.From" />
+            <input id="MissingDateToText" value="@RequestResource.EnterDate @RequestResource.To" />
+            <input id="SubstitutionPastText" value="@RequestResource.EnterDate @RequestResource.SubstitutionPast" />
+            <input id="RemarkText" value="@RequestResource.Comment" />
+            <input id="NotNeededText" value="@RequestResource.NotNeeded" />
+            <input id="ApprovedText" value="@RequestResource.Approved" />
+            <input id="RejectedText" value="@RequestResource.Rejected" />
+            <input id="ApproveText" value="@RequestResource.Approve" />
+            <input id="RejectText" value="@RequestResource.Reject" />
+            <input id="WaitForApprovalText" value="@RequestResource.WaitForApproval" />
+            <input id="DeleteSupplierConfirmText" value="@RequestResource.DeleteSubstitutionConfirm" />
+            <input id="ApprovalStatusText" value="@RequestResource.ApprovalStatus" />
+            <input id="ModifyDateText" value="@RequestResource.ModifyDate" />
+            <input id="ModifyUserText" value="@RequestResource.ModifyUser" />
+            <input id="AllowSubsToTakeOverShortText" value="@RequestResource.AllowSubsToTakeOverShort" />
+            <input id="LoadDataErrorText" value="@RequestResource.LoadDataError" />
+            <input id="ApproveManText" value="@RequestResource.ApproveMan" />
+            <input id="ApproveConfirmText" value="@RequestResource.SubstApprovalConfirmation" />
+            <input id="RejectConfirmText" value="@RequestResource.SubstRejectConfirmation" />
+            <input id="ConfirmationText" value="@RequestResource.Confirmation" />
+            <input id="ActiveText" value="@RequestResource.Active" />
+            <input id="DeactivateText" value="@RequestResource.Deactivate" />
+            <input id="DetailText" value="@RequestResource.DisplayDetails" />
+            <input id="DeleteText" value="@RequestResource.Delete" />
+            <input id="MinDateText" value="@RequestResource.MinDate" />
+
+            <input id="DateFromatText" value="@String.Format(
+                                   RequestResource.EnterDateInFormat,
+                                   participantController.DateTimePickerFormat,
+                                   DateTime.Now.ToString(participantController.DateTimePickerFormat))" />
+
+            @*<input id="DateTimeMomentFormatText" value="@participantController.DateTimePickerFormatMoment" />
+            <input id="CurrentUserId" value="@participantController.CurrentUser.ParticipantId" />
+            <input id="CurrentUserName" value="@participantController.CurrentUser.ParticipantNameSurnameFirst" />*@
+            @if (!isSubsManager) {
+                <input id="IsSubstitutedReadOnly" value="1" />
+            }
+        </div>
+
+        <div id="grdCellDivTextArea" style="position:absolute;z-index:100;display:none;border:solid 1px #DDD!important;background-color:#DDD;padding:1px;">
+            <textarea id="grdCellTextArea" class="reget-text-area" wrap="hard" ng-blur="angCtrl.hideGridCellTextArea()"></textarea>
+            <div style="margin-top:5px;margin-bottom:5px;">
+                <input id="btnSaveRemark"
+                       type="button"
+                       class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save"
+                       style="margin-left:10px;"
+                       value="@RequestResource.Save"
+                       ng-click="angCtrl.hideGridCellTextArea()" />
+            </div>
+        </div>
+
+
+
+    </div>
+
+</form>
+
+<!-- Must be out of Form otherwise if toast is displayed the position is changed-->
+
+
+<div id="divRegetToolTip" class="reget-tooltip" ng-mouseleave="angCtrl.tooltipLeave()">
+    <span id="spanRegetTooltipText" class="reget-tooltiptext"></span>
+</div>
+
+
+

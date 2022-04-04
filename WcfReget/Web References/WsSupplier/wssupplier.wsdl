@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ImportSuppliersFromExcel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="supplierGroupId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportSuppliersFromExcelResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ImportSuppliersFromBaanFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="supplierGroupId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportSuppliersFromBaanFileResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ImportSuppliersFromExcelSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportSuppliersFromExcel" />
+  </wsdl:message>
+  <wsdl:message name="ImportSuppliersFromExcelSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportSuppliersFromExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportSuppliersFromBaanFileSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportSuppliersFromBaanFile" />
+  </wsdl:message>
+  <wsdl:message name="ImportSuppliersFromBaanFileSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportSuppliersFromBaanFileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WsSupplierSoap">
+    <wsdl:operation name="ImportSuppliersFromExcel">
+      <wsdl:input message="tns:ImportSuppliersFromExcelSoapIn" />
+      <wsdl:output message="tns:ImportSuppliersFromExcelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSuppliersFromBaanFile">
+      <wsdl:input message="tns:ImportSuppliersFromBaanFileSoapIn" />
+      <wsdl:output message="tns:ImportSuppliersFromBaanFileSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsSupplierSoap" type="tns:WsSupplierSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ImportSuppliersFromExcel">
+      <soap:operation soapAction="http://tempuri.org/ImportSuppliersFromExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSuppliersFromBaanFile">
+      <soap:operation soapAction="http://tempuri.org/ImportSuppliersFromBaanFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WsSupplierSoap12" type="tns:WsSupplierSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ImportSuppliersFromExcel">
+      <soap12:operation soapAction="http://tempuri.org/ImportSuppliersFromExcel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSuppliersFromBaanFile">
+      <soap12:operation soapAction="http://tempuri.org/ImportSuppliersFromBaanFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsSupplier">
+    <wsdl:port name="WsSupplierSoap" binding="tns:WsSupplierSoap">
+      <soap:address location="http://10.68.33.190/wsinternalrequest/wssupplier.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WsSupplierSoap12" binding="tns:WsSupplierSoap12">
+      <soap12:address location="http://10.68.33.190/wsinternalrequest/wssupplier.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

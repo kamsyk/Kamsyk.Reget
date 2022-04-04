@@ -1,0 +1,88 @@
+﻿<div style="margin-bottom:15px;">
+    <div id="wrapRemark" class="reget-ang-div-container">
+        <table style="width:100%">
+            <tr>
+                <td class="class=" hidden-xs" style="vertical-align:top;">
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left-150">{{commenttext}} :</label>
+                </td>
+                <td style="width:100%;">
+                    <md-input-container class="reget-ang-md-input-container " style="width:100%;">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width:150px;">{{commenttext}}</label>
+                        <textarea id="txtNewRemark" name="txtSubstRemark" ng-model="newitem" class="reget-ang-data-control reget-text-area"></textarea>
+                    </md-input-container>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <div class="control-label hidden-xs reget-ang-lbl-control-left-150" style="float:left;margin-left:0px;margin-top:5px;">&nbsp;</div>
+        <md-button id="btnAddRemark"
+                   class="reget-btn-h30 reget-btn-img reget-btn-blue reget-btn-add-remark"
+                   style="margin-left:2px;"
+                   ng-click="additem()">
+            {{addtext}}
+        </md-button>
+    </div>
+</div>
+
+<div style="padding-top:20px;" ng-show="discussionitems !=null && discussionitems.length>0">
+
+    <!--<hr class="reget-hr-request-sep" />-->
+
+    <div ng-repeat="discussionitem in discussionitems">
+        <table>
+            <tr>
+                <td width="100px" class="hidden-xs">&nbsp;</td>
+                <td style="vertical-align:top;">
+                    <div style="margin-right:10px;
+                            margin-bottom:10px;
+                            border-width: 1px;
+                            border-style:solid;
+                            border-radius:24px;
+                            font-size:18px;
+                            text-align:center;
+                            padding-top:10px;
+                            width:46px;
+                            height:46px;
+                            color:#fff;
+                            font-weight:bold;"
+                         ng-style="{'background-color':discussionitem.user_color, 'border-color' : discussionitem.border_color}"
+                         ng-if="discussionitem.author_photo_url== null">
+                        {{discussionitem.author_initials}}
+                    </div>
+                    <div ng-if="discussionitem.author_photo_url!= null">
+                        <img src="{{discussionitem.author_photo_url}}"
+                             style="width:46px;
+                                height:46px;
+                                margin-right:10px;
+                                margin-bottom:10px;
+                                /*border-width: 1px;
+                                border-style:solid;
+                                border-color:#CCC;*/
+                                border-radius:24px;" />
+                    </div>
+                </td>
+                <td style="vertical-align:top;">
+                    <div style="border: 5px solid;
+                            margin-top:15px;
+                            border-bottom-color:transparent;
+                            border-left-color:transparent;
+                            border-top-color:transparent"
+                         ng-style="{'border-right-color': discussionitem.border_color}">
+                    </div>
+                </td>
+                <td style="vertical-align:top;">
+                    <div style="border-radius:10px;
+                            padding:10px;
+                            margin-bottom:15px;
+                            border-width:1px;
+                            border-style:solid;"
+                         ng-style="{'background-color':discussionitem.bkg_color, 'border-color': discussionitem.border_color }">
+                        <div style="font-size:0.75em;font-weight:bold;">{{discussionitem.author_name}}, {{discussionitem.modif_date_text}}</div>
+                        <div>{{discussionitem.disc_text}}</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

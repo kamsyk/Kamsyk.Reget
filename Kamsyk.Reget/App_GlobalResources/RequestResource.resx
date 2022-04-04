@@ -1,0 +1,2285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualPrice" xml:space="preserve">
+    <value>Actual Price</value>
+  </data>
+  <data name="AddInvoice" xml:space="preserve">
+    <value>Add Invoice</value>
+  </data>
+  <data name="AddLimit" xml:space="preserve">
+    <value>Add limit</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AddToShopBasket" xml:space="preserve">
+    <value>Add to Shopping Basket</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AllowPaging" xml:space="preserve">
+    <value>Allow Table Paging </value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Approval</value>
+  </data>
+  <data name="ApprovalMatrix" xml:space="preserve">
+    <value>Approval Matrix</value>
+  </data>
+  <data name="ApprovalRequestMail" xml:space="preserve">
+    <value>Approval Request</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="ApproveConfirm" xml:space="preserve">
+    <value>Are you sure to approve the Request ?</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="ApproveMan" xml:space="preserve">
+    <value>Approval Manager</value>
+  </data>
+  <data name="ApproverRemark" xml:space="preserve">
+    <value>Manag. Remark</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Attachements" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="AttachmentLoadQuery" xml:space="preserve">
+    <value>Would you like to attach the selected file?</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="AxisX" xml:space="preserve">
+    <value>Axis X</value>
+  </data>
+  <data name="AxisY" xml:space="preserve">
+    <value>Axis Y</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelChanges" xml:space="preserve">
+    <value>Cancel Changes</value>
+  </data>
+  <data name="CancelConfirm" xml:space="preserve">
+    <value>Are you sure to Cancel the Request?</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="CanceledByOrderer" xml:space="preserve">
+    <value>Canceled by Orderer</value>
+  </data>
+  <data name="CanceledByRequestor" xml:space="preserve">
+    <value>Canceled by Requestor</value>
+  </data>
+  <data name="CanceledConfirm" xml:space="preserve">
+    <value>Are you sure to cancel the Request?</value>
+  </data>
+  <data name="CancelPaging" xml:space="preserve">
+    <value>Cancel Table Paging</value>
+  </data>
+  <data name="CatalogAdmin" xml:space="preserve">
+    <value>Catalog Administration</value>
+  </data>
+  <data name="Centre" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="Centres" xml:space="preserve">
+    <value>Centers</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>Changed by</value>
+  </data>
+  <data name="ChangedDate" xml:space="preserve">
+    <value>Last Change Date</value>
+  </data>
+  <data name="ChangesWereSaved" xml:space="preserve">
+    <value>Changes were saved successfully</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="ClickOnRequest" xml:space="preserve">
+    <value>Click on the Request Nr link and after the request is opend approve, reject the Request or send it back to the Requestor.</value>
+  </data>
+  <data name="ClickOnRequestOrder" xml:space="preserve">
+    <value>Click on the Request Nr. and then, when the request is opened, generate an Order or send the Order back to the Requestor </value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Are you sure to close the Request?</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="CurrentUser" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="DefaultFilter" xml:space="preserve">
+    <value>Default Filter</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteAttConfirm" xml:space="preserve">
+    <value>Are you sure to delete the attachment?</value>
+  </data>
+  <data name="Delivered" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="DeliveredMail" xml:space="preserve">
+    <value>Required material / services were delivered.</value>
+  </data>
+  <data name="DeliveriedDate" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="DIC" xml:space="preserve">
+    <value>Vat Id</value>
+  </data>
+  <data name="DisplayAllSuppliers" xml:space="preserve">
+    <value>Display All Suppliers</value>
+  </data>
+  <data name="DisplayHistory" xml:space="preserve">
+    <value>Display History</value>
+  </data>
+  <data name="DisplayPrice" xml:space="preserve">
+    <value>Display estimated price in an order</value>
+  </data>
+  <data name="DisplayPurchseGroup" xml:space="preserve">
+    <value>Display Purchase Groups</value>
+  </data>
+  <data name="DisplayRequests" xml:space="preserve">
+    <value>Display Requests</value>
+  </data>
+  <data name="DisplayStatistics" xml:space="preserve">
+    <value>Display Statistic</value>
+  </data>
+  <data name="DisplayTop" xml:space="preserve">
+    <value>Display Top</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>Documentation</value>
+  </data>
+  <data name="DoNotReplyMail" xml:space="preserve">
+    <value>Do not replay this mail! It was generated automatically and sent from the following mail address {0}</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EndCatalogAdminMode" xml:space="preserve">
+    <value>End Catalog Admin Mode</value>
+  </data>
+  <data name="EndUserDocumentation" xml:space="preserve">
+    <value>End User Documentation</value>
+  </data>
+  <data name="EnterSearchedSuppNameId" xml:space="preserve">
+    <value>Enter searched supplier name or id</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>An Error occured in the Application.</value>
+  </data>
+  <data name="EstimatedPrice" xml:space="preserve">
+    <value>Estimated Price</value>
+  </data>
+  <data name="EstPrice" xml:space="preserve">
+    <value>Est. Price</value>
+  </data>
+  <data name="ExportApprovalMatrix" xml:space="preserve">
+    <value>Export of the Approval Matrix</value>
+  </data>
+  <data name="ExportApprovalMatrixtoExcel" xml:space="preserve">
+    <value>Export of the Approval Matrix to Excel</value>
+  </data>
+  <data name="ExportPriceChangeConfirm" xml:space="preserve">
+    <value>Are you sure to save this setting?\r\nIf you save the setting, the option -&gt; #E# is automatically set in your next request for supplier #S#.</value>
+  </data>
+  <data name="ExportPriceToOrder" xml:space="preserve">
+    <value>Display estimated price in an order</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="FillFixValues" xml:space="preserve">
+    <value>Fill, fix the values in the highlighted fields.</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="FromTo_From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FromTo_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="GeneratedBy" xml:space="preserve">
+    <value>Otis Internal Request System</value>
+  </data>
+  <data name="GenerateOrder" xml:space="preserve">
+    <value>Generate Order</value>
+  </data>
+  <data name="GenerateOrderConfirm" xml:space="preserve">
+    <value>Are you sure to generate order?</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="ICO" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="InProcessRequestList" xml:space="preserve">
+    <value>Requests In Process</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="InSum" xml:space="preserve">
+    <value>In Sum</value>
+  </data>
+  <data name="InternalRequestList" xml:space="preserve">
+    <value>Requests List</value>
+  </data>
+  <data name="InvoiceMissing" xml:space="preserve">
+    <value>The Request cannot be closed. No Invoice was entered.</value>
+  </data>
+  <data name="InvoiceNr" xml:space="preserve">
+    <value>Invoice Nr.</value>
+  </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>Issued Date</value>
+  </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>Items Count</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="LeadTime" xml:space="preserve">
+    <value>Lead Time</value>
+  </data>
+  <data name="Less" xml:space="preserve">
+    <value>less</value>
+  </data>
+  <data name="LoadAll" xml:space="preserve">
+    <value>Load All</value>
+  </data>
+  <data name="LoadingData" xml:space="preserve">
+    <value>Loading Data ...</value>
+  </data>
+  <data name="LowerLimit" xml:space="preserve">
+    <value>Lower Limit</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
+  </data>
+  <data name="MailAutomaticGenerate" xml:space="preserve">
+    <value>This mail was generated automatically by {0}.</value>
+  </data>
+  <data name="MailBodyDelivered" xml:space="preserve">
+    <value>Required material / services from the Request nr. {0} were delivered.</value>
+  </data>
+  <data name="MailBodyL" xml:space="preserve">
+    <value>User {0} asks you to approve his request Nr. {1}</value>
+  </data>
+  <data name="MailBodyOrder" xml:space="preserve">
+    <value>User {0} requires for creating an Order from the Request nr. {1}</value>
+  </data>
+  <data name="MailBodyRejected" xml:space="preserve">
+    <value>User {0} rejected your request nr. {1}.</value>
+  </data>
+  <data name="MailBodySentBack" xml:space="preserve">
+    <value>User {0} sent you back you request nr.{1} to be reworked.</value>
+  </data>
+  <data name="MailLanguage" xml:space="preserve">
+    <value>Mail Language</value>
+  </data>
+  <data name="MailLoginInfo" xml:space="preserve">
+    <value>In case a login popup window appears after you clicked on Request Nr. Enter your login name in this format 'EUOTIS\name'</value>
+  </data>
+  <data name="MailRecipient" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="MailRequestAlreadyApprovedBy" xml:space="preserve">
+    <value>Request was already approve by {0}.</value>
+  </data>
+  <data name="ManagerSubstitution" xml:space="preserve">
+    <value>Manager Substitution</value>
+  </data>
+  <data name="MandatoryComboValue" xml:space="preserve">
+    <value>Select a value.</value>
+  </data>
+  <data name="MandatoryTextField" xml:space="preserve">
+    <value>Enter a value.</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Mobile Phone</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>more</value>
+  </data>
+  <data name="MultiOrdererInfo" xml:space="preserve">
+    <value>Request will be sent to all of the orderers after it is approved. The Request will be delegated to this orderer who will open it first.</value>
+  </data>
+  <data name="MyRequestsOnly" xml:space="preserve">
+    <value>My Requests Only</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NewInternalRequest" xml:space="preserve">
+    <value>New Request</value>
+  </data>
+  <data name="NoAttachmentSelected" xml:space="preserve">
+    <value>No Attachment was selected.</value>
+  </data>
+  <data name="NoLimit" xml:space="preserve">
+    <value>Unlimited</value>
+  </data>
+  <data name="NoRequestMeetsCriterions" xml:space="preserve">
+    <value>No Request meets the filter criterions.</value>
+  </data>
+  <data name="NoSupplierMatchCriterions" xml:space="preserve">
+    <value>No Supplier was found</value>
+  </data>
+  <data name="NotAllowedToApprove" xml:space="preserve">
+    <value>You are not allowed to approve the request!</value>
+  </data>
+  <data name="NotAllowedUser" xml:space="preserve">
+    <value>The User '{0}' is not allowed to use the application.</value>
+  </data>
+  <data name="NotDelivered" xml:space="preserve">
+    <value>Not Delivered</value>
+  </data>
+  <data name="NotDisplayPrice" xml:space="preserve">
+    <value>Do Not Display estimated price in an order</value>
+  </data>
+  <data name="NotOrdered" xml:space="preserve">
+    <value>Not Ordered</value>
+  </data>
+  <data name="NotRequired" xml:space="preserve">
+    <value>Not Required</value>
+  </data>
+  <data name="NotSavedInvoices" xml:space="preserve">
+    <value>There are unsaved changes in the Request Invoices. Do you want to continue?</value>
+  </data>
+  <data name="NotSavedInvoicesCannotClose" xml:space="preserve">
+    <value>There are unsaved changes in the Request Invoices. The Request cannot be closed.</value>
+  </data>
+  <data name="NotSent" xml:space="preserve">
+    <value>Not Sent</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="OpenFileTip" xml:space="preserve">
+    <value>In case the required file is not opened automatically, click on the following link.</value>
+  </data>
+  <data name="OpenHistoryInfo" xml:space="preserve">
+    <value>Click on this image to open the Request History</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="OrderConfirm" xml:space="preserve">
+    <value>Are you sure to generate order and close the Request?</value>
+  </data>
+  <data name="Ordered" xml:space="preserve">
+    <value>Ordered</value>
+  </data>
+  <data name="OrderedConfirm" xml:space="preserve">
+    <value>Are you sure to change the Request status to \'Ordered\'?</value>
+  </data>
+  <data name="Orderer" xml:space="preserve">
+    <value>Orderer</value>
+  </data>
+  <data name="OrdererAttachment" xml:space="preserve">
+    <value>Orderers Attachments</value>
+  </data>
+  <data name="OrdererMail" xml:space="preserve">
+    <value>Request for Order </value>
+  </data>
+  <data name="OrdererRemark" xml:space="preserve">
+    <value>Orderer Remark</value>
+  </data>
+  <data name="OrdererRequestHandedOverByOrderer" xml:space="preserve">
+    <value>The Request was already handed over by orderer {0}.</value>
+  </data>
+  <data name="Orderers" xml:space="preserve">
+    <value>Orderers</value>
+  </data>
+  <data name="OrdererSupplier" xml:space="preserve">
+    <value>Orderers set to Supplier </value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="OtisInternalRequest" xml:space="preserve">
+    <value>Internal Request</value>
+  </data>
+  <data name="OtisItemsCatalog" xml:space="preserve">
+    <value>Otis Catalog</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PriceChangedSendBack" xml:space="preserve">
+    <value>The price was increased, new approval is required. Send the Request back to the Requestor.</value>
+  </data>
+  <data name="PriceOverflow" xml:space="preserve">
+    <value>Request cannot be processed! Max. finacial limit for '{0}' is {1}</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="ProfylaxNr" xml:space="preserve">
+    <value>Profylax Nr.</value>
+  </data>
+  <data name="PurchaseGroup" xml:space="preserve">
+    <value>Purchase Group</value>
+  </data>
+  <data name="PurchMatIncluded" xml:space="preserve">
+    <value>Include Purchased Material to FIX ASSETS</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="RejectConfirm" xml:space="preserve">
+    <value>Are you sure to reject the Request?</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="RejectMail" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="RemoveLimit" xml:space="preserve">
+    <value>Remove limit</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="RequestCanceled" xml:space="preserve">
+    <value>Request was canceled.</value>
+  </data>
+  <data name="RequestCount" xml:space="preserve">
+    <value>Request Count</value>
+  </data>
+  <data name="RequestDate" xml:space="preserve">
+    <value>Request Date</value>
+  </data>
+  <data name="RequestForCentre" xml:space="preserve">
+    <value>Req. for Centre</value>
+  </data>
+  <data name="RequestHistory" xml:space="preserve">
+    <value>History of the Request Nr.</value>
+  </data>
+  <data name="RequestNr" xml:space="preserve">
+    <value>Request Nr</value>
+  </data>
+  <data name="Requestor" xml:space="preserve">
+    <value>Requestor</value>
+  </data>
+  <data name="RequestorAttachment" xml:space="preserve">
+    <value>Requestor Attachments</value>
+  </data>
+  <data name="Requestors" xml:space="preserve">
+    <value>Requestors</value>
+  </data>
+  <data name="RequestRejected" xml:space="preserve">
+    <value>Request was rejected!!!</value>
+  </data>
+  <data name="RequestSentBack" xml:space="preserve">
+    <value>The Request was sent back in order to be rewritten, completed ...</value>
+  </data>
+  <data name="RequestSentForApproval" xml:space="preserve">
+    <value>Request was send for an approval successfully.</value>
+  </data>
+  <data name="RequestStatus" xml:space="preserve">
+    <value>Request Status</value>
+  </data>
+  <data name="RequestText" xml:space="preserve">
+    <value>Request text</value>
+  </data>
+  <data name="ReturnRequestTo" xml:space="preserve">
+    <value>Send Request back to</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveAsDraft" xml:space="preserve">
+    <value>Save as a Draft</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>An error occured during saving!!! Data was not saved!!! </value>
+  </data>
+  <data name="SearchSupplierTitle" xml:space="preserve">
+    <value>Supplier Search</value>
+  </data>
+  <data name="SearchSupplierWatermark" xml:space="preserve">
+    <value>Name, ID</value>
+  </data>
+  <data name="SelectApproveMan" xml:space="preserve">
+    <value> &lt;&lt;&lt; Select Approve Man &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectArea" xml:space="preserve">
+    <value>Select Area</value>
+  </data>
+  <data name="SelectFromList" xml:space="preserve">
+    <value>Select fom list</value>
+  </data>
+  <data name="SelectOrderer" xml:space="preserve">
+    <value> &lt;&lt;&lt; Select Orderer &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectPurchaseGroup" xml:space="preserve">
+    <value> &lt;&lt;&lt; Select Purchase Group &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstitute" xml:space="preserve">
+    <value> &lt;&lt;&lt; Select Substitutee &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstituted" xml:space="preserve">
+    <value> &lt;&lt;&lt; Select Substituted &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSupplier" xml:space="preserve">
+    <value> &lt;&lt;&lt; Select Suplier &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectValue" xml:space="preserve">
+    <value> &lt;&lt;&lt; Select Value &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelfOrderedCategory" xml:space="preserve">
+    <value>Requestor orders the request</value>
+  </data>
+  <data name="SendBackConfirm" xml:space="preserve">
+    <value>Are you sure to send the Request bacto in order to be rewritten, completed, ...?</value>
+  </data>
+  <data name="SendBackMail" xml:space="preserve">
+    <value>Send Back to Requestor</value>
+  </data>
+  <data name="SendBackReason" xml:space="preserve">
+    <value>Send Back Reason</value>
+  </data>
+  <data name="SendBackToRequestor" xml:space="preserve">
+    <value>Back to Requestor</value>
+  </data>
+  <data name="SendConfirm" xml:space="preserve">
+    <value>Are you sure to send the request for the approval ?</value>
+  </data>
+  <data name="SendForApproval" xml:space="preserve">
+    <value>Send for Approval</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="ShipToAddress" xml:space="preserve">
+    <value>Ship-to-address</value>
+  </data>
+  <data name="ShoppingCart" xml:space="preserve">
+    <value>Shopping Cart</value>
+  </data>
+  <data name="SortAscend" xml:space="preserve">
+    <value>Sort Ascending</value>
+  </data>
+  <data name="SortDescsend" xml:space="preserve">
+    <value>Sort Descending</value>
+  </data>
+  <data name="StatExchangeRateMissing" xml:space="preserve">
+    <value>Statistics data are not complete because of missing exchange rate between {0} and {1}.</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="StatisticsType" xml:space="preserve">
+    <value>Statistics Type</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="Substitute" xml:space="preserve">
+    <value>Substitute</value>
+  </data>
+  <data name="Substituted" xml:space="preserve">
+    <value>Substituted</value>
+  </data>
+  <data name="SubstituteMsg" xml:space="preserve">
+    <value>You are substituted by '{0}' now. You can cancel the substitution in the 'Substitute' tab.</value>
+  </data>
+  <data name="SumCostCount" xml:space="preserve">
+    <value>Total Costs / Requests Count</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="SupplierInfo" xml:space="preserve">
+    <value>Supplier Information</value>
+  </data>
+  <data name="SupplierOutOfList" xml:space="preserve">
+    <value>Supplier out of the list</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="SuppliersSynchronized" xml:space="preserve">
+    <value>Suppliers List was updated.</value>
+  </data>
+  <data name="SupplierUpdate" xml:space="preserve">
+    <value>Suppliers Update</value>
+  </data>
+  <data name="SupplierUpdateConfirm" xml:space="preserve">
+    <value>Are you sure to update the Supplier List? It can take a while.</value>
+  </data>
+  <data name="TakeOverConfirm" xml:space="preserve">
+    <value>Are you sure to take over the request?</value>
+  </data>
+  <data name="TakeOverRequest" xml:space="preserve">
+    <value>Take Over Request</value>
+  </data>
+  <data name="TooLargeAttachements" xml:space="preserve">
+    <value>Request contains also attachements which were not sent because are too large.</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpperLimit" xml:space="preserve">
+    <value>Upper Limit</value>
+  </data>
+  <data name="WaitForApproval" xml:space="preserve">
+    <value>Wait for Approval</value>
+  </data>
+  <data name="WaitForOrder" xml:space="preserve">
+    <value>Waiting for order</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wendesday</value>
+  </data>
+  <data name="WoVat" xml:space="preserve">
+    <value>Without VAT</value>
+  </data>
+  <data name="WrongDataTypeDecimal" xml:space="preserve">
+    <value>Wrong data type. Insert a number.</value>
+  </data>
+  <data name="WrongDataTypeInteger" xml:space="preserve">
+    <value>Wrong data type. Insert an Integer.</value>
+  </data>
+  <data name="WrongDate" xml:space="preserve">
+    <value>Wrong Date</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>User Info</value>
+  </data>
+  <data name="HandOverConfirm" xml:space="preserve">
+    <value>Are you sure to hand over the request to be ordered by the requestor?</value>
+  </data>
+  <data name="HandOver" xml:space="preserve">
+    <value>Hand Over</value>
+  </data>
+  <data name="MailBodyOrdererHandOver" xml:space="preserve">
+    <value>User {0} set you as an orderer for the Request nr. {1}. Please order the Request. </value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="GridNumberDisplayRows" xml:space="preserve">
+    <value>Number of displayed rows</value>
+  </data>
+  <data name="DisplayAllRows" xml:space="preserve">
+    <value>Display All Rows</value>
+  </data>
+  <data name="DisplayApprovalMatrix" xml:space="preserve">
+    <value>Display Approval Matrix</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>General Settings</value>
+  </data>
+  <data name="ForeignCurrency" xml:space="preserve">
+    <value>Foreign Currency</value>
+  </data>
+  <data name="HomeCurrency" xml:space="preserve">
+    <value>Home Currency</value>
+  </data>
+  <data name="AllowFreeSupplier" xml:space="preserve">
+    <value>Allow Free Supplier</value>
+  </data>
+  <data name="SupplierGroup" xml:space="preserve">
+    <value>Supplier Group</value>
+  </data>
+  <data name="AllowOrdererToHandOver" xml:space="preserve">
+    <value>Allow Orderer To Hand Over Requst to be ordered by Requestor</value>
+  </data>
+  <data name="Commodity" xml:space="preserve">
+    <value>Commodity</value>
+  </data>
+  <data name="AddApprovalLevel" xml:space="preserve">
+    <value>Add Approval Level</value>
+  </data>
+  <data name="AddApprovalManager" xml:space="preserve">
+    <value>Add Approval Manager</value>
+  </data>
+  <data name="ApproveAlways" xml:space="preserve">
+    <value>Approve Always Regardless of the Estimated Price</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="NoAppManIsSelected" xml:space="preserve">
+    <value>No Approval Manager was selected</value>
+  </data>
+  <data name="AppManExists" xml:space="preserve">
+    <value>Approval Man already exists for this Approval Level</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="DragMe" xml:space="preserve">
+    <value>Drag Me</value>
+  </data>
+  <data name="CompanyPrivate" xml:space="preserve">
+    <value>company private</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="TmpSubstitutionInfo" xml:space="preserve">
+    <value>Selection of the substitutee was stopped temporarilly for the Czech Rep. &amp; Slovakia. In case you need to set your substitutee, contact Mrs. {0}. Your substitution will be set by ReGet administrator as soon as it is approved by Mrs. {1}. This temporary rule was ordered by Mr. Pavel Míka.   </value>
+  </data>
+  <data name="UnknownSupplierGroup" xml:space="preserve">
+    <value>Unknown Supplier Group</value>
+  </data>
+  <data name="LoadSuccessfully" xml:space="preserve">
+    <value>Data was loaded successfully</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>Save Filter</value>
+  </data>
+  <data name="FilterSaveInfo" xml:space="preserve">
+    <value>Create and Delivery Dates are not saved for the filter.</value>
+  </data>
+  <data name="SendForApprovalFailed" xml:space="preserve">
+    <value>Request was not send for approval. Sending mail failed.
+Request was saved as a draft, try to send it later. </value>
+  </data>
+  <data name="YearOrder" xml:space="preserve">
+    <value>Yearlong Order</value>
+  </data>
+  <data name="YearOrderOnly" xml:space="preserve">
+    <value>Only Yearlong Orders</value>
+  </data>
+  <data name="Asset" xml:space="preserve">
+    <value>Asset</value>
+  </data>
+  <data name="NewRequest" xml:space="preserve">
+    <value>New Request</value>
+  </data>
+  <data name="SelectRequestType" xml:space="preserve">
+    <value>Select Request Type</value>
+  </data>
+  <data name="SmallShortTermAssetDescript" xml:space="preserve">
+    <value>Furniture, ...</value>
+  </data>
+  <data name="ContractNr" xml:space="preserve">
+    <value>Contract Nr.</value>
+  </data>
+  <data name="CommentRequestMail" xml:space="preserve">
+    <value>Comment Request</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="MailBodyCommentRequest" xml:space="preserve">
+    <value>User {0} requires your comment for the Request nr. {1}</value>
+  </data>
+  <data name="WaitForComment" xml:space="preserve">
+    <value>Wait for Comment</value>
+  </data>
+  <data name="RequestorCanApprove" xml:space="preserve">
+    <value>Requestor can approve his own requests</value>
+  </data>
+  <data name="BlackberryLinkNotUsed" xml:space="preserve">
+    <value>Blackberry Link</value>
+  </data>
+  <data name="MailLoginInfoBbNotUsed" xml:space="preserve">
+    <value>For Blackberry enter domain and login name separatelly</value>
+  </data>
+  <data name="JobNr" xml:space="preserve">
+    <value>Job Nr.</value>
+  </data>
+  <data name="UnitNr" xml:space="preserve">
+    <value>Unit Nr.</value>
+  </data>
+  <data name="ErrTimeOutExpired" xml:space="preserve">
+    <value>Server was not able to display required data - timeout Expired. Your settings was modified so that only 10 items are displayed now.</value>
+  </data>
+  <data name="Invoices" xml:space="preserve">
+    <value>Invoices</value>
+  </data>
+  <data name="DataExportTitle" xml:space="preserve">
+    <value>Request Data Export to CSV File</value>
+  </data>
+  <data name="LastApprovalDate" xml:space="preserve">
+    <value>Last Approval Date</value>
+  </data>
+  <data name="DataExport" xml:space="preserve">
+    <value>Data Export</value>
+  </data>
+  <data name="FieldDelimiter" xml:space="preserve">
+    <value>Filed Delimiter</value>
+  </data>
+  <data name="SelectExportedFields" xml:space="preserve">
+    <value>Select Fields for Export</value>
+  </data>
+  <data name="OrderedDate" xml:space="preserve">
+    <value>Ordered Date</value>
+  </data>
+  <data name="ServiceTime" xml:space="preserve">
+    <value>Service Time {0} (in hours)</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>Date Format</value>
+  </data>
+  <data name="DateFormatInfo" xml:space="preserve">
+    <value>y - year, M - month, d - day, H - hour, m - minute, s - second (case sensitive)</value>
+  </data>
+  <data name="FileType" xml:space="preserve">
+    <value>File Type (Extension)</value>
+  </data>
+  <data name="SkipLimit" xml:space="preserve">
+    <value>Skip Limit (the approval level is skipped if the estimated price is over the limit)</value>
+  </data>
+  <data name="TimeoutExpired" xml:space="preserve">
+    <value>Timeout Expired, the Database server was not able to retrieve required data. Try to rescrict the required data or contact administrator.</value>
+  </data>
+  <data name="ApprovalMatrixExport" xml:space="preserve">
+    <value>Approval Matrix Export</value>
+  </data>
+  <data name="LimitedAccessUser" xml:space="preserve">
+    <value>Read Only User with Limited Access</value>
+  </data>
+  <data name="NotAllowedUserForRequest" xml:space="preserve">
+    <value>You are not authorized to open the Request Nr.: '{0}'</value>
+  </data>
+  <data name="ReadOnlyUsers" xml:space="preserve">
+    <value>Read Only Users</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="NewContact" xml:space="preserve">
+    <value>New Contact</value>
+  </data>
+  <data name="WrongMailAddressFormat" xml:space="preserve">
+    <value>Wrong Mail Address</value>
+  </data>
+  <data name="CustomerContacts" xml:space="preserve">
+    <value>Customer Contacts</value>
+  </data>
+  <data name="AppManAttachment" xml:space="preserve">
+    <value>Approve Man Attachment</value>
+  </data>
+  <data name="OrderMailConfirm" xml:space="preserve">
+    <value>Are you sure to send order {0} to</value>
+  </data>
+  <data name="NoMailAddressIsSelected" xml:space="preserve">
+    <value>No Mail Address was selected</value>
+  </data>
+  <data name="SendMail" xml:space="preserve">
+    <value>Send Mail</value>
+  </data>
+  <data name="SupplierMailConstact" xml:space="preserve">
+    <value>Supplier Mail Contacts</value>
+  </data>
+  <data name="SupplierMailConstactLink" xml:space="preserve">
+    <value>Suppliers Mail Address Page Link</value>
+  </data>
+  <data name="NoLangIsSelected" xml:space="preserve">
+    <value>Mail Language is not Selected</value>
+  </data>
+  <data name="SuppMailSubject" xml:space="preserve">
+    <value>Order nr.{0}</value>
+  </data>
+  <data name="MailError" xml:space="preserve">
+    <value>An error occured. Mail was not sent. The error was reported to administartor.</value>
+  </data>
+  <data name="MailWasSent" xml:space="preserve">
+    <value>Mail was sent successfully.</value>
+  </data>
+  <data name="SuppMailBody" xml:space="preserve">
+    <value>&lt;font size="2" face="Arial CE"&gt;Dear supplier,
+we are sending the order nr. {0} in the attachment.
+
+Your faithfully&lt;/font&gt;</value>
+  </data>
+  <data name="TimeoutExpiredWebService" xml:space="preserve">
+    <value>Timeout expired. Server was not able to reply in time.</value>
+  </data>
+  <data name="LastSent" xml:space="preserve">
+    <value>Last Sent</value>
+  </data>
+  <data name="MailSignature" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;b&gt;&lt;i&gt;&lt;font color="#0000FF" size="2" face="Arial CE"&gt;#UserName#&lt;/font&gt;&lt;/i&gt;&lt;/b&gt;
+&lt;font size="2" face="Arial Black"&gt;OTIS a.s.&lt;/font&gt;#JobPositionStart#
+&lt;font size="2" face="Arial CE"&gt;#JobPosition#&lt;/font&gt;#JobPositionStop#
+&lt;font size="1" face="Arial CE"&gt;#AddressStreet#&lt;/font&gt;
+&lt;font size="1" face="Arial CE"&gt;#AddressZipCity#&lt;/font&gt;
+&lt;font size="1" face="Arial CE"&gt;Czech Republic&lt;/font&gt;
+&lt;font size="1" face="Arial CE"&gt;Phone Nr.:&amp;nbsp;#UserPhoneNr#&lt;/font&gt;
+&lt;font color="#000000" size="1" face="Arial CE"&gt;E-mail:&amp;nbsp;&lt;/font&gt;&lt;font color="#0000FF" size="1" face="Arial CE"&gt;#UserMail#&lt;/font&gt;
+&lt;font color="#0000FF" size="1" face="Arial CE"&gt;http://www.otis.com&lt;/font&gt;
+&lt;div style='margin-top:10px;'&gt;&lt;i&gt;&lt;font size="1" face="Arial CE"&gt;Confidentiality Notice:&lt;/font&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;font size="1" face="Arial CE"&gt;This message may contain confidential and/or privileged information of United Technologies Corporation and its affiliated companies. If you are not the intended recipient please&lt;/div&gt; &lt;div&gt;1) do not disclose, copy, distribute or use this information,&lt;/div&gt; &lt;div&gt;2) advise the sender by return e-mail and &lt;/div&gt;&lt;div&gt;3) delete all the copies from your computer.&lt;/div&gt; Your cooperation is greatly appreciated.&lt;/font&gt;
+&lt;div style='margin-top:10px;'&gt;&lt;i&gt;&lt;font size="1" face="Arial CE"&gt;Poznámka o diskrétnosti:&lt;/font&gt;&lt;/i&gt;&lt;/div&gt;&lt;font size="1" face="Arial CE"&gt;Tato zpráva může obsahovat důvěrné a/nebo privilegované informace United Technologies Corporation a jejích přidružených společností. Jestliže nejste zamýšlený adresát prosíme &lt;div&gt;1) neprozrazujte, nekopírujte, nedistribuujte nebo nepoužívejte tyto informace,&lt;/div&gt; &lt;div&gt;2) oznamte toto odesílateli posláním e-mailu zpět a&lt;/div&gt; &lt;div&gt;3) vymažte všechny kopie z Vašeho počítače.&lt;/div&gt; Děkujeme za Vaši spolupráci.&lt;/font&gt;</value>
+  </data>
+  <data name="LangCZ" xml:space="preserve">
+    <value>Czech</value>
+  </data>
+  <data name="LangDE" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="LangEN" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="MailRecipients" xml:space="preserve">
+    <value>Mail Recipients</value>
+  </data>
+  <data name="MailSender" xml:space="preserve">
+    <value>Mail Sender</value>
+  </data>
+  <data name="MailSentDate" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="RequestEvents" xml:space="preserve">
+    <value>Request Events</value>
+  </data>
+  <data name="SentMails" xml:space="preserve">
+    <value>Sent Mails</value>
+  </data>
+  <data name="OrderError" xml:space="preserve">
+    <value>An error occured. Order was not generated. The error was reported to administartor.</value>
+  </data>
+  <data name="OrderLang" xml:space="preserve">
+    <value>Order Language</value>
+  </data>
+  <data name="OrderLanguage" xml:space="preserve">
+    <value>Order Language</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ConfirmReloadRequestData" xml:space="preserve">
+    <value>Are you sure to reload Request Data to the Order Form?</value>
+  </data>
+  <data name="DeliverTo" xml:space="preserve">
+    <value>Deliver to</value>
+  </data>
+  <data name="MailStopTooLargeAttachements" xml:space="preserve">
+    <value>Mail cannot be sent. It is too big, containes too big attachments. Max. allowed mail size is {0}.</value>
+  </data>
+  <data name="NoAttachments" xml:space="preserve">
+    <value>No Attachments</value>
+  </data>
+  <data name="SupplierAddress" xml:space="preserve">
+    <value>Supplier Address</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FinishEditRow" xml:space="preserve">
+    <value>Finish editing row (click on 'Save' or 'Cancel').</value>
+  </data>
+  <data name="IntegrationCode" xml:space="preserve">
+    <value>Integration Code</value>
+  </data>
+  <data name="FreeSupplier" xml:space="preserve">
+    <value>Supplier Out of Suppliers Master File or Unknown</value>
+  </data>
+  <data name="NotOrderedNotifyDate" xml:space="preserve">
+    <value>Notify me if the Request is not Ordered until</value>
+  </data>
+  <data name="ResendApprovalRequestConfirm" xml:space="preserve">
+    <value>Are you sure to resend the Request for approval to {0}?</value>
+  </data>
+  <data name="ResendOrderRequestConfirm" xml:space="preserve">
+    <value>Are you sure to resend the Request for ordering to {0}?</value>
+  </data>
+  <data name="DragAndDrop" xml:space="preserve">
+    <value>Drag &amp; Drop File Here</value>
+  </data>
+  <data name="FileUploadOneAtTime" xml:space="preserve">
+    <value>You can upload only one file at a time (one by one). </value>
+  </data>
+  <data name="DragDropInfo" xml:space="preserve">
+    <value>Drag and Drop file(s) here to attach them or click here and select a file to be attached.</value>
+  </data>
+  <data name="SuppliersExport" xml:space="preserve">
+    <value>Suppliers Export</value>
+  </data>
+  <data name="NotAllowedUserForDraft" xml:space="preserve">
+    <value>You are not authorized to open the Request Nr.: '{0}' now. The Request status was changed to 'Draft'.</value>
+  </data>
+  <data name="PurchaseGroupDiaplySettings" xml:space="preserve">
+    <value>Purchase Group Display Settings</value>
+  </data>
+  <data name="WithImage" xml:space="preserve">
+    <value>With Image</value>
+  </data>
+  <data name="WithoutImage" xml:space="preserve">
+    <value>No Image</value>
+  </data>
+  <data name="SendPurchTermConditions" xml:space="preserve">
+    <value>Send Purchase Terms and Conditions</value>
+  </data>
+  <data name="CanceledBySystem" xml:space="preserve">
+    <value>Canceled by System</value>
+  </data>
+  <data name="Inspector" xml:space="preserve">
+    <value>Inspector</value>
+  </data>
+  <data name="DeputyOrderer" xml:space="preserve">
+    <value>Deputy Orderer</value>
+  </data>
+  <data name="RequestNotFound" xml:space="preserve">
+    <value>Request nr.: '{0}' was not found.</value>
+  </data>
+  <data name="RequestorSearch" xml:space="preserve">
+    <value>Requestor Search</value>
+  </data>
+  <data name="ExternalUser" xml:space="preserve">
+    <value>External User</value>
+  </data>
+  <data name="OfficeOrder" xml:space="preserve">
+    <value>Excel Order</value>
+  </data>
+  <data name="PdfOrder" xml:space="preserve">
+    <value>Pdf Order</value>
+  </data>
+  <data name="InvoiceDetails" xml:space="preserve">
+    <value>Invoice Details</value>
+  </data>
+  <data name="InvoiceNrs" xml:space="preserve">
+    <value>Invoice Numbers</value>
+  </data>
+  <data name="MailLoginInfoSmartPhone" xml:space="preserve">
+    <value>For Mobile Phone enter domain and login name separatelly</value>
+  </data>
+  <data name="SmartPhoneLink" xml:space="preserve">
+    <value>Mobile Phone (iPhone) Approval Link</value>
+  </data>
+  <data name="IPhoneInfo" xml:space="preserve">
+    <value>Link works for company iPhones only. Open UTC Browser   which is installed on your iPhone with AirWatch agent and enter following link {0} (You can bookmark the link in UTC Browser)</value>
+  </data>
+  <data name="LoadDataError" xml:space="preserve">
+    <value>An Error Occured. Data was not loaded.</value>
+  </data>
+  <data name="PendigRequests" xml:space="preserve">
+    <value>Pending Requests</value>
+  </data>
+  <data name="RequiredDeliveryDate" xml:space="preserve">
+    <value>Required Delivery Date</value>
+  </data>
+  <data name="NoPendingRequestsFound" xml:space="preserve">
+    <value>No Pending Requests were found</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="EaDisplayMsg" xml:space="preserve">
+    <value>Displaying {from} to {to} of {total} items</value>
+  </data>
+  <data name="EaOfPages" xml:space="preserve">
+    <value>of {pages}</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="IPhoneUserGuide" xml:space="preserve">
+    <value>iPhone Approval User Guide</value>
+  </data>
+  <data name="NotFoundRequestForResend" xml:space="preserve">
+    <value>No pending request were found to be resent</value>
+  </data>
+  <data name="ResentRequestList" xml:space="preserve">
+    <value>Following rerquest were resent '{0}'</value>
+  </data>
+  <data name="SendPendingRequest" xml:space="preserve">
+    <value>Send pending requests from Subtituted to Substitutee - Send pending requests since</value>
+  </data>
+  <data name="RegetInfo" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ApprovalTool" xml:space="preserve">
+    <value>Approval Tool</value>
+  </data>
+  <data name="PurposeOfApp" xml:space="preserve">
+    <value>Purpose of the application</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About Application</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="DataWasSaved" xml:space="preserve">
+    <value>Data was saved</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="CentreGroupAdmin" xml:space="preserve">
+    <value>Area Administrator</value>
+  </data>
+  <data name="MandatoryValueIsMissing" xml:space="preserve">
+    <value>Some mandatory values are missing. Cannot save data.</value>
+  </data>
+  <data name="AddCentre" xml:space="preserve">
+    <value>Add Centre</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Translation</value>
+  </data>
+  <data name="PurchaseGroupEditing" xml:space="preserve">
+    <value>Another Purchase Group is editing. Only one Purchase Group can be edited in one time.</value>
+  </data>
+  <data name="CollapseAll" xml:space="preserve">
+    <value>Collapse All</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Expand All</value>
+  </data>
+  <data name="CancelSelect" xml:space="preserve">
+    <value>Cancel Select</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>was not found</value>
+  </data>
+  <data name="WhoIsAppMan" xml:space="preserve">
+    <value>Who will be the approval manger?</value>
+  </data>
+  <data name="DisplayDetails" xml:space="preserve">
+    <value>Display Details</value>
+  </data>
+  <data name="HideDetails" xml:space="preserve">
+    <value>Hide Details</value>
+  </data>
+  <data name="AllOrderer" xml:space="preserve">
+    <value>Apply to all Purchase Groups</value>
+  </data>
+  <data name="AllRequestor" xml:space="preserve">
+    <value>Apply to all Purchase Groups</value>
+  </data>
+  <data name="DefaultOrderer" xml:space="preserve">
+    <value>Default Orderer</value>
+  </data>
+  <data name="DefaultRequestor" xml:space="preserve">
+    <value>Default Requestor</value>
+  </data>
+  <data name="DeleteAllRequestorMsg" xml:space="preserve">
+    <value>The requestor will be deleted from this Centre completely when you save the data</value>
+  </data>
+  <data name="DeleteAllRequestorTitle" xml:space="preserve">
+    <value>Are you sure to delete the requestor from this Centre?</value>
+  </data>
+  <data name="SelectRequestor" xml:space="preserve">
+    <value>Who will be the Requestor?</value>
+  </data>
+  <data name="SelectOrdererPlaceholder" xml:space="preserve">
+    <value>Who will be the Orderer?</value>
+  </data>
+  <data name="DeleteAllOrdererMsg" xml:space="preserve">
+    <value>The orderer will be deleted from this Centre completely when you save the data</value>
+  </data>
+  <data name="DeleteAllOrdererTitle" xml:space="preserve">
+    <value>Are you sure to delete the orderer from this Centre?</value>
+  </data>
+  <data name="LoadingPurchaseGroups" xml:space="preserve">
+    <value>Loading Purchase Groups # out of ##</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="AreaAdministrators" xml:space="preserve">
+    <value>Area Administrators</value>
+  </data>
+  <data name="DeletePgMsg" xml:space="preserve">
+    <value>Purchase group "{0}" will be deleted or deactivated in case it was used in a request already. Are you sure to delete purchase group "{0}"?</value>
+  </data>
+  <data name="DeletePgTitle" xml:space="preserve">
+    <value>Purchase Group Deleting Confirmation</value>
+  </data>
+  <data name="PurchaseGroupWasDeleted" xml:space="preserve">
+    <value>Purchase Group was deleted.</value>
+  </data>
+  <data name="BrowserNotSupported" xml:space="preserve">
+    <value>Internet Explorer v. 7 and older versions are not supported. Check your Internet Explorer version and "Compatibility View settings"</value>
+  </data>
+  <data name="WhoIsDeputyOrderer" xml:space="preserve">
+    <value>Who will be the Deputy Orderer?</value>
+  </data>
+  <data name="DefaultSupplier" xml:space="preserve">
+    <value>Default Supplier</value>
+  </data>
+  <data name="WhoIsDefaultSupplier" xml:space="preserve">
+    <value>Who will be the Default Supplier?</value>
+  </data>
+  <data name="FirstPage" xml:space="preserve">
+    <value>First Page</value>
+  </data>
+  <data name="LastPage" xml:space="preserve">
+    <value>Last Page</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Next Page</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Previous Page</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="UserRightCopy" xml:space="preserve">
+    <value>User Rights Copy</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Add User</value>
+  </data>
+  <data name="SearchCentre" xml:space="preserve">
+    <value>Search Centre</value>
+  </data>
+  <data name="EnterUserName" xml:space="preserve">
+    <value>Enter User Name</value>
+  </data>
+  <data name="UserExists" xml:space="preserve">
+    <value>User {0} already exist in {1}</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="DisplayingFromToOf" xml:space="preserve">
+    <value>Displaying {0} to {1} from {2} items</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="DeleteUserConfirm" xml:space="preserve">
+    <value>Are you sure to delete user '{0}' ?</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User '{0}' was not found.</value>
+  </data>
+  <data name="UserWasDisabled" xml:space="preserve">
+    <value>User '{0}' was disabled. User cannot be deleted because of he participated in existing requests. </value>
+  </data>
+  <data name="ReplaceUser" xml:space="preserve">
+    <value>Replace User</value>
+  </data>
+  <data name="WhoWillBeReplaced" xml:space="preserve">
+    <value>Who will be replaced?</value>
+  </data>
+  <data name="ReplaceAppMan" xml:space="preserve">
+    <value>Replace Approval Manager</value>
+  </data>
+  <data name="Replacer" xml:space="preserve">
+    <value>Replacer</value>
+  </data>
+  <data name="UserToBeReplaced" xml:space="preserve">
+    <value>User to be Replaced</value>
+  </data>
+  <data name="WhoWillReplace" xml:space="preserve">
+    <value>Who will replace?</value>
+  </data>
+  <data name="ReplaceRequestor" xml:space="preserve">
+    <value>Replace Requestor</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="ReplaceOrderer" xml:space="preserve">
+    <value>Replace Orderer</value>
+  </data>
+  <data name="NonActiveUser" xml:space="preserve">
+    <value>Non Active Users</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>User Roles</value>
+  </data>
+  <data name="AreaSettings" xml:space="preserve">
+    <value>Area Settings</value>
+  </data>
+  <data name="NewArea" xml:space="preserve">
+    <value>New Area</value>
+  </data>
+  <data name="NotAssignedCentre" xml:space="preserve">
+    <value>Not Assigned Centre</value>
+  </data>
+  <data name="Always" xml:space="preserve">
+    <value>Always</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="AddAddress" xml:space="preserve">
+    <value>Add Address</value>
+  </data>
+  <data name="DeleteAddressConfirm" xml:space="preserve">
+    <value>Are you sure to delete address '{0}' ?</value>
+  </data>
+  <data name="CentreManager" xml:space="preserve">
+    <value>Centre Manager</value>
+  </data>
+  <data name="OtherOrderersAllowedToTakeOver" xml:space="preserve">
+    <value>Other Orderers in Centre can take over request</value>
+  </data>
+  <data name="MoveCentreConfirmHeader" xml:space="preserve">
+    <value>Move Centre Confirmation</value>
+  </data>
+  <data name="MoveCentreConfirmMsg" xml:space="preserve">
+    <value>Centre {0} is assigned to Area {1}. If you move the Centre, all of the participants will be removed from the Centre. Are you sure to move the Centre? </value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="CentreGroupExist" xml:space="preserve">
+    <value>Area '{0}' already exists</value>
+  </data>
+  <data name="NonActive" xml:space="preserve">
+    <value>Not Active</value>
+  </data>
+  <data name="CannotDeleteCompanyAdmin" xml:space="preserve">
+    <value>Company Administrator can not be remeoved</value>
+  </data>
+  <data name="CgDeleteConfirmation" xml:space="preserve">
+    <value>Area "{0}" will be deleted or deactivated in case it was used in a request already. Are you sure to delete Area '{0}' ?</value>
+  </data>
+  <data name="CgDeleteConfirmationHeader" xml:space="preserve">
+    <value>Delete Area Confirmation</value>
+  </data>
+  <data name="DisplayDeactivatedCentreGroups" xml:space="preserve">
+    <value>Display Deactivated Areas</value>
+  </data>
+  <data name="DisplayDeactivatedPurchaseGroups" xml:space="preserve">
+    <value>Display Deactivated Purchase Groups (Commodities)</value>
+  </data>
+  <data name="CentreGroupDeleted" xml:space="preserve">
+    <value>Area '{0}' was deleted</value>
+  </data>
+  <data name="CentreGroupDisabled" xml:space="preserve">
+    <value>Area '{0}' was disabled</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="PurchaseGroupDeleted" xml:space="preserve">
+    <value>Purchase Group '{0}' was deleted</value>
+  </data>
+  <data name="PurchaseGroupDisabled" xml:space="preserve">
+    <value>Purchase Group '{0}' was disabled</value>
+  </data>
+  <data name="ReplaceCentreMan" xml:space="preserve">
+    <value>Replace Centre Manager</value>
+  </data>
+  <data name="NothingToBeReplaced" xml:space="preserve">
+    <value>Nothing to be Replaced</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zip</value>
+  </data>
+  <data name="NoSuppliersWereFound" xml:space="preserve">
+    <value>No Suppliers were found</value>
+  </data>
+  <data name="ResetDataGridSettings" xml:space="preserve">
+    <value>Reset grid settings (filters, sorting, hidden columns, columns order)</value>
+  </data>
+  <data name="SaveDataGridSettings" xml:space="preserve">
+    <value>Save grid settings (page size, filters, sorting, hidden columns, columns order)</value>
+  </data>
+  <data name="DuplicityCentreName" xml:space="preserve">
+    <value>Centre '{0}' already exists in company</value>
+  </data>
+  <data name="EventViewer" xml:space="preserve">
+    <value>Admin Event Viewer</value>
+  </data>
+  <data name="NoDataIsAvailable" xml:space="preserve">
+    <value>No Data is available</value>
+  </data>
+  <data name="ImportApprovalMatrix" xml:space="preserve">
+    <value>Approval Matrix Import</value>
+  </data>
+  <data name="CopyAppMatrix" xml:space="preserve">
+    <value>Copy Approval Matrix</value>
+  </data>
+  <data name="SourceArea" xml:space="preserve">
+    <value>Source Area</value>
+  </data>
+  <data name="TargetArea" xml:space="preserve">
+    <value>Target Area</value>
+  </data>
+  <data name="NonActiveUsersLeftCompany" xml:space="preserve">
+    <value>User who have left company, thay need to be replaced</value>
+  </data>
+  <data name="NoPgFound" xml:space="preserve">
+    <value>No Purchase Group was Found</value>
+  </data>
+  <data name="AppMatrixCannotCopyCurrency" xml:space="preserve">
+    <value>Cannot Copy Approval Matrix, there are different currencies</value>
+  </data>
+  <data name="AreYouSureCopyAppMatrix" xml:space="preserve">
+    <value>Are you sure to copy selected purchase groups?</value>
+  </data>
+  <data name="NoSourcePgIsSelected" xml:space="preserve">
+    <value>There is selected no source Purchase Group to be copied</value>
+  </data>
+  <data name="SourceTargetAreaSame" xml:space="preserve">
+    <value>Source and target Areas are the same</value>
+  </data>
+  <data name="CopyingPg" xml:space="preserve">
+    <value>Copying prurchase group {0} out of {1}</value>
+  </data>
+  <data name="PgCopyReplaceConfirm" xml:space="preserve">
+    <value>Commodity '{0}' already exist. Are you sure to rewrite it?</value>
+  </data>
+  <data name="TargetPgDoubled" xml:space="preserve">
+    <value>Cannot be copied. There are more than 1 target Commodity of type '{0}'</value>
+  </data>
+  <data name="ParentPg" xml:space="preserve">
+    <value>Parent Purchase Group</value>
+  </data>
+  <data name="LastUploadDate" xml:space="preserve">
+    <value>Last upload date</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Read Only</value>
+  </data>
+  <data name="CompanyAdmin" xml:space="preserve">
+    <value>Company Administrator</value>
+  </data>
+  <data name="SuppliersLoadedFrom" xml:space="preserve">
+    <value>Suppliers are loaded from</value>
+  </data>
+  <data name="ManualSupplierMaintenance" xml:space="preserve">
+    <value>Manual Suppliers Maintenance</value>
+  </data>
+  <data name="SwitchToSupplierAutoMaintConfirm" xml:space="preserve">
+    <value>Are you sure to switch Supplier maintenance to Automatic mode? You can loose manually entered data.</value>
+  </data>
+  <data name="ManualSupplierMaintenanceIsNotAllowed" xml:space="preserve">
+    <value>Manual Supplier Maintenance is not allowed</value>
+  </data>
+  <data name="DeleteSupplierConfirm" xml:space="preserve">
+    <value>Are you sure to delete supplier '{0}' ?</value>
+  </data>
+  <data name="SupplierWasDisabled" xml:space="preserve">
+    <value>Supplier '{0}' was disabled. Supplier cannot be deleted because of it participated in existing requests. </value>
+  </data>
+  <data name="DeleteCentreConfirm" xml:space="preserve">
+    <value>Are you sure to delete centre '{0}' ?</value>
+  </data>
+  <data name="CentreWasDisabled" xml:space="preserve">
+    <value>Centre '{0}' was disabled. Centre cannot be deleted because of it participated in existing requests. </value>
+  </data>
+  <data name="BrowserCompatibilityViewSettingsCheck" xml:space="preserve">
+    <value>Check "Compatibility View settings" in your Internet Explorer</value>
+  </data>
+  <data name="BrowserVersionIfOK" xml:space="preserve">
+    <value>If your Internet Explorer version is 8 or higher follow those instructions</value>
+  </data>
+  <data name="BrowserVersionIfOlder" xml:space="preserve">
+    <value>If your Internet Explorer version is 7 or older you cannot run the application. Install Internet Explorer v.8 or higher or use another browser Chrome, Firefox, Opera, Safari ...</value>
+  </data>
+  <data name="CheckBrowserVersion" xml:space="preserve">
+    <value>Check your Internet Explorer version</value>
+  </data>
+  <data name="FollowInstructions" xml:space="preserve">
+    <value>Please follow instructions below</value>
+  </data>
+  <data name="DuplicitySuppllierName" xml:space="preserve">
+    <value>Supplier '{0}' already exists in company</value>
+  </data>
+  <data name="ContactAdminForSupport" xml:space="preserve">
+    <value>Contact Administrator for further support</value>
+  </data>
+  <data name="RemoveCombatibilityViewSettings" xml:space="preserve">
+    <value>Remove following Websites from list</value>
+  </data>
+  <data name="ApprovalMatrixAdmin" xml:space="preserve">
+    <value>Approval Matrix Administrator</value>
+  </data>
+  <data name="OrdererAdmin" xml:space="preserve">
+    <value>Orderer Administrator</value>
+  </data>
+  <data name="RequestorAdmin" xml:space="preserve">
+    <value>Requestor Administrator</value>
+  </data>
+  <data name="CentreGroupPropertyAdmin" xml:space="preserve">
+    <value>Centre Group Property Admin</value>
+  </data>
+  <data name="AprilShort" xml:space="preserve">
+    <value>Apr</value>
+  </data>
+  <data name="AugustShort" xml:space="preserve">
+    <value>Aug</value>
+  </data>
+  <data name="DecemberShort" xml:space="preserve">
+    <value>Dec</value>
+  </data>
+  <data name="FebruaryShort" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="JanuaryShort" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="JulyShort" xml:space="preserve">
+    <value>Jul</value>
+  </data>
+  <data name="JuneShort" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="MarchShort" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="MayShort" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="NovemberShort" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="OctoberShort" xml:space="preserve">
+    <value>Oct</value>
+  </data>
+  <data name="SeptemberShort" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="EnterDateInFormat" xml:space="preserve">
+    <value>Enter date in format '{0}'. E.g. '{1}'</value>
+  </data>
+  <data name="WhoIsAreaAdministrator" xml:space="preserve">
+    <value>Who will be Area administrator?</value>
+  </data>
+  <data name="AprovalLevel" xml:space="preserve">
+    <value>Approval Level</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="ChartType" xml:space="preserve">
+    <value>Chart Type</value>
+  </data>
+  <data name="ChangeColors" xml:space="preserve">
+    <value>Change Colors</value>
+  </data>
+  <data name="DisplayAll" xml:space="preserve">
+    <value>Display All</value>
+  </data>
+  <data name="SelectRequestors" xml:space="preserve">
+    <value>Select Requestors</value>
+  </data>
+  <data name="RemoveAll" xml:space="preserve">
+    <value>Remove All</value>
+  </data>
+  <data name="SelectCompany" xml:space="preserve">
+    <value>Select Company</value>
+  </data>
+  <data name="SelectAxisX" xml:space="preserve">
+    <value>Select Axis X</value>
+  </data>
+  <data name="SelectAxisY" xml:space="preserve">
+    <value>Select Axis Y</value>
+  </data>
+  <data name="SelectDateFrom" xml:space="preserve">
+    <value>Enter Date From</value>
+  </data>
+  <data name="SelectDateTo" xml:space="preserve">
+    <value>Enter Date To</value>
+  </data>
+  <data name="SelectPeriod" xml:space="preserve">
+    <value>Select Period</value>
+  </data>
+  <data name="ActiveOnly" xml:space="preserve">
+    <value>Active Only</value>
+  </data>
+  <data name="SuppliersAdmin" xml:space="preserve">
+    <value>Suppliers' Administrator</value>
+  </data>
+  <data name="ExchangeRateMissing" xml:space="preserve">
+    <value>Exchange rate between {0} and {1} was not found.</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Not Authorized</value>
+  </data>
+  <data name="StatisticsAuthorizedOwnRequestOnly" xml:space="preserve">
+    <value>You are authorized to display only your requests</value>
+  </data>
+  <data name="ChartData" xml:space="preserve">
+    <value>Chart Source Data</value>
+  </data>
+  <data name="ChartSettings" xml:space="preserve">
+    <value>Chart Settings</value>
+  </data>
+  <data name="StatisticsAuthorizedCgRequestOnly" xml:space="preserve">
+    <value>You are authorized to display only your requests and request of Areas where you are adminstrator</value>
+  </data>
+  <data name="XItemsFilter" xml:space="preserve">
+    <value>X Items Filter</value>
+  </data>
+  <data name="ParentPgUsed" xml:space="preserve">
+    <value>Parent Purchase Group is used and cannot be deactivated. Deactivate or modify affected Purchase Groups.</value>
+  </data>
+  <data name="ItemWasAddedToFilter" xml:space="preserve">
+    <value>Item '{0}' was added to filter.</value>
+  </data>
+  <data name="DuplicityPgName" xml:space="preserve">
+    <value>Purchase Group '{0}' already exists in Area</value>
+  </data>
+  <data name="RowMissingIdField" xml:space="preserve">
+    <value>Row is missing 'id' key and cannot be modified or deleted.</value>
+  </data>
+  <data name="EnterDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="EnterDateTime" xml:space="preserve">
+    <value>Date and Time</value>
+  </data>
+  <data name="Substitutee" xml:space="preserve">
+    <value>Substitutee</value>
+  </data>
+  <data name="WhoWillBeSubstituted" xml:space="preserve">
+    <value>Who will be substituted ?</value>
+  </data>
+  <data name="WhoWillBeSubstitutee" xml:space="preserve">
+    <value>Who will substitute ?</value>
+  </data>
+  <data name="NoRecordFound" xml:space="preserve">
+    <value>No Record Found</value>
+  </data>
+  <data name="DataCannotBeSaved" xml:space="preserve">
+    <value>Data cannot be saved.</value>
+  </data>
+  <data name="ApprovalOnly" xml:space="preserve">
+    <value>Approval Only without Order</value>
+  </data>
+  <data name="SubstitutionPast" xml:space="preserve">
+    <value>Substitution cannot be set in the past</value>
+  </data>
+  <data name="NotNeeded" xml:space="preserve">
+    <value>Not Needed</value>
+  </data>
+  <data name="LimitMultipl" xml:space="preserve">
+    <value>Multiplied price</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="MultiplyAppLimit" xml:space="preserve">
+    <value>Multiply Approval Limits</value>
+  </data>
+  <data name="EnterDecimalNumber" xml:space="preserve">
+    <value>Enter a Number</value>
+  </data>
+  <data name="MultiplicationFactor" xml:space="preserve">
+    <value>Multiplication factor</value>
+  </data>
+  <data name="Multiply" xml:space="preserve">
+    <value>Multiply</value>
+  </data>
+  <data name="MultiplyAllLimits" xml:space="preserve">
+    <value>Multiply all Approval Limits</value>
+  </data>
+  <data name="MultiplySelectedLimits" xml:space="preserve">
+    <value>Multiply selected Approval Limits</value>
+  </data>
+  <data name="AppLevelMultiplyAllConfirm" xml:space="preserve">
+    <value>Are you sure to multiply ALL approval limits of selected companies?</value>
+  </data>
+  <data name="AppLevelMultiplySelectedConfirm" xml:space="preserve">
+    <value>Are you sure to multiply selected approval limits of selected companies?</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+  <data name="LimitMultiplyResult" xml:space="preserve">
+    <value>Approval Limits were calculated. Nuber of multiply Approval Limits {0} </value>
+  </data>
+  <data name="NotAuthorizedDisplayPage" xml:space="preserve">
+    <value>You are not authorized to display this page.</value>
+  </data>
+  <data name="ApplicationAdministrators" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="MultiplPgLimitError" xml:space="preserve">
+    <value>Approval Limits could not be multiplied. See further information in Error's List below.</value>
+  </data>
+  <data name="ErrorList" xml:space="preserve">
+    <value>Error's List</value>
+  </data>
+  <data name="PurchaseType" xml:space="preserve">
+    <value>Item type</value>
+  </data>
+  <data name="DeleteSubstitutionConfirm" xml:space="preserve">
+    <value>Are you sure to delete substitution of '{0}' ?</value>
+  </data>
+  <data name="DuplicityAddress" xml:space="preserve">
+    <value>Address '{0}' already exists in company</value>
+  </data>
+  <data name="DuplicityParentPgName" xml:space="preserve">
+    <value>Parent Purchase Group '{0}' already exists</value>
+  </data>
+  <data name="AddParentPurchaseGroup" xml:space="preserve">
+    <value>Add Parent Purchase Group</value>
+  </data>
+  <data name="DeleteParentPgConfirm" xml:space="preserve">
+    <value>Are you sure to delete Parent Purchase Group '{0}' ?</value>
+  </data>
+  <data name="NonActiveIncluded" xml:space="preserve">
+    <value>Non Active Included</value>
+  </data>
+  <data name="DeletePgConfirm" xml:space="preserve">
+    <value>Are you sure to delete Purchase Group '{0}' ?</value>
+  </data>
+  <data name="ConnectedPurchaseGroups" xml:space="preserve">
+    <value>Connected Purchase Groups</value>
+  </data>
+  <data name="Filtered" xml:space="preserve">
+    <value>Filtered</value>
+  </data>
+  <data name="StatisticsAppManNotAllowed" xml:space="preserve">
+    <value>You are not authorized to display Approve Manager Statistics data of company '{0}'</value>
+  </data>
+  <data name="StatisticsAreaNotAllowed" xml:space="preserve">
+    <value>You are not authorized to display Area Statistics data of company '{0}'</value>
+  </data>
+  <data name="StatisticsCentreNotAllowed" xml:space="preserve">
+    <value>You are not authorized to display Center Statistics data of company '{0}'</value>
+  </data>
+  <data name="StatisticsOrdererNotAllowed" xml:space="preserve">
+    <value>You are not authorized to display Orderer Statistics data of company '{0}'</value>
+  </data>
+  <data name="StatisticsPgNotAllowed" xml:space="preserve">
+    <value>You are not authorized to display Purchase Group Statistics data of company '{0}'</value>
+  </data>
+  <data name="StatisticsRequestorNotAllowed" xml:space="preserve">
+    <value>You are not authorized to display Requestor Statistics data of company '{0}'</value>
+  </data>
+  <data name="StatisticsSupplierNotAllowed" xml:space="preserve">
+    <value>You are not authorized to display Supplier Statistics data of company '{0}'</value>
+  </data>
+  <data name="ParentPgUsedComps" xml:space="preserve">
+    <value>Parent Purchase Group is used in following companies and cannot be deactivated.</value>
+  </data>
+  <data name="LoadingLocalization" xml:space="preserve">
+    <value>Loading Missing Localization # out of ##</value>
+  </data>
+  <data name="EnterMandatoryValues" xml:space="preserve">
+    <value>Enter Mandatory Values</value>
+  </data>
+  <data name="ClearFilters" xml:space="preserve">
+    <value>Clear Filters</value>
+  </data>
+  <data name="ShowHiddenColumns" xml:space="preserve">
+    <value>Show Hidden Columns</value>
+  </data>
+  <data name="ApprovalStatus" xml:space="preserve">
+    <value>Approval Status</value>
+  </data>
+  <data name="ModifyDate" xml:space="preserve">
+    <value>Last Modification Date</value>
+  </data>
+  <data name="ModifyUser" xml:space="preserve">
+    <value>Modified by</value>
+  </data>
+  <data name="NewSubstitution" xml:space="preserve">
+    <value>New Substitution</value>
+  </data>
+  <data name="AllowSubsToTakeOver" xml:space="preserve">
+    <value>Allow Substitutee to Take Over Existing Requests waiting for Substituted's processing</value>
+  </data>
+  <data name="RequestTransfer" xml:space="preserve">
+    <value>Request Transfer</value>
+  </data>
+  <data name="AllowSubsToTakeOverShort" xml:space="preserve">
+    <value>Allow to Take Over</value>
+  </data>
+  <data name="SubstApprovalConfirmation" xml:space="preserve">
+    <value>Are you sure to approve Substitution '{0}' ?</value>
+  </data>
+  <data name="SubstRejectConfirmation" xml:space="preserve">
+    <value>Are you sure to reject Substitution '{0}' ?</value>
+  </data>
+  <data name="NotAuthorizedPerformAction" xml:space="preserve">
+    <value>You are not authorized to performs this action.</value>
+  </data>
+  <data name="UserCannotBeDeactivatedAppMan" xml:space="preserve">
+    <value>User {0} cannot be deactivated because he/she is set as Approval Manager for some active commodities. Replace the approval manager for all of active commodities and you can deactivate the user then.</value>
+  </data>
+  <data name="UserCannotBeDeactivatedOrderer" xml:space="preserve">
+    <value>User {0} cannot be deactivated because he/she is set as Orderer for some active commodities. Replace the orderer for all of active commodities and you can deactivate the user then.</value>
+  </data>
+  <data name="UserCannotBeDeletedAppMan" xml:space="preserve">
+    <value>User {0} cannot be deleted because he/she is set as Approval Manager for some active commodities. Replace the approval manager for all of active commodities and you can delete the user then.</value>
+  </data>
+  <data name="UserCannotBeDeletedOrderer" xml:space="preserve">
+    <value>User {0} cannot be deleted because he/she is set as Orderer for some active commodities. Replace the orderer for all of active commodities and you can delete the user then.</value>
+  </data>
+  <data name="MissingMandatoryValue" xml:space="preserve">
+    <value>Missing Mandatory Value</value>
+  </data>
+  <data name="RequestItem" xml:space="preserve">
+    <value>Request Item</value>
+  </data>
+  <data name="RequestItems" xml:space="preserve">
+    <value>Request Items</value>
+  </data>
+  <data name="UnitOfMeasurement" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="Missing" xml:space="preserve">
+    <value>Missing</value>
+  </data>
+  <data name="DragDropNotSupported" xml:space="preserve">
+    <value>File Drag &amp; Drop is not supported for this browser</value>
+  </data>
+  <data name="SelectAttachment" xml:space="preserve">
+    <value>You can click here and select attachment</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Deactivate</value>
+  </data>
+  <data name="ManagerSubstitutionDetail" xml:space="preserve">
+    <value>Manager Substitution Detail</value>
+  </data>
+  <data name="MinDate" xml:space="preserve">
+    <value>Date must be greater than '{0}'</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="SubstDeactivateConfirm" xml:space="preserve">
+    <value>Are you sure to deactivate the substitute ?</value>
+  </data>
+  <data name="MailSubstAppRequestBody" xml:space="preserve">
+    <value>User {0} requests you to approve substitution of {1}</value>
+  </data>
+  <data name="MailSubstAppRequestSubject" xml:space="preserve">
+    <value>User Substitution - Approval Request</value>
+  </data>
+  <data name="PrivacyCentre" xml:space="preserve">
+    <value>Visible for my Centre</value>
+  </data>
+  <data name="PrivacyPrivate" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="PrivacyPublic" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="OrderAllowed" xml:space="preserve">
+    <value>Order is allowed</value>
+  </data>
+  <data name="CentreScope" xml:space="preserve">
+    <value>Centre</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="RequestVisibility" xml:space="preserve">
+    <value>Visibility</value>
+  </data>
+  <data name="SubstitutionFor" xml:space="preserve">
+    <value>Substitution for</value>
+  </data>
+  <data name="ApproveMen" xml:space="preserve">
+    <value>Approval Managers</value>
+  </data>
+  <data name="ScrollBottom" xml:space="preserve">
+    <value>Scroll Bottom</value>
+  </data>
+  <data name="ScrollTop" xml:space="preserve">
+    <value>Scroll Top</value>
+  </data>
+  <data name="SelectCentre" xml:space="preserve">
+    <value>Select Centre</value>
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value>Delivery Date</value>
+  </data>
+  <data name="FileSizeOverLimit" xml:space="preserve">
+    <value>File {0} size {1} exceeded the maximum size {2}. The file cannot be affected.</value>
+  </data>
+  <data name="SelectAddress" xml:space="preserve">
+    <value>Select Address</value>
+  </data>
+  <data name="ApprovalIsNeeded" xml:space="preserve">
+    <value>Approval Is Needed</value>
+  </data>
+  <data name="ApprovalNotNeeded" xml:space="preserve">
+    <value>Without Approval</value>
+  </data>
+  <data name="OrderIsNeeded" xml:space="preserve">
+    <value>Order Is Needed</value>
+  </data>
+  <data name="OrderNotNeeded" xml:space="preserve">
+    <value>Without Order</value>
+  </data>
+  <data name="Revert" xml:space="preserve">
+    <value>Revert</value>
+  </data>
+  <data name="YouAreNotAuthorizedToDisplayRequest" xml:space="preserve">
+    <value>You are not authorized to display request.</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchRequests" xml:space="preserve">
+    <value>Search Requests</value>
+  </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>Search Text</value>
+  </data>
+  <data name="EnterMin2Characters" xml:space="preserve">
+    <value>Enter at least 2 characters</value>
+  </data>
+  <data name="RevertRequestConfirm" xml:space="preserve">
+    <value>Are you sure to Revert request?</value>
+  </data>
+  <data name="RequestCannotBeReverted" xml:space="preserve">
+    <value>Request cannot be reverted</value>
+  </data>
+  <data name="RequestWasReverted" xml:space="preserve">
+    <value>Request was reverted</value>
+  </data>
+  <data name="RemindAppMan" xml:space="preserve">
+    <value>Remind Approve man</value>
+  </data>
+  <data name="RemindOrderer" xml:space="preserve">
+    <value>Remind Orderer</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="ActivateConfirm" xml:space="preserve">
+    <value>Are you sure do Activate the request ?</value>
+  </data>
+  <data name="AccessRequestWasSent" xml:space="preserve">
+    <value>Access request was sent.</value>
+  </data>
+  <data name="AskAcessRequestConfirm" xml:space="preserve">
+    <value>Are you sure to ask for access to the request?</value>
+  </data>
+  <data name="AskForRequestAccess" xml:space="preserve">
+    <value>Ask owner for access to Request</value>
+  </data>
+  <data name="RequestOwner" xml:space="preserve">
+    <value>Request Owner</value>
+  </data>
+  <data name="SendOrder" xml:space="preserve">
+    <value>Send Order</value>
+  </data>
+  <data name="FridayShort" xml:space="preserve">
+    <value>Fr</value>
+  </data>
+  <data name="MondayShort" xml:space="preserve">
+    <value>Mo</value>
+  </data>
+  <data name="SaturdayShort" xml:space="preserve">
+    <value>Sa</value>
+  </data>
+  <data name="SundayShort" xml:space="preserve">
+    <value>Su</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="ThursdayShort" xml:space="preserve">
+    <value>Th</value>
+  </data>
+  <data name="TuesdayShort" xml:space="preserve">
+    <value>Tu</value>
+  </data>
+  <data name="WednesdayShort" xml:space="preserve">
+    <value>We</value>
+  </data>
+  <data name="DeliveryAddress" xml:space="preserve">
+    <value>Delivery Address</value>
+  </data>
+  <data name="EnterEMail" xml:space="preserve">
+    <value>Enter eMail Address</value>
+  </data>
+  <data name="ColumnsDisplaying" xml:space="preserve">
+    <value>Columns Displaying</value>
+  </data>
+  <data name="DeSelectAll" xml:space="preserve">
+    <value>Deselect All</value>
+  </data>
+  <data name="DeleteSuppliereContactConfirm" xml:space="preserve">
+    <value>Are you sure to delete contact of '{0}' ?</value>
+  </data>
+</root>

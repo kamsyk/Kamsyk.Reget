@@ -1,0 +1,17 @@
+﻿
+<div ng-mouseover="rowStyle={'background-color': (grid.appScope.isNewRowActive() == false) ? '#76BED6' : '#BFDAE3'};" ng-mouseleave="rowStyle={}" ng-style="selectedStyle={'background-color': (row.isSelected) ? '#379DBF' : ''}" style="width:100%;">
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow"
+         class="reget-disabled"
+         style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+
+</div>

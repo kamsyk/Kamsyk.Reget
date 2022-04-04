@@ -1,0 +1,114 @@
+﻿var app = angular.module('RegetAppRequest', ['ngMaterial', 'ngMessages', 'ui.grid', 'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ui.grid.moveColumns', 'ui.grid.edit', 'RegetAppGridService', 'RegetCommonService']);
+
+app.directive("formfieldreadonly", function () {
+    return {
+        scope: {
+            
+        },
+        templateUrl: GetRegetRootUrl() + 'Content/Html/FieldForm/FormFieldReadOnlyText.html'
+
+    };
+});
+
+app.controller('RequestController', function ($scope, $compile, $http, $mdToast, $q, $filter, $element, $mdDialog, $timeout, uiGridConstants, i18nService, regetgridservice, regetcommonservice) {
+    $scope.Request = null;
+    $scope.IsError = false;
+    $scope.IsRequestLoaded = false;
+    $scope.SelectedCentreId = null;
+    $scope.CurrentCentreGroup = null;
+    $scope.CurrentCgId = -1;
+
+    $scope.WarningText = $("#WarningText").val();
+    $scope.ErrMsg = $("#ErrMsgText").val();
+    $scope.CloseText = $("#CloseText").val();
+    $scope.RequestId = $("#RequestId").val();
+
+    $scope.GetRequest = function (requestId) {
+        
+        ShowLoader($scope.IsError);
+        $http({
+            method: 'GET',
+            url: GetRegetRootUrl() + 'Request/GetRequest?requestId=' + requestId + '&t=' + new Date().getTime(),
+            data: {}
+        }).then(function (response) {
+            try {
+                $scope.Request = response.data;
+                               
+                $scope.HideLoaderWrapper(false);
+            } catch (ex) {
+                $scope.HideLoaderWrapper(false);
+                $scope.DisplayErrorMsg(false);
+            }
+        }, function errorCallback(response) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(false);
+        });
+
+    };
+
+    $scope.GetCommodities = function () {
+        try {
+            var selCentre = $filter("filter")($scope.Request.RequestorCentreList, { id: $scope.SelectedCentreId }, true);
+            if (selCentre === null || selCentre.length === 0) {
+                return;
+            }
+
+            //CurrentCentreGroup = cg[];
+
+            ShowLoaderBoxOnly($scope.IsError);
+            $http({
+                method: 'GET',
+                url: GetRegetRootUrl() + 'Request/GetCentreGroup?cgId=' + requestId + '&t=' + new Date().getTime(),
+                data: {}
+            }).then(function (response) {
+                try {
+                    $scope.Request = response.data;
+
+                    $scope.HideLoaderWrapper(false);
+                } catch (ex) {
+                    $scope.HideLoaderWrapper(false);
+                    $scope.DisplayErrorMsg(false);
+                }
+            }, function errorCallback(response) {
+                $scope.HideLoaderWrapper(true);
+                $scope.DisplayErrorMsg(false);
+            });
+        } catch (e) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(false);
+        }
+    };
+
+    $scope.CentreItemChange = function () {
+        //$scope.SelectedCentreId = item.id;
+        alert($scope.SelectedCentreId);
+    }
+
+    $scope.AddReadOnlyElement = function () {
+        var newElement = $compile("<div formfieldreadonly='n'></div>")($scope)
+        $element.parent().append(newElement);
+    }
+
+    $scope.HideLoaderWrapper = function (isError) {
+        if (isError || ($scope.IsRequestLoaded)) {
+
+            HideLoader();
+        }
+    };
+
+    $scope.DisplayErrorMsg = function (isHideGrid) {
+        
+        if (!$scope.IsError) {
+            regetcommonservice.ShowErrorAlert($scope.WarningText, $scope.ErrMsg, $scope.CloseText);
+        }
+        $scope.IsError = true;
+
+    };
+
+    $scope.LoadData = function () {
+        $scope.GetRequest();
+        $scope.AddReadOnlyElement();
+    };
+
+    $scope.LoadData();
+});

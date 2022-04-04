@@ -1,0 +1,91 @@
+﻿/*Angular style overwrite*/
+
+.md-dialog-container {
+  z-index: 2000!important;
+}
+
+.md-autocomplete-suggestions-container li .highlight {
+    color:#1c8fd4!important;
+}
+
+input, select, textarea {
+    max-width: none!important;
+}
+
+/*.md-dialog-is-showing {
+    max-height: none;
+}*/
+.md-dialog-container, md-backdrop {
+    position: fixed!important;
+    top: 0!important;
+}
+
+/* -> Date picker*/
+._md-datepicker-floating-label._md-datepicker-has-calendar-icon>label:not(.md-no-float):not(.md-container-ignore){
+    left: 0px;
+    width: 100%;
+}
+
+.md-icon-button+.md-datepicker-input-container{
+    margin-left: 0px;
+}
+
+.md-datepicker-input-container{
+    max-width:120px;
+}
+
+/*.md-datepicker-button.md-icon-button {
+  display: none;
+}*/
+
+md-input-container .md-input{
+    /*width: 200px;*/
+}
+
+.md-errors-spacer { display: none; }
+
+.md-datepicker-expand-triangle {
+    background:#fff url('../Images/Controll/DatePickerCalendar.png')!important;
+    border: 0px;
+    width:18px;
+    height:21px;
+}
+
+.md-datetimepicker-expand-triangle {
+    background:#fff url('../Images/Controll/DateTimePickerCalendar.png')!important;
+    border: 0px;
+    width:18px;
+    height:21px;
+}
+
+.md-datepicker-triangle-button {
+    margin-right: 9px!important;
+}
+
+.md-datepicker-input {
+    /*width:25px!important;*/
+}
+
+/*.input-fields {
+    width: 100%;
+}*/
+/* Date Picker <- */
+
+/* When the input is not focused */
+/*md-input-container label {
+  color: #333!important;
+}*/
+
+/* When the input is focused */
+/*md-input-container.md-input-focused label {
+  color: blue!important;
+}*/
+
+/*md-input-container label:not(.md-container-ignore) {
+    
+    margin-bottom: 5px; error text for mandatory itputs
+}*/
+
+md-input-container:not(.md-input-invalid).md-input-has-value.md-default-theme label, md-input-container:not(.md-input-invalid).md-input-has-value label {
+    color: #333;
+}

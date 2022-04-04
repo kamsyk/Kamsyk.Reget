@@ -1,0 +1,45 @@
+﻿<!--div ng-style="{ 'cursor': row.cursor }"
+     ng-repeat="col in renderedColumns"
+     ng-class="{customrow: row.getProperty('included')  == false}"
+     class="ngCell {{col.cellClass}} {{col.colIndex()}} " ng-cell>
+</div>-->
+<!--<div 
+     ng-click="grid.appScope.fnOne(row)" 
+     ng-repeat="col in colContainer.renderedColumns track by col.colDef.name"
+      class="ui-grid-cell reget-grid-row" ui-grid-cell>
+
+</div>-->
+
+<!--<div ng-mouseover="rowStyle={'background-color': (rowRenderIndex%2 == 1) ? '#76BED6' : '#BFDAE3'};" ng-mouseleave="rowStyle={}" ng-style="selectedStyle={'background-color': (row.isSelected) ? '#379DBF' : ''}">
+    <div ng-style="(!row.isSelected) ? rowStyle : selectedStyle" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.uid" ui-grid-one-bind-id-grid="rowRenderIndex + '-' + col.uid + '-cell'"
+         class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }" role="{{col.isRowHeader ? 'rowheader' : 'gridcell'}}" ui-grid-cell>
+    </div>
+</div>--> 
+
+<div ng-if="grid.appScope.NewRowIndex==null">
+    <div ng-click="grid.appScope.CellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow" >
+        <input type="text" style="height:30px;padding-left:5px;" ng-model="MODEL_COL_FIELD" aria-label="{{COL_FIELD}}" class="reget-grid-edit-cell" />
+    </div>    
+</div>
+<div ng-if="grid.appScope.NewRowIndex!=null">
+    <div ng-click="grid.appScope.CellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow">
+        <div ng-click="grid.appScope.CellClicked(row,col)"
+             ng-if="row.entity.editrow" style="height:30px;display: table; width:100%;">
+            <div class="reget-disabled" style="vertical-align: middle;display:table-cell;padding-left:5px;">
+                {{COL_FIELD}}
+            </div>
+        </div>
+    </div>  
+</div>

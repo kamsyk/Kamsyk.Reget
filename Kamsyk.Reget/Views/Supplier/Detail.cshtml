@@ -1,0 +1,93 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var suppController = ViewContext.Controller as SupplierController;
+}
+
+
+<form name="frmSupplierDetail" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="SupplierDetailController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+        <div class="reget-panel-box-pad">
+            <div>
+                @{
+                    MdLabel mdLblName = new MdLabel();
+                    mdLblName.FormName = "frmSupplierDetail";
+                    mdLblName.NgModel = "angCtrl.supplier.supp_name";
+                    mdLblName.LabelLeft = RequestResource.Name;
+                    mdLblName.LabelLeftCssClass = "reget-ang-lbl-control-left-100";
+                    @Html.Raw(mdLblName.RenderControlHtml())
+                }
+            </div>
+            <div>
+                @{
+                    MdLabel mdLblId = new MdLabel();
+                    mdLblId.FormName = "frmSupplierDetail";
+                    mdLblId.NgModel = "angCtrl.supplier.supplier_id";
+                    mdLblId.LabelLeft = RequestResource.ICO;
+                    mdLblId.LabelLeftCssClass = "reget-ang-lbl-control-left-100";
+                    @Html.Raw(mdLblId.RenderControlHtml())
+                }
+            </div>
+            <div style="margin-bottom:30px;">
+                <table style="width: 100%;">
+                    <tbody>
+                        <tr>
+                            <td style="vertical-align: top;padding-right:5px;" class="hidden-xs"><label class="control-label hidden-xs reget-ang-lbl-control-left-100" id="lblOrderer">@RequestResource.Address:</label></td>
+                            <td style="width: 100%;vertical-align: top;">
+                                <div class="reget-ang-div-container-readonly">
+                                    <md-input-container class="reget-ang-md-input-container  md-input-has-value" id="ctAddress" style="width: 100%;">
+                                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width: 150px;margin-top:15px;">@RequestResource.Address</label>
+                                        @{
+                                            <div class="reget-intput-list" ng-if="!angCtrl.isNewRequestOrDraft">
+                                                <div>{{angCtrl.supplier.street_part1}}</div>
+                                                <div>{{angCtrl.supplier.city}}</div>
+                                                <div>{{angCtrl.supplier.zip}}</div>
+                                                <div>{{angCtrl.supplier.country}}</div>
+                                            </div>
+                                        }
+                                    </md-input-container>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            @{
+                UiGrid uiGrid = new UiGrid(suppController.GetRootUrl());
+                uiGrid.RootTagId = "grdMail";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.ContactPerson;
+                if (Request.Params["id"] != null) {
+                    int suppId = Convert.ToInt32(Request.Params["id"]);
+                    if (suppController.IsUserAuthorizedToEdit(suppId)) {
+                        uiGrid.AddNewText = RequestResource.Add;
+                    } else {
+                        uiGrid.AddNewText = null;
+                    }
+                } else {
+                    uiGrid.AddNewText = null;
+                }
+
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+        </div>
+
+        @Html.Partial("_LocalizationTextBasic")
+
+        <div style="display:none;">
+            <input id="NotAuthorizedPerformActionText" value="@RequestResource.NotAuthorizedPerformAction" />
+            <input id="FirstNameText" value="@RequestResource.Firstname" />
+            <input id="SurnameText" value="@RequestResource.Surname" />
+            <input id="MailText" value="@RequestResource.Mail*" />
+            <input id="PhoneText" value="@RequestResource.Phone" />
+            <input id="DeleteSuppliereContactConfirmText" value="@RequestResource.DeleteSuppliereContactConfirm" />
+            @*<input id="DuplicityMailText" value="@RequestResource.DuplicityMail" />*@
+        </div>
+    </div>
+</form>

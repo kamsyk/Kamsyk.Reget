@@ -1,0 +1,28 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+
+@{
+    var baseController = ViewContext.Controller as BaseController;
+}
+
+@functions {
+    public string GetGridLangCode() {
+        var baseController = ViewContext.Controller as BaseController;
+
+        return baseController.GetGridLangCode();
+
+    }
+}
+
+<div style="display:none;">
+    <input id="GridLangCode" value="@GetGridLangCode()" />
+
+    <input id="RowMissingIdFieldText" value="@RequestResource.RowMissingIdField" />
+    <input id="DateTimePickerFormatMoment" value="@baseController.DateTimePickerFormatMoment" />
+    <input id="DatePickerFormatMoment" value="@baseController.DatePickerFormatMoment" />
+
+    <input id="MissingMandatoryText" value="@RequestResource.MandatoryValueIsMissing" />
+    <input id="DateTimePickerFormatText" value="@String.Format(RequestResource.EnterDateInFormat, baseController.DateTimePickerFormat, DateTime.Now.ToString(baseController.DateTimePickerFormat))" />
+
+</div>

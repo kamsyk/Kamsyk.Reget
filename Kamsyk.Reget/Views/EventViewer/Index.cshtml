@@ -1,0 +1,56 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var eventViewerController = ViewContext.Controller as EventViewerController;
+
+}
+
+@functions {
+    public string GetGridLangCode() {
+        var eventViewerController = ViewContext.Controller as EventViewerController;
+
+        return eventViewerController.GetGridLangCode();
+
+    }
+}
+
+<form name="frmEvent" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="EventViewerController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+
+
+        <div style="margin-bottom:15px;">
+            @{
+                UiGrid uiGrid = new UiGrid(eventViewerController.GetRootUrl());
+                uiGrid.RootTagId = "grdEventViewer";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.RequestEvents;
+                //uiGrid.AddNewText = RequestResource.AddCentre;
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+
+
+            @*@Html.Raw(eventViewerController.GetDataGridTs(
+                "grdEventViewer",
+                "angCtrl",
+                RequestResource.AddCentre,
+                RequestResource.AddCentre))*@
+
+
+        </div>
+    </div>
+
+    <div style="display:none;">
+        <input id="WarningText" value="@RequestResource.Warning" />
+        <input id="ErrMsgText" value="@RequestResource.Error" />
+        <input id="CloseText" value="@RequestResource.Close" />
+        <input id="NoDataIsAvailableText" value="@RequestResource.NoDataIsAvailable" />
+
+        <input id="GridLangCode" value="@GetGridLangCode()" />
+    </div>
+
+</form>

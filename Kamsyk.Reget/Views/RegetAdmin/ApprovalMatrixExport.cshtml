@@ -1,0 +1,66 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var regetAdminController = ViewContext.Controller as RegetAdminController;
+}
+
+<form name="frmAppMatrixExport" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="AppMatrixExportController as angCtrl" layout="column" ng-cloak>
+        @*<span class="reget-header">@RequestResource.ExportApprovalMatrix</span>*@
+        @Html.Partial("_NavigationBar")
+
+        <div class="reget-panel-box" style="padding:15px;vertical-align:bottom;">
+            <div style="display:inline-block;vertical-align:bottom;float:left;margin-top:4px;margin-bottom:25px;">
+                @{
+                    MdSelect mdCmbCompany = new MdSelect();
+                    mdCmbCompany.FormName = "frmAppMatrixExport";
+                    mdCmbCompany.AgSourceList = "angCtrl.companies";
+                    mdCmbCompany.AgModel = "angCtrl.selectedCompanyId";
+                    mdCmbCompany.AgIdItem = "company_id";
+                    mdCmbCompany.AgTextItem = "country_code";
+                    mdCmbCompany.MandatoryErrMsg = RequestResource.SelectCompany;
+                    //mdCmbCompany.AgSelectedText = "angCtrl.selectedOfficeName";
+                    //mdCmbCompany.AgIsReadOnly = "!angCtrl.isCgPropertyAdmin";
+                    mdCmbCompany.RootTagId = "UserCompanies";
+                    //mdCmbCompany.OnSelectFunct = "angCtrl.setOffice()";
+                    mdCmbCompany.LabelLeft = RequestResource.Company;
+                    mdCmbCompany.LabelLeftCssClass = "reget-ang-lbl-control-left-nowidth";
+                    mdCmbCompany.IsMandatory = true;
+                }
+                @Html.Raw(mdCmbCompany.RenderControlHtml())
+
+
+            </div>
+
+            <hr class="reget-btn-hr" />
+
+            <div>
+                <md-button id="btnExportExcel"
+                           class="btn btn-primary reget-btn reget-btn-blue reget-btn-excel-blue-big"
+                           aria-label="ExportToExcel"
+                           style="margin-left:0px;margin-top:0px;"
+                           ng-click="angCtrl.exportToExcel()">
+                    @RequestResource.ExportToExcel
+                </md-button>
+            </div>
+
+            @*<div style="float:left;margin-top:7px;">
+                <input id="btnExportExcel"
+                       type="button"
+                       class="btn btn-primary reget-btn-excel"
+                       ng-hide="angCtrl.selectedCompanyId == null"
+                       value="@RequestResource.ExportToExcel"
+                       ng-click="angCtrl.exportToExcel()" />
+            </div>*@
+        </div>
+
+        @Html.Partial("_LocalizationTextBasic")
+
+        <div style="display:none;">
+            <input id="LoadingDataText" value="@RequestResource.LoadingData" />
+            <input id="EnterMandatoryValuesText" value="@RequestResource.EnterMandatoryValues" />
+        </div>
+    </div>
+</form>

@@ -1,0 +1,99 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.Model.Common;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var searchController = ViewContext.Controller as SearchController;
+
+    var strSearchItem = "<div>" +
+                "<span md-highlight-text=\"angCtrl.searchsearch\" md-highlight-flags=\"i\" style=\"vertical-align: middle; margin-left:5px;\">{{item.found_text_short}}</span>" +
+             "</div>";
+
+    string errMsgId = "agSearch" + BaseController.ANG_ERR_MSG_MANDATORY;
+}
+
+<form name="frmSearch" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="SearchController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div class="reget-panel-box-pad" id="divRequestPlaceholder" style="padding-left:30px;padding-right:30px;">
+            @{
+                MdAutocomplete autoSearch = new MdAutocomplete();
+                autoSearch.RootTagId = "agSearch";
+                autoSearch.IsMandatory = true;
+                autoSearch.MdSelectItem = "angCtrl.strSelectedSearch";
+                autoSearch.MdSearchText = "angCtrl.searchsearch";
+                autoSearch.OnSelectedItemChange = "angCtrl.searchSelectedItemChange(item, 'agSearch" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                autoSearch.MdItems = "item in angCtrl.searchText(angCtrl.searchsearch)";
+                autoSearch.OnBlur = "angCtrl.searchOnBlur('" + errMsgId + "')";
+                autoSearch.MdItemText = "item.found_text_short";
+                autoSearch.Placeholder = RequestResource.SearchText;
+                autoSearch.MdInputId = "txtSearch";
+                autoSearch.MdItemTemplate = strSearchItem;
+                autoSearch.CssClass = "reget-dropdown-auto";
+                autoSearch.ContainerClass = "reget-ang-div-container-no-margin";
+                autoSearch.MandatoryErrMsg = RequestResource.EnterMin2Characters;
+                autoSearch.MinLength = 2;
+
+            }
+
+            <table style="width:100%;">
+                <tr>
+                    <td class="search-left-td">
+                        @Html.Raw(autoSearch.RenderControlHtml())
+                    </td>
+
+                    <td class="search-right-td" style="vertical-align: top;padding-top:2px;">
+                        <md-button class="btn btn-primary reget-btn reget-btn-blue reget-btn-search"
+                                   aria-label="Search"
+                                   style="margin-top:0px!important;margin-bottom:0px!important;"
+                                   ng-click="angCtrl.displayResults('@errMsgId')">
+                            @RequestResource.Search
+                        </md-button>
+                    </td>
+
+                </tr>
+            </table>
+            @{ 
+                MdCheckBox mdCkMyRequestsOnly = new MdCheckBox(searchController.GetRootUrl());
+                mdCkMyRequestsOnly.RootTagId = "ckbMyRequestsOnly";
+                mdCkMyRequestsOnly.CkbText = RequestResource.MyRequestsOnly;
+                mdCkMyRequestsOnly.AgIsChecked = "angCtrl.isMyRequestsOnly";
+                //mdCkMyRequestsOnly.AgIsReadOnly = "angCtrl.isReadOnly";
+                mdCkMyRequestsOnly.OnClick = "angCtrl.toggleMyRequestsOnly();";
+            }
+            
+            <div style="margin-top:20px;margin-bottom:20px;">
+                @Html.Raw(mdCkMyRequestsOnly.RenderControlHtml())
+            </div>
+           
+            <div style="clear:both;"></div>
+
+            <div ng-show="angCtrl.searchResults != null && angCtrl.searchResults.length > 0">
+                
+                <div ng-repeat="searchResult in angCtrl.searchResults">
+                    <hr />
+                    <div style="font-size:1.3em;">
+                        <a href="@searchController.GetRootUrl()Request?id={{searchResult.request_id}}" target="_blank">{{searchResult.request_nr}}</a>
+                    </div>
+                    <div style="max-height:120px;overflow-y:auto;" ng-bind-html="angCtrl.getHtmlText(searchResult.found_text)">
+
+                    </div>
+                </div>
+
+                <hr />
+
+                <div style="text-align:center;padding-top:20px;padding-bottom:20px;">
+                    <span ng-repeat="pageNr in angCtrl.pageNumbers" style="padding-right:10px;font-size:1.3em;">
+                        <a href="#" ng-style="{'text-decoration': (pageNr==angCtrl.currentPage) ? 'underline' : 'none'}" ng-click="angCtrl.displayPage(pageNr);">{{angCtrl.getLinkText(pageNr)}}</a>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        @Html.Partial("_LocalizationTextBasic")
+
+    </div>
+</form>

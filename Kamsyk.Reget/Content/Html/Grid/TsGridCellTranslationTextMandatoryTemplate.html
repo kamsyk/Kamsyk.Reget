@@ -1,0 +1,35 @@
+﻿<div>
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table;padding-left:5px;width:100%;">
+            <div style="vertical-align: middle;display:table-cell;width:100%;">
+                {{COL_FIELD}}
+            </div>
+            <div>
+                <md-button class="btn btn-primary reget-btn-translate reget-btn-blue"
+                           aria-label="Translate"
+                           style="margin-right:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;padding:0px;width:20px;min-width:1px;float:right;min-height:30px;"
+                           ng-click="grid.appScope.openTranslationDialog(row, col, $event)">
+                    <md-tooltip>{{grid.appScope.locTranslationText}}</md-tooltip>
+                </md-button>
+            </div>
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow">
+        <div style="vertical-align: middle;display:table;padding-left:5px;width:100%;">
+            <div style="vertical-align: middle;display:table-cell;width:100%;">
+                <input type="text" style="height:30px;padding-left:5px;" ng-model="MODEL_COL_FIELD" aria-label="{{COL_FIELD}}" class="reget-grid-edit-cell-mandatory" />
+            </div>
+            <div>
+                <md-button id="btnTranslate"
+                           class="btn btn-primary reget-btn-translate reget-btn-blue"
+                           aria-label="Translate"
+                           style="margin-right:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;padding:0px;width:20px;min-width:1px;float:right;min-height:30px;"
+                           ng-click="grid.appScope.openTranslationDialog(row, col, $event)">
+                    <md-tooltip>{{grid.appScope.locTranslationText}}</md-tooltip>
+                </md-button>
+            </div>
+        </div>
+        
+    </div> 
+</div>

@@ -1,0 +1,870 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualPrice" xml:space="preserve">
+    <value>Pret actual</value>
+  </data>
+  <data name="AddInvoice" xml:space="preserve">
+    <value>Adauga factura</value>
+  </data>
+  <data name="AddLimit" xml:space="preserve">
+    <value>adauga limita</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>adresa</value>
+  </data>
+  <data name="AddToShopBasket" xml:space="preserve">
+    <value>adauga in cosul de cumparaturi</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>toate</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>suma</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>aprobare</value>
+  </data>
+  <data name="ApprovalMatrix" xml:space="preserve">
+    <value>matricea nivelelor de aprobare</value>
+  </data>
+  <data name="ApprovalRequestMail" xml:space="preserve">
+    <value>cerere de aprobare</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>aprovare</value>
+  </data>
+  <data name="ApproveConfirm" xml:space="preserve">
+    <value>sunteti sigura ca doriti aprobarea cererii</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>aprobat</value>
+  </data>
+  <data name="ApproveMan" xml:space="preserve">
+    <value>manager</value>
+  </data>
+  <data name="ApproverRemark" xml:space="preserve">
+    <value>comentariile managerului</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Aprilie</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>domeniu</value>
+  </data>
+  <data name="Attachements" xml:space="preserve">
+    <value>atasamente</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>august</value>
+  </data>
+  <data name="AxisX" xml:space="preserve">
+    <value>axa X</value>
+  </data>
+  <data name="AxisY" xml:space="preserve">
+    <value>axa Y</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>calendar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>anulare</value>
+  </data>
+  <data name="CancelChanges" xml:space="preserve">
+    <value>modificari</value>
+  </data>
+  <data name="CancelConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti anularea cererii</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>anulat</value>
+  </data>
+  <data name="CanceledByOrderer" xml:space="preserve">
+    <value>anulat de catre achizitor</value>
+  </data>
+  <data name="CanceledByRequestor" xml:space="preserve">
+    <value>anulat de catre solicitant</value>
+  </data>
+  <data name="CanceledConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti anularea cererii</value>
+  </data>
+  <data name="CatalogAdmin" xml:space="preserve">
+    <value>catalog de administrare</value>
+  </data>
+  <data name="Centre" xml:space="preserve">
+    <value>centru</value>
+  </data>
+  <data name="Centres" xml:space="preserve">
+    <value>centre</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>modificat de</value>
+  </data>
+  <data name="ChangedDate" xml:space="preserve">
+    <value>data modificarii</value>
+  </data>
+  <data name="ChangesWereSaved" xml:space="preserve">
+    <value>modificarea a fost salvata cu succes</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>oras</value>
+  </data>
+  <data name="ClickOnRequest" xml:space="preserve">
+    <value>click pe link-ul solicitarii si dua ce cererea se deschide aprobati sau respingeti cererea de cumparare sau transmiteti inapoi solicitatea la solicitant</value>
+  </data>
+  <data name="ClickOnRequestOrder" xml:space="preserve">
+    <value>click pe link-ul solicitarii si dua ce cererea se deschide aprobati sau respingeti cererea de cumparare sau transmiteti inapoi solicitatea la solicitant</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>inchideti</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti inchiderea cererii</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>inchis</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>contact</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>persoana de contact</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>tara</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>moneda</value>
+  </data>
+  <data name="CurrentUser" xml:space="preserve">
+    <value>utilizator curent</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>zi</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>decembrie</value>
+  </data>
+  <data name="DefaultFilter" xml:space="preserve">
+    <value>filtru</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>stergere</value>
+  </data>
+  <data name="DeleteAttConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti stergerea atasamantului</value>
+  </data>
+  <data name="Delivered" xml:space="preserve">
+    <value>transmis</value>
+  </data>
+  <data name="DeliveredMail" xml:space="preserve">
+    <value>e-mail transmis</value>
+  </data>
+  <data name="DeliveriedDate" xml:space="preserve">
+    <value>data de transmitere</value>
+  </data>
+  <data name="DIC" xml:space="preserve">
+    <value>DIC</value>
+  </data>
+  <data name="DisplayAllSuppliers" xml:space="preserve">
+    <value>afiseaza toti furnizorii</value>
+  </data>
+  <data name="DisplayHistory" xml:space="preserve">
+    <value>afiseaza istoric</value>
+  </data>
+  <data name="DisplayPrice" xml:space="preserve">
+    <value>afiseaza pretul estimativ </value>
+  </data>
+  <data name="DisplayPurchseGroup" xml:space="preserve">
+    <value>afiseaza grupul de cumparari</value>
+  </data>
+  <data name="DisplayRequests" xml:space="preserve">
+    <value>afiseaza cererile de cumparare</value>
+  </data>
+  <data name="DisplayStatistics" xml:space="preserve">
+    <value>afiseaza date statistice</value>
+  </data>
+  <data name="DisplayTop" xml:space="preserve">
+    <value>afiseaza top</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>documente</value>
+  </data>
+  <data name="DoNotReplyMail" xml:space="preserve">
+    <value>nu raspundeti la acest e-mail a fost generat automat</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>proiect</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>editare</value>
+  </data>
+  <data name="EndCatalogAdminMode" xml:space="preserve">
+    <value>editare catalog</value>
+  </data>
+  <data name="EndUserDocumentation" xml:space="preserve">
+    <value>documente utilizator final</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>a aparul o eroarea in alicatie</value>
+  </data>
+  <data name="EstimatedPrice" xml:space="preserve">
+    <value>pret estimativ</value>
+  </data>
+  <data name="EstPrice" xml:space="preserve">
+    <value>pret estimativ</value>
+  </data>
+  <data name="ExportApprovalMatrix" xml:space="preserve">
+    <value>export matricea nivelelor de aprobari</value>
+  </data>
+  <data name="ExportApprovalMatrixtoExcel" xml:space="preserve">
+    <value>export matricea nivelelor de aprobari in Excel</value>
+  </data>
+  <data name="ExportPriceChangeConfirm" xml:space="preserve">
+    <value>export modificarea preturilor</value>
+  </data>
+  <data name="ExportPriceToOrder" xml:space="preserve">
+    <value>export preturi in ordine</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>export in excel</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>fax</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Februarie</value>
+  </data>
+  <data name="FillFixValues" xml:space="preserve">
+    <value>inserati valori in campurile marcate</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>filtru</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>vineri</value>
+  </data>
+  <data name="FromTo_From" xml:space="preserve">
+    <value>de la</value>
+  </data>
+  <data name="FromTo_To" xml:space="preserve">
+    <value>catre</value>
+  </data>
+  <data name="GeneratedBy" xml:space="preserve">
+    <value>sistem intern de cereri</value>
+  </data>
+  <data name="GenerateOrderConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti generarea cererii</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>oras</value>
+  </data>
+  <data name="ICO" xml:space="preserve">
+    <value>ICO</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="InProcessRequestList" xml:space="preserve">
+    <value>cererea este in precesare</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>inserare</value>
+  </data>
+  <data name="InSum" xml:space="preserve">
+    <value>suma</value>
+  </data>
+  <data name="InternalRequestList" xml:space="preserve">
+    <value>Lista cererilor interne</value>
+  </data>
+  <data name="InvoiceMissing" xml:space="preserve">
+    <value>cererea nu poate fi inchisa; lipseste factura</value>
+  </data>
+  <data name="InvoiceNr" xml:space="preserve">
+    <value>factura numarul</value>
+  </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>data de emitere</value>
+  </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>cantitate</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>ianuarie</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>iulie</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>iunie</value>
+  </data>
+  <data name="LeadTime" xml:space="preserve">
+    <value>timpul de livrare</value>
+  </data>
+  <data name="Less" xml:space="preserve">
+    <value>mai putin</value>
+  </data>
+  <data name="LowerLimit" xml:space="preserve">
+    <value>limita de jos</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>mail</value>
+  </data>
+  <data name="MailAutomaticGenerate" xml:space="preserve">
+    <value>acest e-mail a fost generat automat</value>
+  </data>
+  <data name="MailBodyDelivered" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MailBodyL" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="MailBodyOrder" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="MailBodyRejected" xml:space="preserve">
+    <value>e-mail respins</value>
+  </data>
+  <data name="MailBodySentBack" xml:space="preserve">
+    <value>e-mail transmis inapoi</value>
+  </data>
+  <data name="MailLanguage" xml:space="preserve">
+    <value>limba e-malului</value>
+  </data>
+  <data name="MailLoginInfo" xml:space="preserve">
+    <value>in cazul in care nu va puteti conecta dupa ce v-a aparut numarul cererii introduceti numele utilizatorului in format 'EUOTIS\nume</value>
+  </data>
+  <data name="MailRecipient" xml:space="preserve">
+    <value>destinatar</value>
+  </data>
+  <data name="MailRequestAlreadyApprovedBy" xml:space="preserve">
+    <value>cererea a fost deja aprobata</value>
+  </data>
+  <data name="ManagerSubstitution" xml:space="preserve">
+    <value>manager substitut</value>
+  </data>
+  <data name="MandatoryComboValue" xml:space="preserve">
+    <value>camp obligatoriu valoric</value>
+  </data>
+  <data name="MandatoryTextField" xml:space="preserve">
+    <value>camp obligatoriu text</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>martie</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>mai</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>minut</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>telefon mobil</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>luni</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>luna</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>mai mult</value>
+  </data>
+  <data name="MultiOrdererInfo" xml:space="preserve">
+    <value>cererea va fi tranmisa tuuror achizitorilor</value>
+  </data>
+  <data name="MyRequestsOnly" xml:space="preserve">
+    <value>cererile mele</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>nume</value>
+  </data>
+  <data name="NewInternalRequest" xml:space="preserve">
+    <value>o noua cerere interna</value>
+  </data>
+  <data name="NoAttachmentSelected" xml:space="preserve">
+    <value>nu s-a selectat atasamentul</value>
+  </data>
+  <data name="NoLimit" xml:space="preserve">
+    <value>fara limite</value>
+  </data>
+  <data name="NoRequestMeetsCriterions" xml:space="preserve">
+    <value>cererile nu au criteriile alese</value>
+  </data>
+  <data name="NoSupplierMatchCriterions" xml:space="preserve">
+    <value>nu s-au gasit firnizori</value>
+  </data>
+  <data name="NotAllowedToApprove" xml:space="preserve">
+    <value>nu are dreptul de arobare</value>
+  </data>
+  <data name="NotAllowedUser" xml:space="preserve">
+    <value>utilizatorul nu are dreptul sa foloseasca aplicatia</value>
+  </data>
+  <data name="NotDelivered" xml:space="preserve">
+    <value>nu este livrat</value>
+  </data>
+  <data name="NotDisplayPrice" xml:space="preserve">
+    <value>nu afisa preturile</value>
+  </data>
+  <data name="NotOrdered" xml:space="preserve">
+    <value>nu este comandat</value>
+  </data>
+  <data name="NotRequired" xml:space="preserve">
+    <value> nu este solicitat</value>
+  </data>
+  <data name="NotSavedInvoices" xml:space="preserve">
+    <value>sunt modificari in factura nesalvate; doriti sa continuati?</value>
+  </data>
+  <data name="NotSavedInvoicesCannotClose" xml:space="preserve">
+    <value>sunt midificari nesalvate, factura nu poate fi inchisa</value>
+  </data>
+  <data name="NotSent" xml:space="preserve">
+    <value>nu a fost tranmis</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>noiembrie</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>octombrie</value>
+  </data>
+  <data name="OpenFileTip" xml:space="preserve">
+    <value>in cazul in care fisierul nu se dechide automat dati clik pe acest link</value>
+  </data>
+  <data name="OpenHistoryInfo" xml:space="preserve">
+    <value>click pe aceasta imagine si veti avea istoricul comenzii</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>comanda</value>
+  </data>
+  <data name="OrderConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti sa generati o comanda si sa inchideti cererea?</value>
+  </data>
+  <data name="Ordered" xml:space="preserve">
+    <value>comandat</value>
+  </data>
+  <data name="OrderedConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti modificarea statusului cererii in comandat?</value>
+  </data>
+  <data name="Orderer" xml:space="preserve">
+    <value>achizitor</value>
+  </data>
+  <data name="OrdererAttachment" xml:space="preserve">
+    <value>atasamantul comenzii</value>
+  </data>
+  <data name="OrdererMail" xml:space="preserve">
+    <value>cererea de comanda</value>
+  </data>
+  <data name="OrdererRemark" xml:space="preserve">
+    <value>comentarii comanda</value>
+  </data>
+  <data name="OrdererRequestHandedOverByOrderer" xml:space="preserve">
+    <value>cererea a fost transmisa achizitorului</value>
+  </data>
+  <data name="Orderers" xml:space="preserve">
+    <value>comenzi</value>
+  </data>
+  <data name="OrdererSupplier" xml:space="preserve">
+    <value>comenzi furnizori</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>altele/altii</value>
+  </data>
+  <data name="OtisInternalRequest" xml:space="preserve">
+    <value>cereri interne</value>
+  </data>
+  <data name="OtisItemsCatalog" xml:space="preserve">
+    <value>catalog Otis</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>perioada</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>telefon</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>pret</value>
+  </data>
+  <data name="PriceChangedSendBack" xml:space="preserve">
+    <value>pretul a fost marit; o noua aprobare este solicitata</value>
+  </data>
+  <data name="PriceOverflow" xml:space="preserve">
+    <value>cererea nu poate fi procesata; limita maxima este depasita</value>
+  </data>
+  <data name="ProfylaxNr" xml:space="preserve">
+    <value>ProfylaxNr</value>
+  </data>
+  <data name="PurchaseGroup" xml:space="preserve">
+    <value>grup de bunuri/servicii</value>
+  </data>
+  <data name="PurchMatIncluded" xml:space="preserve">
+    <value>include mijloace fixe</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>respingere</value>
+  </data>
+  <data name="RejectConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti sa resingeti</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>respingere</value>
+  </data>
+  <data name="RejectMail" xml:space="preserve">
+    <value>respingerea e-mailului</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>comentarii</value>
+  </data>
+  <data name="RemoveLimit" xml:space="preserve">
+    <value>modificarea limitei</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>cerere</value>
+  </data>
+  <data name="RequestCanceled" xml:space="preserve">
+    <value>cerere anulata</value>
+  </data>
+  <data name="RequestCount" xml:space="preserve">
+    <value>cantitatea cererii</value>
+  </data>
+  <data name="RequestDate" xml:space="preserve">
+    <value>data cererii</value>
+  </data>
+  <data name="RequestForCentre" xml:space="preserve">
+    <value>ceririle pe centrul</value>
+  </data>
+  <data name="RequestHistory" xml:space="preserve">
+    <value>istoricul cererii</value>
+  </data>
+  <data name="RequestNr" xml:space="preserve">
+    <value>cerere numarul</value>
+  </data>
+  <data name="Requestor" xml:space="preserve">
+    <value>solicitant</value>
+  </data>
+  <data name="RequestorAttachment" xml:space="preserve">
+    <value>atasamantul solicitatntului</value>
+  </data>
+  <data name="Requestors" xml:space="preserve">
+    <value>solicitanti</value>
+  </data>
+  <data name="RequestRejected" xml:space="preserve">
+    <value>cerere respinsa</value>
+  </data>
+  <data name="RequestSentBack" xml:space="preserve">
+    <value>cererea a fost respinsapentru a fi rescrisa, complectata</value>
+  </data>
+  <data name="RequestSentForApproval" xml:space="preserve">
+    <value>cererea transmisa spreaprobare</value>
+  </data>
+  <data name="RequestStatus" xml:space="preserve">
+    <value>statusul cererii</value>
+  </data>
+  <data name="RequestText" xml:space="preserve">
+    <value>textul cererii</value>
+  </data>
+  <data name="ReturnRequestTo" xml:space="preserve">
+    <value>returnarea cererii la</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>sambata</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>salvare</value>
+  </data>
+  <data name="SaveAsDraft" xml:space="preserve">
+    <value>salvare ca proiect</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>salvare modificari</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>salvare erori</value>
+  </data>
+  <data name="SearchSupplierTitle" xml:space="preserve">
+    <value>cautare furnizori</value>
+  </data>
+  <data name="SearchSupplierWatermark" xml:space="preserve">
+    <value>nume, ID</value>
+  </data>
+  <data name="SelectApproveMan" xml:space="preserve">
+    <value> &lt;&lt;&lt; selectarea persoanei ce aproba &lt;&lt;&lt;</value>
+  </data>
+  <data name="SelectArea" xml:space="preserve">
+    <value> selectare domeniului</value>
+  </data>
+  <data name="SelectFromList" xml:space="preserve">
+    <value>selactare din lista</value>
+  </data>
+  <data name="SelectOrderer" xml:space="preserve">
+    <value> &lt;&lt;&lt; selectarea comenzii &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectPurchaseGroup" xml:space="preserve">
+    <value> &lt;&lt;&lt; selectarea grupului de servicii/ bunuri &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstitute" xml:space="preserve">
+    <value> &lt;&lt;&lt; selectarea unei persoane ce va substitui &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstituted" xml:space="preserve">
+    <value> &lt;&lt;&lt; selectarea persoanei substituite &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSupplier" xml:space="preserve">
+    <value> &lt;&lt;&lt; selectarea furnizorului &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectValue" xml:space="preserve">
+    <value> &lt;&lt;&lt; selectarea valorii &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelfOrderedCategory" xml:space="preserve">
+    <value>solicitantul comanda produsul/ serviciul</value>
+  </data>
+  <data name="SendBackConfirm" xml:space="preserve">
+    <value>confirmare transmisa</value>
+  </data>
+  <data name="SendBackMail" xml:space="preserve">
+    <value>e-mail retranmis</value>
+  </data>
+  <data name="SendBackReason" xml:space="preserve">
+    <value>motivatia refuzului</value>
+  </data>
+  <data name="SendConfirm" xml:space="preserve">
+    <value>sunteti suiguri ca doriti transmiterea cererii spre aprobare</value>
+  </data>
+  <data name="SendForApproval" xml:space="preserve">
+    <value>transmis spre aprobare</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>septembrie</value>
+  </data>
+  <data name="ShipToAddress" xml:space="preserve">
+    <value>livrare la adresa</value>
+  </data>
+  <data name="ShoppingCart" xml:space="preserve">
+    <value>cumparatura</value>
+  </data>
+  <data name="SortAscend" xml:space="preserve">
+    <value>sortare ascendent</value>
+  </data>
+  <data name="SortDescsend" xml:space="preserve">
+    <value>sortare descendent</value>
+  </data>
+  <data name="StatExchangeRateMissing" xml:space="preserve">
+    <value>data statistica lipsa</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>statistica</value>
+  </data>
+  <data name="StatisticsType" xml:space="preserve">
+    <value>tipuri statistice</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>strada</value>
+  </data>
+  <data name="Substitute" xml:space="preserve">
+    <value>substituit</value>
+  </data>
+  <data name="Substituted" xml:space="preserve">
+    <value>substituit</value>
+  </data>
+  <data name="SubstituteMsg" xml:space="preserve">
+    <value>sunteti substituiti de,,, puteti anula substituirea in tab de substituire</value>
+  </data>
+  <data name="SumCostCount" xml:space="preserve">
+    <value>costuri totale</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>duminica</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>furnizor</value>
+  </data>
+  <data name="SupplierInfo" xml:space="preserve">
+    <value>informatii furnizori</value>
+  </data>
+  <data name="SupplierOutOfList" xml:space="preserve">
+    <value>furnizori inactivi</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>furnizori</value>
+  </data>
+  <data name="SuppliersSynchronized" xml:space="preserve">
+    <value>lista modificata</value>
+  </data>
+  <data name="SupplierUpdate" xml:space="preserve">
+    <value>modificare lista furnizori</value>
+  </data>
+  <data name="SupplierUpdateConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doriti modificarea listei de furnizori?</value>
+  </data>
+  <data name="TakeOverConfirm" xml:space="preserve">
+    <value>sunteti siguri ca doruiti confirmarea predarii</value>
+  </data>
+  <data name="Thustday" xml:space="preserve">
+    <value>joi</value>
+  </data>
+  <data name="TooLargeAttachements" xml:space="preserve">
+    <value>atasamant prea mare</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>total</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>marti</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>pret unitar</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>modificare</value>
+  </data>
+  <data name="UpperLimit" xml:space="preserve">
+    <value>limita superioara</value>
+  </data>
+  <data name="WaitForApproval" xml:space="preserve">
+    <value>aprobare in proces</value>
+  </data>
+  <data name="WaitForOrder" xml:space="preserve">
+    <value>cerere in asteptare</value>
+  </data>
+  <data name="Wendesday" xml:space="preserve">
+    <value>Miercuri</value>
+  </data>
+  <data name="WoVat" xml:space="preserve">
+    <value>fara TVA</value>
+  </data>
+  <data name="WrongDataTypeDecimal" xml:space="preserve">
+    <value>data incorecta</value>
+  </data>
+  <data name="WrongDataTypeInteger" xml:space="preserve">
+    <value>data incorecta</value>
+  </data>
+  <data name="WrongDate" xml:space="preserve">
+    <value>data incorecta</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>an</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>cod postal</value>
+  </data>
+  <data name="CompanyPrivate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>salvare filtru</value>
+  </data>
+</root>

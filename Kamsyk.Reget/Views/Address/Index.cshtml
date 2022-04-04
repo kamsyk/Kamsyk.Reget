@@ -1,0 +1,71 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var addressController = ViewContext.Controller as AddressController;
+}
+
+@functions {
+    public string GetGridLangCode() {
+        var addressController = ViewContext.Controller as AddressController;
+
+        return addressController.GetGridLangCode();
+
+    }
+}
+
+
+<form name="frmAddress" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="AddressController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+
+        <div style="margin-bottom:15px;">
+            @{
+                UiGrid uiGrid = new UiGrid(addressController.GetRootUrl());
+                uiGrid.RootTagId = "grdAddress";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.ShipToAddress;
+                uiGrid.AddNewText = RequestResource.AddAddress;
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+
+            @*@Html.Raw(addressController.GetDataGridTs(
+                "grdAddress",
+                "angCtrl",
+                RequestResource.ShipToAddress,
+                RequestResource.AddAddress))*@
+
+        </div>
+    </div>
+
+    @Html.Partial("_LocalizationTextBasic")
+    @Html.Partial("_DataGrid")
+
+    <div style="display:none;">
+        <input id="WarningText" value="@RequestResource.Warning" />
+        <input id="ErrMsgText" value="@RequestResource.Error" />
+        <input id="CloseText" value="@RequestResource.Close" />
+        <input id="CompanyText" value="@RequestResource.Company*" />
+        <input id="CompanyNameText" value="@RequestResource.Company @RequestResource.Name*" />
+        <input id="StreetText" value="@RequestResource.Street" />
+        <input id="CityText" value="@RequestResource.City" />
+        <input id="ZipText" value="@RequestResource.ZipCode" />
+        <input id="EditText" value="@RequestResource.Edit" />
+        <input id="DeleteText" value="@RequestResource.Delete" />
+        <input id="SaveText" value="@RequestResource.Save" />
+        <input id="CancelText" value="@RequestResource.Cancel" />
+        <input id="MissingMandatoryText" value="@RequestResource.MandatoryValueIsMissing" />
+        <input id="DeleteAddressConfirmText" value="@RequestResource.DeleteAddressConfirm" />
+        <input id="ConfirmationText" value="@RequestResource.Confirmation" />
+        <input id="YesText" value="@RequestResource.Yes" />
+        <input id="NoText" value="@RequestResource.No" />
+        <input id="NotFoundText" value="@RequestResource.NotFound" />
+        <input id="DuplicityAddressText" value="@RequestResource.DuplicityAddress" />
+
+        <input id="GridLangCode" value="@GetGridLangCode()" />
+    </div>
+
+</form>

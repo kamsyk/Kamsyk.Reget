@@ -1,0 +1,229 @@
+﻿@using Kamsyk.Reget.Controllers;
+@{
+        var baseController = ViewContext.Controller as BaseController;
+        var strErrStyle = "";
+        var strBodyOverflow = "";
+        string appName = "Reget";
+        if (baseController.IsTest) {
+            appName += " (test)";
+        }
+
+
+}
+
+<!DOCTYPE html>
+<html class="reget-html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Reget - Approval Tool</title>
+    <link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
+    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
+    @Styles.Render("~/RegetContent/css")
+    @Styles.Render("~/Reget/css")
+    @Styles.Render("~/RegetButtons/css")
+    @Styles.Render("~/RegetButtonBar/css")
+    @Styles.Render("~/RegetAngular/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @Scripts.Render("~/bundles/regetjs")
+    @{
+        if (baseController is RegetAdminController &&
+            ((baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "INDEX" ||
+            baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "CENTREGROUP" ||
+            baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "NEWCENTREGROUP"))) {
+            @Scripts.Render("~/bundles/angular-admin")
+        } else if (baseController is RegetAdminController &&
+            baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "MULTIPLYAPPLEVEL") {
+            @Scripts.Render("~/bundles/angular-multiply-app-levels")
+        } else if (baseController is RegetAdminController &&
+          baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "APPMATRIXCOPY") {
+            @Scripts.Render("~/bundles/reget-angular-app-matrix-copy")
+        } else if (baseController is CentreController &&
+          ((baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "INDEX") ||
+          (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "CENTRE"))) {
+            @Scripts.Render("~/bundles/reget-angular-centre")
+        } else if (baseController is ParentPgController &&
+          baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "INDEX") {
+            @Scripts.Render("~/bundles/reget-angular-parent-pg")
+        } else if (baseController is ParentPgController &&
+          baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "USEDPG") {
+            @Scripts.Render("~/bundles/reget-angular-used-pg")
+        } else if (baseController is RegetAdminController &&
+            ((baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "APPROVALMATRIXEXPORT"))) {
+            @Scripts.Render("~/bundles/reget-angular-appmatrix-export")
+        } else if (baseController is ParticipantController &&
+            (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "INDEX" ||
+            baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "NONACTIVEUSER")) {
+            @Scripts.Render("~/bundles/angular-user")
+        } else if (baseController is ParticipantController &&
+            (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "REPLACEUSER")) {
+            @Scripts.Render("~/bundles/user-replace")
+        } else if (baseController is ParticipantController &&
+        (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "USERINFO") ||
+        (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "CURRENTUSERINFO")) {
+            @Scripts.Render("~/bundles/user-info")
+        } else if (baseController is ParticipantController &&
+            (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "COPYUSER")) {
+            @Scripts.Render("~/bundles/copy-user")
+        } else if (baseController is ParticipantController &&
+             (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "USERSUBSTITUTION")) {
+            @Scripts.Render("~/bundles/angular-user-substitution")
+        } else if (baseController is ParticipantController &&
+                     (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "USERSUBSTITUTIONDETAIL")) {
+            @Scripts.Render("~/bundles/angular-user-substitution-detail")
+        } else if (baseController is AddressController &&
+           ((baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "INDEX") ||
+           (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "ADDRESS"))) {
+            @Scripts.Render("~/bundles/reget-angular-address")
+        } else if (baseController is SupplierController &&
+          ((baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "INDEX") ||
+          (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "SUPPLIER"))) {
+            @Scripts.Render("~/bundles/angular-supplier")
+        } else if (baseController is SupplierController &&
+          ((baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "DETAIL"))) {
+            @Scripts.Render("~/bundles/angular-supplier-detail")
+        } else if (baseController is EventViewerController &&
+          ((baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "INDEX") ||
+          (baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "EVENT"))) {
+            @Scripts.Render("~/bundles/reget-angular-event")
+        } else if (baseController is HomeController &&
+              baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "ABOUTHELP") {
+            @*syka todo - create separate angular script*@
+            @Scripts.Render("~/bundles/home-info")
+        } else if (baseController is RequestController
+            && baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "INDEX") {
+            @Scripts.Render("~/bundles/reget-angular-request")
+        } else if (baseController is RequestController
+            && baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "REQUESTLIST") {
+            @Scripts.Render("~/bundles/request-list")
+        } else if (baseController is RequestController
+            && baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "ORDER") {
+            @Scripts.Render("~/bundles/order")
+        } else if (baseController is StatisticsController) {
+            @Scripts.Render("~/bundles/reget-angular-statistics")
+        } else if (baseController is SearchController) {
+            @Scripts.Render("~/bundles/search")
+        } else if (baseController is HomeController &&
+             baseController.RouteData.Values["action"].ToString().Trim().ToUpper() == "NOTSUPPORTEDBROWSER") {
+            //no angular
+        } else {
+            //@Scripts.Render("~/bundles/angular")
+        }
+    }
+
+    <script type='text/javascript'>
+        @Html.Raw(ViewBag.DatePickerResources)
+    </script>
+
+
+    @*@Scripts.Render("~/bundles/angular-admin")*@
+    @*@Scripts.Render("~/bundles/angular-user")*@
+    @RenderSection("scripts", required: false)
+
+
+</head>
+
+@if ((ViewBag.IsError != null && ViewBag.IsError) || Request.RawUrl.EndsWith("Error.cshtml")) {
+    strErrStyle = "background-color:#fff;";
+}
+
+@if (!Request.Browser.IsMobileDevice) {
+    //strBodyOverflow = "overflow:scroll;";
+}
+
+<body>
+    
+    <div id="divbody" name="divbody" class="reget-body" style="@strBodyOverflow@strErrStyle">
+        @if ((ViewBag.IsError != null && ViewBag.IsError) || Request.RawUrl.EndsWith("Error.cshtml")) {
+            @RenderBody()
+        } else if (ViewBag.NoHeader != null && ViewBag.NoHeader) {
+            @RenderBody()
+        } else {
+        <div id="wrapper" class="reget-wrapper">
+
+            <nav class="navbar navbar-inverse navbar-static-top reget-navbar-top" style="margin-top:-1px;">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" id="btnMenu" class="navbar-toggle reget-navbar reget-navbar-button-border" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @*<a href="~/Home/Index" class="reget-display-loader" onclick="ShowLoader();"><img src="~/Content/Images/Reget.png" class="reget-logo-img reget-display-loader" /></a>
+        <div style="margin-top:6px;margin-right:15px;float:left;">
+            @Html.ActionLink(appName, "Index", "Home", new { area = "" }, new { id = "aReget", @class = "reget-logo-text reget-display-loader", onclick = "ShowLoader();" })
+        </div>*@
+
+                        <a href="~/Home/Index" style="text-decoration:none;" class="reget-display-loader" onclick="ShowLoader();">
+                            @*Does not work on safari properly  *@
+                            <div id="aReget" class="reget-logo reget-display-loader">
+                                <div style="display: table-cell; vertical-align: middle;"><span class="reget-logo-text">@appName</span></div>
+                            </div>
+                            @*<div class="reget-logo-div">
+                                <table>
+                                    <tr>
+                                        <td class="reget-logo"></td>
+                                        <td style="vertical-align:middle;"><span class="reget-logo-text">@appName</span></td>
+                                    </tr>
+                                </table>
+                            </div>*@
+                        </a>
+
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav" style="margin-bottom:0px;">
+                            @Html.Partial("_RequestMenu")
+                            @Html.Partial("_LocalizationPartial")
+                            @Html.Partial("_UserInfoMenuItem")
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+            @Html.Partial("_LoadDialog")
+
+            <div class="container body-content reget-content">
+                @*@Html.Partial("_NavigationBar")*@
+                @RenderBody()
+            </div>
+
+            @Html.Partial("_Footer")
+
+            <!-- Must be out of Form otherwise if toast is displayed the position is changed-->
+
+            <div id="divMpRegetToolTip" class="reget-tooltip">
+                <span id="spanMpRegetTooltipText" class="reget-tooltiptext"></span>
+            </div>
+        </div>
+
+        }
+
+        
+
+
+        @if (Request.IsAuthenticated) {
+            @Html.AntiForgeryToken()
+        }
+
+
+        <div style="display:none;">
+            @{
+                if (BaseController.IsTestMode) {
+                    <input id="IsTestMode" value="1" readonly />
+                    
+                }
+            }
+
+        </div>
+    </div>
+    
+</body>
+
+</html>

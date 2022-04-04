@@ -1,0 +1,90 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var participantController = ViewContext.Controller as ParticipantController;
+}
+
+@functions {
+
+    public string GetGridLangCode() {
+        var participantController = ViewContext.Controller as ParticipantController;
+        if (participantController.CurrentCultureCode == ParticipantController.CULTURE_CZ) {
+            return "cz";
+        }
+
+        if (participantController.CurrentCultureCode == ParticipantController.CULTURE_SK) {
+            return "sk";
+        }
+
+        if (participantController.CurrentCultureCode == ParticipantController.CULTURE_PL) {
+            return "pl";
+        }
+
+        return "en";
+    }
+}
+
+
+<form name="frmUser" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="UserController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+
+        <div id="divNonActiveGrid" style="margin-bottom:15px;">
+            @{
+                UiGrid uiGrid = new UiGrid(participantController.GetRootUrl());
+                uiGrid.RootTagId = "grdUser";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.NonActiveUser + " (" + RequestResource.NonActiveUsersLeftCompany + ")";
+                uiGrid.AddNewText = null;
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+
+            @*@Html.Raw(participantController.GetDataGridTs(
+                "grdUser",
+                "angCtrl",
+                RequestResource.NonActiveUser + " (" + RequestResource.NonActiveUsersLeftCompany + ")",
+                null))*@
+
+        </div>
+
+        <div id="divNonActiveInfo" style="text-align:center;display:none;align-content:center;">
+            <div style="float:left;"><img src="~/Content/Images/Controll/CheckGreen48.png" /></div><div style="float:left;margin-left:20px;"><h3>No Non-Active Users were found.</h3></div>
+        </div>
+    </div>
+
+    @Html.Partial("_LocalizationTextBasic")
+    @Html.Partial("_DataGrid")
+
+    <div style="display:none;">
+        <input id="GridType" value="NonActiveUsers" />
+
+        <input id="GridLangCode" value="@GetGridLangCode()" />
+        <input id="YesText" value="@RequestResource.Yes" />
+        <input id="NoText" value="@RequestResource.No" />
+        <input id="EditText" value="@RequestResource.Edit" />
+        <input id="DeleteText" value="@RequestResource.Delete" />
+        <input id="SaveText" value="@RequestResource.Save" />
+        <input id="CancelText" value="@RequestResource.Cancel" />
+        <input id="FirstNameText" value="@RequestResource.Firstname*" />
+        <input id="SurnameText" value="@RequestResource.Surname*" />
+        <input id="LoginText" value="@RequestResource.Login*" />
+        <input id="MailText" value="@RequestResource.Mail*" />
+        <input id="PhoneText" value="@RequestResource.Phone" />
+        <input id="OfficeText" value="@RequestResource.Country*" />
+        <input id="ActiveText" value="@RequestResource.Active" />
+        <input id="MissingMandatoryText" value="@RequestResource.MandatoryValueIsMissing" />
+        <input id="CloseText" value="@RequestResource.Close" />
+        <input id="EnterUserNameText" value="@RequestResource.EnterUserName" />
+        <input id="UserExistText" value="@RequestResource.UserExists" />
+        <input id="WarningText" value="@RequestResource.Warning" />
+        <input id="ConfirmationText" value="@RequestResource.Confirmation" />
+        <input id="DeleteUserConfirmText" value="@RequestResource.DeleteUserConfirm" />
+        <input id="UserWasDisabledText" value="@RequestResource.UserWasDisabled" />
+        <input id="UserNotFoundText" value="@RequestResource.UserNotFound" />
+        <input id="UserInfoText" value="@RequestResource.UserInfo" />
+    </div>
+
+</form>

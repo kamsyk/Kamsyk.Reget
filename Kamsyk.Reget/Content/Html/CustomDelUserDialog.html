@@ -1,0 +1,26 @@
+﻿<md-dialog aria-label="Replace User">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Replace user</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                {{del_message}}
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            
+            <span flex></span>
+            <md-button ng-click="answer('close')">
+                Close
+            </md-button>
+            <md-button ng-click="answer('replace')">
+                Replace
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

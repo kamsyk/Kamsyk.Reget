@@ -1,0 +1,2219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualPrice" xml:space="preserve">
+    <value>Skutečná cena</value>
+  </data>
+  <data name="AddInvoice" xml:space="preserve">
+    <value>Přidat fakturu</value>
+  </data>
+  <data name="AddLimit" xml:space="preserve">
+    <value>Přidat limit</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="AddToShopBasket" xml:space="preserve">
+    <value>Přidat do košíku</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Vše</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Množství</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Schválení</value>
+  </data>
+  <data name="ApprovalMatrix" xml:space="preserve">
+    <value>Schvalovací matice</value>
+  </data>
+  <data name="ApprovalRequestMail" xml:space="preserve">
+    <value>Žádost o schválení</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Schválit</value>
+  </data>
+  <data name="ApproveConfirm" xml:space="preserve">
+    <value>Opravdu chcete schválit požadavek ?</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Schváleno</value>
+  </data>
+  <data name="ApproveMan" xml:space="preserve">
+    <value>Schvalovatel</value>
+  </data>
+  <data name="ApproverRemark" xml:space="preserve">
+    <value>Pozn. schval.</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Duben</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Oblast</value>
+  </data>
+  <data name="Attachements" xml:space="preserve">
+    <value>Přílohy</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Srpen</value>
+  </data>
+  <data name="AxisX" xml:space="preserve">
+    <value>Osa X</value>
+  </data>
+  <data name="AxisY" xml:space="preserve">
+    <value>Osa Y</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Kalendář</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="CancelChanges" xml:space="preserve">
+    <value>Zrušit změny</value>
+  </data>
+  <data name="CancelConfirm" xml:space="preserve">
+    <value>Opravdu chcete zrušit požadavek?</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Zrušeno</value>
+  </data>
+  <data name="CanceledByOrderer" xml:space="preserve">
+    <value>Zrušeno objednavatelem</value>
+  </data>
+  <data name="CanceledByRequestor" xml:space="preserve">
+    <value>Zrušeno žadatelem</value>
+  </data>
+  <data name="CanceledConfirm" xml:space="preserve">
+    <value>Opravdu chcete požadavek zrušit?</value>
+  </data>
+  <data name="CatalogAdmin" xml:space="preserve">
+    <value>Administrace katalogu</value>
+  </data>
+  <data name="Centre" xml:space="preserve">
+    <value>Středisko</value>
+  </data>
+  <data name="Centres" xml:space="preserve">
+    <value>Střediska</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>Změnil</value>
+  </data>
+  <data name="ChangedDate" xml:space="preserve">
+    <value>Datum poslední změny</value>
+  </data>
+  <data name="ChangesWereSaved" xml:space="preserve">
+    <value>Změny byly úspěšně uloženy</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Město</value>
+  </data>
+  <data name="ClickOnRequest" xml:space="preserve">
+    <value>Klikněte na číslo požadavku a po otevření požadavek buď schvalte, zamítněte nebo vraťe zpět žadateli.</value>
+  </data>
+  <data name="ClickOnRequestOrder" xml:space="preserve">
+    <value>Klikněte na číslo požadavku a po jeho otvevření z něj vytvořte objednávku nebo ho vraťte zpět k žadateli.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zavřít</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Opravdu chcete uzavřít požadavek?</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Uzavřeno</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>Kontaktní osoba</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Země</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Měna</value>
+  </data>
+  <data name="CurrentUser" xml:space="preserve">
+    <value>Uživatel</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Den</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>Prosinec</value>
+  </data>
+  <data name="DefaultFilter" xml:space="preserve">
+    <value>Výchozí filtr</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
+  <data name="DeleteAttConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat přílohu?</value>
+  </data>
+  <data name="Delivered" xml:space="preserve">
+    <value>Dodáno</value>
+  </data>
+  <data name="DeliveredMail" xml:space="preserve">
+    <value>Požadovaný materiál / služby byly dodány.</value>
+  </data>
+  <data name="DeliveriedDate" xml:space="preserve">
+    <value>Dodáno</value>
+  </data>
+  <data name="DIC" xml:space="preserve">
+    <value>DIČ</value>
+  </data>
+  <data name="DisplayAllSuppliers" xml:space="preserve">
+    <value>Zobrazit všechny dodavatele</value>
+  </data>
+  <data name="DisplayHistory" xml:space="preserve">
+    <value>Zobrazit historii</value>
+  </data>
+  <data name="DisplayPrice" xml:space="preserve">
+    <value>Zobrazit předp. cenu v objednávce</value>
+  </data>
+  <data name="DisplayPurchseGroup" xml:space="preserve">
+    <value>Zobrazit skupiny nákupu</value>
+  </data>
+  <data name="DisplayRequests" xml:space="preserve">
+    <value>Zobrazit požadavky</value>
+  </data>
+  <data name="DisplayStatistics" xml:space="preserve">
+    <value>Zobrazit statistiku</value>
+  </data>
+  <data name="DisplayTop" xml:space="preserve">
+    <value>Zobrazit Top</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>Dokumentace</value>
+  </data>
+  <data name="DoNotReplyMail" xml:space="preserve">
+    <value>Na tento mail neodpovídejte! Byl vygenerován automaticky a odeslaný z adresy {0}</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Návrh</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Upravit</value>
+  </data>
+  <data name="EndCatalogAdminMode" xml:space="preserve">
+    <value>Ukončit administraci katalogu</value>
+  </data>
+  <data name="EndUserDocumentation" xml:space="preserve">
+    <value>Uživatelská dokumentace</value>
+  </data>
+  <data name="EnterSearchedSuppNameId" xml:space="preserve">
+    <value>Zadejte název hledaného dodavatele nebo jeho IČO</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>V aplikaci došlo k chybě. </value>
+  </data>
+  <data name="EstimatedPrice" xml:space="preserve">
+    <value>Předpokl. cena</value>
+  </data>
+  <data name="EstPrice" xml:space="preserve">
+    <value>Předp. cena</value>
+  </data>
+  <data name="ExportApprovalMatrix" xml:space="preserve">
+    <value>Export schvalovacích matic</value>
+  </data>
+  <data name="ExportApprovalMatrixtoExcel" xml:space="preserve">
+    <value>Export schvalovacích matic do Excelu</value>
+  </data>
+  <data name="ExportPriceChangeConfirm" xml:space="preserve">
+    <value>Chcete uložit toto nastavení?\r\nPokud nastavení uložíte, nastaví se ve Vašem příštím požadavku pro dodavatele #S# automaticky volba -&gt; #E#.</value>
+  </data>
+  <data name="ExportPriceToOrder" xml:space="preserve">
+    <value>Zobrazit předp. cenu v objednávce</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Exportovat do Excelu</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Únor</value>
+  </data>
+  <data name="FillFixValues" xml:space="preserve">
+    <value>Doplňte, opravte hodnoty ve zvýrazněných polích!</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtr</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Pátek</value>
+  </data>
+  <data name="FromTo_From" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="FromTo_To" xml:space="preserve">
+    <value>Do</value>
+  </data>
+  <data name="GeneratedBy" xml:space="preserve">
+    <value>systémem na správu interních požadavků</value>
+  </data>
+  <data name="GenerateOrderConfirm" xml:space="preserve">
+    <value>Opravdu chcete generovat objednávku?</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Hodina</value>
+  </data>
+  <data name="ICO" xml:space="preserve">
+    <value>IČO</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="InProcessRequestList" xml:space="preserve">
+    <value>Rozpracované požadavky</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Vložit</value>
+  </data>
+  <data name="InSum" xml:space="preserve">
+    <value>Celkem</value>
+  </data>
+  <data name="InternalRequestList" xml:space="preserve">
+    <value>Výpis požadavků</value>
+  </data>
+  <data name="InvoiceMissing" xml:space="preserve">
+    <value>Požadavek není možné uzavřít. Není zadána žádná faktura. </value>
+  </data>
+  <data name="InvoiceNr" xml:space="preserve">
+    <value>Faktura č.</value>
+  </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>Datum vytvoření</value>
+  </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>Počet položek</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Leden</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Červenec</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>Červen</value>
+  </data>
+  <data name="LeadTime" xml:space="preserve">
+    <value>Datum dodání</value>
+  </data>
+  <data name="Less" xml:space="preserve">
+    <value>méně</value>
+  </data>
+  <data name="LoadingData" xml:space="preserve">
+    <value>Načítám data ...</value>
+  </data>
+  <data name="LowerLimit" xml:space="preserve">
+    <value>Spodní limit</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
+  </data>
+  <data name="MailAutomaticGenerate" xml:space="preserve">
+    <value>Tento mail byl vygenerován automaticky {0}.</value>
+  </data>
+  <data name="MailBodyDelivered" xml:space="preserve">
+    <value>Požadovaný materiál / služby z požadavku č. {0} byly dodány.</value>
+  </data>
+  <data name="MailBodyL" xml:space="preserve">
+    <value>Uživatel {0} Vás žádá o schválení svého požadavku č. {1}</value>
+  </data>
+  <data name="MailBodyOrder" xml:space="preserve">
+    <value>Uživatel {0} Vás žádá o vytvoření objednávky z  požadavku č. {1}</value>
+  </data>
+  <data name="MailBodyRejected" xml:space="preserve">
+    <value>Uživatel {0} zamítnul Váš požadavek č. {1}.</value>
+  </data>
+  <data name="MailBodySentBack" xml:space="preserve">
+    <value>Uživatel {0} Vám vrací Váš požadavek č.{1} k dopracování.</value>
+  </data>
+  <data name="MailLanguage" xml:space="preserve">
+    <value>Jazyk mailu</value>
+  </data>
+  <data name="MailLoginInfo" xml:space="preserve">
+    <value>V případě, že se Vám po kliknutí na číslo požadavku objeví přihlašovací okno, zadejte Vaše přihlašovací jméno ve formátu 'EUOTIS\jmeno'</value>
+  </data>
+  <data name="MailRecipient" xml:space="preserve">
+    <value>Adresát</value>
+  </data>
+  <data name="MailRequestAlreadyApprovedBy" xml:space="preserve">
+    <value>Požadavek byl již schválen uživatelem {0}.</value>
+  </data>
+  <data name="ManagerSubstitution" xml:space="preserve">
+    <value>Zastupování</value>
+  </data>
+  <data name="MandatoryComboValue" xml:space="preserve">
+    <value>Vyberte hodnotu.</value>
+  </data>
+  <data name="MandatoryTextField" xml:space="preserve">
+    <value>Zadejte hodnotu.</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Březen</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Květen</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minuta</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Mobil</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Pondělí</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Měsíc</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>více</value>
+  </data>
+  <data name="MultiOrdererInfo" xml:space="preserve">
+    <value>Požadavek bude po schválení odeslán všem objednavatelům. Bude přidělen tomu objednavateli, který si ho otevře jako první. </value>
+  </data>
+  <data name="MyRequestsOnly" xml:space="preserve">
+    <value>Pouze mé požadavky</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="NewInternalRequest" xml:space="preserve">
+    <value>Nový požadavek</value>
+  </data>
+  <data name="NoAttachmentSelected" xml:space="preserve">
+    <value>Nebyla vybraná žádná příloha.</value>
+  </data>
+  <data name="NoLimit" xml:space="preserve">
+    <value>Bez omezení</value>
+  </data>
+  <data name="NoRequestMeetsCriterions" xml:space="preserve">
+    <value>Žádný požadavek neodpovídá zadaným kritériím ve filtru.</value>
+  </data>
+  <data name="NoSupplierMatchCriterions" xml:space="preserve">
+    <value>Nenalezen žádný dodavatel</value>
+  </data>
+  <data name="NotAllowedToApprove" xml:space="preserve">
+    <value>Nejste oprávněn schvalovat požadavek!</value>
+  </data>
+  <data name="NotAllowedUser" xml:space="preserve">
+    <value>Uživatel '{0}' není oprávněn používat tuto aplikaci.</value>
+  </data>
+  <data name="NotDelivered" xml:space="preserve">
+    <value>Nedodáno</value>
+  </data>
+  <data name="NotDisplayPrice" xml:space="preserve">
+    <value>Nezobrazovat předp. cenu v objednávce</value>
+  </data>
+  <data name="NotOrdered" xml:space="preserve">
+    <value>Neobjednáno</value>
+  </data>
+  <data name="NotRequired" xml:space="preserve">
+    <value>Nevyžadováno</value>
+  </data>
+  <data name="NotSavedInvoices" xml:space="preserve">
+    <value>V požadavku existují neuložené změny ve fakturách. Chcete pokračovatt?</value>
+  </data>
+  <data name="NotSavedInvoicesCannotClose" xml:space="preserve">
+    <value>V požadavku existují neuložené změny ve fakturách. Požadavek není možné uzavřít.</value>
+  </data>
+  <data name="NotSent" xml:space="preserve">
+    <value>Neodesláno</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Listopad</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Říjen</value>
+  </data>
+  <data name="OpenFileTip" xml:space="preserve">
+    <value>Pokud se požadovaný soubor neotevře automaticky, klikněte na následující odkaz.</value>
+  </data>
+  <data name="OpenHistoryInfo" xml:space="preserve">
+    <value>Kliknutím na tento obrázek otevřete historii požadavku</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Objednávka</value>
+  </data>
+  <data name="OrderConfirm" xml:space="preserve">
+    <value>Opravdu chcete změnit stav požadavku na Objednáno?</value>
+  </data>
+  <data name="Ordered" xml:space="preserve">
+    <value>Objednáno</value>
+  </data>
+  <data name="OrderedConfirm" xml:space="preserve">
+    <value>Opravdu chcete změnit stav požadavku na \'Objednáno\'?</value>
+  </data>
+  <data name="Orderer" xml:space="preserve">
+    <value>Objednavatel</value>
+  </data>
+  <data name="OrdererAttachment" xml:space="preserve">
+    <value>Přílohy objednavatele</value>
+  </data>
+  <data name="OrdererMail" xml:space="preserve">
+    <value>Žádost na vytvoření objednávky</value>
+  </data>
+  <data name="OrdererRemark" xml:space="preserve">
+    <value>Pozn. objednatele</value>
+  </data>
+  <data name="OrdererRequestHandedOverByOrderer" xml:space="preserve">
+    <value>Požadavek již převzal objednavatel(ka) {0}.</value>
+  </data>
+  <data name="Orderers" xml:space="preserve">
+    <value>Objednavatelé</value>
+  </data>
+  <data name="OrdererSupplier" xml:space="preserve">
+    <value>Objednavatelé přiřazení dodavatelům</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Ostatní</value>
+  </data>
+  <data name="OtisInternalRequest" xml:space="preserve">
+    <value>Interní požadavek</value>
+  </data>
+  <data name="OtisItemsCatalog" xml:space="preserve">
+    <value>Otis katalog</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Perioda</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Cena</value>
+  </data>
+  <data name="PriceChangedSendBack" xml:space="preserve">
+    <value>Došlo ke zvýšení ceny, je nutné nové schválení. Odešlete požadavek zpět žadateli.</value>
+  </data>
+  <data name="PriceOverflow" xml:space="preserve">
+    <value>Požadavek nelze zpracovat! Max. finanční limit pro '{0}' je {1}</value>
+  </data>
+  <data name="ProfylaxNr" xml:space="preserve">
+    <value>Profylax č.</value>
+  </data>
+  <data name="PurchaseGroup" xml:space="preserve">
+    <value>Typ nákupu</value>
+  </data>
+  <data name="PurchMatIncluded" xml:space="preserve">
+    <value>Včetně objednaného materiálu pro FIX ASSETS</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Zamítnout</value>
+  </data>
+  <data name="RejectConfirm" xml:space="preserve">
+    <value>Opravdu chcete požadavek zamítnout?</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Zamítnuto</value>
+  </data>
+  <data name="RejectMail" xml:space="preserve">
+    <value>Zamítnuto</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Poznámka</value>
+  </data>
+  <data name="RemoveLimit" xml:space="preserve">
+    <value>Odstranit limit</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Požadavek</value>
+  </data>
+  <data name="RequestCanceled" xml:space="preserve">
+    <value>Požadavek byl zrušen.</value>
+  </data>
+  <data name="RequestCount" xml:space="preserve">
+    <value>Počet požadavků</value>
+  </data>
+  <data name="RequestDate" xml:space="preserve">
+    <value>Datum vytvoření</value>
+  </data>
+  <data name="RequestForCentre" xml:space="preserve">
+    <value>Pož. pro středisko</value>
+  </data>
+  <data name="RequestHistory" xml:space="preserve">
+    <value>Historie požadavku č.</value>
+  </data>
+  <data name="RequestNr" xml:space="preserve">
+    <value>Číslo požadavku</value>
+  </data>
+  <data name="Requestor" xml:space="preserve">
+    <value>Žadatel</value>
+  </data>
+  <data name="RequestorAttachment" xml:space="preserve">
+    <value>Přílohy žadatele</value>
+  </data>
+  <data name="Requestors" xml:space="preserve">
+    <value>Žadatelé</value>
+  </data>
+  <data name="RequestRejected" xml:space="preserve">
+    <value>Požadavek byl zamítnut!!! </value>
+  </data>
+  <data name="RequestSentBack" xml:space="preserve">
+    <value>Požadavek byl vrácen k doplnění, přepracování, ...</value>
+  </data>
+  <data name="RequestSentForApproval" xml:space="preserve">
+    <value>Požadavek byl úspěšně odeslán ke schválení.</value>
+  </data>
+  <data name="RequestStatus" xml:space="preserve">
+    <value>Stav požadavku</value>
+  </data>
+  <data name="RequestText" xml:space="preserve">
+    <value>Text požadavku</value>
+  </data>
+  <data name="ReturnRequestTo" xml:space="preserve">
+    <value>Vrátit požadavek zpět k</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Sobota</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Uložit</value>
+  </data>
+  <data name="SaveAsDraft" xml:space="preserve">
+    <value>Uložit jako návrh</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Uložit změny</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Při ukládání došlo k chybě!!! Data nebyla uložena!!!</value>
+  </data>
+  <data name="SearchSupplierTitle" xml:space="preserve">
+    <value>Hledání dodavatele</value>
+  </data>
+  <data name="SearchSupplierWatermark" xml:space="preserve">
+    <value>Název nebo IČO</value>
+  </data>
+  <data name="SelectApproveMan" xml:space="preserve">
+    <value> &lt;&lt;&lt; Vyberte schvalovatele &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectArea" xml:space="preserve">
+    <value>Vyberte oblast</value>
+  </data>
+  <data name="SelectFromList" xml:space="preserve">
+    <value>Vybrat ze seznamu</value>
+  </data>
+  <data name="SelectOrderer" xml:space="preserve">
+    <value> &lt;&lt;&lt; Vyberte objednavatele &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectPurchaseGroup" xml:space="preserve">
+    <value> &lt;&lt;&lt; Vyberte druh nákupu &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstitute" xml:space="preserve">
+    <value> &lt;&lt;&lt; Vyberte zástupce &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstituted" xml:space="preserve">
+    <value> &lt;&lt;&lt; Vyberte zastupovaného &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSupplier" xml:space="preserve">
+    <value> &lt;&lt;&lt; Vyberte dodavatele &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectValue" xml:space="preserve">
+    <value> &lt;&lt;&lt; Vyberte hodnotu &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelfOrderedCategory" xml:space="preserve">
+    <value>Žadatel si objednává požadavek sám</value>
+  </data>
+  <data name="SendBackConfirm" xml:space="preserve">
+    <value>Opravdu chcete vrátit požadavek k doplnění, přepracování, ...?</value>
+  </data>
+  <data name="SendBackMail" xml:space="preserve">
+    <value>Vrácení žadateli</value>
+  </data>
+  <data name="SendBackReason" xml:space="preserve">
+    <value>Důvod vrácení</value>
+  </data>
+  <data name="SendConfirm" xml:space="preserve">
+    <value>Opravdu chcete odeslat požadavek ke schválení ?</value>
+  </data>
+  <data name="SendForApproval" xml:space="preserve">
+    <value>Odeslat ke schválení</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Září</value>
+  </data>
+  <data name="ShipToAddress" xml:space="preserve">
+    <value>Dodací adresa</value>
+  </data>
+  <data name="ShoppingCart" xml:space="preserve">
+    <value>Nákupní košík</value>
+  </data>
+  <data name="SortAscend" xml:space="preserve">
+    <value>Třídit vzestupně</value>
+  </data>
+  <data name="SortDescsend" xml:space="preserve">
+    <value>Třídit sestupně</value>
+  </data>
+  <data name="StatExchangeRateMissing" xml:space="preserve">
+    <value>Ve statistice nebudou zobrazena všechna data protože nebyl nalezen přepočet mezi {0} a {1}.</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistika</value>
+  </data>
+  <data name="StatisticsType" xml:space="preserve">
+    <value>Druh statistiky</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Ulice</value>
+  </data>
+  <data name="Substitute" xml:space="preserve">
+    <value>Zástupce</value>
+  </data>
+  <data name="Substituted" xml:space="preserve">
+    <value>Zastupovaný</value>
+  </data>
+  <data name="SubstituteMsg" xml:space="preserve">
+    <value>Momentálně vás v aplikaci zastupuje '{0}'.  Zastupování můžete zrušit v záložce 'Zastupování'</value>
+  </data>
+  <data name="SumCostCount" xml:space="preserve">
+    <value>Celkové náklady / Počet požadavků</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Neděle</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Dodavatel</value>
+  </data>
+  <data name="SupplierInfo" xml:space="preserve">
+    <value>Informace o dodavateli</value>
+  </data>
+  <data name="SupplierOutOfList" xml:space="preserve">
+    <value>Dodavatel mimo seznam</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>Dodavatelé</value>
+  </data>
+  <data name="SuppliersSynchronized" xml:space="preserve">
+    <value>Seznam dodavatelů byl aktualizován. </value>
+  </data>
+  <data name="SupplierUpdate" xml:space="preserve">
+    <value>Aktualizace dodavatelů</value>
+  </data>
+  <data name="SupplierUpdateConfirm" xml:space="preserve">
+    <value>Opravdu chcete aktualizovat seznam dodavatelů? Tato operace může chvíli trvat.</value>
+  </data>
+  <data name="TakeOverConfirm" xml:space="preserve">
+    <value>Opravdu chcete převzít požadavek?</value>
+  </data>
+  <data name="Thustday" xml:space="preserve">
+    <value>Čt</value>
+  </data>
+  <data name="TooLargeAttachements" xml:space="preserve">
+    <value>Požadavek obsahuje také přílohy, které nemohly být vzhledem k jejich velikosti odeslány mailem. Přílohy si zobrazíte po otevření požadavku.</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Celkem</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Úterý</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Jednotková cena</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Aktualizovat</value>
+  </data>
+  <data name="UpperLimit" xml:space="preserve">
+    <value>Horní limit</value>
+  </data>
+  <data name="WaitForApproval" xml:space="preserve">
+    <value>Čeká na schválení</value>
+  </data>
+  <data name="WaitForOrder" xml:space="preserve">
+    <value>Čeká na vytvoření objednávky</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Středa</value>
+  </data>
+  <data name="WoVat" xml:space="preserve">
+    <value>Bez DPH</value>
+  </data>
+  <data name="WrongDataTypeDecimal" xml:space="preserve">
+    <value>Chybně zadaná hodnota. Zadejte číslo.</value>
+  </data>
+  <data name="WrongDataTypeInteger" xml:space="preserve">
+    <value>Chybně zadaná hodnota. Zadejte celé číslo.</value>
+  </data>
+  <data name="WrongDate" xml:space="preserve">
+    <value>Chybně zadaný datum</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Rok</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>PSČ</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Administrace</value>
+  </data>
+  <data name="GridNumberDisplayRows" xml:space="preserve">
+    <value>Počet zobrazených řádků</value>
+  </data>
+  <data name="DisplayAllRows" xml:space="preserve">
+    <value>Zobrazit všechny řádky</value>
+  </data>
+  <data name="DisplayApprovalMatrix" xml:space="preserve">
+    <value>Zobrazit Schvalovací matici</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Zobrazit</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Skrýt</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>Obecné nastavení</value>
+  </data>
+  <data name="ForeignCurrency" xml:space="preserve">
+    <value>Cizí měna</value>
+  </data>
+  <data name="HomeCurrency" xml:space="preserve">
+    <value>Domácí měna</value>
+  </data>
+  <data name="AllowFreeSupplier" xml:space="preserve">
+    <value>Povolit dodavatele mimo seznam</value>
+  </data>
+  <data name="SupplierGroup" xml:space="preserve">
+    <value>Skupina dodavatelů</value>
+  </data>
+  <data name="AllowOrdererToHandOver" xml:space="preserve">
+    <value>Povolit objednavateli předání požadavku k objednání žadatelem</value>
+  </data>
+  <data name="Commodity" xml:space="preserve">
+    <value>Komodita</value>
+  </data>
+  <data name="AddApprovalLevel" xml:space="preserve">
+    <value>Přidat úroveň schvalování</value>
+  </data>
+  <data name="AddApprovalManager" xml:space="preserve">
+    <value>Přidat schvalovatele</value>
+  </data>
+  <data name="ApproveAlways" xml:space="preserve">
+    <value>Schvalovat vždy bez ohledu na předp. cenu</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Přidat</value>
+  </data>
+  <data name="NoAppManIsSelected" xml:space="preserve">
+    <value>Nebyl vybrán žádný schvalovatel</value>
+  </data>
+  <data name="AppManExists" xml:space="preserve">
+    <value>Schvalovatel je již pro tuto schval. úroveň nastaven</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Společnost</value>
+  </data>
+  <data name="DragMe" xml:space="preserve">
+    <value>Posuň mě</value>
+  </data>
+  <data name="CompanyPrivate" xml:space="preserve">
+    <value>vnitropodnikový</value>
+  </data>
+  <data name="TmpSubstitutionInfo" xml:space="preserve">
+    <value>Samostatný výběr zástupce byl na příkaz p. Pavla Míky pro Českou Republiku a Slovensko dočasně pozastaven. Pokud za sebe potřebujete nastavit zástupce, kontaktujte prosím paní {0}. Po schválení Vašeho požadavku paní {1} bude Vaše zastupování nastaveno administrátorem aplikace. </value>
+  </data>
+  <data name="UnknownSupplierGroup" xml:space="preserve">
+    <value>Neznámá skupina dodavatelů</value>
+  </data>
+  <data name="LoadSuccessfully" xml:space="preserve">
+    <value>Data byla načtena úspěšně.</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>Uložit filtr</value>
+  </data>
+  <data name="FilterSaveInfo" xml:space="preserve">
+    <value>Datum vytvoření a dodání se do filtru neukládá.</value>
+  </data>
+  <data name="SendForApprovalFailed" xml:space="preserve">
+    <value>Požadavek nebyl odeslán ke schválení. Při odesílání mailu došlo k chybě.
+Požadavek byl uložen jako návrh, zkuste jej odeslat ke schválení později</value>
+  </data>
+  <data name="YearOrder" xml:space="preserve">
+    <value>Celoroční objednávka</value>
+  </data>
+  <data name="YearOrderOnly" xml:space="preserve">
+    <value>Pouze celoroční objednávky</value>
+  </data>
+  <data name="Asset" xml:space="preserve">
+    <value>Majetek</value>
+  </data>
+  <data name="NewRequest" xml:space="preserve">
+    <value>Nový požadavek</value>
+  </data>
+  <data name="SelectRequestType" xml:space="preserve">
+    <value>Vyberte druh požadavku</value>
+  </data>
+  <data name="SmallShortTermAssetDescript" xml:space="preserve">
+    <value>Nábytek, ...</value>
+  </data>
+  <data name="ContractNr" xml:space="preserve">
+    <value>Číslo kontraktu</value>
+  </data>
+  <data name="CommentRequestMail" xml:space="preserve">
+    <value>Žádost o komentář</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Komentář</value>
+  </data>
+  <data name="MailBodyCommentRequest" xml:space="preserve">
+    <value>Uživatel {0} Vás žádá o komentář k požadavku č. {1}</value>
+  </data>
+  <data name="WaitForComment" xml:space="preserve">
+    <value>Čeká na komentář</value>
+  </data>
+  <data name="RequestorCanApprove" xml:space="preserve">
+    <value>Žadatel může schvalovat své požadavky</value>
+  </data>
+  <data name="BlackberryLinkNotUsed" xml:space="preserve">
+    <value>Odkaz pro Blackberry</value>
+  </data>
+  <data name="MailLoginInfoBb" xml:space="preserve">
+    <value>Pro Blackberry zadávejte doménu a přihlašovací jméno zvlášť</value>
+  </data>
+  <data name="ErrTimeOutExpired" xml:space="preserve">
+    <value>Server nebyl schopen zobrazit požadovaná data - Povolený čas na zpracování požadavku vypršel. Vaše nastavení bylo upraveno, nyní se Vám ve výpisu zobrazuje 10 položek.</value>
+  </data>
+  <data name="Invoices" xml:space="preserve">
+    <value>Faktury</value>
+  </data>
+  <data name="DataExportTitle" xml:space="preserve">
+    <value>Export požadavků do CSV souboru</value>
+  </data>
+  <data name="LastApprovalDate" xml:space="preserve">
+    <value>Datum posledního schválení</value>
+  </data>
+  <data name="DataExport" xml:space="preserve">
+    <value>Export požadavků</value>
+  </data>
+  <data name="FieldDelimiter" xml:space="preserve">
+    <value>Oddělovač polí</value>
+  </data>
+  <data name="SelectExportedFields" xml:space="preserve">
+    <value>Výběr polí pro export</value>
+  </data>
+  <data name="OrderedDate" xml:space="preserve">
+    <value>Datum objednání</value>
+  </data>
+  <data name="ServiceTime" xml:space="preserve">
+    <value>Servisní čas {0} (v hodinách)</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>Formát datumu</value>
+  </data>
+  <data name="DateFormatInfo" xml:space="preserve">
+    <value>y - rok, M - měsíc, d - den, H - hodina, m - minuta, s - sekunda (case sensitive)</value>
+  </data>
+  <data name="FileType" xml:space="preserve">
+    <value>Druh souboru (přípona)</value>
+  </data>
+  <data name="TimeoutExpired" xml:space="preserve">
+    <value>Vypršel Timeout. Databázový server nebyl schopen vrátit požadovaná data. Zkuste omezit požadovaná data nebo kontaktujte administrátora.</value>
+  </data>
+  <data name="ApprovalMatrixExport" xml:space="preserve">
+    <value>Export schvalovacích matic</value>
+  </data>
+  <data name="LimitedAccessUser" xml:space="preserve">
+    <value>Uživatel pouze pro čtení, s omezeným přístupem</value>
+  </data>
+  <data name="NotAllowedUserForRequest" xml:space="preserve">
+    <value>Nejste oprávněn(a) otevřít požadavek č. '{0}'</value>
+  </data>
+  <data name="ReadOnlyUsers" xml:space="preserve">
+    <value>Uživatelé pouze pro čtení</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Jméno</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Příjmení</value>
+  </data>
+  <data name="NewContact" xml:space="preserve">
+    <value>Nový kontakt</value>
+  </data>
+  <data name="WrongMailAddressFormat" xml:space="preserve">
+    <value>Chybný formát mailové adresy</value>
+  </data>
+  <data name="CustomerContacts" xml:space="preserve">
+    <value>Uživatelské kontakty</value>
+  </data>
+  <data name="AppManAttachment" xml:space="preserve">
+    <value>Přílohy schvalovatele</value>
+  </data>
+  <data name="OrderMailConfirm" xml:space="preserve">
+    <value>Opravdu chcete odeslat objednávku č. {0} na tyto mailové adresy </value>
+  </data>
+  <data name="NoMailAddressIsSelected" xml:space="preserve">
+    <value>Nebyla vybrána žádná mailová adresa</value>
+  </data>
+  <data name="SendMail" xml:space="preserve">
+    <value>Odeslat mail</value>
+  </data>
+  <data name="SupplierMailConstact" xml:space="preserve">
+    <value>Mailové adresy dodavatele</value>
+  </data>
+  <data name="SupplierMailConstactLink" xml:space="preserve">
+    <value>Stránka pro modifikaci mailových adres dodavatele</value>
+  </data>
+  <data name="NoLangIsSelected" xml:space="preserve">
+    <value>Nebyl vybrán jazyk pro odeslání mailu</value>
+  </data>
+  <data name="SuppMailSubject" xml:space="preserve">
+    <value>Objednávka č. {0}</value>
+  </data>
+  <data name="MailError" xml:space="preserve">
+    <value>Při odesílání mailu došlo k chybě. Chyba byla odeslaná administrátorovi.</value>
+  </data>
+  <data name="MailWasSent" xml:space="preserve">
+    <value>Mail byl úspěšně odeslán.</value>
+  </data>
+  <data name="SuppMailBody" xml:space="preserve">
+    <value>&lt;font size="2" face="Arial CE"&gt;Vážený dodavateli,
+v příloze vám posíláme objednávku č. {0}.
+
+S přátelským pozdravem&lt;/font&gt;</value>
+  </data>
+  <data name="TimeoutExpiredWebService" xml:space="preserve">
+    <value>Vypršel Timeout. Server nebyl schopen odpovědět v určeném času.</value>
+  </data>
+  <data name="LastSent" xml:space="preserve">
+    <value>Naposled odesláno</value>
+  </data>
+  <data name="LangCZ" xml:space="preserve">
+    <value>Česky</value>
+  </data>
+  <data name="LangDE" xml:space="preserve">
+    <value>Německy</value>
+  </data>
+  <data name="LangEN" xml:space="preserve">
+    <value>Anglicky</value>
+  </data>
+  <data name="MailRecipients" xml:space="preserve">
+    <value>Adresáti</value>
+  </data>
+  <data name="MailSender" xml:space="preserve">
+    <value>Odesílatel</value>
+  </data>
+  <data name="MailSentDate" xml:space="preserve">
+    <value>Odesláno</value>
+  </data>
+  <data name="RequestEvents" xml:space="preserve">
+    <value>Události požadavku</value>
+  </data>
+  <data name="SentMails" xml:space="preserve">
+    <value>Odeslané  maily</value>
+  </data>
+  <data name="GenerateOrder" xml:space="preserve">
+    <value>Generovat objednávku</value>
+  </data>
+  <data name="OrderError" xml:space="preserve">
+    <value>Došlo k chybě. Objednávka nebyla vygenerována. Chyba byla odeslána administrátorovi.</value>
+  </data>
+  <data name="OrderLang" xml:space="preserve">
+    <value>Jazyk objednávky</value>
+  </data>
+  <data name="OrderLanguage" xml:space="preserve">
+    <value>Jazyk objednávky</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Odeslat</value>
+  </data>
+  <data name="ConfirmReloadRequestData" xml:space="preserve">
+    <value>Opravdu chcete načíst do formuláře objednávky data z požadavku?</value>
+  </data>
+  <data name="DeliverTo" xml:space="preserve">
+    <value>Doručit komu</value>
+  </data>
+  <data name="MailStopTooLargeAttachements" xml:space="preserve">
+    <value>Mail nemůže být odeslán, je příliš velký, obsahuje příliš velké přílohy. Max povolená velikost mailu je {0}.</value>
+  </data>
+  <data name="NoAttachments" xml:space="preserve">
+    <value>Žádné přílohy</value>
+  </data>
+  <data name="SupplierAddress" xml:space="preserve">
+    <value>Adresa dodavatele</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Jméno</value>
+  </data>
+  <data name="FinishEditRow" xml:space="preserve">
+    <value>Ukončete editování řádku (klikněte na 'Uložit' nebo 'Cancel')</value>
+  </data>
+  <data name="UnitNr" xml:space="preserve">
+    <value>Jednotka</value>
+  </data>
+  <data name="FreeSupplier" xml:space="preserve">
+    <value>Dodavatel mimo seznam / neznámý</value>
+  </data>
+  <data name="NotOrderedNotifyDate" xml:space="preserve">
+    <value>Upozornit mě v případě, že požadavek nebude objednán do</value>
+  </data>
+  <data name="ResendApprovalRequestConfirm" xml:space="preserve">
+    <value>Opravdu chcete odeslat opakovanou žádost na schválení (schvalovatel {0})?</value>
+  </data>
+  <data name="ResendOrderRequestConfirm" xml:space="preserve">
+    <value>Opravdu chcete odeslat opakovanou žádost na objednání (objednavatel {0})?</value>
+  </data>
+  <data name="DragAndDrop" xml:space="preserve">
+    <value>Přetáhněte sem soubor myší</value>
+  </data>
+  <data name="FileUploadOneAtTime" xml:space="preserve">
+    <value>Můžete vkládat pouze soubor po souboru, ne několik najednou.</value>
+  </data>
+  <data name="DragDropInfo" xml:space="preserve">
+    <value>Soubory, které chcete vložit jako přílohu sem buď přetáhněte (Drag &amp; Drop) a nebo sem klikněte a vyberte požadovaný soubor.</value>
+  </data>
+  <data name="SuppliersExport" xml:space="preserve">
+    <value>Export dodavatelů</value>
+  </data>
+  <data name="NotAllowedUserForDraft" xml:space="preserve">
+    <value>Momentálně nemáte oprávnění k otevření požadavku č.: '{0}'. Stav požadavku byl změněn na 'Návrh'.</value>
+  </data>
+  <data name="PurchaseGroupDiaplySettings" xml:space="preserve">
+    <value>Nastavení zobrazení Druhu objednávky</value>
+  </data>
+  <data name="WithImage" xml:space="preserve">
+    <value>S obrázkem</value>
+  </data>
+  <data name="WithoutImage" xml:space="preserve">
+    <value>Bez obrázku</value>
+  </data>
+  <data name="SendPurchTermConditions" xml:space="preserve">
+    <value>Odeslat Všeobecné obchodní podmínky</value>
+  </data>
+  <data name="CanceledBySystem" xml:space="preserve">
+    <value>Zrušeno systémem</value>
+  </data>
+  <data name="Inspector" xml:space="preserve">
+    <value>Kontrolor</value>
+  </data>
+  <data name="DeputyOrderer" xml:space="preserve">
+    <value>Zástupce objednavatele</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Najít</value>
+  </data>
+  <data name="RequestNotFound" xml:space="preserve">
+    <value>Požadavek č.: '{0}' nebyl nalezen.</value>
+  </data>
+  <data name="RequestorSearch" xml:space="preserve">
+    <value>Vyhledání žadatele</value>
+  </data>
+  <data name="ExternalUser" xml:space="preserve">
+    <value>Externí pracovník</value>
+  </data>
+  <data name="OfficeOrder" xml:space="preserve">
+    <value>Excelovská objednávka - soubor xls</value>
+  </data>
+  <data name="PdfOrder" xml:space="preserve">
+    <value>Pdf Objednávka</value>
+  </data>
+  <data name="InvoiceDetails" xml:space="preserve">
+    <value>Podrobnosti faktur</value>
+  </data>
+  <data name="InvoiceNrs" xml:space="preserve">
+    <value>Čísla faktur</value>
+  </data>
+  <data name="SmartPhoneLink" xml:space="preserve">
+    <value>Odkaz pro schválení mobilním telefonem (iPhone)</value>
+  </data>
+  <data name="IPhoneInfo" xml:space="preserve">
+    <value>Odkaz je funkční pouze na firemních telefonech iPhone.Otevřete si UTC Browser, který je instalován na zařízení společně s AirWatch agenten a zadejte tento odkaz {0}. (Odkaz si můžete uložit do oblíbených položek UTC Browseru)</value>
+  </data>
+  <data name="LoadDataError" xml:space="preserve">
+    <value>Došlo k chybě, načítání dat selhalo.</value>
+  </data>
+  <data name="PendigRequests" xml:space="preserve">
+    <value>Nevyřízené požadavky</value>
+  </data>
+  <data name="RequiredDeliveryDate" xml:space="preserve">
+    <value>Požadovaný datum dodání</value>
+  </data>
+  <data name="NoPendingRequestsFound" xml:space="preserve">
+    <value>Žádný požadavek nečeká na Vaše schválení</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Akce</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Otevřít</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Zpět</value>
+  </data>
+  <data name="EaDisplayMsg" xml:space="preserve">
+    <value>Zobrazeno od {from} do {to} z {total} řádků</value>
+  </data>
+  <data name="EaOfPages" xml:space="preserve">
+    <value>z {pages}</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Stránka</value>
+  </data>
+  <data name="SendBackToRequestor" xml:space="preserve">
+    <value>Vrátit žadateli</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Aktualizovat</value>
+  </data>
+  <data name="IPhoneUserGuide" xml:space="preserve">
+    <value>iPhone schvalování - Návod na použití</value>
+  </data>
+  <data name="NotFoundRequestForResend" xml:space="preserve">
+    <value>Nebyly zalezeny žádné čekající požadavky k přeposlání</value>
+  </data>
+  <data name="ResentRequestList" xml:space="preserve">
+    <value>Byly přeposlány tyto požadavky: '{0}'</value>
+  </data>
+  <data name="SendPendingRequest" xml:space="preserve">
+    <value>Přeposlat čekající požadavky zastupovaného zástupci - poslat požadavky čekající od</value>
+  </data>
+  <data name="RegetInfo" xml:space="preserve">
+    <value>O aplikaci</value>
+  </data>
+  <data name="DataWasSaved" xml:space="preserve">
+    <value>Data byla uložena</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="CentreGroupAdmin" xml:space="preserve">
+    <value>Administrátor oblasti</value>
+  </data>
+  <data name="MandatoryValueIsMissing" xml:space="preserve">
+    <value>Chybí povinné hodnoty. Data nelze uložit.</value>
+  </data>
+  <data name="AddCentre" xml:space="preserve">
+    <value>Přidat středisko</value>
+  </data>
+  <data name="PurchaseGroupEditing" xml:space="preserve">
+    <value>Je otevřena editace jiného Druhu nákupu. Editovat lze pouze jeden Druh nákupu.</value>
+  </data>
+  <data name="CollapseAll" xml:space="preserve">
+    <value>Skrýt vše</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Zobrazit vše</value>
+  </data>
+  <data name="CancelSelect" xml:space="preserve">
+    <value>Zrušit výběr</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Vybrat vše</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Dolů</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Nahoru</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Nenalezeno</value>
+  </data>
+  <data name="WhoIsAppMan" xml:space="preserve">
+    <value>Kdo bude schvalovatel?</value>
+  </data>
+  <data name="DisplayDetails" xml:space="preserve">
+    <value>Zobrazit detaily</value>
+  </data>
+  <data name="HideDetails" xml:space="preserve">
+    <value>Skrýt detaily</value>
+  </data>
+  <data name="AllOrderer" xml:space="preserve">
+    <value>Aplikovat na všechny komodity</value>
+  </data>
+  <data name="AllRequestor" xml:space="preserve">
+    <value>Aplikovat na všechny komodity</value>
+  </data>
+  <data name="DefaultOrderer" xml:space="preserve">
+    <value>Standardní objednavatel</value>
+  </data>
+  <data name="DefaultRequestor" xml:space="preserve">
+    <value>Standardní žadatel</value>
+  </data>
+  <data name="DeleteAllRequestorMsg" xml:space="preserve">
+    <value>Žadatel bude po uložení smazán z tohoto střediska.</value>
+  </data>
+  <data name="DeleteAllRequestorTitle" xml:space="preserve">
+    <value>Opravdu chcete smazat žadatele z tohoto střediska?</value>
+  </data>
+  <data name="SelectRequestor" xml:space="preserve">
+    <value>Kdo bude žadatel(ka)?</value>
+  </data>
+  <data name="DeleteAllOrdererMsg" xml:space="preserve">
+    <value>Objednavatel bude po uložení smazán z tohoto střediska.</value>
+  </data>
+  <data name="DeleteAllOrdererTitle" xml:space="preserve">
+    <value>Opravdu chcete smazat objednavatele z tohoto střediska?</value>
+  </data>
+  <data name="SelectOrdererPlaceholder" xml:space="preserve">
+    <value>Kdo bude objednavatel(ka)?</value>
+  </data>
+  <data name="LoadingPurchaseGroups" xml:space="preserve">
+    <value>Načítání skupin nákupů # z ##</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Do</value>
+  </data>
+  <data name="AreaAdministrators" xml:space="preserve">
+    <value>Administrátor oblasti</value>
+  </data>
+  <data name="PurchaseGroupWasDeleted" xml:space="preserve">
+    <value>Skupina nákupu byla odstraněna.</value>
+  </data>
+  <data name="WhoIsDeputyOrderer" xml:space="preserve">
+    <value>Kdo bude zástupce objednavatele?</value>
+  </data>
+  <data name="DefaultSupplier" xml:space="preserve">
+    <value>Výchozí dodavatel</value>
+  </data>
+  <data name="WhoIsDefaultSupplier" xml:space="preserve">
+    <value>Kdo bude výchozí dodavatel?</value>
+  </data>
+  <data name="FirstPage" xml:space="preserve">
+    <value>První strana</value>
+  </data>
+  <data name="LastPage" xml:space="preserve">
+    <value>Poslední strana</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Další strana</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Ne</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Předchozí starna</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ano</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktivní</value>
+  </data>
+  <data name="UserRightCopy" xml:space="preserve">
+    <value>Kopírovat oprávnění</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Přidat uživatele</value>
+  </data>
+  <data name="SearchCentre" xml:space="preserve">
+    <value>Hledat středisko</value>
+  </data>
+  <data name="EnterUserName" xml:space="preserve">
+    <value>Zadejte uživatelské jméno</value>
+  </data>
+  <data name="UserExists" xml:space="preserve">
+    <value>Uživatel {0} již existuje pro {1}</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Upozornění</value>
+  </data>
+  <data name="DisplayingFromToOf" xml:space="preserve">
+    <value>Zobrazeno od {0} do {1} z {2} záznamů</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Potvrzení</value>
+  </data>
+  <data name="DeleteUserConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat uživatele '{0}' ?</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>Uživatel '{0}' nebyl nalezen.</value>
+  </data>
+  <data name="UserWasDisabled" xml:space="preserve">
+    <value>Uživatel '{0}' byl deaktivován. Uživatel nemohl být smazán protože je součástí existujících požadavků.</value>
+  </data>
+  <data name="ReplaceUser" xml:space="preserve">
+    <value>Nahrazení uživatele</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Uživatelé</value>
+  </data>
+  <data name="WhoWillBeReplaced" xml:space="preserve">
+    <value>Kdo bude nahrazen?</value>
+  </data>
+  <data name="ReplaceAppMan" xml:space="preserve">
+    <value>Nahradit schvalovatele</value>
+  </data>
+  <data name="Replacer" xml:space="preserve">
+    <value>Náhradník</value>
+  </data>
+  <data name="UserToBeReplaced" xml:space="preserve">
+    <value>Nahrazovaný uživatel</value>
+  </data>
+  <data name="WhoWillReplace" xml:space="preserve">
+    <value>Kdo nahrazuje?</value>
+  </data>
+  <data name="ReplaceRequestor" xml:space="preserve">
+    <value>Nahradit žadatele</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Nahradit</value>
+  </data>
+  <data name="ReplaceOrderer" xml:space="preserve">
+    <value>Nahradit objednavatele</value>
+  </data>
+  <data name="NonActiveUser" xml:space="preserve">
+    <value>Neaktivní uživatelé</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Uživatel</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>Uživatelské role</value>
+  </data>
+  <data name="AreaSettings" xml:space="preserve">
+    <value>Nastavení oblasti</value>
+  </data>
+  <data name="NewArea" xml:space="preserve">
+    <value>Nová oblast</value>
+  </data>
+  <data name="NotAssignedCentre" xml:space="preserve">
+    <value>Nepřiřazené středisko</value>
+  </data>
+  <data name="Always" xml:space="preserve">
+    <value>Vždy</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Nikdy</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>Volitelné</value>
+  </data>
+  <data name="AddAddress" xml:space="preserve">
+    <value>Přidat adresu</value>
+  </data>
+  <data name="DeleteAddressConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat adresu '{0}' ?</value>
+  </data>
+  <data name="CentreManager" xml:space="preserve">
+    <value>Vedoucí střediska</value>
+  </data>
+  <data name="OtherOrderersAllowedToTakeOver" xml:space="preserve">
+    <value>Ostatní objednavatelé střediska mohou přebírat požadavky</value>
+  </data>
+  <data name="MoveCentreConfirmHeader" xml:space="preserve">
+    <value>Potvrzení přesunu střediska</value>
+  </data>
+  <data name="MoveCentreConfirmMsg" xml:space="preserve">
+    <value>Středisko {0} je nyní přiřazeno k oblasti {1}. Jestliže středisko přesunete budou z něj odstraněni všichni žadatelé. Opravdu chcete přesunout středisko? </value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Přesunout</value>
+  </data>
+  <data name="CentreGroupExist" xml:space="preserve">
+    <value>Oblast '{0}' již existuje</value>
+  </data>
+  <data name="NonActive" xml:space="preserve">
+    <value>Neaktivní</value>
+  </data>
+  <data name="CannotDeleteCompanyAdmin" xml:space="preserve">
+    <value>Administrátor společnosti nemůže být odstraněn</value>
+  </data>
+  <data name="CgDeleteConfirmation" xml:space="preserve">
+    <value>Oblast '{0}' bude smazána nebo deaktivována, pokud již byla použita v některém požadavku. Opravdu chcete smazat oblast '{0}' ?</value>
+  </data>
+  <data name="CgDeleteConfirmationHeader" xml:space="preserve">
+    <value>Potvrzení smazání oblasti</value>
+  </data>
+  <data name="DisplayDeactivatedCentreGroups" xml:space="preserve">
+    <value>Zobrazit neaktivní oblasti</value>
+  </data>
+  <data name="DisplayDeactivatedPurchaseGroups" xml:space="preserve">
+    <value>Zobrazit neaktivní skupiny nákupů (komodit)</value>
+  </data>
+  <data name="CentreGroupDeleted" xml:space="preserve">
+    <value>Oblast '{0}' byla smazána</value>
+  </data>
+  <data name="CentreGroupDisabled" xml:space="preserve">
+    <value>Oblast '{0}' byla deaktivována</value>
+  </data>
+  <data name="DeletePgMsg" xml:space="preserve">
+    <value>Skupina nákupu "{0}" bude smazána nebo deaktivována v případě, že byla použita v některém z požadavků. Chcete opravdu smazat skupinu nákupů "{0}"?</value>
+  </data>
+  <data name="DeletePgTitle" xml:space="preserve">
+    <value>Potvrzení smazání skupiny nákupů</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Upozornění</value>
+  </data>
+  <data name="PurchaseGroupDeleted" xml:space="preserve">
+    <value>Skupina nákupu '{0}' byla smazána</value>
+  </data>
+  <data name="PurchaseGroupDisabled" xml:space="preserve">
+    <value>Skupina nákupu '{0}' byla deaktivována</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>Informace o uživateli</value>
+  </data>
+  <data name="ReplaceCentreMan" xml:space="preserve">
+    <value>Nahradit vedoucího střediska</value>
+  </data>
+  <data name="NothingToBeReplaced" xml:space="preserve">
+    <value>Není co nahrazovat</value>
+  </data>
+  <data name="NoSuppliersWereFound" xml:space="preserve">
+    <value>Nebyli nalezeni žádní dodavatelé</value>
+  </data>
+  <data name="ResetDataGridSettings" xml:space="preserve">
+    <value>
+Výchozí nastavení tabulky (filtry, třídění, skryté sloupce, pořadí sloupců)</value>
+  </data>
+  <data name="SaveDataGridSettings" xml:space="preserve">
+    <value>Uložit nastavení tabulky (velikost stránky, filtry, třídění, skryté sloupce, pořadí sloupců)</value>
+  </data>
+  <data name="DuplicityCentreName" xml:space="preserve">
+    <value>Středisko '{0}' již existuje</value>
+  </data>
+  <data name="NoDataIsAvailable" xml:space="preserve">
+    <value>Žádná data nejsou k dispozici</value>
+  </data>
+  <data name="ImportApprovalMatrix" xml:space="preserve">
+    <value>Import schvalovacích matic</value>
+  </data>
+  <data name="CopyAppMatrix" xml:space="preserve">
+    <value>Kopírovat schvalovací matici</value>
+  </data>
+  <data name="SourceArea" xml:space="preserve">
+    <value>Zdrojová oblast</value>
+  </data>
+  <data name="TargetArea" xml:space="preserve">
+    <value>Cílová oblast</value>
+  </data>
+  <data name="NonActiveUsersLeftCompany" xml:space="preserve">
+    <value>Uživatelé kteří opustili firmu, je potřeba je deaktivovat</value>
+  </data>
+  <data name="NoPgFound" xml:space="preserve">
+    <value>Nebyla nalezena žádná komodita</value>
+  </data>
+  <data name="AppMatrixCannotCopyCurrency" xml:space="preserve">
+    <value>Schval. matice nelze kopírovat z důvodu různých měn</value>
+  </data>
+  <data name="AreYouSureCopyAppMatrix" xml:space="preserve">
+    <value>Opravdu chcete kopírovat vybrané skupiny nákupů?</value>
+  </data>
+  <data name="NoSourcePgIsSelected" xml:space="preserve">
+    <value>Není vybrána žádná zdrojová skupina nákupů ke kopírování</value>
+  </data>
+  <data name="SourceTargetAreaSame" xml:space="preserve">
+    <value>Zdrojová a cílová oblast jsou stejné</value>
+  </data>
+  <data name="CopyingPg" xml:space="preserve">
+    <value>Kopíruji komoditu {0} z {1}</value>
+  </data>
+  <data name="PgCopyReplaceConfirm" xml:space="preserve">
+    <value>Komodita '{0}' už existuje. Chcete ji přepsat?</value>
+  </data>
+  <data name="TargetPgDoubled" xml:space="preserve">
+    <value>Není možné kopírovat. V cílové schval. matici existuje více než jedna komodita typu  '{0}'</value>
+  </data>
+  <data name="ParentPg" xml:space="preserve">
+    <value>Skupina nákupů</value>
+  </data>
+  <data name="LastUploadDate" xml:space="preserve">
+    <value>Datum posledního importu dat</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Pouze čtení</value>
+  </data>
+  <data name="SuppliersLoadedFrom" xml:space="preserve">
+    <value>Dodavatelé jsou načítáni z</value>
+  </data>
+  <data name="ManualSupplierMaintenance" xml:space="preserve">
+    <value>Manuální správa dodavatelů</value>
+  </data>
+  <data name="SwitchToSupplierAutoMaintConfirm" xml:space="preserve">
+    <value>Opravdu chcete správu uživatelů přepnout do automatického módu? Můžete přijít o manuálně zadaná data.</value>
+  </data>
+  <data name="ManualSupplierMaintenanceIsNotAllowed" xml:space="preserve">
+    <value>Manuální správa dodavatelů není povolena</value>
+  </data>
+  <data name="DeleteSupplierConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat dodavatele '{0}' ?</value>
+  </data>
+  <data name="SupplierWasDisabled" xml:space="preserve">
+    <value>Dodavatel '{0}' byl deaktivován. Dodavatel nemohl být smazán protože je součástí existujících požadavků.</value>
+  </data>
+  <data name="DeleteCentreConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat středisko '{0}' ?</value>
+  </data>
+  <data name="CentreWasDisabled" xml:space="preserve">
+    <value>Středisko '{0}' bylo deaktivováno. Středisko nemohlo být smazáno protože je součástí existujících požadavků.</value>
+  </data>
+  <data name="BrowserCompatibilityViewSettingsCheck" xml:space="preserve">
+    <value>Zkontrolujte "Nastavení kompatibilního zobrazení" ve Vašem Internet Exploreru</value>
+  </data>
+  <data name="BrowserNotSupported" xml:space="preserve">
+    <value>V Internet Exploreru v. 7 a starších verzích nelze aplikaci spustit. Zkontrolujte verzi Vašeho Internet exploreru a "Nastavení kompatibilního zobrazení"</value>
+  </data>
+  <data name="BrowserVersionIfOK" xml:space="preserve">
+    <value>Pokud používáte Internet Explorer verze 8 nebo vyšší, postupujte následovně</value>
+  </data>
+  <data name="BrowserVersionIfOlder" xml:space="preserve">
+    <value>Pokud používáte Internet Explorer verze 7 nebo starší, nelze aplikaci spustit. Nainstalujte si Internet Explorer v.8 nebo novější nebo použijte jiný prohlížeč Chrome, Firefox, Opera, Safari ...</value>
+  </data>
+  <data name="CheckBrowserVersion" xml:space="preserve">
+    <value>Zkontrolujte verzi Internet Exploreru</value>
+  </data>
+  <data name="FollowInstructions" xml:space="preserve">
+    <value>Postupujte prosím takto</value>
+  </data>
+  <data name="DuplicitySuppllierName" xml:space="preserve">
+    <value>Dodavatel '{0}' již v rámci společnosti existuje</value>
+  </data>
+  <data name="ContactAdminForSupport" xml:space="preserve">
+    <value>Pokud potřebujete pomoc kontaktujte správce aplikace</value>
+  </data>
+  <data name="RemoveCombatibilityViewSettings" xml:space="preserve">
+    <value>Odstraňte následující Weby z nastavení</value>
+  </data>
+  <data name="ApprovalMatrixAdmin" xml:space="preserve">
+    <value>Správce schvalovací matice</value>
+  </data>
+  <data name="OrdererAdmin" xml:space="preserve">
+    <value>Správce objednavatelů</value>
+  </data>
+  <data name="RequestorAdmin" xml:space="preserve">
+    <value>Správce žadatelů</value>
+  </data>
+  <data name="CentreGroupPropertyAdmin" xml:space="preserve">
+    <value>Správce vlastností oblasti</value>
+  </data>
+  <data name="AprilShort" xml:space="preserve">
+    <value>Dub</value>
+  </data>
+  <data name="AugustShort" xml:space="preserve">
+    <value>Srp</value>
+  </data>
+  <data name="DecemberShort" xml:space="preserve">
+    <value>Pro</value>
+  </data>
+  <data name="FebruaryShort" xml:space="preserve">
+    <value>Úno</value>
+  </data>
+  <data name="JanuaryShort" xml:space="preserve">
+    <value>Led</value>
+  </data>
+  <data name="JulyShort" xml:space="preserve">
+    <value>Čvc</value>
+  </data>
+  <data name="JuneShort" xml:space="preserve">
+    <value>Čvn</value>
+  </data>
+  <data name="MarchShort" xml:space="preserve">
+    <value>Bře</value>
+  </data>
+  <data name="MayShort" xml:space="preserve">
+    <value>Kvě</value>
+  </data>
+  <data name="NovemberShort" xml:space="preserve">
+    <value>Lis</value>
+  </data>
+  <data name="OctoberShort" xml:space="preserve">
+    <value>Říj</value>
+  </data>
+  <data name="SeptemberShort" xml:space="preserve">
+    <value>Zář</value>
+  </data>
+  <data name="EnterDateInFormat" xml:space="preserve">
+    <value>Zadejte datum ve formátu '{0}'. Např. '{1}'</value>
+  </data>
+  <data name="WhoIsAreaAdministrator" xml:space="preserve">
+    <value>Kdo bude administrátor oblasti?</value>
+  </data>
+  <data name="AprovalLevel" xml:space="preserve">
+    <value>Schvalovací limit</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Náklady</value>
+  </data>
+  <data name="ChangeColors" xml:space="preserve">
+    <value>Změnit barvy</value>
+  </data>
+  <data name="DisplayAll" xml:space="preserve">
+    <value>Zobrazit vše</value>
+  </data>
+  <data name="SelectRequestors" xml:space="preserve">
+    <value>Vyberte žadatele</value>
+  </data>
+  <data name="RemoveAll" xml:space="preserve">
+    <value>Odebrat vše</value>
+  </data>
+  <data name="SelectCompany" xml:space="preserve">
+    <value>Vyberte společnost</value>
+  </data>
+  <data name="SelectAxisX" xml:space="preserve">
+    <value>Vyberte osu X</value>
+  </data>
+  <data name="SelectAxisY" xml:space="preserve">
+    <value>Vyberte osu Y</value>
+  </data>
+  <data name="SelectDateFrom" xml:space="preserve">
+    <value>Zadejte datum Od</value>
+  </data>
+  <data name="SelectDateTo" xml:space="preserve">
+    <value>Zadejte datum Do</value>
+  </data>
+  <data name="SelectPeriod" xml:space="preserve">
+    <value>Vyberte periodu</value>
+  </data>
+  <data name="ActiveOnly" xml:space="preserve">
+    <value>Jen aktivní</value>
+  </data>
+  <data name="SuppliersAdmin" xml:space="preserve">
+    <value>Správce dodavatelů</value>
+  </data>
+  <data name="ExchangeRateMissing" xml:space="preserve">
+    <value>Směnný kurz mezi {0} and {1} nebyl nalezen.</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Nemáte oprávnění</value>
+  </data>
+  <data name="StatisticsAuthorizedOwnRequestOnly" xml:space="preserve">
+    <value>Můžete zobrazit pouze data ze svých požadavků</value>
+  </data>
+  <data name="ChartData" xml:space="preserve">
+    <value>Zdrojová data grafu</value>
+  </data>
+  <data name="ChartSettings" xml:space="preserve">
+    <value>Nastavení grafu</value>
+  </data>
+  <data name="ChartType" xml:space="preserve">
+    <value>Typ grafu</value>
+  </data>
+  <data name="StatisticsAuthorizedCgRequestOnly" xml:space="preserve">
+    <value>Můžete zobrazit pouze data ze svých požadavků a dále požadavky oblastí kde jste jako správce</value>
+  </data>
+  <data name="XItemsFilter" xml:space="preserve">
+    <value>Filtr osy X</value>
+  </data>
+  <data name="ParentPgUsed" xml:space="preserve">
+    <value>Skupina nákupů je použita pro některé komodity a nelze ji deaktivovat. Nejdříve deaktivujte nebo upravte nastavení příslušných komodit. </value>
+  </data>
+  <data name="ItemWasAddedToFilter" xml:space="preserve">
+    <value>Položka '{0}' byla přidána do filtru.</value>
+  </data>
+  <data name="DuplicityPgName" xml:space="preserve">
+    <value>Typ nákupu '{0}' již v rámci oblasti existuje</value>
+  </data>
+  <data name="RowMissingIdField" xml:space="preserve">
+    <value>Řádek neobsahuje 'id' klíč a nemůže být uprovován ani mazán.</value>
+  </data>
+  <data name="EnterDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="EnterDateTime" xml:space="preserve">
+    <value>Datum a čas</value>
+  </data>
+  <data name="Substitutee" xml:space="preserve">
+    <value>Zástupce</value>
+  </data>
+  <data name="WhoWillBeSubstituted" xml:space="preserve">
+    <value>Kdo bude zastupován?</value>
+  </data>
+  <data name="WhoWillBeSubstitutee" xml:space="preserve">
+    <value>Kdo bude zastupovat?</value>
+  </data>
+  <data name="NoRecordFound" xml:space="preserve">
+    <value>Nebyl nalezen žádný záznam</value>
+  </data>
+  <data name="DataCannotBeSaved" xml:space="preserve">
+    <value>Data nemohou být uložena.</value>
+  </data>
+  <data name="ApprovalOnly" xml:space="preserve">
+    <value>Pouze schválení bez objednávky</value>
+  </data>
+  <data name="SubstitutionPast" xml:space="preserve">
+    <value>Zastupování nelze nastavit v minulosti</value>
+  </data>
+  <data name="NotNeeded" xml:space="preserve">
+    <value>Není potřeba</value>
+  </data>
+  <data name="LimitMultipl" xml:space="preserve">
+    <value>Násobená cena</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Zadejte</value>
+  </data>
+  <data name="MultiplyAppLimit" xml:space="preserve">
+    <value>Vynásobit schvalovací limity</value>
+  </data>
+  <data name="EnterDecimalNumber" xml:space="preserve">
+    <value>Zadejte číslo</value>
+  </data>
+  <data name="MultiplicationFactor" xml:space="preserve">
+    <value>Činitel pro násobení</value>
+  </data>
+  <data name="Multiply" xml:space="preserve">
+    <value>Vynásobit</value>
+  </data>
+  <data name="MultiplyAllLimits" xml:space="preserve">
+    <value>Vynásobit všechny schvalovací limity</value>
+  </data>
+  <data name="MultiplySelectedLimits" xml:space="preserve">
+    <value>Vynásobit vybrané schvalovací limity</value>
+  </data>
+  <data name="AppLevelMultiplyAllConfirm" xml:space="preserve">
+    <value>Opravdu chcete vynásobit VŠECHNY schvalovací limity vybraných společností?</value>
+  </data>
+  <data name="AppLevelMultiplySelectedConfirm" xml:space="preserve">
+    <value>Opravdu chcete vynásobit vybrané schvalovací limity vybraných společností?</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Hotovo</value>
+  </data>
+  <data name="LimitMultiplyResult" xml:space="preserve">
+    <value>Schvalovací limity byly přepočítány. Počet vynásobených schvalovacích limitů: {0}</value>
+  </data>
+  <data name="NotAuthorizedDisplayPage" xml:space="preserve">
+    <value>Nejste oprávněn(a) zobrazit tuto stánku.</value>
+  </data>
+  <data name="ApplicationAdministrators" xml:space="preserve">
+    <value>Správci aplikace</value>
+  </data>
+  <data name="MultiplPgLimitError" xml:space="preserve">
+    <value>Schvalovací limity nemohly být vynásobeny. Další informace viz Seznam chyb níže</value>
+  </data>
+  <data name="ErrorList" xml:space="preserve">
+    <value>Seznam chyb</value>
+  </data>
+  <data name="PurchaseType" xml:space="preserve">
+    <value>Typ položky</value>
+  </data>
+  <data name="DeleteSubstitutionConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat zastupování '{0}' ?</value>
+  </data>
+  <data name="DuplicityAddress" xml:space="preserve">
+    <value>Adresa '{0}' již existuje</value>
+  </data>
+  <data name="DuplicityParentPgName" xml:space="preserve">
+    <value>Skupina nákupů '{0}' již existuje</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Překlad</value>
+  </data>
+  <data name="AddParentPurchaseGroup" xml:space="preserve">
+    <value>Přidat skupinu nákupů</value>
+  </data>
+  <data name="DeleteParentPgConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat skupinu nákupů '{0}' ?</value>
+  </data>
+  <data name="NonActiveIncluded" xml:space="preserve">
+    <value>včetně neaktivních</value>
+  </data>
+  <data name="DeletePgConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat typ nákupu '{0}' ?</value>
+  </data>
+  <data name="ConnectedPurchaseGroups" xml:space="preserve">
+    <value>Připojené typy nákupů</value>
+  </data>
+  <data name="Filtered" xml:space="preserve">
+    <value>Filtrováno</value>
+  </data>
+  <data name="StatisticsAppManNotAllowed" xml:space="preserve">
+    <value>Nejste oprávněn zobrazit statistiku schvalovatelů společnosti '{0}'</value>
+  </data>
+  <data name="StatisticsAreaNotAllowed" xml:space="preserve">
+    <value>Nejste oprávněn zobrazit statistiku oblastí společnosti '{0}'</value>
+  </data>
+  <data name="StatisticsCentreNotAllowed" xml:space="preserve">
+    <value>Nejste oprávněn zobrazit statistiku středisek společnosti '{0}'</value>
+  </data>
+  <data name="StatisticsOrdererNotAllowed" xml:space="preserve">
+    <value>Nejste oprávněn zobrazit statistiku objednavatelů společnosti '{0}'</value>
+  </data>
+  <data name="StatisticsPgNotAllowed" xml:space="preserve">
+    <value>Nejste oprávněn zobrazit statistiku druhů nákupu společnosti '{0}'</value>
+  </data>
+  <data name="StatisticsRequestorNotAllowed" xml:space="preserve">
+    <value>Nejste oprávněn zobrazit statistiku žadatelů společnosti '{0}'</value>
+  </data>
+  <data name="StatisticsSupplierNotAllowed" xml:space="preserve">
+    <value>Nejste oprávněn zobrazit statistiku dodavatelů společnosti '{0}'</value>
+  </data>
+  <data name="ParentPgUsedComps" xml:space="preserve">
+    <value>Skupina nákupů je použita pro následující společnosti a nelze ji deaktivovat. </value>
+  </data>
+  <data name="LoadingLocalization" xml:space="preserve">
+    <value>Nahrávají se chybějící překlady # z ##</value>
+  </data>
+  <data name="EnterMandatoryValues" xml:space="preserve">
+    <value>Zadejte povinné položky</value>
+  </data>
+  <data name="ClearFilters" xml:space="preserve">
+    <value>Odstranit filtry</value>
+  </data>
+  <data name="ShowHiddenColumns" xml:space="preserve">
+    <value>Zobrazit skryté sloupce</value>
+  </data>
+  <data name="ApprovalStatus" xml:space="preserve">
+    <value>Stav schválení</value>
+  </data>
+  <data name="ModifyDate" xml:space="preserve">
+    <value>Poslední změna</value>
+  </data>
+  <data name="ModifyUser" xml:space="preserve">
+    <value>Změnil</value>
+  </data>
+  <data name="NewSubstitution" xml:space="preserve">
+    <value>Nové zastupování</value>
+  </data>
+  <data name="AllowSubsToTakeOver" xml:space="preserve">
+    <value>Povolit zástupci převzít existující požadavky čekající na zpracování zastupovaného</value>
+  </data>
+  <data name="RequestTransfer" xml:space="preserve">
+    <value>Převod požadavků</value>
+  </data>
+  <data name="AllowSubsToTakeOverShort" xml:space="preserve">
+    <value>Povolit převzetí</value>
+  </data>
+  <data name="SubstApprovalConfirmation" xml:space="preserve">
+    <value>Opravdu chcete schválit zastupování '{0}' ?</value>
+  </data>
+  <data name="SubstRejectConfirmation" xml:space="preserve">
+    <value>Opravdu chcete zamítnout zastupování '{0}' ?</value>
+  </data>
+  <data name="NotAuthorizedPerformAction" xml:space="preserve">
+    <value>Nemáte oprávnění prosvést tuto akci.</value>
+  </data>
+  <data name="UserCannotBeDeactivatedAppMan" xml:space="preserve">
+    <value>Uživatele {0} nelze deaktivovat, protože je u některých aktivních komodit nastaven jako schvalovatel. Nahraďte schvalovatele u všech aktivních komodity a poté můžete uživatele deaktivovat.</value>
+  </data>
+  <data name="UserCannotBeDeactivatedOrderer" xml:space="preserve">
+    <value>Uživatele {0} nelze deaktivovat, protože je u některých aktivních komodit nastaven jako objednavatel. Nahraďte objednavatele u všech aktivních komodity a poté můžete uživatele deaktivovat.</value>
+  </data>
+  <data name="UserCannotBeDeletedAppMan" xml:space="preserve">
+    <value>Uživatele {0} nelze smazat, protože je u některých aktivních komodit nastaven jako schvalovatel. Nahraďte schvalovatele u všech aktivních komodity a poté můžete uživatele smazat.</value>
+  </data>
+  <data name="UserCannotBeDeletedOrderer" xml:space="preserve">
+    <value>Uživatele {0} nelze smazat, protože je u některých aktivních komodit nastaven jako objednavatel. Nahraďte objednavatele u všech aktivních komodity a poté můžete uživatele smazat.</value>
+  </data>
+  <data name="MissingMandatoryValue" xml:space="preserve">
+    <value>Chybějící povinná hodnota</value>
+  </data>
+  <data name="RequestItem" xml:space="preserve">
+    <value>Položka objednávky</value>
+  </data>
+  <data name="RequestItems" xml:space="preserve">
+    <value>Položky objednávky</value>
+  </data>
+  <data name="UnitOfMeasurement" xml:space="preserve">
+    <value>Jednotka</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Název položky</value>
+  </data>
+  <data name="Missing" xml:space="preserve">
+    <value>Chybí</value>
+  </data>
+  <data name="DragDropNotSupported" xml:space="preserve">
+    <value>Drag &amp; Drop v tomto prohlížeči nefunguje</value>
+  </data>
+  <data name="SelectAttachment" xml:space="preserve">
+    <value>Pro vložení přílohy klikněte sem</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Deaktivovat</value>
+  </data>
+  <data name="ManagerSubstitutionDetail" xml:space="preserve">
+    <value>Zastupování Detail</value>
+  </data>
+  <data name="MinDate" xml:space="preserve">
+    <value>Datum musí být větší než '{0}'</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Stav</value>
+  </data>
+  <data name="SubstDeactivateConfirm" xml:space="preserve">
+    <value>Opravdu chcete deaktivovat toto zastupování ?</value>
+  </data>
+  <data name="MailSubstAppRequestBody" xml:space="preserve">
+    <value>Uživatel {0} vás žádá o schválení zastupování {1}</value>
+  </data>
+  <data name="MailSubstAppRequestSubject" xml:space="preserve">
+    <value>Zastupování - Žádost o schválení</value>
+  </data>
+  <data name="PrivacyCentre" xml:space="preserve">
+    <value>Viditelný pro mé středisko</value>
+  </data>
+  <data name="PrivacyPrivate" xml:space="preserve">
+    <value>Privátní</value>
+  </data>
+  <data name="PrivacyPublic" xml:space="preserve">
+    <value>Veřejný</value>
+  </data>
+  <data name="ApprovalIsNeeded" xml:space="preserve">
+    <value>Je vyžadováno schválení</value>
+  </data>
+  <data name="OrderAllowed" xml:space="preserve">
+    <value>Je povolena objednávka</value>
+  </data>
+  <data name="CentreScope" xml:space="preserve">
+    <value>Střediskový</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Privátní</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Veřejný</value>
+  </data>
+  <data name="RequestVisibility" xml:space="preserve">
+    <value>Viditelnost</value>
+  </data>
+  <data name="SubstitutionFor" xml:space="preserve">
+    <value>Zastupování za</value>
+  </data>
+  <data name="ApproveMen" xml:space="preserve">
+    <value>Schvalovatelé</value>
+  </data>
+  <data name="ScrollBottom" xml:space="preserve">
+    <value>Jít na konec stránky</value>
+  </data>
+  <data name="ScrollTop" xml:space="preserve">
+    <value>Jít na začátek stránky</value>
+  </data>
+  <data name="SelectCentre" xml:space="preserve">
+    <value>Vyberte středisko</value>
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value>Datum dodání</value>
+  </data>
+  <data name="FileSizeOverLimit" xml:space="preserve">
+    <value>Velikost souboru {0} ({1}) je větší než maximální povolená velikost {2}. Soubor nelze vložit.</value>
+  </data>
+  <data name="SelectAddress" xml:space="preserve">
+    <value>Vyberte adresu</value>
+  </data>
+  <data name="ApprovalNotNeeded" xml:space="preserve">
+    <value>Bez schválení</value>
+  </data>
+  <data name="OrderIsNeeded" xml:space="preserve">
+    <value>Požadavek s objednávkou</value>
+  </data>
+  <data name="OrderNotNeeded" xml:space="preserve">
+    <value>Bez objednávky</value>
+  </data>
+  <data name="Revert" xml:space="preserve">
+    <value>Vrátit o krok zpět</value>
+  </data>
+  <data name="YouAreNotAuthorizedToDisplayRequest" xml:space="preserve">
+    <value>Nemáte oprávnění pro zobrazení požadavku.</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Vyhledat</value>
+  </data>
+  <data name="SearchRequests" xml:space="preserve">
+    <value>Vyhledávání požadavků</value>
+  </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>Hledaný text</value>
+  </data>
+  <data name="EnterMin2Characters" xml:space="preserve">
+    <value>Zadejte min. 2 znaky</value>
+  </data>
+  <data name="RevertRequestConfirm" xml:space="preserve">
+    <value>Opravdu chcete vrátit požadavek do předchozího stavu?</value>
+  </data>
+  <data name="RequestCannotBeReverted" xml:space="preserve">
+    <value>Požadavek nemůže být vrácen do předchozího stavu</value>
+  </data>
+  <data name="RequestWasReverted" xml:space="preserve">
+    <value>Požadavek byl vrácen</value>
+  </data>
+  <data name="RemindAppMan" xml:space="preserve">
+    <value>Upomínka schvalovateli</value>
+  </data>
+  <data name="RemindOrderer" xml:space="preserve">
+    <value>Upomínka objednavateli</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Odesláno</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Aktivovat</value>
+  </data>
+  <data name="ActivateConfirm" xml:space="preserve">
+    <value>Opravdu chcete aktivovat požadavek ?</value>
+  </data>
+  <data name="AskForRequestAccess" xml:space="preserve">
+    <value>Požádat vlastníka o přístup k požadavku</value>
+  </data>
+  <data name="AccessRequestWasSent" xml:space="preserve">
+    <value>Žádost na přístup k požadavku byla odeslána.</value>
+  </data>
+  <data name="AskAcessRequestConfirm" xml:space="preserve">
+    <value>Opravdu chcete odeslat žádost o přístup k požadavku?</value>
+  </data>
+  <data name="RequestOwner" xml:space="preserve">
+    <value>Vlastník požadavku</value>
+  </data>
+  <data name="SendOrder" xml:space="preserve">
+    <value>Odeslat objednávku</value>
+  </data>
+  <data name="FridayShort" xml:space="preserve">
+    <value>Pá</value>
+  </data>
+  <data name="MondayShort" xml:space="preserve">
+    <value>Po</value>
+  </data>
+  <data name="SaturdayShort" xml:space="preserve">
+    <value>So</value>
+  </data>
+  <data name="SundayShort" xml:space="preserve">
+    <value>Ne</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Čtvrtek</value>
+  </data>
+  <data name="ThursdayShort" xml:space="preserve">
+    <value>Čt</value>
+  </data>
+  <data name="TuesdayShort" xml:space="preserve">
+    <value>Út</value>
+  </data>
+  <data name="WednesdayShort" xml:space="preserve">
+    <value>St</value>
+  </data>
+  <data name="DeliveryAddress" xml:space="preserve">
+    <value>Dodací adresa</value>
+  </data>
+  <data name="EnterEMail" xml:space="preserve">
+    <value>Zadejte mailovou adresu</value>
+  </data>
+  <data name="ColumnsDisplaying" xml:space="preserve">
+    <value>Zobrazení sloupců</value>
+  </data>
+  <data name="DeSelectAll" xml:space="preserve">
+    <value>Odebrat vše</value>
+  </data>
+  <data name="DeleteSuppliereContactConfirm" xml:space="preserve">
+    <value>Opravdu chcete smazat kontakt '{0}' ?</value>
+  </data>
+</root>

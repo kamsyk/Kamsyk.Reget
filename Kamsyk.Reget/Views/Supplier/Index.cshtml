@@ -1,0 +1,239 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var supplierController = ViewContext.Controller as SupplierController;
+}
+
+
+@functions {
+    public string GetGridLangCode() {
+        var supplierController = ViewContext.Controller as SupplierController;
+
+        return supplierController.GetGridLangCode();
+
+    }
+}
+
+
+
+
+<form name="frmSupplier" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="SupplierController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div class="reget-panel-box-pad">
+            <div style="position:relative;">
+
+                <div style="float:left;margin-right:15px;">
+                    @{
+                        MdSelect mdCmbCompany = new MdSelect();
+                        mdCmbCompany.FormName = "frmSupplier";
+                        mdCmbCompany.AgSourceList = "angCtrl.suppCompanies";
+                        mdCmbCompany.AgModel = "angCtrl.selectedCompanyId";
+                        mdCmbCompany.AgIdItem = "id";
+                        mdCmbCompany.AgTextItem = "country_code";
+
+                        mdCmbCompany.RootTagId = "SupplierList";
+                        mdCmbCompany.OnSelectFunct = "angCtrl.getSupplierData()";
+                        mdCmbCompany.LabelLeft = RequestResource.Company;
+                        mdCmbCompany.IsDisplayNoneSelect = true;
+                        mdCmbCompany.IsBold = true;
+
+                    }
+                    @Html.Raw(mdCmbCompany.RenderControlHtml())
+
+                    
+
+                </div>
+
+                <div class="reget-inline-ang-button" style="display:inline-block;">
+
+                    <input id="btnSupplierImport"
+                           type="button"
+                           class="btn btn-primary reget-btn-upload"
+                           ng-hide="angCtrl.isGridHidden==true || angCtrl.isCompanySuppAdmin == false || angCtrl.isCompanySuppManualAllowed == true"
+                           value="@RequestResource.SupplierUpdate"
+                           ng-click="angCtrl.importSuppliers($event)" />
+                </div>
+
+            </div>
+
+            <hr ng-hide="angCtrl.isGridHidden==true" />
+
+            <div ng-hide="angCtrl.isGridHidden==true">
+                <div class="reget-ang-div-container-readonly" style="float:left;" ng-hide="!angCtrl.isCompanyAdmin">
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth">@RequestResource.SuppliersAdmin :</label>
+                    <md-input-container class="reget-ang-md-input-container-readonly  md-input-has-value">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.SuppliersAdmin</label>
+                        <div>
+
+                            <suppadmin ng-repeat="suppAdmin in angCtrl.supplierAdmins"
+                                       deletesuppadmin="angCtrl.deleteSuppAdmin(suppAdmin.id, $index, suppAdmin.is_company_admin)"
+                                       userid="{{suppAdmin.id}}"
+                                       surname="{{suppAdmin.surname}}"
+                                       firstname="{{suppAdmin.first_name}}"
+                                       iscompanyadmin="{{managerRole.is_company_admin}}"
+                                       removetext="@RequestResource.Delete"
+                                       rooturl="@supplierController.GetRootUrl()"
+                                       style="float:left;">
+                            </suppadmin>
+
+                            <md-button class="md-fab md-mini reget-circle-btn"
+                                       ng-show="angCtrl.isCompanyAdmin"
+                                       aria-label="@RequestResource.Add"
+                                       style="background-color:#4caf50;float:left;"
+                                       ng-click="angCtrl.displaySuppAdminAutoCompl();">
+                                <img ng-src="@supplierController.GetRootUrl()Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                                <md-tooltip>@RequestResource.Add</md-tooltip>
+                            </md-button>
+
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+                <div style="float:left;" ng-hide="!angCtrl.isCompanyAdmin">
+                    <md-autocomplete id="autoSuppAdmin"
+                                     md-input-minlength="0"
+                                     md-min-length="0"
+                                     md-item-text="item.name_surname_first"
+                                     md-search-text="angCtrl.searchstringsuppadmin"
+                                     md-items="item in angCtrl.searchParticipant(angCtrl.searchstringsuppadmin)"
+                                     md-selected-item="angCtrl.selectedCgAdmin"
+                                     md-no-cache="true"
+                                     md-delay="300"
+                                     placeholder="@RequestResource.WhoIsAreaAdministrator"
+                                     md-selected-item-change="angCtrl.suppAdminSelectedItemChange(item)"
+                                     class="reget-autocomplete"
+                                     style="min-width:300px;margin-top:5px;display:none;background-color:#fff">
+                        <md-item-template>
+                            <div>
+                                <img ng-src="{{item.country_flag}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                <span md-highlight-text="angCtrl.searchstringsuppadmin" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                            </div>
+                        </md-item-template>
+
+                        <md-not-found>
+                            "{{angCtrl.searchstringsuppadmin}}" @RequestResource.NotFound.
+                        </md-not-found>
+
+                    </md-autocomplete>
+                </div>
+
+                <div style="clear:both;"></div>
+
+
+                <div class="reget-ang-div-container-readonly" style="float:left;min-width:250px;margin-bottom:10px;" ng-hide="angCtrl.isCompanyAdmin">
+
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth" style="margin-top:0px;">@RequestResource.SuppliersAdmin :</label>
+                    <md-input-container class="reget-ang-md-input-container-readonly  md-input-has-value">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;min-width:250px;">@RequestResource.SuppliersAdmin</label>
+                        <span ng-repeat="suppAdmin in angCtrl.supplierAdmins">
+                            <span ng-if="!$last">{{suppAdmin.surname}} {{suppAdmin.first_name}},</span>
+                            <span ng-if="$last">{{suppAdmin.surname}} {{suppAdmin.first_name}}</span>
+                        </span>
+
+                    </md-input-container>
+
+                </div>
+
+            </div>
+
+            <hr ng-hide="angCtrl.isGridHidden==true" />
+
+            <div ng-hide="angCtrl.isGridHidden==true" style="margin-top:10px;">
+                <div class="hidden-xs reget-ang-lbl-control-left-nowidth-float">&nbsp;</div>
+
+                @{
+                    MdCheckBox mdCheckBox = new MdCheckBox(supplierController.GetRootUrl());
+                    mdCheckBox.RootTagId = "ckbManualMaint";
+                    mdCheckBox.CkbText = RequestResource.ManualSupplierMaintenance;
+                    mdCheckBox.AgIsChecked = "angCtrl.isCompanySuppManualAllowed";
+                    mdCheckBox.AgIsReadOnly = "!angCtrl.isCompanyAdmin";
+                    mdCheckBox.OnClick = "angCtrl.toggleManualMaint();";
+                }
+                @Html.Raw(mdCheckBox.RenderControlHtml())
+
+                @*@Html.Raw(supplierController.GetAngularCheckbox(
+                "ckbManualMaint",
+                @RequestResource.ManualSupplierMaintenance,
+                "angCtrl.isCompanySuppManualAllowed",
+                "!angCtrl.isCompanyAdmin",
+                "angCtrl.toggleManualMaint();"
+            ))*@
+
+            </div>
+        </div>
+
+        <hr />
+
+
+        <div id="divGrdSupplier" style="margin-bottom:15px;padding:5px;" ng-if="angCtrl.isGridHidden==false">
+            <div ng-if="angCtrl.isGridHidden==false">
+                @{
+                    UiGrid uiGrid = new UiGrid(supplierController.GetRootUrl());
+                    uiGrid.RootTagId = "grdSupplier";
+                    uiGrid.AgControlerName = "angCtrl";
+                    uiGrid.Title = RequestResource.Suppliers;
+                    uiGrid.AddNewText = RequestResource.Add;
+                }
+                @Html.Raw(uiGrid.RenderControlHtml())
+
+                @*@Html.Raw(supplierController.GetDataGridTs(
+                    "grdSupplier",
+                    "angCtrl",
+                    RequestResource.ManagerSubstitution,
+                    RequestResource.Add))*@
+            </div>
+            <div ng-hide="angCtrl.gridOptions.data!==null">
+                @RequestResource.NoSuppliersWereFound
+            </div>
+        </div>
+
+
+    </div>
+
+    @Html.Partial("_LocalizationTextBasic")
+
+    <div style="display:none;">
+        <input id="WarningText" value="@RequestResource.Warning" />
+        <input id="ErrMsgText" value="@RequestResource.Error" />
+        <input id="CloseText" value="@RequestResource.Close" />
+        <input id="SuppliersText" value="@RequestResource.Suppliers" />
+        <input id="NameText" value="@RequestResource.Name" />
+        <input id="StreetText" value="@RequestResource.Street" />
+        <input id="CityText" value="@RequestResource.City" />
+        <input id="ZipText" value="@RequestResource.ZipCode" />
+        <input id="CountryText" value="@RequestResource.Country" />
+        <input id="PhoneText" value="@RequestResource.Phone" />
+        <input id="MailText" value="@RequestResource.Mail" />
+        <input id="ContactPersonText" value="@RequestResource.ContactPerson" />
+        <input id="SupplierIdText" value="@RequestResource.ICO" />
+        <input id="ActiveText" value="@RequestResource.Active" />
+        <input id="YesText" value="@RequestResource.Yes" />
+        <input id="NoText" value="@RequestResource.No" />
+        <input id="SupplierUpdateConfirmText" value="@RequestResource.SupplierUpdateConfirm" />
+        <input id="LoadSuccessfullyText" value="@RequestResource.LoadSuccessfully" />
+        <input id="NotificationText" value="@RequestResource.Notification" />
+        <input id="LastUploadDateText" value="@RequestResource.LastUploadDate" />
+        <input id="NeverText" value="@RequestResource.Never" />
+        <input id="SuppliersLoadedFromText" value="@RequestResource.SuppliersLoadedFrom" />
+        <input id="SwitchToAutoSuppMainConfirmText" value="@RequestResource.SwitchToSupplierAutoMaintConfirm" />
+        <input id="ConfirmationText" value="@RequestResource.Confirmation" />
+        <input id="CancelText" value="@RequestResource.Cancel" />
+        <input id="EditText" value="@RequestResource.Edit" />
+        <input id="DeleteText" value="@RequestResource.Delete" />
+        <input id="SaveText" value="@RequestResource.Save" />
+        <input id="ManualSupplierMaintenanceIsNotAllowedText" value="@RequestResource.ManualSupplierMaintenanceIsNotAllowed" />
+        <input id="DeleteSupplierConfirmText" value="@RequestResource.DeleteSupplierConfirm" />
+        <input id="SupplierWasDisabledText" value="@RequestResource.SupplierWasDisabled" />
+        <input id="MissingMandatoryText" value="@RequestResource.MandatoryValueIsMissing" />
+        <input id="DuplicitySuppllierNameText" value="@RequestResource.DuplicitySuppllierName" />
+        <input id="CannotDeleteCompanyAdminText" value="@RequestResource.CannotDeleteCompanyAdmin" />
+        @*<input id="ErrorOccuredText" value="@RequestResource.Error" />*@
+
+        <input id="GridLangCode" value="@GetGridLangCode()" />
+    </div>
+</form>

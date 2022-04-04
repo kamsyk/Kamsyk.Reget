@@ -1,0 +1,35 @@
+﻿<div>
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-mouseover="grid.appScope.cellMouseOver(row)"
+         ng-mouseleave="grid.appScope.cellMouseLeave()"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            <!--{{grid.appScope.getShortText(COL_FIELD, 5)}}-->
+            <!--<md-tooltip md-direction="bottom">{{COL_FIELD}}<br>aaa</md-tooltip>-->
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow">
+        <!--<md-tooltip md-direction="bottom">{{COL_FIELD}}</md-tooltip>-->
+
+        <table style="min-height:32px;width:100%">
+            <tr>
+                <td style="max-width:1px;padding-left:5px;padding-right:5px;">{{COL_FIELD}}</td>
+                <td style="vertical-align:top;width:32px;">
+                    <!--<input type="button" 
+                           id="btnTextAreaEdit"
+                           class="reget-btn-edit" 
+                           style="background-position:7px 7px;min-height:32px;margin-top:-2px;" 
+                           ng-click="grid.appScope.displayGridCellTextArea(row)">-->
+                    <md-button id="btnTextAreaEdit" 
+                                class="reget-btn-blue reget-btn-edit" 
+                                style="background-position:7px 7px;min-height:32px;margin:0px;min-width:32px;width:32px;" 
+                               ng-click="grid.appScope.displayGridCellTextArea(row)">
+                    </md-button>
+                </td>
+            </tr>
+        </table>
+                
+        <!--<textarea style="width:100%">{{COL_FIELD}}</textarea>-->
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var participantController = ViewContext.Controller as ParticipantController;
+
+}
+
+@functions {
+
+    public string GetGridLangCode() {
+        var participantController = ViewContext.Controller as ParticipantController;
+
+        return participantController.GetGridLangCode();
+
+    }
+}
+
+<form name="frmUser" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="UserController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+
+        <div style="margin-bottom:15px;">
+            @{
+                UiGrid uiGrid = new UiGrid(participantController.GetRootUrl());
+                uiGrid.RootTagId = "grdUser";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.Users;
+                uiGrid.AddNewText = RequestResource.AddUser;
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+
+            @*@Html.Raw(participantController.GetDataGridTs(
+                "grdUser",
+                "angCtrl",
+                RequestResource.Users,
+                RequestResource.AddUser))*@
+
+        </div>
+    </div>
+
+    @Html.Partial("_LocalizationTextBasic")
+    @Html.Partial("_DataGrid")
+
+    <div style="display:none;">
+        <input id="GridLangCode" value="@GetGridLangCode()" />
+        <input id="YesText" value="@RequestResource.Yes" />
+        <input id="NoText" value="@RequestResource.No" />
+        <input id="EditText" value="@RequestResource.Edit" />
+        <input id="DeleteText" value="@RequestResource.Delete" />
+        <input id="SaveText" value="@RequestResource.Save" />
+        <input id="CancelText" value="@RequestResource.Cancel" />
+        <input id="FirstNameText" value="@RequestResource.Firstname*" />
+        <input id="SurnameText" value="@RequestResource.Surname*" />
+        <input id="LoginText" value="@RequestResource.Login*" />
+        <input id="MailText" value="@RequestResource.Mail*" />
+        <input id="PhoneText" value="@RequestResource.Phone" />
+        <input id="OfficeText" value="@RequestResource.Company*" />
+        <input id="ActiveText" value="@RequestResource.Active" />
+        <input id="IsExternalText" value="@RequestResource.ExternalUser" />
+        <input id="MissingMandatoryText" value="@RequestResource.MandatoryValueIsMissing" />
+        <input id="CloseText" value="@RequestResource.Close" />
+        <input id="EnterUserNameText" value="@RequestResource.EnterUserName" />
+        <input id="UserExistText" value="@RequestResource.UserExists" />
+        <input id="WarningText" value="@RequestResource.Warning" />
+        <input id="ConfirmationText" value="@RequestResource.Confirmation" />
+        <input id="DeleteUserConfirmText" value="@RequestResource.DeleteUserConfirm" />
+        <input id="UserWasDisabledText" value="@RequestResource.UserWasDisabled" />
+        <input id="UserNotFoundText" value="@RequestResource.UserNotFound" />
+        <input id="ErrMsgText" value="@RequestResource.Error" />
+        <input id="UserInfoText" value="@RequestResource.UserInfo" />
+        <input id="UserCannotBeDeactivatedAppManText" value="@RequestResource.UserCannotBeDeactivatedAppMan" />
+        <input id="UserCannotBeDeactivatedOrdererText" value="@RequestResource.UserCannotBeDeactivatedOrderer" />
+        <input id="UserCannotBeDeletedAppManText" value="@RequestResource.UserCannotBeDeletedAppMan" />
+        <input id="UserCannotBeDeletedOrdererText" value="@RequestResource.UserCannotBeDeletedOrderer" />
+        <input id="UserRolesText" value="@RequestResource.UserRoles" />
+
+    </div>
+
+</form>

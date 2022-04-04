@@ -1,0 +1,11 @@
+﻿<div>
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;padding-right:5px;text-align:right;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow" >
+        <input type="text" onkeydown="validateDecimalNumberSimple(event)" style="height:30px;padding-left:5px;padding-right:5px;text-align:right;" ng-model="MODEL_COL_FIELD" aria-label="{{COL_FIELD}}" class="reget-grid-edit-cell-mandatory" />
+    </div>    
+</div>

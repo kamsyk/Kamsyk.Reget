@@ -1,0 +1,801 @@
+﻿
+/*.btn-success {
+    color: #fff;
+    text-transform: none;
+}*/
+
+    .reget-btn {
+        font-weight: bold;
+        text-transform: none !important;
+        color: #fff !important;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+.reget-btn-mp-width100 {
+    font-weight: bold;
+    text-transform: none !important;
+    color: #fff !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+
+    .reget-btn-h30 {
+        line-height:30px;
+        min-height:30px;
+    }
+
+    .reget-btn-img {
+        font-weight: bold;
+        text-transform: none !important;
+        color: #fff !important;
+        padding-left: 30px;
+        padding-right: 10px;
+    }
+
+.reget-btn-green {
+    background-color: #04AA6D !important;
+}
+
+        .reget-btn-green:hover {
+            background-color: #059862 !important;
+        }
+
+    .reget-btn-blue {
+        background-color: #337ab7 !important;
+    }
+
+    .reget-btn-blue:hover {
+        background-color: #286090 !important;
+    }
+
+    .reget-btn-red {
+        background-color: #d64843 !important;
+    }
+
+    .reget-btn-red:hover {
+        background-color: #c9302c !important;
+    }
+
+.reget-btn-orange {
+    background-color: #ee6002 !important;
+}
+
+    .reget-btn-orange:hover {
+        background-color: #e54304 !important;
+    }
+
+
+.reget-btn-save {
+    background: url('../Images/Controll/Saved.png') no-repeat bottom left;
+    background-position: 9px 10px;
+}
+
+.reget-btn-save-big {
+    background: url('../Images/Controll/Saved.png') no-repeat bottom left;
+    background-position: 9px 16px;
+    height: 50px;
+}
+    
+.reget-btn-approve {
+    background: url('../Images/Controll/Button/Check.png') no-repeat bottom left;
+    background-position: 8px 10px;
+}
+
+.reget-btn-approve-big {
+    background: url('../Images/Controll/Button/Check.png') no-repeat bottom left;
+    background-size: 24px 24px !important;
+    background-position: 10px 12px;
+    padding-left: 45px !important;
+    height: 50px;
+}
+
+.reget-btn-reject {
+    background: url('../Images/Controll/Button/Reject.png') no-repeat bottom left;
+    background-size: 20px 20px;
+    background-position: 8px 8px;
+    padding-left: 35px !important;
+}
+
+.reget-btn-reject-big {
+    background: url('../Images/Controll/Button/Reject.png') no-repeat bottom left;
+    background-position: 10px 13px;
+    background-size: 24px 24px !important;
+    padding-left: 45px !important;
+    height: 50px;
+}
+
+.reget-btn-send-back-big {
+    background: url('../Images/Controll/Button/SendBack.png') no-repeat bottom left;
+    background-position: 10px 14px;
+    background-size: 24px 20px !important;
+    padding-left: 45px !important;
+    height: 50px;
+}
+
+.reget-btn-generate-order-big {
+    background: url('../Images/Controll/Button/Order.png') no-repeat bottom left;
+    background-position: 10px 13px;
+    background-size: 21px 24px !important;
+    padding-left: 45px !important;
+    height: 50px;
+}
+ 
+.reget-btn-back {
+    background: url('../Images/Controll/Back.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 10px 10px;
+}
+
+.reget-btn-back-big {
+    background: url('../Images/Controll/Back.png') no-repeat bottom left;
+    padding-left: 35px !important;
+    background-position: 10px 16px;
+    height:50px;
+}
+
+.reget-btn-remind-big {
+    background: url('../Images/Controll/Remind.png') no-repeat bottom left;
+    padding-left: 35px !important;
+    background-position: 10px 16px;
+    height: 50px;
+}
+
+.reget-btn-edit {
+    background: url('../Images/Controll/Edit.png') no-repeat bottom left;
+    background-position: 5px 8px;
+}
+
+.reget-btn-add-remark {
+    background: url('../Images/Controll/Button/AddRemark.png') no-repeat bottom left;
+    background-position: 8px 8px;
+    
+}
+
+.reget-btn-delete {
+    background: url('../Images/Controll/Remove16.png') no-repeat bottom left;
+    background-position: 8px 8px;
+}
+
+.reget-btn-delete-big {
+    background: url('../Images/Controll/Remove16.png') no-repeat bottom left;
+    background-position: 8px 16px;
+    height:50px;
+}
+
+.reget-btn-activate-big {
+    background: url('../Images/Controll/Button/Activate.png') no-repeat bottom left;
+    background-size: 24px;
+    background-position: 8px 14px;
+    padding-left:42px;
+    height: 50px;
+}
+
+.reget-btn-info {
+    background:transparent url('../Images/Controll/Infoblue.png') no-repeat bottom left;
+    min-width:20px!important;
+    min-height:20px!important;
+    width:20px!important;
+    height:20px!important;
+    padding:0px!important;
+    margin:0px!important;
+}
+
+
+
+.reget-btn-grid-edit {
+    background:transparent url('../Images/Controll/Grid/Edit.png') no-repeat bottom left;
+    
+}
+
+.reget-btn-grid-three-dots {
+    background: #337ab7 url('../Images/Controll/ThreeDots.png') no-repeat bottom left;
+}
+
+    .reget-btn-grid-three-dots:hover {
+        background: #286090 url('../Images/Controll/ThreeDots.png') no-repeat bottom left!important;
+        background-position: 5px 5px!important;
+    }
+
+.reget-btn-grid-delete {
+    background: transparent url('../Images/Controll/Grid/Remove16.png') no-repeat bottom left;
+    background-position: 5px 8px;
+}
+
+.reget-btn-grid-pending {
+    background:transparent url('../Images/Controll/Grid/Pending16.png') no-repeat bottom left;
+     
+}
+
+.reget-btn-grid-approve {
+    background: transparent url('../Images/Controll/Grid/Approve.png') no-repeat center center;
+    background-size: 24px 24px;
+    background-position: 2px 2px!important;
+}
+
+.reget-btn-grid-reject {
+    background: transparent url('../Images/Controll/Grid/Reject.png') no-repeat center center;
+    background-size: 24px 24px;
+    background-position: 2px 2px!important;
+}
+   
+.reget-btn-grid-save {
+    background-position: 6px 7px;
+}
+
+.reget-btn-grid-back {
+    background-position: 4px 7px;
+}
+/*.reget-btn-grid-blue {
+        
+}
+
+.reget-btn-grid-blue:hover {
+        background-color: #286090 !important;
+}*/
+.reget-grid-action-button {
+    background-position: 5px 5px;
+    float: left;
+    margin: 0px;
+    padding: 4px;
+    margin-left: 2px;
+    min-width: 29px;
+    min-height: 29px;
+    border: 1px solid transparent;
+}
+
+    .reget-grid-action-button:hover {
+        background-position: 5px 5px;
+        border: 1px solid #95B8E7 !important;
+        border-radius: 3px !important;
+    }
+
+.reget-transparent-button {
+    background-position: 1px 1px;
+    margin: 0px;
+    padding: 4px;
+    border: 1px solid transparent;
+}
+
+    .reget-transparent-button:hover {
+        border: 1px solid #95B8E7;
+        border-radius: 3px !important;
+    }
+
+.reget-btn-translate {
+    background:#337ab7 url('../Images/Controll/Translate.png') no-repeat bottom left;
+    padding-left: 37px!important;
+    background-position: 7px 8px;
+}
+
+.reget-btn-expand {
+    background:#337ab7 url('../Images/Panel/Expand.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 4px;
+    font-weight: bold;
+}
+
+
+.reget-btn-collapse {
+    background:#337ab7 url('../Images/Panel/Collapse.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 4px;
+    font-weight: bold;
+}
+
+
+
+
+.reget-btn-refresh {
+    background:#337ab7 url('../Images/Controll/Refresh.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 7px;
+    font-weight: bold;
+}
+
+.reget-btn-chart {
+    background:#337ab7 url('../Images/Controll/Button/Statistics.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 7px;
+    font-weight: bold;
+}
+
+.reget-btn-plus {
+    background:#337ab7 url('../Images/Controll/Button/Plus.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 7px;
+    font-weight: bold;
+}
+
+.reget-btn-minus {
+    background:#337ab7 url('../Images/Controll/Button/Minus.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 7px;
+    font-weight: bold;
+}
+
+.reget-btn-upload {
+    background:#337ab7 url('../Images/Controll/Refresh.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 5px 5px;
+    font-weight: bold;
+}
+
+
+.reget-btn-excel {
+    background:#337ab7 url('../Images/Controll/Excelbw.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 7px;
+    font-weight: bold;
+}
+
+.reget-btn-excel-green-big {
+    background: url('../Images/Controll/Button/ExcelGreen.png') no-repeat bottom left;
+    padding-left: 45px !important;
+    background-position: 10px 13px;
+    height: 50px;
+}
+
+.reget-btn-excel-blue-big {
+    background: url('../Images/Controll/Button/ExcelBlue.png') no-repeat bottom left;
+    padding-left: 45px !important;
+    background-position: 10px 13px;
+    height: 50px;
+}
+
+.reget-btn-close {
+    background: url('../Images/Controll/Button/Close.png') no-repeat bottom left;
+    padding-left: 45px !important;
+    background-position: 10px 7px;
+}
+
+.reget-btn-close-big {
+    background: url('../Images/Controll/Button/Close.png') no-repeat bottom left;
+    padding-left: 45px !important;
+    background-position: 10px 13px;
+    height: 50px;
+}
+
+.reget-btn-delete-big {
+    background: url('../Images/Controll/Button/Delete.png') no-repeat bottom left;
+    padding-left: 40px !important;
+    background-position: 10px 13px;
+    height: 50px;
+}
+
+.reget-btn-multiply {
+    background:#337ab7 url('../Images/Controll/Calculate.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 7px;
+    font-weight: bold;
+}
+
+.reget-btn-multiply:hover {
+    background:#275d8b url('../Images/Controll/Calculate.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 7px;
+    font-weight: bold;
+}
+
+.reget-btn-multiply-big {
+    background: url('../Images/Controll/Calculate.png') no-repeat bottom left;
+    padding-left: 35px !important;
+    background-position: 10px 17px;
+    height:50px;
+}
+
+.reget-btn-find {
+    background:#337ab7 url('../Images/Controll/Find.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 7px 5px!important;
+    font-weight: bold;
+}
+
+.reget-btn-find:hover {
+    background:#275d8b url('../Images/Controll/Find.png') no-repeat bottom left!important;
+    padding-left: 35px!important;
+    background-position: 7px 5px!important;
+    font-weight: bold;
+}
+
+.reget-btn-copy {
+    background: #04AA6D url('../Images/Menu/Copy16.png') no-repeat bottom left;
+    padding-left: 35px !important;
+    background-position: 7px 5px !important;
+    font-weight: bold;
+}
+
+    .reget-btn-copy:hover {
+        background: #059862 url('../Images/Menu/Copy16.png') no-repeat bottom left;
+        padding-left: 35px !important;
+        background-position: 7px 5px !important;
+        font-weight: bold;
+    }
+
+.reget-btn-copy-big {
+    background: url('../Images/Menu/Copy16.png') no-repeat bottom left;
+    padding-left: 35px !important;
+    background-position: 7px 14px !important;
+    height:50px;
+}
+
+.reget-btn-copy:hover {
+    background:#275d8b url('../Images/Menu/Copy16.png') no-repeat bottom left!important;
+    padding-left: 35px!important;
+    background-position: 7px 5px!important;
+    font-weight: bold;
+    background-color:#1aa43e!important;
+}
+
+.reget-btn-color {
+    background:#337ab7 url('../Images/Controll/Color.png') no-repeat bottom left;
+    padding-left: 35px!important;
+    background-position: 5px 3px;
+    font-weight: bold;
+}
+
+.reget-btn-color:hover {
+    background: #275d8b url('../Images/Controll/Color.png') no-repeat bottom left;
+    padding-left: 35px !important;
+    background-position: 5px 3px;
+    font-weight: bold;
+}
+
+.reget-btn-add {
+    background: #337ab7 url('../Images/Controll/Button/Plus.png') no-repeat bottom left;
+    padding-left: 35px !important;
+    background-position: 8px 8px;
+    font-weight: bold;
+}
+
+    .reget-btn-add:hover {
+        background: #275d8b url('../Images/Controll/Button/Plus.png') no-repeat bottom left !important;
+        padding-left: 35px !important;
+        background-position: 8px 8px !important;
+        font-weight: bold;
+    }
+
+.reget-md-btn-float {
+    margin-top: 5px;
+}
+
+.reget-btn-float {
+    margin-top:7px;
+}
+
+.reget-btn-float-5 {
+    
+}
+
+.reget-grid-button {
+    min-height:30px;
+    max-width: 30px!important;
+    min-width: 30px!important;
+    margin: 0px!important;
+    padding-right:3px!important;
+    padding-left:3px!important;
+    border-radius:0px!important;
+}
+
+.reget-grid-footer-button-excel {
+    background: transparent url('../Images/Controll/Excel.png') no-repeat bottom left;
+    min-width: 16px;
+}
+
+.reget-grid-footer-button-excel:hover {
+    background:transparent url('../Images/Controll/Excel.png') no-repeat bottom left!important;
+}
+
+.reget-grid-footer-button-add {
+    background:transparent url('../Images/Controll/Grid/NewRow.png') no-repeat bottom left;
+    background-size: 20px;
+    min-width:16px;
+}
+
+    .reget-grid-footer-button-add:hover {
+        background: transparent url('../Images/Controll/Grid/NewRow.png') no-repeat bottom left !important;
+        background-size: 20px;
+    }
+
+.reget-grid-footer-button-next {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/Next.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-next:hover {
+    background:transparent url('../Images/Controll/Grid/Next.png') no-repeat bottom left!important;
+}
+
+.reget-grid-footer-button-next-disabled {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/NextDisabled.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-previous {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/Previous.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-previous:hover {
+    background:transparent url('../Images/Controll/Grid/Previous.png') no-repeat bottom left!important;
+}
+
+.reget-grid-footer-button-previous-disabled {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/PreviousDisabled.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-first {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/First.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-first:hover {
+    background:transparent url('../Images/Controll/Grid/First.png') no-repeat bottom left!important;
+}
+
+.reget-grid-footer-button-first-disabled {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/FirstDisabled.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-last {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/Last.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-last:hover {
+    background:transparent url('../Images/Controll/Grid/Last.png') no-repeat bottom left!important;
+}
+
+.reget-grid-footer-button-last-disabled {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/LastDisabled.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-refresh {
+    width: 10px!important;
+    margin-right:2px;
+    margin-left:2px;
+    max-width: 10px!important;
+    min-width:1px!important;
+    padding-left: 23px!important;
+    background:transparent url('../Images/Controll/Grid/Refresh.png') no-repeat bottom left;
+}
+
+.reget-grid-footer-button-refresh:hover {
+    background:transparent url('../Images/Controll/Grid/Refresh.png') no-repeat bottom left!important;
+}
+
+
+.reget-grid-footer-button {
+    border: 1px solid transparent;
+    border-radius:3px!important;
+    padding-left: 35px;
+    background-position: 7px 7px;
+    text-transform: none!important;
+    /*font-size:12px;*/
+}
+
+.reget-grid-footer-button:hover {
+    border: 1px solid #95B8E7;
+    border-radius:3px!important;
+    background-position: 7px 7px!important;
+}
+
+.reget-inline-ang-button {
+    margin-top:3px;
+    vertical-align:bottom;
+}
+
+.reget-btn-draft {
+    background: #337ab7 url('../Images/Controll/Button/Draft.png') no-repeat bottom left !important;
+    background-size: 14px 18px!important;
+    padding-left: 35px !important;
+    background-position: 12px 8px !important;
+}
+
+.reget-btn-draft:hover {
+    background: #286090 url('../Images/Controll/Button/Draft.png') no-repeat bottom left !important;
+    background-size: 14px 18px !important;
+    padding-left: 35px !important;
+    background-position: 12px 8px !important;
+}
+
+.reget-btn-save-disk {
+    background: #337ab7 url('../Images/Controll/Button/Save.png') no-repeat bottom left !important;
+    background-size: 20px 18px !important;
+    padding-left: 38px !important;
+    background-position: 10px 8px !important;
+}
+
+.reget-btn-save-disk:hover {
+    background: #286090 url('../Images/Controll/Button/Save.png') no-repeat bottom left !important;
+    background-size: 20px 18px !important;
+    padding-left: 38px !important;
+    background-position: 10px 8px !important;
+}
+
+.reget-btn-save-disk-big {
+    background: #337ab7 url('../Images/Controll/Button/Save.png') no-repeat bottom left !important;
+    background-size: 20px 18px !important;
+    padding-left: 38px !important;
+    background-position: 10px 14px !important;
+    height:50px;
+}
+
+.reget-btn-save-disk-big:hover {
+    background: #286090 url('../Images/Controll/Button/Save.png') no-repeat bottom left !important;
+    background-size: 20px 18px !important;
+    padding-left: 38px !important;
+    background-position: 10px 14px !important;
+}
+
+.reget-btn-revert-big {
+    background: #337ab7 url('../Images/Controll/Button/Revert.png') no-repeat bottom left !important;
+    background-size: 20px 20px !important;
+    padding-left: 38px !important;
+    background-position: 10px 14px !important;
+    height: 50px;
+}
+
+.reget-btn-revert-big:hover {
+    background: #286090 url('../Images/Controll/Button/Revert.png') no-repeat bottom left !important;
+    background-size: 20px 20px !important;
+    padding-left: 38px !important;
+    background-position: 10px 14px !important;
+}
+
+.reget-btn-send {
+    background: #04AA6D url('../Images/Controll/Button/Mail.png') no-repeat bottom left !important;
+    background-size: 22px 14px !important;
+    padding-left: 40px !important;
+    background-position: 10px 11px !important;
+    
+}
+
+.reget-btn-send:hover {
+    background: #059862 url('../Images/Controll/Button/Mail.png') no-repeat bottom left !important;
+    background-size: 22px 14px !important;
+    padding-left: 40px !important;
+    background-position: 10px 11px !important;
+}
+
+.reget-btn-send-blue {
+    background: #337ab7 url('../Images/Controll/Button/Mail.png') no-repeat bottom left !important;
+    background-size: 22px 14px !important;
+    padding-left: 40px !important;
+    background-position: 10px 11px !important;
+}
+
+   
+.reget-btn-send-big {
+    background: #04AA6D url('../Images/Controll/Button/Mail.png') no-repeat bottom left !important;
+    background-size: 22px 14px !important;
+    padding-left: 40px !important;
+    background-position: 10px 17px !important;
+    height: 50px;
+}
+
+.reget-btn-send-big:hover {
+    background: #059862 url('../Images/Controll/Button/Mail.png') no-repeat bottom left !important;
+    background-size: 22px 14px !important;
+    padding-left: 40px !important;
+    background-position: 10px 17px !important;
+}
+
+.reget-btn-search {
+    background: #337ab7 url('../Images/Controll/Button/Search.png') no-repeat bottom left !important;
+    background-size: 20px 20px !important;
+    padding-left: 40px !important;
+    background-position: 10px 8px !important;
+}
+
+.reget-btn-top {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    background-color: #0288d1;
+}
+
+.reget-btn-bottom {
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    background-color: #0288d1;
+}
+
+.reget-btn-info-icon {
+    background-color: #337ab7 !important;
+    margin: 0px;
+    padding: 0px;
+    z-index: 0 !important;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    line-height: 0px !important;
+}
+
+@media (max-width: 599px) {
+    .reget-md-btn-float {
+        margin-top: 20px !important;
+    }
+
+    .reget-btn-float {
+        margin-top: 15px !important;
+    }
+
+    .reget-btn-float-5 {
+        margin-top: 5px !important;
+    }
+
+    .reget-inline-ang-button {
+        margin-top: 12px;
+    }
+}
+
+/*Mobile Phone*/
+@media (max-width: 767px) {
+    .reget-md-btn-float {
+        margin-top: 20px !important;
+    }
+
+    .reget-btn-float {
+        margin-top: 15px !important;
+    }
+
+    .reget-btn-float-5 {
+        margin-top: 5px !important;
+    }
+
+    .reget-inline-ang-button {
+        margin-top: 12px;
+    }
+
+    .reget-btn-mp-width100 {
+        width: 100%;
+        margin-top:5px!important;
+    }
+}

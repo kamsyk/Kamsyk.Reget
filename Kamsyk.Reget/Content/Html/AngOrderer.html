@@ -1,0 +1,34 @@
+﻿
+<div class="reget-chip">
+    <span style="padding:5px;vertical-align: middle;">{{surname}} {{firstname}}</span>
+    <span style="vertical-align: middle;">
+        <md-button class="md-fab md-mini reget-circle-btn" aria-label="{{removetext}}" ng-click="deleteorderer();">
+            <img ng-src="{{rooturl}}Content/Images/Controll/Remove.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{removetext}}</md-tooltip>
+        </md-button>
+        <md-button id="btnExpandOrd_{{userid}}" class="md-fab md-mini reget-circle-btn" aria-label="{{displaydetailtext}}" ng-click="expandorderer()" style="background-color:#337ab7;">
+            <img ng-src="{{rooturl}}Content/Images/Controll/ExpandArrow.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{displaydetailtext}}</md-tooltip>
+        </md-button>
+        <md-button id="btnCollapseOrd_{{userid}}" class="md-fab md-mini reget-circle-btn" aria-label="{{hidedetailtext}}" ng-click="collapseorderer();" style="background-color:#337ab7;display:none;">
+            <img ng-src="{{rooturl}}Content/Images/Controll/CollapseArrow.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{hidedetailtext}}</md-tooltip>
+        </md-button>
+    </span>
+
+    <div id="divOrd_{{userid}}" style="display:none;margin-left:10px;margin-right:10px;font-weight:normal;">
+        <hr />
+                
+        <div>
+            <md-checkbox id="ckbAllOrderer"
+                         aria-label="All" class="reget-blue" 
+                         ng-model="isall"  
+                         ng-true-value="'true'" 
+                         ng-false-value="'false'" 
+                         ng-change="checkallorderer()" >
+                {{allorderertext}}
+            </md-checkbox>
+        </div>
+    </div>
+</div>
+

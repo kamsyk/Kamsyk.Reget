@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E9603D92-E4A0-418F-8AAD-B10C631E746D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kamsyk.Reget.Model</RootNamespace>
+    <AssemblyName>Kamsyk.Reget.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Approve_Level.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Text_Store.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetCentreGroup_Currency.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asset_Centre_Group.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asset_Manager_Role.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asset_Request_Event.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asset_Request_Identificator.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asset_Request_Type.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Attachement.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Centre.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Centre_BusinessTripCentreGroup.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Centre_Group.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ConvertData.cs" />
+    <Compile Include="Common\DataNulls.cs" />
+    <Compile Include="Company.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company_Group.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country_Local.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currency.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomField_Local.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Custom_Field.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataDictionary\RegetDataDict.cs" />
+    <Compile Include="DataType.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Discussion.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event_Attachement.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Exchange_Rate.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedModel\AddressDbGrid.cs" />
+    <Compile Include="ExtendedModel\Address\RequestAddress.cs" />
+    <Compile Include="ExtendedModel\Attachment\AttachmentExtend.cs" />
+    <Compile Include="ExtendedModel\Attachment\AttachmentLight.cs" />
+    <Compile Include="ExtendedModel\Checkbox.cs" />
+    <Compile Include="ExtendedModel\Currency\DropDownCurrencyDefault.cs" />
+    <Compile Include="ExtendedModel\CustomFieldExtend.cs" />
+    <Compile Include="ExtendedModel\DbInteger.cs" />
+    <Compile Include="ExtendedModel\AgDropDown.cs" />
+    <Compile Include="ExtendedModel\AllRequestorOrdererExtended.cs" />
+    <Compile Include="ExtendedModel\AddressAdminExtended.cs" />
+    <Compile Include="ExtendedModel\Discussion\DiscussionItemExtended.cs" />
+    <Compile Include="ExtendedModel\Discussion\DiscussionExtended.cs" />
+    <Compile Include="ExtendedModel\HttpResult\HttpRequestResult.cs" />
+    <Compile Include="ExtendedModel\LigthCg.cs" />
+    <Compile Include="ExtendedModel\Order\OrderExtend.cs" />
+    <Compile Include="ExtendedModel\PurchaseGroup\PgReqDropDownExtend.cs" />
+    <Compile Include="ExtendedModel\RequestMailLight.cs" />
+    <Compile Include="ExtendedModel\CompanyCheckbox.cs" />
+    <Compile Include="ExtendedModel\MultiplyLimitMsg.cs" />
+    <Compile Include="ExtendedModel\MultiplyLimitResult.cs" />
+    <Compile Include="ExtendedModel\PurchaseGroup\UsedPg.cs" />
+    <Compile Include="ExtendedModel\PurchaseGroup\UsedPgList.cs" />
+    <Compile Include="ExtendedModel\PurchaseGroup\ParentPgPgList.cs" />
+    <Compile Include="ExtendedModel\Request\CentreReqDropDownItem.cs" />
+    <Compile Include="ExtendedModel\Request\RequestEventApprovalExtended.cs" />
+    <Compile Include="ExtendedModel\Request\WorkflowItem.cs" />
+    <Compile Include="ExtendedModel\Search\RequestSearchResult.cs" />
+    <Compile Include="ExtendedModel\Statistics\StatisticsCompany.cs" />
+    <Compile Include="ExtendedModel\Supplier\SuppAdminsExtended.cs" />
+    <Compile Include="ExtendedModel\StatisticsRequest.cs" />
+    <Compile Include="ExtendedModel\CgAdminRole.cs" />
+    <Compile Include="ExtendedModel\CentreCgSimple.cs" />
+    <Compile Include="ExtendedModel\CentreAdminExtended.cs" />
+    <Compile Include="ExtendedModel\CentreGroupAppMatrixCopy.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartData.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartDataSet.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartItems.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartOptions.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartScaleLabel.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartScales.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartTicks.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartTitle.cs" />
+    <Compile Include="ExtendedModel\Chart\ChartYAxes.cs" />
+    <Compile Include="ExtendedModel\CompanyCgDropDown.cs" />
+    <Compile Include="ExtendedModel\StatisticsFilter.cs" />
+    <Compile Include="ExtendedModel\DropDownItem.cs" />
+    <Compile Include="ExtendedModel\CompanyExtended.cs" />
+    <Compile Include="ExtendedModel\CentreGroupAdminList.cs" />
+    <Compile Include="ExtendedModel\CentreGroupSimple.cs" />
+    <Compile Include="ExtendedModel\CompanyDropDown.cs" />
+    <Compile Include="ExtendedModel\EventGridData.cs" />
+    <Compile Include="ExtendedModel\HttpResult\HttpResult.cs" />
+    <Compile Include="ExtendedModel\LocalText.cs" />
+    <Compile Include="ExtendedModel\PurchaseGroup\ParentPgExtended.cs" />
+    <Compile Include="ExtendedModel\PartData.cs" />
+    <Compile Include="ExtendedModel\CentreGroupReplace.cs" />
+    <Compile Include="ExtendedModel\CgAdminsExtended.cs" />
+    <Compile Include="ExtendedModel\ReplaceEntity.cs" />
+    <Compile Include="ExtendedModel\OrdererSupplierAppMatrix.cs" />
+    <Compile Include="ExtendedModel\RequestCentreGroup.cs" />
+    <Compile Include="ExtendedModel\Request\RequestEventExtended.cs" />
+    <Compile Include="ExtendedModel\RequestPurchaseGroup.cs" />
+    <Compile Include="ExtendedModel\Supplier\SupplierContactGridData.cs" />
+    <Compile Include="ExtendedModel\Supplier\SupplierGridData.cs" />
+    <Compile Include="ExtendedModel\Supplier\SupplierSimpleExtended.cs" />
+    <Compile Include="ExtendedModel\RequestorExtended.cs" />
+    <Compile Include="ExtendedModel\RequestorOrdererExtended.cs" />
+    <Compile Include="ExtendedModel\OrdererExtended.cs" />
+    <Compile Include="ExtendedModel\ManagerRoleExtended.cs" />
+    <Compile Include="ExtendedModel\ParticipantsExtended.cs" />
+    <Compile Include="ExtendedModel\PurchaseGroupLimitExtended.cs" />
+    <Compile Include="ExtendedModel\PurchaseGroupExtended.cs" />
+    <Compile Include="ExtendedModel\CentreExtended.cs" />
+    <Compile Include="ExtendedModel\CurrencyExtended.cs" />
+    <Compile Include="ExtendedModel\CentreGroupCurrency.cs" />
+    <Compile Include="ExtendedModel\CentreGroupExtended.cs" />
+    <Compile Include="ExtendedModel\User\Substitution.cs" />
+    <Compile Include="ExtendedModel\User\UserSubstitutionExtended.cs" />
+    <Compile Include="Filter_Value.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance_Event.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance_Event_Code.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_Role.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orderer_Supplier.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Parent_Purchase_Group.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Parent_Purchase_Group_Local.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParticipantPhoto.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParticipantRole_BusinessTripCentreGroup.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParticipantRole_CentreAssetGroup.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParticipantRole_CentreGroup.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Participants.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Participant_Office_Role.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Participant_Role.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Participant_Substitute.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Privacy.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseGroup_CustomField.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseGroup_ImplicitOrderer.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseGroup_ImplicitRequestor.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseGroup_Requestor.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase_Group.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase_Group_Limit.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase_Group_Local.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reget.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reget.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reget.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reget.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reget.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\AttachmentRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\RequestEventApprovalRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICompanyRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPgRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRequestAuthorizedUsers.cs" />
+    <Compile Include="Repositories\Interfaces\IRequestRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUnitRepository.cs" />
+    <Compile Include="Repositories\DiscussionRepository.cs" />
+    <Compile Include="Repositories\CustomFieldRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRequestTextRepository.cs" />
+    <Compile Include="Repositories\RequestAccessRequestRepository.cs" />
+    <Compile Include="Repositories\RequestIdentificatorRepository.cs" />
+    <Compile Include="Repositories\PrivacyRepository.cs" />
+    <Compile Include="Repositories\AppTextStoreRepository.cs" />
+    <Compile Include="Repositories\RequestTextRepository.cs" />
+    <Compile Include="Repositories\RequestAuthUserRepository.cs" />
+    <Compile Include="Repositories\SupplierContactRepository.cs" />
+    <Compile Include="Repositories\UnitRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IParentPgRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IParticipantPhotoRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISubstitutionRepository.cs" />
+    <Compile Include="Repositories\ManagerRoleRepository.cs" />
+    <Compile Include="Repositories\PgCgRepository.cs" />
+    <Compile Include="Repositories\TestFailRepository.cs" />
+    <Compile Include="Repositories\RequestMailRepository.cs" />
+    <Compile Include="Repositories\SubstitutionRepository.cs" />
+    <Compile Include="Repositories\FilterValueRepository.cs" />
+    <Compile Include="Repositories\ExchangeRateRepository.cs" />
+    <Compile Include="Repositories\CurrencyRepository.cs" />
+    <Compile Include="Repositories\PgRepository.cs" />
+    <Compile Include="Repositories\TestIndicatorRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IStatisticsRepository.cs" />
+    <Compile Include="Repositories\ParentPgRepository.cs" />
+    <Compile Include="Repositories\DataGridRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISupplierRepository.cs" />
+    <Compile Include="Repositories\EventRepository.cs" />
+    <Compile Include="Repositories\RequestRepository.cs" />
+    <Compile Include="Repositories\StatisticsRepository.cs" />
+    <Compile Include="Repositories\SupplierRepository.cs" />
+    <Compile Include="Repositories\AddressRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAddressRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICentreRepository.cs" />
+    <Compile Include="Repositories\PgLimitRepository.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\CentreGroupRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICentreGroupRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\CentreRepository.cs" />
+    <Compile Include="Repositories\ShipToAddressRepository.cs" />
+    <Compile Include="Repositories\UserPhotoRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="RequestEvent_CustomFieldValue.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_AccessRequest.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_AuthorizedUsers.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Discussion.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Event.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Event_Approval.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Event_Archive.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Event_Expand.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Event_Orderer.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Field.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Identificator.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Item.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Mail.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Notification.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Order.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_Text.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ship_To_Address.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Substitute_Discussion.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Substitution_Remark.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierGroup.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier_Contact.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier_Requestor_Export_Price.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Fail.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Indicator.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unit_Measurement.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unit_Measurement_Local.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unit_Value_Type.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_GridSetting.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Setting.cs">
+      <DependentUpon>Reget.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Reget.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Reget.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="Reget.edmx.diagram">
+      <DependentUpon>Reget.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataDictionary\PersistentLayerGenerator\RegetDdGenerator.sql" />
+    <Content Include="Reget.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Reget.edmx</DependentUpon>
+      <LastGenOutput>Reget.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reget.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Reget.edmx</DependentUpon>
+      <LastGenOutput>Reget.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,338 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var orderController = ViewContext.Controller as RequestController;
+}
+
+
+<form name="frmOrder" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="OrderController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+        <div class="reget-panel-box-pad">
+            @{
+                MdTextArea mdTextOrdererAddress = new MdTextArea();
+                mdTextOrdererAddress.FormName = "frmRequest";
+                mdTextOrdererAddress.NgModel = "angCtrl.order.otis_company_address";
+                mdTextOrdererAddress.LabelLeft = RequestResource.DeliveryAddress;
+                mdTextOrdererAddress.RootTagId = "RequestRemark";
+                mdTextOrdererAddress.InputCssClass = "reget-text-area";
+                mdTextOrdererAddress.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                mdTextOrdererAddress.Height = 100;
+                mdTextOrdererAddress.IsMandatory = true;
+            }
+
+            <div class="order-half">
+                @Html.Raw(mdTextOrdererAddress.RenderControlHtml())
+            </div>
+
+            @{
+                MdTextArea mdTextSupplierAddress = new MdTextArea();
+                mdTextSupplierAddress.FormName = "frmRequest";
+                mdTextSupplierAddress.NgModel = "angCtrl.order.supplier_address";
+                mdTextSupplierAddress.LabelLeft = RequestResource.SupplierAddress;
+                mdTextSupplierAddress.RootTagId = "RequestRemark";
+                mdTextSupplierAddress.InputCssClass = "reget-text-area";
+                mdTextSupplierAddress.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                mdTextSupplierAddress.Height = 100;
+                mdTextSupplierAddress.IsMandatory = true;
+            }
+
+            <div class="order-half">
+                @Html.Raw(mdTextSupplierAddress.RenderControlHtml())
+            </div>
+
+            <div style="clear:both;"></div>
+            <hr style="margin-top:20px;margin-bottom:20px;" />
+
+            <div class="order-half-box">
+                @{
+                    MdInputContainer txtContactPerson = new MdInputContainer();
+                    txtContactPerson.FormName = "frmOrder";
+                    txtContactPerson.NgModel = "angCtrl.order.orderer_name";
+                    txtContactPerson.LabelLeft = RequestResource.Orderer;
+                    txtContactPerson.RootTagId = "OrdererName";
+                    txtContactPerson.Placeholder = RequestResource.Name;
+                    txtContactPerson.IsMandatory = false;
+                    txtContactPerson.InputCssClass = "order-input-half";
+                    txtContactPerson.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                }
+                <div>
+                    @Html.Raw(txtContactPerson.RenderControlHtml())
+                </div>
+
+                @{
+                    MdInputContainer txtContactPersonMail = new MdInputContainer();
+                    txtContactPersonMail.FormName = "frmOrder";
+                    txtContactPersonMail.NgModel = "angCtrl.order.orderer_mail";
+                    //txtContactPersonMail.LabelLeft = RequestResource.Mail;
+                    txtContactPersonMail.LeftImgUrl = orderController.GetRootUrl() + "Content/Images/info/mail.png";
+                    txtContactPersonMail.RootTagId = "ContantPersonMail";
+                    txtContactPersonMail.Placeholder = RequestResource.Mail;
+                    txtContactPersonMail.IsMandatory = false;
+                    txtContactPersonMail.InputCssClass = "order-input-half";
+                    txtContactPersonMail.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                    txtContactPersonMail.DataType = MdInputContainer.TextBoxType.MultiEMailAddresses;
+                }
+                <div>
+                    @Html.Raw(txtContactPersonMail.RenderControlHtml())
+                </div>
+
+                @{
+                    MdInputContainer txtPhoneNr = new MdInputContainer();
+                    txtPhoneNr.FormName = "frmOrder";
+                    txtPhoneNr.NgModel = "angCtrl.order.orderer_phonenr";
+                    //txtPhoneNr.LabelLeft = RequestResource.Phone;
+                    txtPhoneNr.LeftImgUrl = orderController.GetRootUrl() + "Content/Images/info/phone.png";
+                    txtPhoneNr.RootTagId = "ContantPersonPhone";
+                    txtPhoneNr.Placeholder = RequestResource.Phone;
+                    txtPhoneNr.IsMandatory = false;
+                    txtPhoneNr.InputCssClass = "order-input-half";
+                    txtPhoneNr.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                    txtPhoneNr.DataType = MdInputContainer.TextBoxType.PhoneNumber;
+                }
+                <div>
+                    @Html.Raw(txtPhoneNr.RenderControlHtml())
+                </div>
+
+
+            </div>
+
+            <hr class="hidden-md hidden-lg" style="margin-top:20px;margin-bottom:20px;" />
+
+            <div class="order-half-box">
+                @{
+                    MdInputContainer txtRequestor = new MdInputContainer();
+                    txtRequestor.FormName = "frmOrder";
+                    txtRequestor.NgModel = "angCtrl.order.requestor_name";
+                    txtRequestor.LabelLeft = RequestResource.DeliverTo;
+                    txtRequestor.RootTagId = "RequestorName";
+                    txtRequestor.Placeholder = RequestResource.Name;
+                    txtRequestor.IsMandatory = false;
+                    txtRequestor.InputCssClass = "order-input-half";
+                    txtRequestor.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                }
+                <div>
+                    @Html.Raw(txtRequestor.RenderControlHtml())
+                </div>
+
+                @{
+                    MdInputContainer txtRequestorMail = new MdInputContainer();
+                    txtRequestorMail.FormName = "frmOrder";
+                    txtRequestorMail.NgModel = "angCtrl.order.requestor_mail";
+                    //txtRequestorMail.LabelLeft = RequestResource.Mail;
+                    txtRequestorMail.LeftImgUrl = orderController.GetRootUrl() + "Content/Images/info/mail.png";
+                    txtRequestorMail.RootTagId = "RequestorMail";
+                    txtRequestorMail.Placeholder = RequestResource.Mail;
+                    txtRequestorMail.IsMandatory = false;
+                    txtRequestorMail.InputCssClass = "order-input-half";
+                    txtRequestorMail.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                    txtRequestorMail.DataType = MdInputContainer.TextBoxType.MultiEMailAddresses;
+                }
+                <div>
+                    @Html.Raw(txtRequestorMail.RenderControlHtml())
+                </div>
+
+                @{
+                    MdInputContainer txtRequestorPhoneNr = new MdInputContainer();
+                    txtRequestorPhoneNr.FormName = "frmOrder";
+                    txtRequestorPhoneNr.NgModel = "angCtrl.order.requestor_phonenr";
+                    //txtRequestorPhoneNr.LabelLeft = RequestResource.Phone;
+                    txtRequestorPhoneNr.LeftImgUrl = orderController.GetRootUrl() + "Content/Images/info/phone.png";
+                    txtRequestorPhoneNr.RootTagId = "RequestorPhoneNr";
+                    txtRequestorPhoneNr.Placeholder = RequestResource.Phone;
+                    txtRequestorPhoneNr.IsMandatory = false;
+                    txtRequestorPhoneNr.InputCssClass = "order-input-half";
+                    txtRequestorPhoneNr.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                    txtRequestorPhoneNr.DataType = MdInputContainer.TextBoxType.PhoneNumber;
+                }
+                <div>
+                    @Html.Raw(txtRequestorPhoneNr.RenderControlHtml())
+                </div>
+
+
+            </div>
+
+            <div style="clear:both;"></div>
+
+            <div style="margin-top:20px;">
+                @{
+                    MdDatePicker dtDeliveryDate = new MdDatePicker(orderController.GetRootUrl(), Request.Browser.Browser);
+                    dtDeliveryDate.FormName = "frmRequest";
+                    dtDeliveryDate.NgModel = "angCtrl.selectedDeliveryDate";
+                    dtDeliveryDate.AgIsKeepErrMsgHidden = "angCtrl.isKeepErrMsgHidden";
+                    dtDeliveryDate.LabelLeft = RequestResource.DeliveryDate;
+                    dtDeliveryDate.RootTagId = "DeliveryDate";
+                    dtDeliveryDate.IsMandatory = true;
+                    dtDeliveryDate.AgControlerName = "angCtrl";
+                    dtDeliveryDate.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                    //dtDeliveryDate.ContainerClass = "reget-ang-div-container-15";
+                }
+
+                @Html.Raw(dtDeliveryDate.RenderControlHtml())
+            </div>
+
+            <div style="clear:both;"></div>
+            <hr style="margin-top:20px;margin-bottom:20px;" />
+
+            @{
+                MdTextArea mdRequestText = new MdTextArea();
+                mdRequestText.FormName = "frmRequest";
+                mdRequestText.NgModel = "angCtrl.order.request_text";
+                mdRequestText.LabelLeft = RequestResource.RequestText;
+                mdRequestText.RootTagId = "RequestRemark";
+                mdRequestText.InputCssClass = "reget-text-area";
+                mdRequestText.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                mdRequestText.IsMandatory = true;
+                mdRequestText.Height = 170;
+            }
+
+            <div>
+                @Html.Raw(mdRequestText.RenderControlHtml())
+            </div>
+
+            <div style="clear:both;"></div>
+            <hr style="margin-top:20px;margin-bottom:20px;" />
+
+            <div class="reget-ang-div-container reget-app-men" id="wrapAttachment" style="padding-top:10px;">
+                <table style="width: 100%;">
+                    <tbody>
+                        <tr>
+                            <td style="vertical-align: top;" class="hidden-xs"><label class="control-label hidden-xs reget-ang-lbl-control-left-150" id="lblAttachment">@RequestResource.Attachements:</label></td>
+                            <td style="width: 100%;vertical-align: top;padding-left:5px;">
+
+                                <md-input-container class="reget-ang-md-input-container md-input-has-value hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" id="ctAttachment" style="width: 100%;">
+                                    <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width: 150px;margin-top:15px;">@RequestResource.Attachements</label>
+                                </md-input-container>
+
+                                <div>
+                                    <div ngf-drop="" ngf-select=""
+                                         ng-model="files" class="drop-box"
+                                         ngf-drag-over-class="dragover"
+                                         ngf-multiple="true" ngf-allow-dir="true"
+                                         style="cursor:pointer;margin-bottom:15px;background-color:#f2fde4;color:#000;border:4px dashed #888"
+                                         accept="*">
+
+                                        <table>
+                                            <tr>
+                                                <td style="padding-right:25px;">
+                                                    <img src="~/Content/Images/Controll/Drop.png" />
+                                                </td>
+                                                <td>
+                                                    <span ngf-no-file-drop!="">@RequestResource.DragDropInfo</span>
+                                                    <div ngf-no-file-drop="">@RequestResource.SelectAttachment</div>
+                                                    <div ngf-no-file-drop="">(@RequestResource.DragDropNotSupported)</div>
+                                                    <input type='file' id="getFile" style="display:none">
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <md-progress-linear md-mode="determinate" value="{{angCtrl.progressPercentage}}" ng-hide="angCtrl.isUploadFileProgressBarVisible==false" style="margin-top:20px"></md-progress-linear>
+                                    </div>
+                                </div>
+
+                                <div style="float:left;padding-left:5px;">
+                                    <div ng-repeat="att in angCtrl.order.attachments" style="margin-bottom:5px;">
+                                        <a href="#" ng-click="angCtrl.openAttachment(att.id)" style="margin-right:10px;">
+                                            <span><img src="{{att.icon_url}}" style="margin-bottom:2px;margin-right:2px;height:24px;" /></span>
+                                            <span>{{att.file_name}}</span>
+                                            <span>&nbsp;({{att.size_kb}} kB)</span>
+
+                                        </a>
+                                        <span>
+                                            <md-button class="reget-btn-grid-delete reget-transparent-button" style="min-width:20px;min-height:20px;" aria-label="Delete" ng-if="att.is_can_be_deleted" ng-click="angCtrl.deleteAttachment(att.id)">
+                                                <md-tooltip>{{angCtrl.locDeleteText}}</md-tooltip>
+                                            </md-button>
+                                        </span>
+
+
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+
+            <div style="clear:both;"></div>
+            <hr style="margin-top:20px;margin-bottom:20px;" />
+
+            @{
+                MdSelect cmbLang = new MdSelect();
+                cmbLang.FormName = "frmRequest";
+                cmbLang.AgSourceList = "angCtrl.orderLangCmb";
+                cmbLang.AgModel = "angCtrl.langId";
+                cmbLang.AgIdItem = "id";
+                cmbLang.AgTextItem = "name";
+                cmbLang.AgSelectedText = "angCtrl.orderLanguage";
+                cmbLang.LabelLeft = RequestResource.OrderLanguage;
+                cmbLang.RootTagId = "OrderLanguage";
+                cmbLang.LabelLeftCssClass = "reget-ang-lbl-control-left-150";
+                cmbLang.IsMandatory = true;
+                cmbLang.OnSelectFunct = "angCtrl.selectLang()";
+                cmbLang.Width = 150;
+                cmbLang.ContainerClass = "reget-ang-div-container-15";
+            }
+
+            <div>
+                @Html.Raw(cmbLang.RenderControlHtml())
+            </div>
+
+            <div style="clear:both;"></div>
+            <hr style="margin-top:20px;margin-bottom:20px;" />
+            
+            <div>
+
+                <div id="wrapSuppMail">
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td style="vertical-align: top;padding-right:5px;" class="hidden-xs"><label class="control-label hidden-xs reget-ang-lbl-control-left-150" id="lblOrderer">@RequestResource.MailRecipients:</label></td>
+                                <td style="width: 100%;vertical-align: top;">
+                                    <div class="reget-ang-div-container-15-readonly">
+                                        <md-input-container class="reget-ang-md-input-container  md-input-has-value" id="ctAddress" style="width: 100%;">
+                                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="min-width: 150px;margin-top:15px;">@RequestResource.MailRecipients</label>
+                                            <div ng-repeat="mailaddress in angCtrl.order.mail_addresses">{{mailaddress.text}}</div>
+                                            <md-button class="btn btn-primary reget-btn-mp-width100 reget-btn-blue reget-btn-send-blue"
+                                                       aria-label="SendOrder"
+                                                       style="margin-left:0px;margin-top:0px;"
+                                                       ng-click="angCtrl.openSuppDetail()">
+                                                @RequestResource.SupplierMailConstact
+                                        </md-input-container>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div id="divErrMsgAddress" class="md-input-message-animation ng-scope ng-enter ng-enter-active" style="position:relative;color:maroon;display:none;" role="alert">
+                        <div style="line-height:14px;color:rgb(221,24,0);padding-top:5px;font-size:12px;">
+                            <div class="reget-ang-controll-invalid-msg">
+                                @RequestResource.SelectAddress
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        @Html.Partial("_LocalizationTextBasic")
+
+        <div style="display:none;">
+            <input id="NotAuthorizedPerformActionText" value="@RequestResource.NotAuthorizedPerformAction" />
+
+        </div>
+     </div>
+</form>

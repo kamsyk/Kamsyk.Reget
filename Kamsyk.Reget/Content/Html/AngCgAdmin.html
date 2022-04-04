@@ -1,0 +1,151 @@
+﻿
+<div class="reget-chip">
+    <div ng-hide="iscompanyadmin=='true'" style="float:left;margin-top:6px;margin-right:5px;margin-left:10px;border:1px solid #999;border-radius:15px;min-width:30px;min-height:30px;padding:2px;">
+        <table>
+            <tr>
+                <td style="padding:1px;">
+                    <div style="min-width:10px;min-height:10px;border-top-left-radius:10px;" ng-style="{'background-color': (iscgpropadmin=='true') ? '#999' : 'transparent'}"></div>
+                    <md-tooltip>{{cgadmintext}}</md-tooltip>
+                </td>
+                <td style="padding:1px;">
+                    <div style="min-width:10px;min-height:10px;border-top-right-radius:10px;" ng-style="{'background-color': (isappmatrixadmin=='true') ? '#999' : 'transparent'}"></div>
+                    <md-tooltip>{{appmatrixadmintext}}</md-tooltip>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:1px;">
+                    <div style="min-width:10px;min-height:10px;border-bottom-left-radius:10px;" ng-style="{'background-color': (isrequestoradmin=='true') ? '#999' : 'transparent'}"></div>
+                    <md-tooltip>{{requestoradmintext}}</md-tooltip>
+                </td>
+                <td style="padding:1px;">
+                    <div style="min-width:10px;min-height:10px;border-bottom-right-radius:10px;" ng-style="{'background-color': (isordereradmin=='true') ? '#999' : 'transparent'}"></div>
+                    <md-tooltip>{{ordereradmintext}}</md-tooltip>
+                </td>
+                
+            </tr>
+        </table>
+    </div>
+    <span style="padding:5px;vertical-align: middle;">{{surname}} {{firstname}}</span>
+    <span style="vertical-align: middle;">
+        <md-button class="md-fab md-mini reget-circle-btn" aria-label="{{removetext}}" ng-click="deletecgadmin();">
+            <img ng-src="{{rooturl}}Content/Images/Controll/Remove.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{removetext}}</md-tooltip>
+        </md-button>
+        <md-button id="btnExpandCgAdmin_{{userid}}" class="md-fab md-mini reget-circle-btn" aria-label="{{displaydetailtext}}" ng-click="expandcgadmin()" style="background-color:#337ab7;">
+            <img ng-src="{{rooturl}}Content/Images/Controll/ExpandArrow.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{displaydetailtext}}</md-tooltip>
+        </md-button>
+        <md-button id="btnCollapseCgAdmin_{{userid}}" class="md-fab md-mini reget-circle-btn" aria-label="{{hidedetailtext}}" ng-click="collapsecgadmin();" style="background-color:#337ab7;display:none;">
+            <img ng-src="{{rooturl}}Content/Images/Controll/CollapseArrow.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{hidedetailtext}}</md-tooltip>
+        </md-button>
+    </span>
+
+    <div id="divCgAdmin_{{userid}}" style="display:none;margin-left:10px;margin-right:10px;font-weight:normal;">
+        <hr />
+
+        <div ng-hide="iscompanyadmin=='true'">
+            <div>
+                <md-checkbox id="ckbAppMatrix"
+                             aria-label="App Martix Admin" class="reget-blue"
+                             ng-model="iscgpropadmin"
+                             ng-true-value="'true'"
+                             ng-false-value="'false'"
+                             ng-change="cgpropadmintoggle()">
+                    {{cgadmintext}}
+                </md-checkbox>
+            </div>
+
+            <div>
+                <md-checkbox id="ckbAppMatrix"
+                             aria-label="App Martix Admin" class="reget-blue"
+                             ng-model="isappmatrixadmin"
+                             ng-true-value="'true'"
+                             ng-false-value="'false'"
+                             ng-change="appmatrixadmintoggle()">
+                    {{appmatrixadmintext}}
+                </md-checkbox>
+            </div>
+
+            <div>
+                <md-checkbox id="ckbRequestor"
+                             aria-label="RequestorsAdmin" class="reget-blue"
+                             ng-model="isrequestoradmin"
+                             ng-true-value="'true'"
+                             ng-false-value="'false'"
+                             ng-change="requestoradmintoggle()">
+                    {{requestoradmintext}}
+                </md-checkbox>
+            </div>
+
+            <div>
+                <md-checkbox id="ckbOrderer"
+                             aria-label="Orderer Admin" class="reget-blue"
+                             ng-model="isordereradmin"
+                             ng-true-value="'true'"
+                             ng-false-value="'false'"
+                             ng-change="ordereradmintoggle()">
+                    {{ordereradmintext}}
+                </md-checkbox>
+            </div>
+        </div>
+
+        <div id="divReadOnly" ng-show="iscompanyadmin=='true'" style="font-weight:normal;padding-bottom:16px;">
+            <div style="margin-bottom:16px">
+                <div ng-show="iscgpropadmin">
+                    <img ng-src="{{rooturl}}Content/Images/Controll/Check20.png" class="reget-check-readonly" />
+                    <span>{{cgadmintext}}</span>
+                    <!--<md-tooltip>{{cgadmintext}} {{yestext}}</md-tooltip>-->
+                </div>
+                <div ng-hide="iscgpropadmin">
+                    <img ng-src="{{rooturl}}Content/Images/Controll/UnCheck20.png" class="reget-check-readonly" />
+                    <span>{{cgadmintext}}</span>
+                    <!--<md-tooltip>{{cgadmintext}} {{notext}}</md-tooltip>-->
+                </div>
+            </div>
+
+            <div style="margin-bottom:16px">
+                <div ng-show="isappmatrixadmin">
+                    <img ng-src="{{rooturl}}Content/Images/Controll/Check20.png" class="reget-check-readonly" />
+                    <span>{{appmatrixadmintext}}</span>
+                    <!--<md-tooltip>{{appmatrixadmintext}} {{yestext}}</md-tooltip>-->
+                </div>
+                <div ng-hide="isappmatrixadmin">
+                    <img ng-src="{{rooturl}}Content/Images/Controll/UnCheck20.png" class="reget-check-readonly" />
+                    <span>{{appmatrixadmintext}}</span>
+                    <!--<md-tooltip>{{appmatrixadmintext}} {{notext}}</md-tooltip>-->
+                </div>
+            </div>
+
+            <div style="margin-bottom:16px">
+                <div ng-show="isrequestoradmin">
+                    <img ng-src="{{rooturl}}Content/Images/Controll/Check20.png" class="reget-check-readonly" />
+                    <span>{{requestoradmintext}}</span>
+                    <!--<md-tooltip>{{requestoradmintext}} {{yestext}}</md-tooltip>-->
+
+                </div>
+                <div ng-hide="isrequestoradmin">
+                    <img ng-src="{{rooturl}}Content/Images/Controll/UnCheck20.png" class="reget-check-readonly" />
+                    <span>{{requestoradmintext}}</span>
+                    <!--<md-tooltip>{{requestoradmintext}} {{notext}}</md-tooltip>-->
+                </div>
+            </div>
+
+            <div>
+                <div ng-show="isordereradmin">
+                    <img ng-src="{{rooturl}}Content/Images/Controll/Check20.png" class="reget-check-readonly" />
+                    <span>{{ordereradmintext}}</span>
+                    <!--<md-tooltip>{{ordereradmintext}} {{yestext}}</md-tooltip>-->
+                </div>
+                <div ng-hide="isordereradmin">
+                    <img ng-src="{{rooturl}}Content/Images/Controll/UnCheck20.png" class="reget-check-readonly" />
+                    <span>{{ordereradmintext}}</span>
+                    <!--<md-tooltip>{{ordereradmintext}} {{notext}}</md-tooltip>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+

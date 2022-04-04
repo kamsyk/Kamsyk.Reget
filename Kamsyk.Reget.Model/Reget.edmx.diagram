@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d929f4f1e3524ce1a4e26866cabe9672" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="InternalRequestModel.Approve_Level" Width="1.375" PointX="21.5" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Asset_Centre_Group" Width="1.375" PointX="21" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Asset_Manager_Role" Width="1.375" PointX="11.25" PointY="56.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Asset_Request_Identificator" Width="1.375" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Asset_Request_Type" Width="1.375" PointX="9" PointY="48.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.AssetCentreGroup_Currency" Width="1.375" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Centre" Width="1.375" PointX="11.25" PointY="51.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Centre_BusinessTripCentreGroup" Width="1.375" PointX="13.5" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Centre_Group" Width="1.375" PointX="16.5" PointY="50.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Company" Width="1.375" PointX="26.375" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Country" Width="1.375" PointX="24" PointY="43.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Country_Local" Width="1.375" PointX="26.25" PointY="46.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Currency" Width="1.375" PointX="18.75" PointY="43.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Exchange_Rate" Width="1.375" PointX="21" PointY="51.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Filter_Value" Width="1.375" PointX="28.5" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Invoice" Width="1.375" PointX="21" PointY="58.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Manager_Role" Width="1.375" PointX="23.75" PointY="50.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Orderer_Supplier" Width="1.375" PointX="23.75" PointY="59" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Parent_Purchase_Group" Width="1.375" PointX="21.5" PointY="71.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Parent_Purchase_Group_Local" Width="1.375" PointX="23.75" PointY="71.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Participant_Office_Role" Width="1.375" PointX="3" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Participant_Role" Width="1.375" PointX="0.75" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Participant_Substitute" Width="4.125" PointX="13.5" PointY="74.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.ParticipantRole_BusinessTripCentreGroup" Width="1.375" PointX="3" PointY="53.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.ParticipantRole_CentreAssetGroup" Width="1.375" PointX="3" PointY="59.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.ParticipantRole_CentreGroup" Width="1.375" PointX="6" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Participants" Width="1.375" PointX="9" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Purchase_Group" Width="1.375" PointX="23.75" PointY="61.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Purchase_Group_Limit" Width="1.375" PointX="26" PointY="58.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Purchase_Group_Local" Width="1.375" PointX="26" PointY="66.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.PurchaseGroup_ImplicitOrderer" Width="1.375" PointX="29" PointY="58.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.PurchaseGroup_ImplicitRequestor" Width="1.375" PointX="29" PointY="55.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.PurchaseGroup_Requestor" Width="1.375" PointX="16.5" PointY="57.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Event" Width="1.375" PointX="18.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Event_Archive" Width="2.625" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Event_Expand" Width="1.375" PointX="21" PointY="61.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Identificator" Width="1.375" PointX="13.5" PointY="64.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Mail" Width="1.375" PointX="21" PointY="64.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Notification" Width="1.375" PointX="21" PointY="68" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Order" Width="1.375" PointX="26" PointY="52" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Ship_To_Address" Width="1.375" PointX="21.75" PointY="54.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Supplier" Width="1.375" PointX="29" PointY="62.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Supplier_Contact" Width="1.375" PointX="31.25" PointY="58.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.Supplier_Requestor_Export_Price" Width="1.375" PointX="31.25" PointY="61.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.SupplierGroup" Width="1.375" PointX="15.75" PointY="68.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.User_GridSetting" Width="1.375" PointX="11.25" PointY="77.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InternalRequestModel.User_Setting" Width="1.375" PointX="11.25" PointY="79.75" IsExpanded="true" />
+        <AssociationConnector Association="InternalRequestModel.FK_Manager_Approve_Level" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Centre_Group_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Manager_Asset_Centre_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantRole_CentreAssetGroup_Asset_Centre_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Manager_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Manager_Role_Asset_Request_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Centre_BusinessTripCentreGroup_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Centre_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_Requestor_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Identificator_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Ship_To_Address_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Centre_Group_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Centre_Group_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Manager_Centre_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Orderer_Supplier_Centre_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantRole_CentreGroup_Centre_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Centre_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Ship_To_Address_Centre_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Company_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Filter_Values_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participant_Office_Role_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participants_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participants_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Country_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Country_Local_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Exchange_Rate_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Exchange_Rate_Currency1" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Order_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Invoice_Request_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Manager_Purchase_Group_Limit" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Manager_Role_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Manager_Role_Participants1" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Orderer_Supplier_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Orderer_Supplier_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Parent_Purchase_Group_Local_Parent_Purchase_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participant_Office_Role_Participant_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participant_Office_Role_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantRole_BusiessTripCentreGroup_Participant_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantRole_CentreAssetGroup_Participant_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantRole_CentreGroup_Participant_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participant_Substitute_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participant_Substitute_Participants1" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participant_Substitute_Participants2" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantRole_BusiessTripCentreGroup_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantRole_CentreAssetGroup_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantRole_CentreGroup_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Purchase_Group_Limit_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Purchase_Group_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_ImplicitOrderer_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_ImplicitRequestor_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_Requestor_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants1" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants2" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants3" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants4" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants5" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants6" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants7" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants8" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Participants9" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Order_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Ship_To_Address_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Supplier_Contact_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Supplier_Requestor_Export_Price_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_User_GridSettings_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_User_Setting_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Purchase_Group_Limit_Purchase_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Purchase_Group_Local_Purchase_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_ImplicitOrderer_Purchase_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_ImplicitRequestor_Purchase_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_Requestor_Purchase_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Purchase_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Notification_Request_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Extend_Request_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Mail_Request_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Order_Request_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Supplier_Contact_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Supplier_Requestor_Export_Price_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Supplier_SupplierGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.Asset_Requestor_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.Centre_AssetCentreGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.Centre_CentreGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.CentreGroup_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.CentreGroup_PurchaseGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.Parent_Purchase_Purchase_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.ParticipantRole_Global" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.Purchase_Group_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.PurchaseGroup_ExcludeOrderer" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.PurchaseGroup_ExcludeRequestor" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.PurchaseGroup_Orderer" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.ReadOnlyAccess" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.Request_Multi_Orderer" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.Requestor_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.SupplierGroup_CentreGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="InternalRequestModel.FK_Company_SupplierGroup" />
+        <EntityTypeShape EntityType="InternalRequestModel.Address" Width="1.375" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="InternalRequestModel.FK_Centre_Address" />
+        <AssociationConnector Association="InternalRequestModel.FK_Centre_Company" />
+        <AssociationConnector Association="InternalRequestModel.FK_Address_Company" />
+        <AssociationConnector Association="InternalRequestModel.FK_Address_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Centre_Participants1" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participants_Centre" />
+        <EntityTypeShape EntityType="InternalRequestModel.Maintenance_Event" Width="1.375" PointX="29" PointY="51.75" />
+        <EntityTypeShape EntityType="InternalRequestModel.Maintenance_Event_Code" Width="1.375" PointX="26.75" PointY="49.75" />
+        <AssociationConnector Association="InternalRequestModel.FK_Maintenance_Event_Centre" />
+        <AssociationConnector Association="InternalRequestModel.FK_Maintenance_Event_Centre_Group" />
+        <AssociationConnector Association="InternalRequestModel.FK_Maintenance_Event_Maintenance_Event_Code" />
+        <AssociationConnector Association="InternalRequestModel.FK_Maintenance_Event_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Maintenance_Event_Participants1" />
+        <AssociationConnector Association="InternalRequestModel.FK_Maintenance_Event_Purchase_Group" />
+        <AssociationConnector Association="InternalRequestModel.FK_Maintenance_Event_Company" />
+        <AssociationConnector Association="InternalRequestModel.Company_ParentPurchaseGroup" />
+        <AssociationConnector Association="InternalRequestModel.Company_Currency" />
+        <EntityTypeShape EntityType="InternalRequestModel.DataType" Width="1.375" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Field" Width="1.375" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Field_DataType" />
+        <AssociationConnector Association="InternalRequestModel.FK_Company_Currency" />
+        <EntityTypeShape EntityType="InternalRequestModel.Test_Indicator" Width="1.375" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="InternalRequestModel.Company_Group" Width="1.375" PointX="3.375" PointY="7.875" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participants_Company_Group" />
+        <EntityTypeShape EntityType="InternalRequestModel.ParticipantPhoto" Width="1.375" PointX="11.25" PointY="59.75" />
+        <AssociationConnector Association="InternalRequestModel.FK_ParticipantPhoto_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Currency" />
+        <AssociationConnector Association="InternalRequestModel.FK_Parent_Purchase_Group_Company_Group" />
+        <EntityTypeShape EntityType="InternalRequestModel.Test_Fail" Width="1.5" PointX="9.375" PointY="0.75" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participant_Substitute_Participants3" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Item" Width="1.5" PointX="20.875" PointY="33.625" />
+        <EntityTypeShape EntityType="InternalRequestModel.Unit_Measurement" Width="1.5" PointX="11.625" PointY="5.5" />
+        <EntityTypeShape EntityType="InternalRequestModel.Unit_Measurement_Local" Width="1.5" PointX="13.875" PointY="6" />
+        <EntityTypeShape EntityType="InternalRequestModel.Unit_Value_Type" Width="1.5" PointX="9.375" PointY="6" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Item_Request_Event" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Item_Unit" />
+        <AssociationConnector Association="InternalRequestModel.FK_Unit_Local_Unit" />
+        <AssociationConnector Association="InternalRequestModel.FK_Unit_Unit_Value_Type" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Item_Currency" />
+        <EntityTypeShape EntityType="InternalRequestModel.Asset_Request_Event" Width="1.5" PointX="31.125" PointY="43.625" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Asset_Centre_Group" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Event_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Asset_Request_Type" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Centre" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Currency" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Currency1" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Currency2" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Participants1" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Participants2" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Participants3" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Participants4" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Participants5" />
+        <AssociationConnector Association="InternalRequestModel.FK_Asset_Request_Event_Participants6" />
+        <AssociationConnector Association="InternalRequestModel.FK_Participant_Substitute_Participants4" />
+        <EntityTypeShape EntityType="InternalRequestModel.Privacy" Width="1.5" PointX="9.375" PointY="9.875" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Privacy" />
+        <EntityTypeShape EntityType="InternalRequestModel.PurchaseGroup_CustomField" Width="1.5" PointX="25.875" PointY="63.75" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_CustomField_Purchase_Group" />
+        <EntityTypeShape EntityType="InternalRequestModel.Custom_Field" Width="1.5" PointX="5.5" PointY="19.375" />
+        <AssociationConnector Association="InternalRequestModel.FK_Custom_Field_DataType" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_CustomField_Custom_Field" />
+        <EntityTypeShape EntityType="InternalRequestModel.RequestEvent_CustomFieldValue" Width="1.5" PointX="23.875" PointY="40.375" />
+        <AssociationConnector Association="InternalRequestModel.FK_RequestEvent_CustomFieldValue_Custom_Field" />
+        <AssociationConnector Association="InternalRequestModel.FK_RequestEvent_CustomFieldValue_Request_Event" />
+        <AssociationConnector Association="InternalRequestModel.CustomField_Company" />
+        <AssociationConnector Association="InternalRequestModel.FK_PurchaseGroup_CustomField_Participant_Role" />
+        <AssociationConnector Association="InternalRequestModel.FK_Ship_To_Address_Address" />
+        <EntityTypeShape EntityType="InternalRequestModel.CustomField_Local" Width="1.5" PointX="7.75" PointY="20" />
+        <AssociationConnector Association="InternalRequestModel.FK_CustomField_Local_Custom_Field" />
+        <EntityTypeShape EntityType="InternalRequestModel.Attachement" Width="1.5" PointX="11.125" PointY="69.75" />
+        <EntityTypeShape EntityType="InternalRequestModel.Event_Attachement" Width="1.5" PointX="25.875" PointY="69.5" />
+        <AssociationConnector Association="InternalRequestModel.FK_Attachement_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Event_Attachement_Attachement" />
+        <AssociationConnector Association="InternalRequestModel.FK_Event_Attachement_Request_Event" />
+        <EntityTypeShape EntityType="InternalRequestModel.App_Text_Store" Width="1.5" PointX="3.375" PointY="10.875" />
+        <EntityTypeShape EntityType="InternalRequestModel.Substitution_Remark" Width="2.375" PointX="17.5" PointY="39.875" />
+        <AssociationConnector Association="InternalRequestModel.FK_Substitution_Remark_App_Text_Store" />
+        <AssociationConnector Association="InternalRequestModel.FK_Substitution_Remark_Participant_Substitute" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Event_Orderer" Width="1.5" PointX="31.875" PointY="65.25" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Orderer_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Orderer_Participants1" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Orderer_Request_Event" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_AuthorizedUsers" Width="1.5" PointX="28.875" PointY="48.5" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_AuthorizedUsers_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_AuthorizedUsers_Request_Event" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Text" Width="1.5" PointX="23.875" PointY="36.375" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Text_App_Text_Store" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Text_Request_Event" />
+        <AssociationConnector Association="InternalRequestModel.FK_App_Text_Store_Company" />
+        <EntityTypeShape EntityType="InternalRequestModel.Discussion" Width="1.5" PointX="11.125" PointY="38.75" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Discussion" Width="1.5" PointX="30.875" PointY="40.625" />
+        <EntityTypeShape EntityType="InternalRequestModel.Substitute_Discussion" Width="1.5" PointX="28.375" PointY="69.875" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Address" />
+        <AssociationConnector Association="InternalRequestModel.FK_Discussion_App_Text_Store" />
+        <AssociationConnector Association="InternalRequestModel.FK_Discussion_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Discussion_Discussion" />
+        <AssociationConnector Association="InternalRequestModel.FK_Substitution_Discussion_Discussion" />
+        <AssociationConnector Association="InternalRequestModel.FK_Substitution_Discussion_Participant_Substitute" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Discussion_Request_Event" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_AccessRequest" Width="1.5" PointX="31.875" PointY="68.625" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_AccessRequest_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_AccessRequest_Request_Event" />
+        <EntityTypeShape EntityType="InternalRequestModel.Request_Event_Approval" Width="1.5" PointX="20.875" PointY="47.125" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Approval_Participants" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Approval_Participants1" />
+        <AssociationConnector Association="InternalRequestModel.FK_Request_Event_Approval_Request_Event" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

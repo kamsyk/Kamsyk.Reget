@@ -1,0 +1,32 @@
+﻿
+<div class="reget-header">
+    @{
+        if (!String.IsNullOrEmpty(ViewBag.HeaderImgUrl)) {
+            @*<div style="overflow:hidden;display:table;">
+                <div style="display:table-cell;vertical-align:middle;">
+                    <img id="imgHeader" style="margin-right:10px;height:20px;" src="@ViewBag.HeaderImgUrl" />
+                </div>
+                <div style="display:table-cell;vertical-align:middle;">@ViewBag.HeaderTitle</div>
+            </div>*@
+            @*<div id="divHeader" style="background-image:url('@ViewBag.HeaderImgUrl');background-repeat:no-repeat;padding-left:30px;background-size:20px;">
+                @ViewBag.HeaderTitle
+            </div>*@
+            <table>
+                <tr>
+                    <td>
+                        <img id="imgHeader" style="margin-right:10px;margin-bottom:1px;height:20px;" src="@ViewBag.HeaderImgUrl" />
+                    </td>
+                    <td>
+                        @ViewBag.HeaderTitle
+                    </td>
+                </tr>
+            </table>
+        } else {
+            <div style="overflow:hidden;display:table;">
+                <div style="display:table-cell;vertical-align:middle;">@ViewBag.HeaderTitle</div>
+            </div>
+        }
+    }
+
+
+</div>

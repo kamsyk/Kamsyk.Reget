@@ -1,0 +1,71 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var centreController = ViewContext.Controller as CentreController;
+}
+
+@functions {
+    public string GetGridLangCode() {
+        var centreController = ViewContext.Controller as CentreController;
+
+        return centreController.GetGridLangCode();
+
+    }
+}
+
+<form name="frmCentre" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="CentreController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div style="margin-bottom:15px;">
+            @{
+                UiGrid uiGrid = new UiGrid(centreController.GetRootUrl());
+                uiGrid.RootTagId = "grdCentre";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.Centres;
+                uiGrid.AddNewText = RequestResource.AddCentre;
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+                      
+        </div>
+    </div>
+
+    @Html.Partial("_LocalizationTextBasic")
+    @Html.Partial("_DataGrid")
+
+    <div style="display:none;">
+        <input id="WarningText" value="@RequestResource.Warning" />
+        <input id="ErrMsgText" value="@RequestResource.Error" />
+        <input id="CloseText" value="@RequestResource.Close" />
+        <input id="YesText" value="@RequestResource.Yes" />
+        <input id="NoText" value="@RequestResource.No" />
+        <input id="NeverText" value="@RequestResource.Never" />
+        <input id="AlwaysText" value="@RequestResource.Always" />
+        <input id="OptionalText" value="@RequestResource.Optional" />
+        <input id="EditText" value="@RequestResource.Edit" />
+        <input id="DeleteText" value="@RequestResource.Delete" />
+        <input id="SaveText" value="@RequestResource.Save" />
+        <input id="CancelText" value="@RequestResource.Cancel" />
+        <input id="MissingMandatoryText" value="@RequestResource.MandatoryValueIsMissing" />
+        <input id="DuplicityCentreNameText" value="@RequestResource.DuplicityCentreName" />
+
+        <input id="NameText" value="@RequestResource.Name" />
+        <input id="CompanyText" value="@RequestResource.Company" />
+        <input id="ExportPriceText" value="@RequestResource.ExportPriceToOrder" />
+        <input id="MultiOrdererText" value="@RequestResource.MultiOrdererInfo" />
+        <input id="CanRequestorApproveText" value="@RequestResource.RequestorCanApprove" />
+        <input id="CanTakeOverText" value="@RequestResource.OtherOrderersAllowedToTakeOver" />
+        <input id="ManagerText" value="@RequestResource.CentreManager" />
+        <input id="AddressText" value="@RequestResource.Address" />
+        <input id="ActiveText" value="@RequestResource.Active" />
+        <input id="DeleteCentreConfirmText" value="@RequestResource.DeleteCentreConfirm" />
+        <input id="CentreWasDisabledText" value="@RequestResource.CentreWasDisabled" />
+        <input id="NotFoundText" value="@RequestResource.NotFound" />
+
+        <input id="GridLangCode" value="@GetGridLangCode()" />
+    </div>
+
+</form>

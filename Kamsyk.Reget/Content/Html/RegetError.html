@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Reget - Error</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css"  href="../../Content/CssStyles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"  href="../../Content/CssStyles/Reget.css">
+    
+</head>
+<body class="reget-body" style="background-color:#fff!important;background-image:none!important;" onload="errorPageLoaded()">
+    <script>
+        function errorPageLoaded() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                //vars[key] = value;
+                if (key === "dbconnectionerror") {
+                    var divDbError = document.getElementById("divDbIsNotAccessible");
+                    divDbError.style.display = "block";
+                }
+            });
+            return vars;
+        }
+    </script>
+
+    <div class="navbar-header reget-navbar-top" style="width:100%;border-top-color:#ff0000;">
+        <!--<img src="../Images/Reget.png" style="float:left;padding-left:25px;padding-right:25px;padding-top:8px" /><span class="reget-logo-text">Reget</span>-->
+        <div class="reget-logo reget-display-loader" style="margin-bottom:7px;margin-left:15px;">
+            <div style="display: table-cell; vertical-align: middle;"><span class="reget-logo-text">Reget</span></div>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div style="background-color:#fff!important;">
+        <div style="padding:25px;background-color:#fff!important;">
+            <img id="errImg" src="../Images/Error.png" style="float:left;padding-top:10px;padding-right:25px;" width="95" />
+            <div style="float:left;background-color:#fff!important;">
+                <div style="background-color:#fff!important;">
+                    <h2>An Error occured.</h2>
+                    <div id="divDbIsNotAccessible" style="display:none;">DB Connection failed</div>
+                    <p>Please contact Administrator in case you need a support</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <hr style="margin:25px;" />
+
+    <div style="padding-left:25px;background-color:#fff!important;">
+        Administrator: <b>Kamil Sykora</b>, phone nr: <b>+420 724 228 239</b>, eMail: <a href="mailto:kamil.sykora@otis.com"><b>kamil.sykora@otis.com</b></a>
+    </div>
+</body>
+</html>

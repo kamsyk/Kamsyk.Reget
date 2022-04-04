@@ -1,0 +1,1423 @@
+﻿var app = angular.module('RegetAppUser', ['ngMaterial', 'ngMessages', 'ui.grid', 'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ui.grid.moveColumns', 'ui.grid.edit', 'RegetAppGridService', 'RegetCommonService']);
+
+//app.service('regetgridservice', function () {
+//    this.myFunc = function (x) {
+//        return x.toString(16);
+//    }
+//});
+
+app.controller('UserController', function ($scope, $compile, $http, $mdToast, $q, $filter, $element, $mdDialog, $timeout, uiGridConstants, i18nService, regetgridservice, regetcommonservice) {
+    $scope.GridType = $("#GridType").val();
+
+    $scope.YesText = $("#YesText").val();
+    $scope.NoText = $("#NoText").val();
+    $scope.EditText = $("#EditText").val();
+    $scope.DeleteText = $("#DeleteText").val();
+    $scope.SaveText = $("#SaveText").val();
+    $scope.CancelText = $("#CancelText").val();
+    $scope.FirstNameText = $("#FirstNameText").val();
+    $scope.SurnameText = $("#SurnameText").val();
+    $scope.LoginText = $("#LoginText").val();
+    $scope.MailText = $("#MailText").val();
+    $scope.PhoneText = $("#PhoneText").val();
+    $scope.OfficeText = $("#OfficeText").val();
+    $scope.ActiveText = $("#ActiveText").val();
+    $scope.IsExternalText = $("#IsExternalText").val();
+    $scope.MissingMandatoryText = $("#MissingMandatoryText").val();
+    $scope.CloseText = $("#CloseText").val();
+    $scope.EnterUserNameText = $("#EnterUserNameText").val();
+    $scope.UserExistText = $("#UserExistText").val();
+    $scope.WarningText = $("#WarningText").val();
+    $scope.ConfirmationText = $("#ConfirmationText").val();
+    $scope.DeleteUserConfirmText = $("#DeleteUserConfirmText").val();
+    $scope.UserWasDisabledText = $("#UserWasDisabledText").val();
+    $scope.UserNotFoundText = $("#UserNotFoundText").val();
+    $scope.ErrMsg = $("#ErrMsgText").val();
+    $scope.UserInfoText = $("#UserInfoText").val();
+
+    $scope.IsParticipantLoaded = false;
+    $scope.IsCompanyListLoaded = false;
+    $scope.IsError = false;
+    $scope.Companies = null;
+    $scope.EditRow = null;
+    $scope.EditRowOrig = null;
+    $scope.EditRowIndex = null;
+    $scope.NewRowIndex = null;
+    $scope.IsNewRow = false;
+    $scope.YesNo = [{ value: true, label: $scope.YesText }, { value: false, label: $scope.NoText }];
+    $scope.YesFilter = [{ value: true, label: $scope.YesText }];
+    $scope.CurrentPage = 1;
+    $scope.PageSize = 10;
+    $scope.PageSizeGrid = 10 + 1; //because of new row
+    $scope.RowsCount = 0;
+    $scope.SortColumnsUrl = "";
+    $scope.FilterUrl = "";
+    $scope.UrlParamDelimiter = "|";
+    $scope.UrlParamValueDelimiter = "~";
+    $scope.SkipLoad = false;
+    $scope.GridFilter = [];
+    $scope.GridSort = [];
+    //$scope.EXTERNAL_COL_INDEX = 10;
+    //$scope.ACTIVE_COL_INDEX = 11;
+    $scope.UserGridSettings = null;
+    $scope.DbGridId = "grdUser_rg";
+    $scope.DefaultColumnDefs = null;
+    $scope.IsGridSettingsSaved = false;
+    
+    $scope.lang = $("#GridLangCode").val();
+
+    //$scope.companyColIndex = 9;
+    $scope.IsGridFilterApplied = false;
+
+   
+    $scope.gridOptions = {
+        enableFiltering: true,
+        enableRowSelection: true,
+        enablePaging: true,
+        paginationPageSizes: [10, 20, 50],
+        paginationPageSize: $scope.PageSizeGrid,
+        enableHorizontalScrollbar: 1, //0 - never, 1 when needed, 2 always
+        enableVerticalScrollbar: 1,
+        enablePaginationControls: false,
+        //filterOptions: $scope.filterOptions,
+        columnDefs: [
+            {
+                name: "row_index",
+                field: "row_index",
+                displayName: '',
+                enableFiltering: false,
+                enableSorting: false,
+                enableCellEdit: false,
+                width: 40,
+                enableColumnResizing: true,
+                //cellTemplate: '<div class="ui-grid-cell-contents ui-grid-top-panel" style="text-align:center;vertical-align:middle;font-weight:normal;">{{grid.renderContainers.body.visibleRowCache.indexOf(row) + (grid.options.paginationCurrentPage * grid.options.paginationPageSize) - grid.options.paginationPageSize + 1}}</div>'
+                cellTemplate: '<div class="ui-grid-cell-contents ui-grid-top-panel" style="text-align:center;vertical-align:middle;font-weight:normal;">{{COL_FIELD}}</div>'
+            },
+            {
+                name: 'action_buttons',
+                displayName: '',
+                enableFiltering: false,
+                enableSorting: false,
+                enableCellEdit: false,
+                enableHiding: false,
+                enableColumnResizing: false,
+                //minWidth: 70,
+                //width: 70,
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridCellAction.html"
+                //cellTemplate: 
+                //    '<div ng-if="!row.entity.editrow" style="height:100%;padding-left:0px;">' +
+                //        '<input type="button" value="Edit" class="btn btn-primary reget-btn-edit reget-grid-button" ng-click="" />' +
+                //        '<input type="button" value="Delete" class="btn btn-danger reget-btn-delete reget-grid-button" ng-click="" />' +
+                //    '</div>' +
+                //    '<div ng-if="row.entity.editrow" style="height:100%;padding-left:0px;">' +
+                //        '<input type="button" value="Save" class="btn btn-success reget-btn-save reget-grid-button" ng-click="" />' +
+                //        '<input type="button" value="{{grid.appScope.BackText}}" class="btn btn-primary reget-btn-back reget-grid-button" ng-click="grid.appScope.CancelEdit()" />' +
+                //    '</div>'
+            },
+            {
+                name: 'user_info',
+                displayName: '',
+                enableFiltering: false,
+                enableSorting: false,
+                enableCellEdit: false,
+                enableHiding: false,
+                minWidth: 35,
+                width: 35,
+                cellTemplate:
+                    '<md-button class="reget-btn-info" style="margin-top:5px!important;margin-left:8px!important;" ng-click="grid.appScope.OpenUserRoles(row)" >' +
+                        '<md-tooltip>{{grid.appScope.UserInfoText}}</md-tooltip>' +
+                    '</md-button>'
+            },
+            { name: 'id', visible: false },
+            {
+                name: "surname", displayName: $scope.SurnameText, field: "surname",
+                enableHiding: false,
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridUserCellTextManadatoryTemplate.html",
+                enableCellEdit: false,
+                filter: {
+                    condition: function (searchTerm, cellValue) {
+                        return true;
+                    }
+                },
+                minWidth: 110
+            },
+            {
+                name: "first_name", displayName: $scope.FirstNameText, field: "first_name",
+                //enableHiding: false,
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridUserCellTextManadatoryTemplate.html",
+                enableCellEdit: false,
+                filter: {
+                    condition: function (searchTerm, cellValue) {
+                        //var x = $(filter)('yourcustomfilter')(a, b);
+                        //if (x.length)
+                        //    return true; // if you want to show the cell value
+                        return true;
+                    }
+                },
+                minWidth: 110
+            },
+            {
+                name: 'user_name', displayName: $scope.LoginText, field: "user_name",
+                enableCellEdit: false,
+                enableHiding: false,
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridUserNameReadOnlyTemplate.html",
+                minWidth: 100
+            },
+            {
+                name: 'email', displayName: $scope.MailText, field: "email",
+                //enableCellEdit: false,
+                enableHiding: false,
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridCellReadOnlyTemplate.html",
+                sortingAlgorithm: function (a, b, rowA, rowB, direction) {
+                    return regetgridservice.SortNullString(a, b, rowA, rowB, direction);
+                },
+                minWidth: 190
+            },
+            {
+                name: 'phone', displayName: $scope.PhoneText, field: "phone",
+                enableCellEdit: false,
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridUserCellTextTemplate.html",
+                minWidth: 125
+            },
+            {
+                name: 'office_name', displayName: $scope.OfficeText, field: 'office_name',
+                //enableCellEdit: false,
+                enableHiding: false,
+                //cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridUserCellDropDownMandatoryTemplate.html",
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridCellDropDownMandatoryTemplate.html",
+                minWidth: 175
+            },
+            {
+                name: 'is_external', displayName: $scope.IsExternalText, field: "is_external",
+                enableCellEdit: false,
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridCellCheckboxTemplate.html",
+                minWidth: 100,
+                width: 100
+            },
+            {
+                name: 'active', displayName: $scope.ActiveText, field: "active",
+                enableCellEdit: false,
+                enableHiding: false,
+                cellTemplate: GetRegetRootUrl() + "Content/Html/Grid/GridCellCheckboxTemplate.html",
+                minWidth: 100,
+                width: 100
+            }
+        ],
+        onRegisterApi: function (gridApi) {
+
+            $scope.gridApi = gridApi;
+            
+            $scope.gridApi.core.on.filterChanged($scope, debounce(function () {
+                if ($scope.SkipLoad) {
+                    return;
+                }
+
+                if (!$scope.GridSaveRow()) {
+                    return;
+                }
+
+                $scope.CurrentPage = 1;
+
+                var strFilter = $scope.FilterUrl;
+                $scope.FilterUrl = regetgridservice.GetFilterUrl($scope.gridApi);
+                
+                if (strFilter !== $scope.FilterUrl) {
+                    $scope.GetParticipants();
+                }
+            }, 500));
+
+            $scope.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+                if ($scope.SkipLoad) {
+                    return;
+                }
+
+                if (!$scope.GridSaveRow()) {
+                    return;
+                }
+
+                $scope.CurrentPage = 1;
+
+                $scope.SortColumnsUrl = "";
+                if (sortColumns !== null) {
+                    for (var i = 0; i < sortColumns.length; i++) {
+                        var name = sortColumns[i].name;
+                        var direction = sortColumns[i].sort.direction;
+                        if ($scope.SortColumnsUrl.length > 0) {
+                            $scope.SortColumnsUrl += $scope.UrlParamDelimiter;
+                        }
+                        $scope.SortColumnsUrl += name + $scope.UrlParamValueDelimiter + direction;
+                    }
+                    $scope.GetParticipants();
+                }
+            });
+
+            
+        }
+    };
+
+    $scope.CellClicked = function (row, col) {
+
+        if (row.entity["id"] < -1) {
+            return;
+        }
+
+        if ($scope.GridType === "NonActiveUsers") {
+            return;
+        }
+
+        $scope.GridEditRow(row.entity);
+
+    };
+
+    $scope.GridCancelEdit = function () {
+        ShowLoaderBoxOnly($scope.IsError);
+
+        try {
+            var isNewRow = (!IsValueNullOrUndefined($scope.EditRow) && $scope.EditRow["id"] < -1);
+
+            if (isNewRow) {
+                //$scope.RestoreFilter();
+                regetgridservice.RestoreFilter($scope.GridFilter, $scope.gridApi);
+            }
+
+            //$scope.SkipLoad = false;
+            $scope.NewRowIndex = null;
+            if ($scope.EditRow !== null) {
+
+                $scope.EditRow.editrow = false;
+
+                if (isNewRow) {
+                    var index = $scope.gridOptions.data.indexOf($scope.EditRow);
+                    $scope.gridOptions.data.splice(index, 1);
+                    $scope.gridOptions.paginationPageSize--;
+                } else {
+                    //$scope.EditRow["surname"] = $scope.EditRowOrig["surname"];
+                    //$scope.EditRow["first_name"] = $scope.EditRowOrig["first_name"];
+                    //$scope.EditRow["user_name"] = $scope.EditRowOrig["user_name"];
+                    //$scope.EditRow["phone"] = $scope.EditRowOrig["phone"];
+                    //$scope.EditRow["office_name"] = $scope.EditRowOrig["office_name"];
+                    //$scope.EditRow["active"] = $scope.EditRowOrig["active"];
+                    angular.forEach($scope.EditRow, function (value, key) {
+                        $scope.EditRow[key] = $scope.EditRowOrig[key];
+                    });
+                }
+
+
+                $scope.EditRow = null;
+                $scope.EditRowIndex = null;
+
+                if (isNewRow) {
+                    $scope.EnableFiltering();
+                }
+            }
+
+            //regetgridservice.CancelEditRows($scope.gridOptions.data);
+        } catch (ex) {
+            throw ex;
+        } finally {
+
+            $scope.SkipLoad = false;
+            $scope.HideLoaderWrapper(false);
+        }
+    };
+
+    //$scope.RestoreFilter = function () {
+    //    if ($scope.GridFilter !== null) {
+    //        for (var i = 0; i < $scope.GridFilter.length; i++) {
+    //            angular.forEach($scope.gridApi.grid.columns, function (col) {
+    //                if (col.name === $scope.GridFilter[i].column_name) {
+    //                    col.filters[0].term = $scope.GridFilter[i].filter_value;
+    //                }
+    //            });
+    //        }
+    //    }
+    //};
+
+    $scope.GridSaveRow = function () {
+
+        try {
+
+            if ($scope.EditRow === null) {
+                return true;
+            }
+
+            var isChanged = false;
+
+            var id = $scope.EditRow["id"];
+            var user = $filter("filter")($scope.gridOptions.data, { id: id }, true);
+
+            if (id < 0) {
+                //new row
+                isChanged = true;
+                $scope.NewRowIndex = null;
+            } else {
+                if ($scope.EditRowOrig["surname"] !== $scope.EditRow["surname"]) {
+                    //user[0]["surname"] = $scope.EditRow["surname"];
+                    isChanged = true;
+                } else if ($scope.EditRowOrig["first_name"] !== $scope.EditRow["first_name"]) {
+                    //user[0]["first_name"] = $scope.EditRow["first_name"];
+                    isChanged = true;
+                } else if ($scope.EditRowOrig["phone"] !== $scope.EditRow["phone"]) {
+                    //user[0]["phone"] = $scope.EditRow["phone"];
+                    isChanged = true;
+                } else if ($scope.EditRowOrig["office_name"] !== $scope.EditRow["office_name"]) {
+                    //user[0]["office_name"] = $scope.EditRow["office_name"];
+                    isChanged = true;
+                } else if ($scope.EditRowOrig["is_external"] !== $scope.EditRow["is_external"]) {
+                    //user[0]["active"] = $scope.EditRow["active"];
+                    isChanged = true;
+                } else if ($scope.EditRowOrig["active"] !== $scope.EditRow["active"]) {
+                    //user[0]["active"] = $scope.EditRow["active"];
+                    isChanged = true;
+                } else if (user[0]["id"] < -1) {
+                    isChanged = true;
+                }
+            }
+
+            if (isChanged) {
+                return $scope.SaveUser(user[0], null);
+            } else {
+                $scope.EditRowChanged(false);
+            }
+
+            //$scope.RestoreFilter();
+            regetgridservice.RestoreFilter($scope.GridFilter, $scope.gridApi);
+
+            return true;
+        } catch (ex) {
+            throw ex;
+        } finally {
+
+            $scope.SkipLoad = false;
+        }
+    };
+
+    $scope.GridEditRow = function (row) {
+        $scope.EditRowIndex = $scope.gridOptions.data.indexOf(row);
+
+        ////Get the index of selected row from row object
+        //var index = $scope.gridOptions.data.indexOf(row);
+
+        if ($scope.EditRow === null) {
+
+            //$scope.gridOptions.data[index].editrow = true;//!$scope.gridOptions.data[index].editrow;
+            //$scope.EditRow = $scope.gridOptions.data[index];
+            //$scope.EditRowOrig = angular.copy(row);
+
+            //$scope.EditRowIndex = null;
+            $scope.EditRowChanged(false);
+        } else {
+            //$scope.EditRowIndex = index;
+            $scope.GridSaveRow();
+        }
+
+
+    };
+
+
+    $scope.GetParticipants = function () {
+        if ($scope.SkipLoad === true) {
+            //$scope.SkipLoad = false;
+            return;
+        }
+
+        ShowLoaderBoxOnly($scope.IsError);
+
+        var urlPart = null;
+        if ($scope.GridType === "NonActiveUsers") {
+            urlPart = GetRegetRootUrl() + 'Participant/GetNonActiveParticipants?filter=' + encodeURI($scope.FilterUrl) +
+                    '&pageSize=' + $scope.PageSize +
+                    '&currentPage=' + $scope.CurrentPage +
+                    '&sort=' + $scope.SortColumnsUrl +
+                    '&t=' + new Date().getTime();
+        } else {
+            urlPart = GetRegetRootUrl() + 'Participant/GetParticipants?filter=' + encodeURI($scope.FilterUrl) +
+                    '&pageSize=' + $scope.PageSize +
+                    '&currentPage=' + $scope.CurrentPage +
+                    '&sort=' + $scope.SortColumnsUrl +
+                    '&t=' + new Date().getTime();
+        }
+
+        urlPart = encodeURI(urlPart);
+        $http({
+            method: 'GET',
+            url: urlPart,
+            data: {}
+        }).then(function (response) {
+            try {
+                // $scope.Participants = response.data;
+                $scope.gridOptions.data = response.data.db_data;
+                $scope.RowsCount = response.data.rows_count;
+                //$scope.gridOptions2.data = response.data;
+                $scope.SetMinRowsToShow();
+
+                $scope.EditRow = null;
+                $scope.EditRowOrig = null;
+                $scope.EditRowIndex = null;
+                $scope.NewRowIndex = null;
+                $scope.IsNewRow = false;
+
+                $scope.IsParticipantLoaded = true;
+                $scope.HideLoaderWrapper(false);
+
+                if ($scope.GridType === "NonActiveUsers" &&
+                    $scope.gridOptions.data.length === 0 &&
+                    !$scope.IsFilterApplied()) {
+
+                    $("#divNonActiveGrid").hide();
+                    $("#divNonActiveInfo").show();
+
+                } else {
+                    $("#divNonActiveGrid").show();
+                    $("#divNonActiveInfo").hide();
+                }
+
+                //********************************************************************
+                //it is very important otherwise 50 lines are nod diplaye dproperly !!!
+                $scope.gridOptions.virtualizationThreshold = $scope.RowsCount + 1;
+                //********************************************************************
+
+                //$scope.gridApi.core.refresh();
+            } catch (ex) {
+                $scope.HideLoaderWrapper(true);
+                $scope.DisplayErrorMsg(true);
+            }
+        }, function errorCallback(response) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(true);
+        });
+
+    };
+
+    $scope.GetParticipantCompany = function (userName) {
+        if (userName === null || userName.length === 0) {
+            //alert("Enter user name");
+            $scope.ShowAlert($scope.WarningText, $scope.EnterUserNameText);
+            return;
+        }
+        $scope.IsError = false;
+        ShowLoaderBoxOnly($scope.IsError);
+        $http({
+            method: 'GET',
+            url: GetRegetRootUrl() + 'Participant/GetParticipantCompanyByUserName?userName=' + userName + '&t=' + new Date().getTime(),
+            data: {}
+        }).then(function (response) {
+            try {
+                var company = response.data;
+                if (company === null || company.length === 0) {
+                    $scope.GetParticipantFromActiveDirectory(userName);
+                } else {
+                    //alert(company.country_code);
+                    $scope.ShowAlert($scope.WarningText, $scope.UserExistText.replace('{0}', userName).replace('{1}', company.country_code));
+                }
+
+                $scope.HideLoaderWrapper(false);
+            } catch (ex) {
+                $scope.HideLoaderWrapper(false);
+                $scope.DisplayErrorMsg(false);
+            }
+        }, function errorCallback(response) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(false);
+        });
+
+    };
+
+    $scope.GetParticipantFromActiveDirectory = function (userName) {
+        if (userName === null || userName.length === 0) {
+            //alert("Enter user name");
+            $scope.ShowAlert($scope.WarningText, $scope.EnterUserNameText);
+            return;
+        }
+
+        $scope.IsError = false;
+
+        ShowLoaderBoxOnly($scope.IsError);
+
+        $http({
+            method: 'GET',
+            url: GetRegetRootUrl() + 'Participant/GetParticipantFromActiveDirectory?userName=' + userName + '&companyId=0&t=' + new Date().getTime(),
+            data: {}
+        }).then(function (response) {
+            try {
+                var adUser = response.data;
+
+                if (adUser === null || adUser.length === 0) {
+                    var notExistMsg = $scope.UserNotFoundText.replace("{0}", userName);
+                    $scope.ShowAlert($scope.WarningText, notExistMsg);
+                } else {
+                    $scope.EditRow["first_name"] = adUser.first_name;
+                    $scope.EditRow["surname"] = adUser.surname;
+                    $scope.EditRow["email"] = adUser.email;
+
+                    $scope.NewRowIndex = null;
+                }
+
+                $scope.HideLoaderWrapper(false);
+            } catch (ex) {
+                $scope.HideLoaderWrapper(false);
+                $scope.DisplayErrorMsg(false);
+            }
+        }, function errorCallback(response) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(false);
+        });
+
+    };
+
+    $scope.GetUserByUsername = function (userName) {
+        $scope.GetParticipantCompany(userName);
+    };
+
+
+    $scope.GetCompanies = function () {
+        ShowLoader($scope.IsError);
+        $http({
+            method: 'GET',
+            url: GetRegetRootUrl() + 'Participant/GetParticipantCompanies?t=' + new Date().getTime(),
+            data: {}
+        }).then(function (response) {
+            try {
+                $scope.Companies = response.data;
+                $scope.IsCompanyListLoaded = true;
+                $scope.GetParticipants();
+
+                //set action buttons column width
+                var pos = regetgridservice.GetColumnIndex("action_buttons", $scope.gridApi);
+                if ($scope.GridType === "NonActiveUsers") {
+                    $scope.gridOptions.columnDefs[pos].width = 35;
+                    $scope.gridOptions.columnDefs[pos].minWidth = 35;
+                } else {
+                    $scope.gridOptions.columnDefs[pos].width = 70;
+                    $scope.gridOptions.columnDefs[pos].minWidth = 70;
+                }
+
+                //company
+                pos = regetgridservice.GetColumnIndex("office_name", $scope.gridApi);
+                if (pos > 0) {
+                    $scope.gridOptions.columnDefs[pos].filter = {
+                        //term: '1',
+                        type: uiGridConstants.filter.SELECT,
+                        selectOptions: $scope.Companies
+
+                    };
+                    $scope.gridOptions.columnDefs[pos].editDropdownOptionsArray = $scope.Companies;
+                    
+                }
+
+                //external
+                pos = regetgridservice.GetColumnIndex("is_external", $scope.gridApi);
+                if (pos > 0) {
+                    $scope.gridOptions.columnDefs[pos].filter = {
+                        //term: '1',
+                        type: uiGridConstants.filter.SELECT,
+                        selectOptions: $scope.YesNo
+
+                    };
+                }
+
+                //active
+                pos = regetgridservice.GetColumnIndex("active", $scope.gridApi);
+                if (pos > 0) {
+                    if ($scope.GridType === "NonActiveUsers") {
+                        $scope.gridOptions.columnDefs[pos].filter = {
+                            type: uiGridConstants.filter.SELECT,
+                            selectOptions: $scope.YesFilter
+
+                        };
+                    } else {
+                        $scope.gridOptions.columnDefs[pos].filter = {
+                            //term: '1',
+                            type: uiGridConstants.filter.SELECT,
+                            selectOptions: $scope.YesNo
+
+                        };
+                    }
+                }
+
+                $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
+                
+
+                $scope.HideLoaderWrapper(false);
+            } catch (ex) {
+                $scope.DisplayErrorMsg(true);
+            }
+        }, function errorCallback(response) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(true);
+        });
+
+    };
+
+    $scope.GetDataGridSettings = function () {
+        ShowLoader($scope.IsError);
+        $http({
+            method: 'GET',
+            url: GetRegetRootUrl() + 'DataGrid/GetUserGridSettings?gridId=' + $scope.DbGridId + '&t=' + new Date().getTime(),
+            data: {}
+        }).then(function (response) {
+            try {
+                $scope.UserGridSettings = response.data;
+                if (!IsValueNullOrUndefined($scope.UserGridSettings)) {
+                    $scope.PageSize = $scope.UserGridSettings.grid_page_size;
+                    $scope.PageSizeGrid = $scope.PageSize + 1;
+                    $scope.gridOptions.paginationPageSize = $scope.PageSizeGrid;
+
+                    $scope.GridFilter = regetgridservice.GetGridFilterFromUrlString($scope.UserGridSettings.filter);
+                    regetgridservice.RestoreFilter($scope.GridFilter, $scope.gridApi);
+                    $scope.FilterUrl = regetgridservice.GetFilterUrl($scope.gridApi);
+
+                    $scope.SortColumnsUrl = $scope.UserGridSettings.sort;
+                    $scope.GridSort = regetgridservice.GetGridSortFromUrlString($scope.UserGridSettings.sort);
+                    regetgridservice.RestoreSort($scope.GridSort, $scope.gridApi);
+                                        
+                    var grdColumns = regetgridservice.GetGridColumnsFromUrlString($scope.UserGridSettings.columns);
+                    regetgridservice.RestoreColumns(grdColumns, $scope.gridOptions);
+                }
+
+                $scope.GetCompanies();
+            } catch (ex) {
+                $scope.HideLoaderWrapper(true);
+                $scope.DisplayErrorMsg(true);
+            }
+        }, function errorCallback(response) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(true);
+        });
+
+    };
+
+    $scope.SetDataGridSettings = function () {
+        ShowLoaderBoxOnly($scope.IsError);
+        var jsonUserGridData = JSON.stringify($scope.UserGridSettings);
+
+        $http({
+            method: 'POST',
+            url: GetRegetRootUrl() + 'DataGrid/SetUserGridSettings?t=' + new Date().getTime(),
+            data: jsonUserGridData
+        }).then(function (response) {
+            try {
+                var result = response.data;
+                $scope.IsGridSettingsSaved = true;
+                $scope.HideLoaderWrapper(true);
+            } catch (ex) {
+                $scope.HideLoaderWrapper(true);
+                $scope.DisplayErrorMsg(true);
+            }
+        }, function errorCallback(response) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(true);
+        });
+
+    };
+
+    $scope.SaveGridSettings = function () {
+        $scope.UserGridSettings = regetgridservice.SetGridSettings($scope.DbGridId, $scope.gridApi, $scope.PageSize);
+        $scope.SetDataGridSettings();
+    }
+
+    $scope.ResetGridSettings = function () {
+        ShowLoaderBoxOnly($scope.IsError);
+        var jsonUserGridData = JSON.stringify($scope.UserGridSettings);
+
+        $http({
+            method: 'POST',
+            url: GetRegetRootUrl() + 'DataGrid/DeleteUserGridSettings?t=' + new Date().getTime(),
+            data: jsonUserGridData
+        }).then(function (response) {
+            try {
+                var result = response.data;
+
+                if ($scope.IsGridSettingsSaved === true) {
+                    //workaround - if the grid is loaded then columns order is changed and save and then Reset is called the columns order is nor reset - page reload is needed.
+                    //if the reset is called wo saving before it works fine
+                    var isColumnOrderModified = regetgridservice.IsColumnOrderChanged($scope.UserGridSettings.columns, $scope.gridOptions.columnDefs);
+
+                    if (isColumnOrderModified) {
+                        window.location.reload(true);
+                        return;
+                    }
+                }
+
+                $scope.FilterUrl = "";
+                $scope.SortColumnsUrl = "";
+
+                $scope.PageSize = 10;
+                $scope.PageSizeGrid = $scope.PageSize + 1;
+                $scope.gridOptions.paginationPageSize = $scope.PageSizeGrid;
+
+                $scope.SkipLoad = true;
+                $scope.gridOptions.columnDefs = angular.copy($scope.DefaultColumnDefs);
+                //regetgridservice.RestoreColumns($scope.DefaultColumnDefs, $scope.gridOptions);
+                $scope.ClearFilters();
+                $scope.ClearSort();
+                $scope.SkipLoad = false;
+
+                $scope.UserGridSettings = null;
+                $scope.LoadData();
+
+               $scope.HideLoaderWrapper(true);
+               // window.location = window.location.href;
+            } catch (ex) {
+                $scope.HideLoaderWrapper(true);
+                $scope.DisplayErrorMsg(true);
+            }
+        }, function errorCallback(response) {
+            $scope.HideLoaderWrapper(true);
+            $scope.DisplayErrorMsg(true);
+        });
+    }
+
+    $scope.DisplayErrorMsg = function (isHideGrid) {
+        if (isHideGrid) {
+            $("#angContainer").hide();
+        }
+        if (!$scope.IsError) {
+            regetcommonservice.ShowErrorAlert($scope.WarningText, $scope.ErrMsg, $scope.CloseText);
+            //$scope.ShowAlert($scope.WarningText, $scope.ErrMsg);
+            //alert($scope.ErrMsg);
+        }
+        $scope.IsError = true;
+
+    };
+
+    $scope.HideLoaderWrapper = function (isError) {
+        if (isError || ($scope.IsParticipantLoaded && $scope.IsCompanyListLoaded)) {
+
+            HideLoader();
+        }
+    };
+
+
+    $scope.SetMinRowsToShow = function () {
+        //if data length is smaller, we shrink. otherwise we can do pagination.
+        $scope.gridOptions.minRowsToShow = 100;//Math.min($scope.gridOptions.data.length, $scope.maxRowToShow);
+        $scope.gridOptions.virtualizationThreshold = $scope.gridOptions.minRowsToShow;
+    };
+
+    $scope.NextPage = function () {
+        if (!$scope.GridSaveRow()) {
+            return;
+        }
+
+
+        if (regetgridservice.IsLastPage($scope.RowsCount, $scope.PageSize, $scope.CurrentPage)) {
+            return;
+        } else {
+            $scope.CurrentPage++;
+        }
+
+        //$scope.CurrentPage++;
+        //if (($scope.CurrentPage * $scope.PageSize) >= ($scope.RowsCount + $scope.PageSize)) {
+        //    $scope.CurrentPage--;
+        //    return;
+        //}
+
+
+        $scope.GetParticipants();
+    };
+
+    $scope.PreviousPage = function () {
+        if (!$scope.GridSaveRow()) {
+            return;
+        }
+
+        if (regetgridservice.IsFirstPage($scope.CurrentPage)) {
+            return;
+        } else {
+            $scope.CurrentPage--;
+        }
+        //$scope.CurrentPage--;
+        //if (($scope.CurrentPage < 1)) {
+        //    $scope.CurrentPage++;
+        //    return;
+        //}
+
+
+        $scope.GetParticipants();
+
+        //$scope.gridApi.pagination.previousPage();
+    };
+
+    $scope.FirstPage = function () {
+        if (!$scope.GridSaveRow()) {
+            return;
+        }
+
+        //$scope.gridApi.pagination.seek(1);
+
+        $scope.CurrentPage = 1;
+        $scope.GetParticipants();
+    };
+
+    $scope.LastPage = function () {
+        if (!$scope.GridSaveRow()) {
+            return;
+        }
+
+        //$scope.gridApi.pagination.seek($scope.gridApi.pagination.getTotalPages());
+
+        $scope.CurrentPage = $scope.GetLastPageIndex();
+        $scope.GetParticipants();
+
+    };
+
+    $scope.GetLastPageIndex = function () {
+        return regetgridservice.GetLastPageIndex($scope.RowsCount, $scope.PageSize, $scope.CurrentPage);
+        //if ($scope.RowsCount < ($scope.PageSize * ($scope.CurrentPage - 1) + 1)) {
+        //    if ($scope.CurrentPage > 1) {
+        //        $scope.CurrentPage--;
+        //    }
+        //}
+
+        //var iLastPageIndex = Math.ceil($scope.RowsCount / $scope.PageSize);
+
+        ////var intValueBottom = Math.floor(iLastPageIndex);
+        ////var intValueTop = Math.ceil(iLastPageIndex);
+
+        //return iLastPageIndex;
+    };
+
+    $scope.GotoPage = function () {
+        if (!$scope.GridSaveRow()) {
+            return;
+        }
+
+        //$scope.gridApi.pagination.seek(parseInt($scope.CurrentPage));
+        if ($scope.CurrentPage < 1) {
+            $scope.CurrentPage = 1;
+        }
+
+        if ($scope.CurrentPage > $scope.GetLastPageIndex()) {
+            $scope.CurrentPage = $scope.GetLastPageIndex();
+        }
+
+        $scope.GetParticipants();
+    };
+
+    $scope.PageSizeChanged = function () {
+        if (!$scope.GridSaveRow()) {
+            return;
+        }
+
+        $scope.CurrentPage = 1;
+        $scope.PageSizeGrid = $scope.PageSize + 1;
+        $scope.gridOptions.paginationPageSize = $scope.PageSizeGrid;
+        $scope.GetParticipants();
+    };
+
+    $scope.ExportToXls = function (strExportType) {
+        if (strExportType === 'NonActive') {
+            window.open(GetRegetRootUrl() + 'Report/GetNonActiveParticipants?t=' + new Date().getTime());
+        } else {
+            window.open(GetRegetRootUrl() + 'Report/GetParticipants?t=' + new Date().getTime());
+        }
+    };
+
+
+    $scope.SaveUser = function (user, ev) {
+
+
+        if (!$scope.IsUserValid(user)) {
+            $scope.ShowAlert($scope.WarningText, $scope.MissingMandatoryText);
+            return false;
+        }
+
+        $scope.IsError = false;
+
+        ShowLoaderBoxOnly($scope.IsError);
+        var jsonPurchaseGroupData = JSON.stringify(user);
+
+        $http({
+            method: 'POST',
+            url: GetRegetRootUrl() + 'Participant/SaveUserData',
+            data: jsonPurchaseGroupData
+        }).then(function (response) {
+            try {
+                var result = response.data;
+                if (!IsStringValueNullOrEmpty(result.string_value)) {
+                    //cannot be disabled
+                    $scope.showAdvanced(ev, result.string_value, user.id);
+                } else {
+                    var iId = result.int_value;
+                    var isNew = false;
+                    if (user.id < 0) {
+                        isNew = true;
+                        user.id = iId;
+                        $scope.RowsCount++;
+                    }
+
+                    $scope.EditRowChanged(false);
+                    $scope.NewRowIndex = null;
+
+                    //regetgridservice.CancelEditRows($scope.gridOptions.data);
+                    //$scope.EditRow = null;
+
+                    if (isNew) {
+                        $scope.EnableFiltering();
+                    }
+
+                }
+
+                HideLoader();
+
+
+            } catch (e) {
+                HideLoader();
+                $scope.ShowAlert($scope.WarningText, $scope.ErrMsg);
+            }
+        }, function errorCallback(response) {
+            HideLoader();
+            $scope.ShowAlert($scope.WarningText, $scope.ErrMsg);
+        });
+
+        return true;
+    };
+
+    $scope.GridDeleteRow = function (user, ev) {
+        var strMessage = $scope.DeleteUserConfirmText.replace("{0}", user.surname + " " + user.first_name);
+        var confirm = $mdDialog.confirm()
+                 .title($scope.ConfirmationText)
+                 .textContent(strMessage)
+                 .ariaLabel("DeleteRowConfirm")
+                 .targetEvent(ev)
+                 .ok($scope.NoText)
+                 .cancel($scope.YesText);
+
+        $mdDialog.show(confirm).then(function () {
+
+        }, function () {
+            $scope.GridDeleteRowFromDb(user, ev);
+        });
+
+    };
+
+    $scope.GridDeleteRowFromDb = function (user, ev) {
+        ShowLoaderBoxOnly($scope.IsError);
+        var jsonPurchaseGroupData = JSON.stringify(user);
+
+        $http({
+            method: 'POST',
+            url: GetRegetRootUrl() + 'Participant/DeleteUser',
+            data: jsonPurchaseGroupData
+        }).then(function (response) {
+            try {
+                var result = response.data;
+
+                if (IsStringValueNullOrEmpty(result.string_value)) {
+                    $scope.RemoveRowFromArray(user);
+                    //var tmpCurrPage = $scope.CurrentPage;
+
+
+                    ////Remove row from array
+                    //var index = $scope.gridOptions.data.indexOf(user);
+                    //$scope.gridOptions.data.splice(index, 1);
+
+                    //if ($scope.RowsCount > 1) {
+                    //    $scope.RowsCount--;
+
+                    //}
+
+                    ////check whether it was last record
+                    //if ($scope.GetLastPageIndex() < tmpCurrPage && $scope.CurrentPage > 0) {
+                    //    $scope.PreviousPage();
+                    //}
+
+                } else if (result.string_value === "disabled") {
+                    if ($scope.GridType === "NonActiveUsers") {
+                        $scope.RemoveRowFromArray(user);
+
+                        var msgDisabled1 = $scope.UserWasDisabledText.replace("{0}", user.surname + " " + user.first_name);
+                        $scope.ShowAlert($scope.ConfirmationText, msgDisabled1);
+                    } else {
+
+                        user.active = false;
+                        var msgDisabled2 = $scope.UserWasDisabledText.replace("{0}", user.surname + " " + user.first_name);
+                        $scope.ShowAlert($scope.ConfirmationText, msgDisabled2);
+                    }
+                } else {
+                    var msg = "User cannot be neither deleted nor deactivated because he is set as Approval Manager, Orderer, ... Replace the user for following areas:" + result.string_value;
+                    $scope.showAdvanced(ev, msg, user.id);
+                }
+
+                HideLoader();
+            } catch (e) {
+                HideLoader();
+                //alert($scope.ErrMsg);
+                $scope.ShowAlert($scope.WarningText, $scope.ErrMsg);
+            }
+        }, function errorCallback(response) {
+            HideLoader();
+            //alert($scope.ErrMsg);
+            $scope.ShowAlert($scope.WarningText, $scope.ErrMsg);
+        });
+    }
+
+    $scope.RemoveRowFromArray = function (user) {
+        var tmpCurrPage = $scope.CurrentPage;
+
+        //Remove row from array
+        var index = $scope.gridOptions.data.indexOf(user);
+        $scope.gridOptions.data.splice(index, 1);
+
+        if ($scope.RowsCount > 1) {
+            $scope.RowsCount--;
+
+        }
+
+        //check whether it was last record
+        if ($scope.GetLastPageIndex() < tmpCurrPage && $scope.CurrentPage > 0) {
+            $scope.PreviousPage();
+        }
+    }
+
+    $scope.showAdvanced = function (ev, message, userId) {
+        $mdDialog.show({
+            controller: DeleteUserDialogController,
+            templateUrl: GetRegetRootUrl() + 'Content/Html/CustomDelUserDialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: false,
+            fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
+            locals: {
+                user_id: userId,
+                del_message: message
+            }
+
+        });
+        //.then(function (answer) {
+        //    //$scope.status = 'You said the information was "' + answer + '".';
+        //}, function () {
+        //    //$scope.status = 'You cancelled the dialog.';
+        //});
+    };
+
+
+    $scope.EditRowChanged = function (isNewUser) {
+        $scope.EditRow = regetgridservice.CancelEditRow($scope.EditRow);
+
+        if ($scope.NewRowIndex !== null && !isNewUser) {
+            $scope.InsertUser();
+            //$scope.NewRowIndex = null;
+            $scope.EditRowIndex = $scope.NewRowIndex;
+        }
+
+        if ($scope.EditRowIndex !== null) {
+            $scope.EditRowOrig = angular.copy($scope.gridOptions.data[$scope.EditRowIndex]);
+            $scope.gridOptions.data[$scope.EditRowIndex].editrow = true;
+            $scope.EditRow = $scope.gridOptions.data[$scope.EditRowIndex];
+
+
+            $scope.EditRowIndex = null;
+        }
+
+
+    };
+
+    $scope.IsUserValid = function (user) {
+        var isValid = true;
+        if (IsStringValueNullOrEmpty(user["surname"])) {
+            isValid = false;
+        }
+
+        if (IsStringValueNullOrEmpty(user["first_name"])) {
+            isValid = false;
+        }
+
+        if (IsStringValueNullOrEmpty(user["user_name"])) {
+            isValid = false;
+        }
+
+        if (IsStringValueNullOrEmpty(user["office_name"])) {
+            isValid = false;
+        }
+
+        if (IsStringValueNullOrEmpty(user["email"])) {
+            isValid = false;
+        }
+
+        return isValid;
+    };
+
+    $scope.ToggleGridCheckbox = function (item, col) {
+
+        if (item[col.field]) {
+            item[col.field] = false;
+        } else {
+            item[col.field] = true;
+        }
+
+    };
+
+    $scope.AddNewRow = function () {
+
+
+        if ($scope.EditRow === null) {
+            $scope.NewRowIndex = regetgridservice.GetNewRowIndex($scope.gridOptions.paginationPageSize, $scope.gridApi.grid.rows.length);
+            $scope.EditRowIndex = $scope.NewRowIndex
+            $scope.InsertUser($scope.NewRowIndex);
+            $scope.EditRowChanged(true);
+        } else {
+            $scope.NewRowIndex = regetgridservice.GetNewRowIndex($scope.gridOptions.paginationPageSize, $scope.gridApi.grid.rows.length);
+            $scope.EditRowIndex = $scope.NewRowIndex;
+            $scope.GridSaveRow();
+        }
+    };
+
+    $scope.ClearFilters = function () {
+
+        $scope.GridFilter = regetgridservice.ClearFilters($scope.gridApi.grid.columns, $scope.GridFilter);
+        
+    };
+
+    $scope.IsFilterApplied = function () {
+        //$scope.GridFilter = [];
+
+        for (var i = 0; i < $scope.gridApi.grid.columns.length - 1; i++) {
+            var col = $scope.gridApi.grid.columns[i];
+            if (!IsValueNullOrUndefined(col.filters[0].term)) {
+                if (col.enableFiltering && (col.filters[0].term !== '' || col.filters[0].term === true || col.filters[0].term === false)) {
+                    return true;
+                }
+            }
+        }
+
+        //angular.forEach($scope.gridApi.grid.columns, function (col) {
+        //    if (col.enableFiltering && (col.filters[0].term !== '' || col.filters[0].term === true || col.filters[0].term === false)) {
+        //        return true;
+        //    }
+        //});
+
+        return false;
+    };
+
+    $scope.ClearSort = function () {
+        var isFilter = false;
+        angular.forEach($scope.gridApi.grid.columns, function (col) {
+            isFilter = true;
+            col.unsort();
+        });
+
+        return isFilter;
+    };
+
+    //$scope.DisableFiltering = function () {
+    //    if ($scope.IsGridFilterApplied) {
+    //        $scope.IsGridFilterApplied = true;
+    //        for (var i = 0; i < $scope.gridOptions.columnDefs.length; i++) {
+    //            $scope.gridOptions.columnDefs[i].enableFiltering = false;
+    //        }
+    //    } else {
+    //        $scope.IsGridFilterApplied = false;
+    //    }
+    //}
+
+    $scope.EnableFiltering = function () {
+        if ($scope.IsGridFilterApplied) {
+            $scope.SkipLoad = true;
+            for (var i = 3; i < $scope.gridOptions.columnDefs.length; i++) {
+                $scope.gridOptions.columnDefs[i].enableFiltering = true
+                $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
+            }
+            $scope.SkipLoad = false;
+        }
+
+    }
+
+    $scope.InsertUser = function () {
+
+        //clear filters
+        $scope.SkipLoad = true;
+        $scope.IsGridFilterApplied = ($scope.IsFilterApplied());
+        $scope.ClearFilters();
+
+        //$scope.DisableFiltering();
+
+
+        var rowIndex = regetgridservice.GetNewRowIndexColValue(
+            $scope.CurrentPage,
+            $scope.PageSize,
+            $scope.gridOptions.paginationPageSize,
+            $scope.RowsCount);
+
+        var tmpOfficeName = "";
+        if ($scope.Companies.length === 1) {
+            tmpOfficeName = $scope.Companies[0].value;
+        }
+
+        if (IsValueNullOrUndefined($scope.gridOptions.data)) {
+            $scope.gridOptions.data = [];
+        }
+
+        $scope.gridOptions.data.push(
+            {
+                "id": -10,
+                "row_index": rowIndex,
+                "surname": "",
+                "first_name": "",
+                "phone": "",
+                "office_name": tmpOfficeName,
+                "active": true
+            });
+
+        $scope.gridOptions.paginationPageSize++;
+
+
+        
+    };
+
+    $scope.ShowAlert = function (strTitle, strMsg) {
+
+        $mdDialog.show(
+          $mdDialog.alert()
+            .clickOutsideToClose(true)
+            .title(strTitle)
+            .textContent(strMsg)
+            .ariaLabel('Alert Dialog')
+            .ok($scope.CloseText)
+            // You can specify either sting with query selector
+            .openFrom('#left')
+            // or an element
+            .closeTo(angular.element(document.querySelector('#right')))
+        );
+
+        //var confirm = $mdDialog.confirm()
+        //          .title(strTitle)
+        //          .textContent(strMsg)
+        //          .ariaLabel(strTitle)
+        //          .targetEvent(ev)
+        //          .ok($scope.CloseText);
+
+        //$mdDialog.show(confirm).then(function () {
+
+        //}, function () {
+
+        //});
+    };
+
+    //$scope.GetDisplayItemsToInfo = function () {
+    //    var iToInfo = ($scope.gridApi.pagination.getPage()) * $scope.gridOptions.paginationPageSize;
+    //    if (iToInfo > $scope.gridApi.grid.rows.length) {
+    //        iToInfo = $scope.gridApi.grid.rows.length;
+    //    }
+    //    return iToInfo;
+    //};
+
+    $scope.GetDisplayItemsToInfo = function () {
+        return regetgridservice.GetDisplayItemsToInfo($scope.RowsCount, $scope.PageSize, $scope.CurrentPage);
+        //var iToInfo = ($scope.CurrentPage) * $scope.PageSize;
+        //if (iToInfo > $scope.RowsCount) {
+        //    iToInfo = $scope.RowsCount;
+        //}
+        //return iToInfo;
+    };
+
+    $scope.GetRowsCount = function () {
+        return $scope.RowsCount;
+    };
+
+    $scope.GetCurrentPage = function () {
+        return $scope.CurrentPage;
+    };
+        
+    function DeleteUserDialogController($scope, $mdDialog, del_message, user_id) {
+        $scope.del_message = del_message;
+        // $scope.replace_user_url = replace_user_url;
+        //$scope.del_message = "abc";
+
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+
+        $scope.answer = function (answer) {
+            //alert(answer);
+            $mdDialog.hide(answer);
+
+            if (answer === "replace") {
+                //window.location.href = GetRegetRootUrl() + 'Participant/ReplaceUser?userToBeReplacedId=' + user_id;
+                window.open(GetRegetRootUrl() + 'Participant/ReplaceUser?userToBeReplacedId=' + user_id);
+            }
+        };
+    }
+
+
+    //$scope.GetPageSize = function () {
+    //    return $scope.CurrentPage;
+    //};
+
+    ///////////////////////////////////////
+
+
+    //$scope.gridOptions2 = {
+    //    enablePaginationControls: false,
+    //    paginationPageSizes: [25, 50, 75],
+    //    paginationPageSize: 25,
+    //    columnDefs: [
+    //      { name: 'Surname', field: "surname" }
+
+
+    //    ]
+    //};
+
+    //$scope.gridOptions2.onRegisterApi = function (gridApi) {
+    //    $scope.gridApi2 = gridApi;
+    //}
+
+    ////$http.get('https://cdn.rawgit.com/angular-ui/ui-grid.info/gh-pages/data/100.json')
+    ////.success(function (data) {
+    ////    //$scope.gridOptions1.data = data;
+    ////    $scope.gridOptions2.data = data;
+    ////});
+
+    $scope.Refresh = function () {
+        $scope.LoadData();
+        //$scope.CurrentPage = 1;
+
+        $scope.EditRow = null;
+        $scope.EditRowOrig = null;
+        $scope.EditRowIndex = null;
+        $scope.NewRowIndex = null;
+        $scope.IsNewRow = false;
+    };
+
+    $scope.OpenUserRoles = function (e) {
+        //alert(e);
+        var userId = e.entity.id;
+        var userRolesLink = GetRegetRootUrl() + 'Participant/UserInfo?userId=' + userId;
+        window.open(userRolesLink);
+    };
+
+    $scope.IsValueNullOrUndefined = function (oValue) {
+        return IsValueNullOrUndefined(oValue);
+    };
+
+    $scope.LoadData = function () {
+        if ($scope.GridType === "NonActiveUsers") {
+            $scope.DbGridId = "grdUser_rg";
+        } else {
+            $scope.DbGridId = "grdUser_rg";
+        }
+
+        $scope.GridCancelEdit();
+
+        if ($scope.UserGridSettings === null) {
+            $scope.DefaultColumnDefs = angular.copy($scope.gridOptions.columnDefs);
+            $scope.GetDataGridSettings();
+
+        } else {
+            $scope.GetCompanies();
+        }
+
+        
+
+    };
+
+    $scope.LoadData();
+
+
+});
+

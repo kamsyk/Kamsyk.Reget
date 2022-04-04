@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import schemaLocation="http://localhost:48128/Baan.asmx?schema=NewDataSet" />
+      <s:element name="GetCompanies">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCompaniesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompaniesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyNr" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJobsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobStatusDataByFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyNr" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="jobNames" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetJobStatusDataByFilterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJobStatusDataByFilterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPmcSolution">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPmcSolutionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPmcSolutionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDependencies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pmc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pmcList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDependenciesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDependenciesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUKRolesAndSessions">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUKRolesAndSessionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUKRolesAndSessionsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataByMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataByMailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDataByMailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataByUserName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataByUserNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDataByUserNameResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserSettingsByUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserSettingsByUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserSettingsByUsernameResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSuppliers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyNr" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSuppliersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSuppliersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCompaniesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanies" />
+  </wsdl:message>
+  <wsdl:message name="GetCompaniesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompaniesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobs" />
+  </wsdl:message>
+  <wsdl:message name="GetJobsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobStatusDataByFilterSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobStatusDataByFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetJobStatusDataByFilterSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobStatusDataByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPmcSolutionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPmcSolution" />
+  </wsdl:message>
+  <wsdl:message name="GetPmcSolutionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPmcSolutionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckDependenciesSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDependencies" />
+  </wsdl:message>
+  <wsdl:message name="CheckDependenciesSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDependenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUKRolesAndSessionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUKRolesAndSessions" />
+  </wsdl:message>
+  <wsdl:message name="GetUKRolesAndSessionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUKRolesAndSessionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataByMailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDataByMail" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataByMailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDataByMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataByUserNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDataByUserName" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataByUserNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDataByUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSettingsByUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserSettingsByUsername" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSettingsByUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserSettingsByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSuppliersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSuppliers" />
+  </wsdl:message>
+  <wsdl:message name="GetSuppliersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSuppliersResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BaanSoap">
+    <wsdl:operation name="GetCompanies">
+      <wsdl:input message="tns:GetCompaniesSoapIn" />
+      <wsdl:output message="tns:GetCompaniesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobs">
+      <wsdl:input message="tns:GetJobsSoapIn" />
+      <wsdl:output message="tns:GetJobsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobStatusDataByFilter">
+      <wsdl:input message="tns:GetJobStatusDataByFilterSoapIn" />
+      <wsdl:output message="tns:GetJobStatusDataByFilterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPmcSolution">
+      <wsdl:input message="tns:GetPmcSolutionSoapIn" />
+      <wsdl:output message="tns:GetPmcSolutionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDependencies">
+      <wsdl:input message="tns:CheckDependenciesSoapIn" />
+      <wsdl:output message="tns:CheckDependenciesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUKRolesAndSessions">
+      <wsdl:input message="tns:GetUKRolesAndSessionsSoapIn" />
+      <wsdl:output message="tns:GetUKRolesAndSessionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByMail">
+      <wsdl:input message="tns:GetUserDataByMailSoapIn" />
+      <wsdl:output message="tns:GetUserDataByMailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByUserName">
+      <wsdl:input message="tns:GetUserDataByUserNameSoapIn" />
+      <wsdl:output message="tns:GetUserDataByUserNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSettingsByUsername">
+      <wsdl:input message="tns:GetUserSettingsByUsernameSoapIn" />
+      <wsdl:output message="tns:GetUserSettingsByUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers">
+      <wsdl:input message="tns:GetSuppliersSoapIn" />
+      <wsdl:output message="tns:GetSuppliersSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BaanSoap" type="tns:BaanSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCompanies">
+      <soap:operation soapAction="http://tempuri.org/GetCompanies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobs">
+      <soap:operation soapAction="http://tempuri.org/GetJobs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobStatusDataByFilter">
+      <soap:operation soapAction="http://tempuri.org/GetJobStatusDataByFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPmcSolution">
+      <soap:operation soapAction="http://tempuri.org/GetPmcSolution" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDependencies">
+      <soap:operation soapAction="http://tempuri.org/CheckDependencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUKRolesAndSessions">
+      <soap:operation soapAction="http://tempuri.org/GetUKRolesAndSessions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByMail">
+      <soap:operation soapAction="http://tempuri.org/GetUserDataByMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByUserName">
+      <soap:operation soapAction="http://tempuri.org/GetUserDataByUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSettingsByUsername">
+      <soap:operation soapAction="http://tempuri.org/GetUserSettingsByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers">
+      <soap:operation soapAction="http://tempuri.org/GetSuppliers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BaanSoap12" type="tns:BaanSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCompanies">
+      <soap12:operation soapAction="http://tempuri.org/GetCompanies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobs">
+      <soap12:operation soapAction="http://tempuri.org/GetJobs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobStatusDataByFilter">
+      <soap12:operation soapAction="http://tempuri.org/GetJobStatusDataByFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPmcSolution">
+      <soap12:operation soapAction="http://tempuri.org/GetPmcSolution" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDependencies">
+      <soap12:operation soapAction="http://tempuri.org/CheckDependencies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUKRolesAndSessions">
+      <soap12:operation soapAction="http://tempuri.org/GetUKRolesAndSessions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByMail">
+      <soap12:operation soapAction="http://tempuri.org/GetUserDataByMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByUserName">
+      <soap12:operation soapAction="http://tempuri.org/GetUserDataByUserName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSettingsByUsername">
+      <soap12:operation soapAction="http://tempuri.org/GetUserSettingsByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers">
+      <soap12:operation soapAction="http://tempuri.org/GetSuppliers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Baan">
+    <wsdl:port name="BaanSoap" binding="tns:BaanSoap">
+      <soap:address location="http://localhost:48128/Baan.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BaanSoap12" binding="tns:BaanSoap12">
+      <soap12:address location="http://localhost:48128/Baan.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

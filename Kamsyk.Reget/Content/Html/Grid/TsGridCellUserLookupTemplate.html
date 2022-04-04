@@ -1,0 +1,37 @@
+﻿<div>
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow" style="">
+        <md-autocomplete id="gridFieldAutoUser"
+                         md-input-minlength="0"
+                         md-min-length="0"
+                         md-item-text="item.name_surname_first"
+                         md-search-text="angCtrl.searchstringcentreman"
+                         md-items="item in grid.appScope.searchParticipant(angCtrl.searchstringcentreman)"
+                         md-selected-item="MODEL_COL_FIELD"
+                         md-no-cache="true"
+                         md-delay="300"
+                         md-input-id="intGridUserAutocomplete"
+                         placeholder="{{grid.appScope.locManagerText}}"
+                         md-selected-item-change="grid.appScope.centreManSelectedItemChange(item)"
+                         md-search-text-change="grid.appScope.userTextChanged(false)"
+                         class="ui-grid-autocomplete-white"
+                         aria-label="{{COL_FIELD}}">
+            <md-item-template>
+                <div>
+                    <img ng-src="{{item.country_flag}}" aria-label="Flag" style="width:24px;height:16px;vertical-align: middle;" />
+                    <span md-highlight-text="searchstringcentreman" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                </div>
+            </md-item-template>
+
+            <md-not-found>
+                "{{angCtrl.searchstringcentreman}}" {{grid.appScope.locNotFoundText}}.
+            </md-not-found>
+
+        </md-autocomplete>
+    </div>    
+</div>

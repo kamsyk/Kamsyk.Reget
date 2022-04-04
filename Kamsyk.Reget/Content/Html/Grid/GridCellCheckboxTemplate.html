@@ -1,0 +1,17 @@
+﻿<div>
+    <div ng-click="grid.appScope.CellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;" ng-if="MODEL_COL_FIELD">
+            {{grid.appScope.YesText}}
+        </div>
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;" ng-if="!MODEL_COL_FIELD">
+            {{grid.appScope.NoText}}
+        </div>
+    </div>
+    <div style="background-color:#fff!important;margin:0px;min-height:30px;" ng-if="row.entity.editrow">
+        <div style="padding-top:5px;padding-left:5px;background-color:#fff;">
+            <md-checkbox aria-label="{{COL_FIELD}}" ng-checked="MODEL_COL_FIELD" ng-click="grid.appScope.ToggleGridCheckbox(row.entity, col, $event)" class="reget-blue" style="background-color:#fff!important;">
+            </md-checkbox>
+        </div>
+    </div>
+</div>

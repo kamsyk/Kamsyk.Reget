@@ -1,0 +1,1462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{26C6620B-26EA-4151-8106-AC20A327D22E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kamsyk.Reget</RootNamespace>
+    <AssemblyName>Kamsyk.Reget</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/c888eb6f-415e-45a4-8c5f-934d3371e8de/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/OTISCZ.Reget</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/c888eb6f-415e-45a4-8c5f-934d3371e8de/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/OTISCZ.Reget</ApplicationInsightsAnnotationResourceId>
+    <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>3.2</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.9.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.9.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.4.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.4.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.4.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.4.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.4.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.4.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.TraceListener, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.TraceListener.2.4.1\lib\net45\Microsoft.ApplicationInsights.TraceListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgControls\BaseAgControl.cs" />
+    <Compile Include="AgControls\MdInputContainer.cs" />
+    <Compile Include="AgControls\MdInputDecimalContainer.cs" />
+    <Compile Include="AgControls\MdInputIntegerContainer.cs" />
+    <Compile Include="AgControls\MdLabel.cs" />
+    <Compile Include="AgControls\MdSelect.cs" />
+    <Compile Include="AgControls\MdDatePicker.cs" />
+    <Compile Include="AgControls\MdAutocomplete.cs" />
+    <Compile Include="AgControls\MdCheckBox.cs" />
+    <Compile Include="AgControls\UiGrid.cs" />
+    <Compile Include="AgControls\MdTextArea.cs" />
+    <Compile Include="App_GlobalResources\RequestResource.bg-BG.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.bg-BG.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.cs-CZ.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.cs-CZ.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.de-DE.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.de-DE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.hu-HU.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.hu-HU.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.pl-PL.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.pl-PL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.sl-SI.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.sl-SI.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.ro-RO.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.ro-RO.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.sk-SK.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.sk-SK.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RequestResource.sr-Latn-CS.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestResource.sr-Latn-CS.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Content\Sessions\RegetSession.cs" />
+    <Compile Include="Content\UrlParams\UrlParams.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\DataGridController.cs" />
+    <Compile Include="Controllers\DiscussionController.cs" />
+    <Compile Include="Controllers\EventViewerController.cs" />
+    <Compile Include="Controllers\AttachmentController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Interface\IParticipantController.cs" />
+    <Compile Include="Controllers\IUserRepositoryTestUserRep.cs" />
+    <Compile Include="Controllers\NoViewTestController.cs" />
+    <Compile Include="Controllers\CentreController.cs" />
+    <Compile Include="Controllers\ParentPgController.cs" />
+    <Compile Include="Controllers\ParticipantController.cs" />
+    <Compile Include="Controllers\PurchaseGroupController.cs" />
+    <Compile Include="Controllers\RegetAdminController.cs" />
+    <Compile Include="Controllers\RegetExceptions\ExNotAuthorizedUpdateUser.cs" />
+    <Compile Include="Controllers\RegetExceptions\ExMissingMandatoryFields.cs" />
+    <Compile Include="Controllers\RegetExceptions\ExNotDbConnection.cs" />
+    <Compile Include="Controllers\RegetExceptions\ExTestModeProdDb.cs" />
+    <Compile Include="Controllers\RegetExceptions\ExNotAuthorizedUserPage.cs" />
+    <Compile Include="Controllers\RegetExceptions\ExNotAuthorizedUser.cs" />
+    <Compile Include="Controllers\Interface\IRegetAdminController.cs" />
+    <Compile Include="Controllers\RegetUser.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\TestIndicatorController.cs" />
+    <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mail\AppMail.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\RegetSettings.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Web References\WsMail\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WsSupplierDebug\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WsSupplier\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\angular-material.css" />
+    <Content Include="Content\angular-material.layout-attributes.css" />
+    <Content Include="Content\angular-material.layout-attributes.min.css" />
+    <Content Include="Content\angular-material.layouts.css" />
+    <Content Include="Content\angular-material.layouts.ie_fixes.css" />
+    <Content Include="Content\angular-material.layouts.min.css" />
+    <Content Include="Content\angular-material.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chart.css" />
+    <Content Include="Content\Chart.min.css" />
+    <Content Include="Content\CssStyles\bootstrap-theme.css" />
+    <Content Include="Content\CssStyles\bootstrap-theme.min.css" />
+    <Content Include="Content\CssStyles\bootstrap.css" />
+    <Content Include="Content\CssStyles\bootstrap.min.css" />
+    <Content Include="Content\CssStyles\RegetButtonBar.css" />
+    <Content Include="Content\CssStyles\Normalize.css" />
+    <Content Include="Content\CssStyles\Reget.css" />
+    <Content Include="Content\CssStyles\RegetAngular.css" />
+    <Content Include="Content\CssStyles\RegetButton.css" />
+    <Content Include="Content\CssStyles\RegetGrid.css" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\css\ui-grid.cellnav.css" />
+    <Content Include="Content\css\ui-grid.cellnav.min.css" />
+    <Content Include="Content\css\ui-grid.core.css" />
+    <Content Include="Content\css\ui-grid.core.min.css" />
+    <Content Include="Content\css\ui-grid.edit.css" />
+    <Content Include="Content\css\ui-grid.edit.min.css" />
+    <Content Include="Content\css\ui-grid.empty-base-layer.css" />
+    <Content Include="Content\css\ui-grid.empty-base-layer.min.css" />
+    <Content Include="Content\css\ui-grid.expandable.css" />
+    <Content Include="Content\css\ui-grid.expandable.min.css" />
+    <Content Include="Content\css\ui-grid.exporter.css" />
+    <Content Include="Content\css\ui-grid.exporter.min.css" />
+    <Content Include="Content\css\ui-grid.grouping.css" />
+    <Content Include="Content\css\ui-grid.grouping.min.css" />
+    <Content Include="Content\css\ui-grid.importer.css" />
+    <Content Include="Content\css\ui-grid.importer.min.css" />
+    <Content Include="Content\css\ui-grid.move-columns.css" />
+    <Content Include="Content\css\ui-grid.move-columns.min.css" />
+    <Content Include="Content\css\ui-grid.pagination.css" />
+    <Content Include="Content\css\ui-grid.pagination.min.css" />
+    <Content Include="Content\css\ui-grid.pinning.css" />
+    <Content Include="Content\css\ui-grid.pinning.min.css" />
+    <Content Include="Content\css\ui-grid.resize-columns.css" />
+    <Content Include="Content\css\ui-grid.resize-columns.min.css" />
+    <Content Include="Content\css\ui-grid.row-edit.css" />
+    <Content Include="Content\css\ui-grid.row-edit.min.css" />
+    <Content Include="Content\css\ui-grid.selection.css" />
+    <Content Include="Content\css\ui-grid.selection.min.css" />
+    <Content Include="Content\css\ui-grid.tree-base.css" />
+    <Content Include="Content\css\ui-grid.tree-base.min.css" />
+    <Content Include="Content\css\ui-grid.tree-view.css" />
+    <Content Include="Content\css\ui-grid.tree-view.min.css" />
+    <Content Include="Content\css\ui-grid.validate.css" />
+    <Content Include="Content\css\ui-grid.validate.min.css" />
+    <Content Include="Content\fonts\ui-grid.svg" />
+    <Content Include="Content\Html\AngCentre.html" />
+    <Content Include="Content\Html\AngSuppAdmin.html" />
+    <Content Include="Content\Html\AngOrderer.html" />
+    <Content Include="Content\Html\AngCgAdmin.html" />
+    <Content Include="Content\Html\AngRequestor.html" />
+    <Content Include="Content\Html\AngAppMatrix.html" />
+    <Content Include="Content\Html\AngAppManager.html" />
+    <Content Include="Content\Html\AngStatisticsFilter.html" />
+    <Content Include="Content\Html\AngGridTranslate.html" />
+    <Content Include="Content\Html\AngShipToAddress.html" />
+    <Content Include="Content\Html\AngTranslate.html" />
+    <Content Include="Content\Html\AngCheckBoxReadOnly.html" />
+    <Content Include="Content\Html\CustomDelUserDialog.html" />
+    <Content Include="Content\Html\AngOrdererSupplier.html" />
+    <Content Include="Content\Html\CustomField\AngCustomfield.html" />
+    <Content Include="Content\Html\Grid\TsGridCellDateReadOnlyTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellDetail.html" />
+    <Content Include="Content\Html\Grid\TsGridCellApproveAction.html" />
+    <Content Include="Content\Html\Grid\TsGridCellCheckboxReadOnlyTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellDateTimeMandatoryTemplate2.html" />
+    <Content Include="Content\Html\Grid\TsGridCellDecimalNumberMandatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellLinkImgTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellTextAreaReadOnlyTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellLinkTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellTextMailMandatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellRequest.html" />
+    <Content Include="Content\Html\Grid\TsGridUserCellTextTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridUserNameReadOnlyTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellUsedPg.html" />
+    <Content Include="Content\Html\Grid\TsGridCellTextTemplateReadOnly.html" />
+    <Content Include="Content\Html\Grid\TsGridCellDropDownTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellAddressLookupTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellTranslationTextMandatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellUserLookupTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellCheckboxTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellTextTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellDropDownMandatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellAction.html" />
+    <Content Include="Content\Html\Grid\GridCellActionEditOnly.html" />
+    <Content Include="Content\Html\Grid\GridCellAction.html" />
+    <Content Include="Content\Html\Grid\GridCellDropDownMandatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellDateTimeMandatoryTemplate1.html" />
+    <Content Include="Content\Html\Grid\GridCellReadOnlyTemplate.html" />
+    <Content Include="Content\Html\Grid\GridCellCheckboxTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellDateTimeReadOnlyTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellTextMandatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\GridCellTextMandatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\GridCellTextTemplateReadOnly.html" />
+    <Content Include="Content\Html\Grid\GridCellUserLookupTemplate.html" />
+    <Content Include="Content\Html\Grid\GridCellTextTemplate.html" />
+    <Content Include="Content\Html\Grid\GridCellDropDownTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridCellTextAreaTemplate.html" />
+    <Content Include="Content\Html\Grid\TsGridUserCellTextManadatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\GridUserCellTextTemplate.html" />
+    <Content Include="Content\Html\Grid\GridUserCellTextManadatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\GridUserCellDropDownMandatoryTemplate.html" />
+    <Content Include="Content\Html\Grid\GridUserNameReadOnlyTemplate.html" />
+    <Content Include="Content\Html\RegetError.html" />
+    <Content Include="Content\Html\Translation.html" />
+    <Content Include="Content\Html\TsDirective\AngDateTime.html" />
+    <Content Include="Content\Html\TsDirective\AngGridDateTime.html" />
+    <Content Include="Content\Html\AngDiscussion.html" />
+    <Content Include="Content\Images\angular-icons\addShoppingCart.svg" />
+    <Content Include="Content\Images\angular-icons\android.svg" />
+    <Content Include="Content\Images\angular-icons\angular-logo.svg" />
+    <Content Include="Content\Images\angular-icons\bower-logo.svg" />
+    <Content Include="Content\Images\angular-icons\cake.svg" />
+    <Content Include="Content\Images\angular-icons\codepen-logo.svg" />
+    <Content Include="Content\Images\angular-icons\copy.svg" />
+    <Content Include="Content\Images\angular-icons\copy2.svg" />
+    <Content Include="Content\Images\angular-icons\facebook.svg" />
+    <Content Include="Content\Images\angular-icons\favorite.svg" />
+    <Content Include="Content\Images\angular-icons\github-icon.svg" />
+    <Content Include="Content\Images\angular-icons\github.svg" />
+    <Content Include="Content\Images\angular-icons\hangout.svg" />
+    <Content Include="Content\Images\angular-icons\ic_access_time_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_arrow_back_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_arrow_up_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_build_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_card_giftcard_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_chevron_right_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_close_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_code_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_comment_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_email_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_euro_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_insert_drive_file_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_label_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_launch_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_menu_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_more_vert_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_ondemand_video_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_people_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_person_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_phone_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_photo_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_place_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_play_arrow_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_play_circle_fill_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_refresh_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_school_24px.svg" />
+    <Content Include="Content\Images\angular-icons\ic_visibility_24px.svg" />
+    <Content Include="Content\Images\angular-icons\launch.svg" />
+    <Content Include="Content\Images\angular-icons\list_control_down.png" />
+    <Content Include="Content\Images\angular-icons\mail.svg" />
+    <Content Include="Content\Images\angular-icons\menu.svg" />
+    <Content Include="Content\Images\angular-icons\message.svg" />
+    <Content Include="Content\Images\angular-icons\more_vert.svg" />
+    <Content Include="Content\Images\angular-icons\npm-logo.svg" />
+    <Content Include="Content\Images\angular-icons\octicon-repo.svg" />
+    <Content Include="Content\Images\angular-icons\print.svg" />
+    <Content Include="Content\Images\angular-icons\separator.svg" />
+    <Content Include="Content\Images\angular-icons\sets\communication-icons.svg" />
+    <Content Include="Content\Images\angular-icons\sets\core-icons.svg" />
+    <Content Include="Content\Images\angular-icons\sets\device-icons.svg" />
+    <Content Include="Content\Images\angular-icons\sets\social-icons.svg" />
+    <Content Include="Content\Images\angular-icons\share-arrow.svg" />
+    <Content Include="Content\Images\angular-icons\tabs-arrow.svg" />
+    <Content Include="Content\Images\angular-icons\toggle-arrow.svg" />
+    <Content Include="Content\Images\angular-icons\twitter.svg" />
+    <Content Include="Content\Images\angular-icons\upload.svg" />
+    <Content Include="Content\Images\body_bg.png" />
+    <Content Include="Content\Images\Browser\IeCompatibilityRem_CZ.jpg" />
+    <Content Include="Content\Images\Browser\IeCompatibilityRem_EN.jpg" />
+    <Content Include="Content\Images\Browser\IeCompatibility_CZ.jpg" />
+    <Content Include="Content\Images\Browser\IeCompatibility_EN.jpg" />
+    <Content Include="Content\Images\Browser\IeSettings_CZ.jpg" />
+    <Content Include="Content\Images\Browser\IeSettings_EN.jpg" />
+    <Content Include="Content\Images\Chart\AxXArrow.png" />
+    <Content Include="Content\Images\Chart\AxXLine.png" />
+    <Content Include="Content\Images\Chart\AxXYCorner.png" />
+    <Content Include="Content\Images\Chart\AxYArrow.png" />
+    <Content Include="Content\Images\Chart\AxYLine.png" />
+    <Content Include="Content\Images\Chart\ChartScales.png" />
+    <Content Include="Content\Images\Controll\AccessDenied.png" />
+    <Content Include="Content\Images\Controll\Add.png" />
+    <Content Include="Content\Images\Controll\Address.png" />
+    <Content Include="Content\Images\Controll\Back.png" />
+    <Content Include="Content\Images\Controll\Button\Activate.png" />
+    <Content Include="Content\Images\Controll\Button\bottom.png" />
+    <Content Include="Content\Images\Controll\Button\AddRemark.png" />
+    <Content Include="Content\Images\Controll\Button\Close.png" />
+    <Content Include="Content\Images\Controll\Button\Delete.png" />
+    <Content Include="Content\Images\Controll\Button\Draft.png" />
+    <Content Include="Content\Images\Controll\Button\ExcelBlue.png" />
+    <Content Include="Content\Images\Controll\Button\ExcelGreen.png" />
+    <Content Include="Content\Images\Controll\Button\Info.png" />
+    <Content Include="Content\Images\Controll\Button\Mail.png" />
+    <Content Include="Content\Images\Controll\Button\Minus.png" />
+    <Content Include="Content\Images\Controll\Button\Plus.png" />
+    <Content Include="Content\Images\Controll\Button\Reject.png" />
+    <Content Include="Content\Images\Controll\Button\Remind.png" />
+    <Content Include="Content\Images\Controll\Button\Order.png" />
+    <Content Include="Content\Images\Controll\Button\Revert.png" />
+    <Content Include="Content\Images\Controll\Button\Save.png" />
+    <Content Include="Content\Images\Controll\Button\Check.png" />
+    <Content Include="Content\Images\Controll\Button\Search.png" />
+    <Content Include="Content\Images\Controll\Button\SendBack.png" />
+    <Content Include="Content\Images\Controll\Button\Statistics.png" />
+    <Content Include="Content\Images\Controll\Calculate.png" />
+    <Content Include="Content\Images\Controll\Calculator20.png" />
+    <Content Include="Content\Images\Controll\Centre.png" />
+    <Content Include="Content\Images\Controll\Check20.png" />
+    <Content Include="Content\Images\Controll\Check48.png" />
+    <Content Include="Content\Images\Controll\Check64.png" />
+    <Content Include="Content\Images\Controll\checkcircle.png" />
+    <Content Include="Content\Images\Controll\CheckGreen16.png" />
+    <Content Include="Content\Images\Controll\CheckGreen48.png" />
+    <Content Include="Content\Images\Controll\CollapseArrow.png" />
+    <Content Include="Content\Images\Controll\Color.png" />
+    <Content Include="Content\Images\Controll\Commodity.png" />
+    <Content Include="Content\Images\Controll\Copy.png" />
+    <Content Include="Content\Images\Controll\DatePickerCalendar.png" />
+    <Content Include="Content\Images\Controll\DateTimePickerCalendar.png" />
+    <Content Include="Content\Images\Controll\disablecircle.png" />
+    <Content Include="Content\Images\Controll\disablecircle16.png" />
+    <Content Include="Content\Images\Controll\disablecircle_white.png" />
+    <Content Include="Content\Images\Controll\Down.png" />
+    <Content Include="Content\Images\Controll\Drop.png" />
+    <Content Include="Content\Images\Controll\Edit.png" />
+    <Content Include="Content\Images\Controll\EditDisable.png" />
+    <Content Include="Content\Images\Controll\EditEnable.png" />
+    <Content Include="Content\Images\Controll\Event.png" />
+    <Content Include="Content\Images\Controll\Excel.png" />
+    <Content Include="Content\Images\Controll\excelbw.png" />
+    <Content Include="Content\Images\Controll\ExcelWhite.png" />
+    <Content Include="Content\Images\Controll\ExpandArrow.png" />
+    <Content Include="Content\Images\Controll\expandwhite.png" />
+    <Content Include="Content\Images\Controll\Find.png" />
+    <Content Include="Content\Images\Controll\Grid\Approve.png" />
+    <Content Include="Content\Images\Controll\Grid\Edit.png" />
+    <Content Include="Content\Images\Controll\Grid\Filter.png" />
+    <Content Include="Content\Images\Controll\Grid\First.png" />
+    <Content Include="Content\Images\Controll\Grid\FirstDisabled.png" />
+    <Content Include="Content\Images\Controll\Grid\Gear.png" />
+    <Content Include="Content\Images\Controll\Grid\Last.png" />
+    <Content Include="Content\Images\Controll\Grid\LastDisabled.png" />
+    <Content Include="Content\Images\Controll\Grid\NewRow.png" />
+    <Content Include="Content\Images\Controll\Grid\Next.png" />
+    <Content Include="Content\Images\Controll\Grid\NextDisabled.png" />
+    <Content Include="Content\Images\Controll\Grid\Pending16.png" />
+    <Content Include="Content\Images\Controll\Grid\Previous.png" />
+    <Content Include="Content\Images\Controll\Grid\PreviousDisabled.png" />
+    <Content Include="Content\Images\Controll\Grid\Refresh.png" />
+    <Content Include="Content\Images\Controll\Grid\Reject.png" />
+    <Content Include="Content\Images\Controll\Grid\Remove16.png" />
+    <Content Include="Content\Images\Controll\Grid\RemoveFilter.png" />
+    <Content Include="Content\Images\Controll\Grid\reset.png" />
+    <Content Include="Content\Images\Controll\Grid\save.png" />
+    <Content Include="Content\Images\Controll\Grid\ShowHideCol.png" />
+    <Content Include="Content\Images\Controll\Info.png" />
+    <Content Include="Content\Images\Controll\InfoBlue.png" />
+    <Content Include="Content\Images\Controll\List.png" />
+    <Content Include="Content\Images\Controll\LockDisable.png" />
+    <Content Include="Content\Images\Controll\LockEnable.png" />
+    <Content Include="Content\Images\Controll\MandatoryBkg.png" />
+    <Content Include="Content\Images\Controll\MandatoryCmbBkg.png" />
+    <Content Include="Content\Images\Controll\MandatoryDatePickerBkg.png" />
+    <Content Include="Content\Images\Controll\New.png" />
+    <Content Include="Content\Images\Controll\NonActiveUser.png" />
+    <Content Include="Content\Images\Controll\Refresh.png" />
+    <Content Include="Content\Images\Controll\Grid\Reject16.png" />
+    <Content Include="Content\Images\Controll\Remove.png" />
+    <Content Include="Content\Images\Controll\Remove16.png" />
+    <Content Include="Content\Images\Controll\ReplaceUser.png" />
+    <Content Include="Content\Images\Controll\Roles.png" />
+    <Content Include="Content\Images\Controll\Grid\Approve16.png" />
+    <Content Include="Content\Images\Controll\Saved.png" />
+    <Content Include="Content\Images\Controll\settings.png" />
+    <Content Include="Content\Images\Controll\Statistics.png" />
+    <Content Include="Content\Images\Controll\supplier.png" />
+    <Content Include="Content\Images\Controll\ThreeDots.png" />
+    <Content Include="Content\Images\Controll\Button\top.png" />
+    <Content Include="Content\Images\Controll\Translate.bmp" />
+    <Content Include="Content\Images\Controll\Translate.png" />
+    <Content Include="Content\Images\Controll\UnCheck20.png" />
+    <Content Include="Content\Images\Controll\Up.png" />
+    <Content Include="Content\Images\Controll\Users.png" />
+    <Content Include="Content\Images\Controll\UserSubstitution.png" />
+    <Content Include="Content\Images\Controll\warning.png" />
+    <Content Include="Content\Images\Controll\warning16.png" />
+    <Content Include="Content\Images\Culture\empty.gif" />
+    <Content Include="Content\Images\Culture\fr.gif" />
+    <Content Include="Content\Images\Error.png" />
+    <Content Include="Content\Images\FileIcon\Doc.png" />
+    <Content Include="Content\Images\FileIcon\Img.png" />
+    <Content Include="Content\Images\FileIcon\Pdf.png" />
+    <Content Include="Content\Images\FileIcon\Ppt.png" />
+    <Content Include="Content\Images\FileIcon\Unknown.png" />
+    <Content Include="Content\Images\FileIcon\Zip.png" />
+    <Content Include="Content\Images\footer_bg.png" />
+    <Content Include="Content\Images\Info\Admin.png" />
+    <Content Include="Content\Images\Info\CentreGroup.png" />
+    <Content Include="Content\Images\Info\mail.png" />
+    <Content Include="Content\Images\Info\Order.png" />
+    <Content Include="Content\Images\Info\phone.png" />
+    <Content Include="Content\Images\Info\RegetScope.png" />
+    <Content Include="Content\Images\Info\UserNoImage.png" />
+    <Content Include="Content\Images\Info\Workflow.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\Menu\Address16.png" />
+    <Content Include="Content\Images\Menu\Admin16.png" />
+    <Content Include="Content\Images\Menu\Area16.png" />
+    <Content Include="Content\Images\Menu\Calculator16.png" />
+    <Content Include="Content\Images\Menu\centre16.png" />
+    <Content Include="Content\Images\Menu\Commodity16.png" />
+    <Content Include="Content\Images\Menu\Copy16.png" />
+    <Content Include="Content\Images\Menu\CurrUserWhite16.png" />
+    <Content Include="Content\Images\Menu\Dashboard16.png" />
+    <Content Include="Content\Images\Menu\Event.png" />
+    <Content Include="Content\Images\Menu\Excel16.png" />
+    <Content Include="Content\Images\Menu\Export16.png" />
+    <Content Include="Content\Images\Menu\Info16.png" />
+    <Content Include="Content\Images\Menu\List16.png" />
+    <Content Include="Content\Images\Menu\Log.png" />
+    <Content Include="Content\Images\Menu\New16.png" />
+    <Content Include="Content\Images\Menu\NonActiveUser.png" />
+    <Content Include="Content\Images\Menu\PendingRequests.png" />
+    <Content Include="Content\Images\Menu\ReplaceUser16.png" />
+    <Content Include="Content\Images\Menu\Roles16.png" />
+    <Content Include="Content\Images\Menu\Search16.png" />
+    <Content Include="Content\Images\Menu\Statistics16.png" />
+    <Content Include="Content\Images\Menu\Substitution16.png" />
+    <Content Include="Content\Images\Menu\Supplier16.png" />
+    <Content Include="Content\Images\Menu\Transfer16.png" />
+    <Content Include="Content\Images\Menu\User16.png" />
+    <Content Include="Content\Images\Menu\UserCopy16.png" />
+    <Content Include="Content\Images\Panel\Collapse.png" />
+    <Content Include="Content\Images\Panel\CollapseAll.png" />
+    <Content Include="Content\Images\Panel\Edit.png" />
+    <Content Include="Content\Images\Panel\Expand.png" />
+    <Content Include="Content\Images\Panel\ExpandAll.png" />
+    <Content Include="Content\Images\Preloader_2.gif" />
+    <Content Include="Content\Images\Info.png" />
+    <Content Include="Content\Images\QuestionMark.png" />
+    <Content Include="Content\Images\RegetHover.png" />
+    <Content Include="Content\Images\Request\Address.png" />
+    <Content Include="Content\Images\Request\AppMan.png" />
+    <Content Include="Content\Images\Request\Buyer.png" />
+    <Content Include="Content\Images\Request\Calendar.png" />
+    <Content Include="Content\Images\Request\Centre.bmp" />
+    <Content Include="Content\Images\Request\Centre.png" />
+    <Content Include="Content\Images\Request\Money.png" />
+    <Content Include="Content\Images\Request\Privacy.png" />
+    <Content Include="Content\Images\Request\Requestor.bmp" />
+    <Content Include="Content\Images\Request\Requestor.png" />
+    <Content Include="Content\Images\Request\RequestStatus\Approved.png" />
+    <Content Include="Content\Images\Request\RequestStatus\Canceled.png" />
+    <Content Include="Content\Images\Request\RequestStatus\Closed.png" />
+    <Content Include="Content\Images\Request\RequestStatus\Draft.png" />
+    <Content Include="Content\Images\Request\RequestStatus\Invoice.png" />
+    <Content Include="Content\Images\Request\RequestStatus\Ordered.png" />
+    <Content Include="Content\Images\Request\RequestStatus\PartialyApproved.png" />
+    <Content Include="Content\Images\Request\RequestStatus\Rejected.png" />
+    <Content Include="Content\Images\Request\RequestStatus\WaitForApproval.png" />
+    <Content Include="Content\Images\Request\ShopBag.png" />
+    <Content Include="Content\Images\Request\Supplier.png" />
+    <Content Include="Content\Images\Request\Workflow\FinishedLast.png" />
+    <Content Include="Content\Images\Request\Workflow\FinishedMiddle.png" />
+    <Content Include="Content\Images\Request\Workflow\ProcessingFirst.png" />
+    <Content Include="Content\Images\Request\Workflow\ProcessingLast.png" />
+    <Content Include="Content\Images\Request\Workflow\Wait.png" />
+    <Content Include="Content\Images\Request\Workflow\WaitFirst.png" />
+    <Content Include="Content\Images\Request\Workflow\FinishedFirst.png" />
+    <Content Include="Content\Images\Request\Workflow\WaitLast.png" />
+    <Content Include="Content\Images\Request\Workflow\WaitMiddle.png" />
+    <Content Include="Content\Images\Request\Workflow\ProcessingMiddle.png" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Content\ui-grid.css" />
+    <Content Include="Content\ui-grid.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\CssStyles\Site.css" />
+    <Content Include="Content\CssStyles\bootstrap.min.css.map" />
+    <Content Include="Content\CssStyles\bootstrap.css.map" />
+    <Content Include="Content\CssStyles\bootstrap-theme.min.css.map" />
+    <Content Include="Content\CssStyles\bootstrap-theme.css.map" />
+    <Content Include="RegetContent\fonts\ui-grid.svg" />
+    <Content Include="RegetDlls\OTISCZ.ConcordeDataDictionary.dll" />
+    <Content Include="RegetDlls\OTISCZ.Security.dll" />
+    <Content Include="RegetContent\fonts\ui-grid.ttf" />
+    <Content Include="RegetContent\fonts\ui-grid.woff" />
+    <None Include=".bin\node.cmd" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\less\variables.less" />
+    <Content Include="Content\less\validate\less\validate.less" />
+    <Content Include="Content\less\validate.less" />
+    <Content Include="Content\less\tree-view\less\tree-view.less" />
+    <Content Include="Content\less\tree-view.less" />
+    <Content Include="Content\less\tree-base\less\tree-base.less" />
+    <Content Include="Content\less\tree-base.less" />
+    <Content Include="Content\less\sorting.less" />
+    <Content Include="Content\less\selection\less\selection.less" />
+    <Content Include="Content\less\selection.less" />
+    <Content Include="Content\less\rtl.less" />
+    <Content Include="Content\less\rowEdit.less" />
+    <Content Include="Content\less\row-edit\less\rowEdit.less" />
+    <Content Include="Content\less\resize-columns\less\column-resizer.less" />
+    <Content Include="Content\less\pinning\less\pinning.less" />
+    <Content Include="Content\less\pinning.less" />
+    <Content Include="Content\less\pagination\less\pagination.less" />
+    <Content Include="Content\less\pagination.less" />
+    <Content Include="Content\less\move-columns\less\colMovable.less" />
+    <Content Include="Content\less\menu.less" />
+    <Content Include="Content\less\main.less" />
+    <Content Include="Content\less\importer\less\importer.less" />
+    <Content Include="Content\less\importer.less" />
+    <Content Include="Content\less\icons.less" />
+    <Content Include="Content\less\header.less" />
+    <Content Include="Content\less\grouping\less\grouping.less" />
+    <Content Include="Content\less\grouping.less" />
+    <Content Include="Content\less\grid.less" />
+    <Content Include="Content\less\goups.less" />
+    <Content Include="Content\less\footer.less" />
+    <Content Include="Content\less\exporter\less\exporter.less" />
+    <Content Include="Content\less\exporter.less" />
+    <Content Include="Content\less\expandable\less\expandable.less" />
+    <Content Include="Content\less\expandable.less" />
+    <Content Include="Content\less\emptyBaseLayer.less" />
+    <Content Include="Content\less\empty-base-layer\less\emptyBaseLayer.less" />
+    <Content Include="Content\less\elements.less" />
+    <Content Include="Content\less\edit\less\edit.less" />
+    <Content Include="Content\less\edit.less" />
+    <Content Include="Content\less\core.less" />
+    <Content Include="Content\less\column-resizer.less" />
+    <Content Include="Content\less\colMovable.less" />
+    <Content Include="Content\less\cellnav\less\cellNav.less" />
+    <Content Include="Content\less\cellNav.less" />
+    <Content Include="Content\less\cell.less" />
+    <Content Include="Content\less\bootstrap\bootstrap.less" />
+    <Content Include="Content\less\body.less" />
+    <Content Include="Content\less\animation.less" />
+    <Content Include="Content\fonts\ui-grid.woff" />
+    <Content Include="Content\fonts\ui-grid.ttf" />
+    <Content Include="Content\fonts\ui-grid.eot" />
+    <None Include="Properties\PublishProfiles\Home.pubxml" />
+    <None Include="Properties\PublishProfiles\IntranetProd.pubxml" />
+    <None Include="Properties\PublishProfiles\IntranetTest.pubxml" />
+    <None Include="Properties\PublishProfiles\NewAutobom.pubxml" />
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-aria.js" />
+    <Content Include="Scripts\angular-aria.min.js" />
+    <Content Include="Scripts\angular-material-mocks.js" />
+    <Content Include="Scripts\angular-material.js" />
+    <Content Include="Scripts\angular-material.min.js" />
+    <Content Include="Scripts\angular-messages.js" />
+    <Content Include="Scripts\angular-messages.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-touch.js" />
+    <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\angular-wysiwyg.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angularjs-dropdown-multiselect.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\FileAPI.flash.swf" />
+    <Content Include="Scripts\FileAPI.js" />
+    <Content Include="Scripts\FileAPI.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.auto-resize.js" />
+    <Content Include="Scripts\i18n\ui-grid.auto-resize.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.cellnav.js" />
+    <Content Include="Scripts\i18n\ui-grid.cellnav.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.core.js" />
+    <Content Include="Scripts\i18n\ui-grid.core.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.edit.js" />
+    <Content Include="Scripts\i18n\ui-grid.edit.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.empty-base-layer.js" />
+    <Content Include="Scripts\i18n\ui-grid.empty-base-layer.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.expandable.js" />
+    <Content Include="Scripts\i18n\ui-grid.expandable.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.exporter.js" />
+    <Content Include="Scripts\i18n\ui-grid.exporter.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.grouping.js" />
+    <Content Include="Scripts\i18n\ui-grid.grouping.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.importer.js" />
+    <Content Include="Scripts\i18n\ui-grid.importer.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.infinite-scroll.js" />
+    <Content Include="Scripts\i18n\ui-grid.infinite-scroll.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.all.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.all.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ar.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ar.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.bg.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.bg.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.cs.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.cs.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.da.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.da.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.de.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.de.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.es-ct.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.es-ct.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.es.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.es.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.fa.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.fa.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.fi.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.fi.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.fr.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.fr.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.he.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.he.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.hy.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.hy.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.is.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.is.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.it.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.it.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ja.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ja.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ko.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ko.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.nl.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.nl.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.no.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.no.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.pl.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.pl.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.pt-br.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.pt-br.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.pt.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.pt.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ro.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ro.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.rs-lat.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.rs-lat.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ru.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ru.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.sk.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.sk.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.sv.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.sv.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ta.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ta.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.tr.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.tr.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ua.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.ua.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.zh-cn.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.zh-cn.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.zh-tw.js" />
+    <Content Include="Scripts\i18n\ui-grid.language.zh-tw.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.move-columns.js" />
+    <Content Include="Scripts\i18n\ui-grid.move-columns.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.pagination.js" />
+    <Content Include="Scripts\i18n\ui-grid.pagination.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.pinning.js" />
+    <Content Include="Scripts\i18n\ui-grid.pinning.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.resize-columns.js" />
+    <Content Include="Scripts\i18n\ui-grid.resize-columns.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.row-edit.js" />
+    <Content Include="Scripts\i18n\ui-grid.row-edit.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.saveState.js" />
+    <Content Include="Scripts\i18n\ui-grid.saveState.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.selection.js" />
+    <Content Include="Scripts\i18n\ui-grid.selection.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.tree-base.js" />
+    <Content Include="Scripts\i18n\ui-grid.tree-base.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.tree-view.js" />
+    <Content Include="Scripts\i18n\ui-grid.tree-view.min.js" />
+    <Content Include="Scripts\i18n\ui-grid.validate.js" />
+    <Content Include="Scripts\i18n\ui-grid.validate.min.js" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\ng-file-upload-all.js" />
+    <Content Include="Scripts\ng-file-upload-all.min.js" />
+    <Content Include="Scripts\ng-file-upload-shim.js" />
+    <Content Include="Scripts\ng-file-upload-shim.min.js" />
+    <Content Include="Scripts\ng-file-upload.js" />
+    <Content Include="Scripts\ng-file-upload.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\Reget\reget-angular-parent-pg.js" />
+    <None Include="Scripts\Reget\reget-angular-request.js.rpc" />
+    <Content Include="Scripts\Reget\reget-angular-common-service.js" />
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\KamsykTypeScript\kamsyk-base.ts" />
+    <TypeScriptCompile Include="Scripts\KamsykTypeScript\kamsyk-base-grid.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\appmatrix-export.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Base\main-page.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Base\reget-base-grid-translation.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Base\reget-base-grid.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Base\reget-base.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Base\reget-data-convert.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Base\reget-common.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Base\reget-entity.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Base\test-mod.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Chutzpah\JasmineTest.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Controls\reget-grid-date-time.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\Controls\reget-date-time.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\order.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\request-list.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\request.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\event-viewer.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\parent-pg.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\reget-address.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\search.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\supplier-detail.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\user-info.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\user-substitution-detail.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\user-substitution.ts" />
+    <Content Include="Scripts\Reget\reget-angular-user-service.js" />
+    <Content Include="Scripts\Reget\reget-angular-homeinfo.js" />
+    <None Include="Scripts\Reget\reget-angular-user.js.rpc" />
+    <Content Include="RegetContent\fonts\ui-grid.eot" />
+    <Content Include="Content\Images\Culture\bg.gif" />
+    <Content Include="Content\Images\Culture\cz.gif" />
+    <Content Include="Content\Images\Culture\de.gif" />
+    <Content Include="Content\Images\Culture\hr.gif" />
+    <Content Include="Content\Images\Culture\hu.gif" />
+    <Content Include="Content\Images\Culture\pl.gif" />
+    <Content Include="Content\Images\Culture\ro.gif" />
+    <Content Include="Content\Images\Culture\sk.gif" />
+    <Content Include="Content\Images\Culture\sl.gif" />
+    <Content Include="Content\Images\Culture\sr.gif" />
+    <Content Include="Content\Images\Culture\uk.gif" />
+    <Content Include="Content\Images\Reget.png" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ng-infinite-scroll.js" />
+    <Content Include="Scripts\ng-infinite-scroll.min.js" />
+    <Content Include="Scripts\Reget\reget-angular-grid-service.js" />
+    <Content Include="Scripts\Reget\reget.js" />
+    <Content Include="Scripts\src\index.js" />
+    <Content Include="Scripts\src\methods\defaults.js" />
+    <Content Include="Scripts\src\methods\destroy.js" />
+    <Content Include="Scripts\src\methods\disableEventListeners.js" />
+    <Content Include="Scripts\src\methods\enableEventListeners.js" />
+    <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\update.js" />
+    <Content Include="Scripts\src\modifiers\applyStyle.js" />
+    <Content Include="Scripts\src\modifiers\arrow.js" />
+    <Content Include="Scripts\src\modifiers\computeStyle.js" />
+    <Content Include="Scripts\src\modifiers\flip.js" />
+    <Content Include="Scripts\src\modifiers\hide.js" />
+    <Content Include="Scripts\src\modifiers\index.js" />
+    <Content Include="Scripts\src\modifiers\inner.js" />
+    <Content Include="Scripts\src\modifiers\keepTogether.js" />
+    <Content Include="Scripts\src\modifiers\offset.js" />
+    <Content Include="Scripts\src\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\src\modifiers\shift.js" />
+    <Content Include="Scripts\src\utils\clockwise.js" />
+    <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\src\utils\debounce.js" />
+    <Content Include="Scripts\src\utils\find.js" />
+    <Content Include="Scripts\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Scripts\src\utils\findIndex.js" />
+    <Content Include="Scripts\src\utils\getBordersSize.js" />
+    <Content Include="Scripts\src\utils\getBoundaries.js" />
+    <Content Include="Scripts\src\utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\src\utils\getClientRect.js" />
+    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetRect.js" />
+    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\src\utils\getOppositeVariation.js" />
+    <Content Include="Scripts\src\utils\getOuterSizes.js" />
+    <Content Include="Scripts\src\utils\getParentNode.js" />
+    <Content Include="Scripts\src\utils\getPopperOffsets.js" />
+    <Content Include="Scripts\src\utils\getReferenceNode.js" />
+    <Content Include="Scripts\src\utils\getReferenceOffsets.js" />
+    <Content Include="Scripts\src\utils\getRoot.js" />
+    <Content Include="Scripts\src\utils\getRoundedOffsets.js" />
+    <Content Include="Scripts\src\utils\getScroll.js" />
+    <Content Include="Scripts\src\utils\getScrollParent.js" />
+    <Content Include="Scripts\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Scripts\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getWindow.js" />
+    <Content Include="Scripts\src\utils\getWindowSizes.js" />
+    <Content Include="Scripts\src\utils\includeScroll.js" />
+    <Content Include="Scripts\src\utils\index.js" />
+    <Content Include="Scripts\src\utils\isBrowser.js" />
+    <Content Include="Scripts\src\utils\isFixed.js" />
+    <Content Include="Scripts\src\utils\isFunction.js" />
+    <Content Include="Scripts\src\utils\isIE.js" />
+    <Content Include="Scripts\src\utils\isModifierEnabled.js" />
+    <Content Include="Scripts\src\utils\isModifierRequired.js" />
+    <Content Include="Scripts\src\utils\isNumeric.js" />
+    <Content Include="Scripts\src\utils\isOffsetContainer.js" />
+    <Content Include="Scripts\src\utils\removeEventListeners.js" />
+    <Content Include="Scripts\src\utils\runModifiers.js" />
+    <Content Include="Scripts\src\utils\setAttributes.js" />
+    <Content Include="Scripts\src\utils\setStyles.js" />
+    <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\ui-grid.auto-resize.js" />
+    <Content Include="Scripts\ui-grid.auto-resize.min.js" />
+    <Content Include="Scripts\ui-grid.base.js" />
+    <Content Include="Scripts\ui-grid.base.min.js" />
+    <Content Include="Scripts\ui-grid.cellnav.js" />
+    <Content Include="Scripts\ui-grid.cellnav.min.js" />
+    <Content Include="Scripts\ui-grid.core.js" />
+    <Content Include="Scripts\ui-grid.core.min.js" />
+    <Content Include="Scripts\ui-grid.edit.js" />
+    <Content Include="Scripts\ui-grid.edit.min.js" />
+    <Content Include="Scripts\ui-grid.empty-base-layer.js" />
+    <Content Include="Scripts\ui-grid.empty-base-layer.min.js" />
+    <Content Include="Scripts\ui-grid.expandable.js" />
+    <Content Include="Scripts\ui-grid.expandable.min.js" />
+    <Content Include="Scripts\ui-grid.exporter.js" />
+    <Content Include="Scripts\ui-grid.exporter.min.js" />
+    <Content Include="Scripts\ui-grid.grouping.js" />
+    <Content Include="Scripts\ui-grid.grouping.min.js" />
+    <Content Include="Scripts\ui-grid.importer.js" />
+    <Content Include="Scripts\ui-grid.importer.min.js" />
+    <Content Include="Scripts\ui-grid.infinite-scroll.js" />
+    <Content Include="Scripts\ui-grid.infinite-scroll.min.js" />
+    <Content Include="Scripts\ui-grid.js" />
+    <Content Include="Scripts\ui-grid.min.js" />
+    <Content Include="Scripts\ui-grid.move-columns.js" />
+    <Content Include="Scripts\ui-grid.move-columns.min.js" />
+    <Content Include="Scripts\ui-grid.pagination.js" />
+    <Content Include="Scripts\ui-grid.pagination.min.js" />
+    <Content Include="Scripts\ui-grid.pinning.js" />
+    <Content Include="Scripts\ui-grid.pinning.min.js" />
+    <Content Include="Scripts\ui-grid.resize-columns.js" />
+    <Content Include="Scripts\ui-grid.resize-columns.min.js" />
+    <Content Include="Scripts\ui-grid.row-edit.js" />
+    <Content Include="Scripts\ui-grid.row-edit.min.js" />
+    <Content Include="Scripts\ui-grid.saveState.js" />
+    <Content Include="Scripts\ui-grid.saveState.min.js" />
+    <Content Include="Scripts\ui-grid.selection.js" />
+    <Content Include="Scripts\ui-grid.selection.min.js" />
+    <Content Include="Scripts\ui-grid.tree-base.js" />
+    <Content Include="Scripts\ui-grid.tree-base.min.js" />
+    <Content Include="Scripts\ui-grid.tree-view.js" />
+    <Content Include="Scripts\ui-grid.tree-view.min.js" />
+    <Content Include="Scripts\ui-grid.validate.js" />
+    <Content Include="Scripts\ui-grid.validate.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\EventViewer\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Views\Participant\CopyUser.cshtml" />
+    <Content Include="Views\Request\Index.cshtml" />
+    <Content Include="Views\ParentPg\Index.cshtml" />
+    <Content Include="Views\Statistics\Index.cshtml" />
+    <Content Include="Views\TestIndicator\Index.cshtml" />
+    <Content Include="Views\ParentPg\UsedPg.cshtml" />
+    <Content Include="Views\Participant\UserSubstitution.cshtml" />
+    <Content Include="Views\Shared\_LocalizationTextBasic.cshtml" />
+    <Content Include="Views\Shared\_DataGrid.cshtml" />
+    <Content Include="Views\RegetAdmin\MultiplyAppLevel.cshtml" />
+    <Content Include="Views\RegetAdmin\AppMatrixCopy.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Shared\_UserInfoMenuItem.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Participant\UserSubstitutionDetail.cshtml" />
+    <Content Include="Views\Request\RequestList.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Request\Order.cshtml" />
+    <Content Include="Views\Supplier\Detail.cshtml" />
+    <None Include="Web References\WsMail\OtWsMail.wsdl" />
+    <Content Include="Web References\WsMail\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\WsSupplierDebug\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WsSupplierDebug\Supplier.disco" />
+    <None Include="Web References\WsMail\OtWsMail.disco" />
+    <None Include="Web References\WsSupplier\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WsSupplier\Supplier.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LocalizationPartial.cshtml" />
+    <Content Include="Views\Shared\_UserInfo.cshtml" />
+    <Content Include="Views\Shared\_RequestMenu.cshtml" />
+    <Content Include="Views\Shared\_LoadDialog.cshtml" />
+    <Content Include="Views\Home\AboutHelp.cshtml" />
+    <Content Include="Views\RegetAdmin\Index.cshtml" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Views\Shared\NotSupportedBrowser.cshtml" />
+    <Content Include="Views\Participant\Index.cshtml" />
+    <Content Include="Views\Participant\ReplaceUser.cshtml" />
+    <Content Include="Views\Participant\NonActiveUser.cshtml" />
+    <Content Include="Views\Participant\UserInfo.cshtml" />
+    <Content Include="Views\RegetAdmin\ApprovalMatrixExport.cshtml" />
+    <Content Include="Views\Centre\Index.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
+    <Content Include="Views\Shared\_NavigationBar.cshtml" />
+    <None Include="Web References\WsSupplierDebug\Supplier.wsdl" />
+    <None Include="Web References\WsSupplierDebug\Supplier.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\WsSupplierDebug\Supplier0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\WsSupplier\Supplier.wsdl" />
+    <None Include="Web References\WsSupplier\Supplier.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\WsSupplier\Supplier0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\centre.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\cg-admin.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\reget-app-matrix-copy.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\multiply-app-level.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\copy-user.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\replace-user.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\supplier.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\statistics.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\used-pg.ts" />
+    <TypeScriptCompile Include="Scripts\RegetTypeScript\user.ts" />
+    <TypeScriptCompile Include="Scripts\typings\chart.js\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\kamsyk-material\chart.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\kamsyk-material\angular-material.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-component-router.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-resource.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-route.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\mime\mime.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\ng-file-upload\ng-file-upload.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\ui-grid\ui-grid.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Kamsyk.ExcelOpenXml\Kamsyk.ExcelOpenXml.csproj">
+      <Project>{012CB787-C148-4A99-9086-44D0AE259624}</Project>
+      <Name>Kamsyk.ExcelOpenXml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OTISCZ.ActiveDirectory\OTISCZ.ActiveDirectory.csproj">
+      <Project>{0e412c6b-d5cc-4dbf-b4b8-688992ecd64c}</Project>
+      <Name>OTISCZ.ActiveDirectory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kamsyk.Reget.Interface\Kamsyk.Reget.Interface.csproj">
+      <Project>{41886811-afb9-4092-aabc-cbe0fa10171b}</Project>
+      <Name>Kamsyk.Reget.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kamsyk.Reget.Model\Kamsyk.Reget.Model.csproj">
+      <Project>{e9603d92-e4a0-418f-8aad-b10c631e746d}</Project>
+      <Name>Kamsyk.Reget.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kamsyk.Reget.PdfGenerator\Kamsyk.Reget.PdfGenerator.csproj">
+      <Project>{efcf1046-af20-48a3-a8a2-9d2f8ac3a28c}</Project>
+      <Name>Kamsyk.Reget.PdfGenerator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\RequestResource.bg-BG.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.bg-BG.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\RequestResource.cs-CZ.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.cs-CZ.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\RequestResource.de-DE.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.de-DE.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\RequestResource.hu-HU.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.hu-HU.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\RequestResource.pl-PL.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.pl-PL.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\RequestResource.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\RequestResource.ro-RO.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.ro-RO.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\RequestResource.sk-SK.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.sk-SK.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\RequestResource.sr-Latn-CS.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.sr-Latn-CS.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\RequestResource.sl-SI.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RequestResource.sl-SI.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.68.33.190/wcfreget/supplier.svc">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WsSupplier\</RelPath>
+      <UpdateFromURL>http://10.68.33.190/wcfreget/supplier.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>OTISCZ_Reget_WsSupplier_Supplier</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://intranetcz.cz.eu.otis.utc.com/WsOtMail/OtWsMail.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WsMail\</RelPath>
+      <UpdateFromURL>http://intranetcz.cz.eu.otis.utc.com/WsOtMail/OtWsMail.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>OTISCZ_Reget_WsMail_OtWsMail</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:52320/Supplier.svc">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WsSupplierDebug\</RelPath>
+      <UpdateFromURL>http://localhost:52320/Supplier.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>OTISCZ_Reget_WsSupplierDebug_Supplier</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>26077</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:26077</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

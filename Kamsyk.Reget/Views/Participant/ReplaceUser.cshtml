@@ -1,0 +1,417 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var participantController = ViewContext.Controller as ParticipantController;
+    var strAutoUserItem = "<div>" +
+                "<img src=\"{{item.country_flag}}\" style=\"width:24px;height:16px;vertical-align: middle;\" />" +
+                "<span md-highlight-text=\"searchstringusertobereplaced\" md-highlight-flags=\"i\" style=\"vertical-align: middle; margin-left:5px;\">{{item.surname}} {{item.first_name}}</span>" +
+             "</div>";
+
+
+}
+
+@*@functions {
+
+        public string GetCgUrl() {
+            var participantController = ViewContext.Controller as ParticipantController;
+            return participantController.GetRootUrl() + "RegetAdmin";
+        }
+    }*@
+
+<script>
+    function togleReplaceDiv(element) {
+        var strElIdParts = element.id.split('_');
+        var replId = strElIdParts[1];
+
+        var divReplace = 'divReplace_' + replId;
+        var imgExpandCollapse = 'impReplaceCollExp_' + replId;
+
+
+        if ($("#" + divReplace).is(':visible')) {
+            $("#" + divReplace).slideUp();
+            $("#" + imgExpandCollapse).attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+            $("#" + imgExpandCollapse).attr("title", "@Html.Raw(RequestResource.Display)");
+
+        } else {
+            $("#" + divReplace).show("slow");
+            $("#" + imgExpandCollapse).attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+            $("#" + imgExpandCollapse).attr("title", "@Html.Raw(RequestResource.Hide)");
+
+        }
+
+
+    }
+
+
+</script>
+
+<form name="frmReplaceUser" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="UserReplaceController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div class="reget-panel-box-pad" style="margin-bottom:15px;padding-bottom:30px;">
+            @{
+                MdAutocomplete mdAutoUserToBeReplaced = new MdAutocomplete();
+                mdAutoUserToBeReplaced.RootTagId = "agUserToBeReplaced";
+                mdAutoUserToBeReplaced.IsMandatory = true;
+                mdAutoUserToBeReplaced.LabelLeft = RequestResource.UserToBeReplaced;
+                mdAutoUserToBeReplaced.LabelLeftCssClass = "reget-ang-lbl-control-left";
+                mdAutoUserToBeReplaced.MdSelectItem = "angCtrl.selectedUserToBeReplaced";
+                mdAutoUserToBeReplaced.MdSearchText = "angCtrl.searchstringusertobereplaced";
+                mdAutoUserToBeReplaced.OnSelectedItemChange = "angCtrl.userToBeReplacedSelectedItemChange(item, 'agUserToBeReplaced" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                mdAutoUserToBeReplaced.MdItems = "item in angCtrl.searchParticipant(angCtrl.searchstringusertobereplaced)";
+                mdAutoUserToBeReplaced.MdItemText = "item.name_surname_first";
+                mdAutoUserToBeReplaced.Placeholder = RequestResource.WhoWillBeReplaced;
+                mdAutoUserToBeReplaced.MdInputId = "txtUserToBeReplaced";
+                mdAutoUserToBeReplaced.MdItemTemplate = strAutoUserItem;
+                mdAutoUserToBeReplaced.OnBlur = "angCtrl.userToBeReplacedOnBlur('agUserToBeReplaced" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                mdAutoUserToBeReplaced.CssClass = "reget-user-auto";
+                mdAutoUserToBeReplaced.MinLength = 2;
+            }
+            @Html.Raw(mdAutoUserToBeReplaced.RenderControlHtml())
+
+            
+        </div>
+        
+        <div class="reget-ang-lbl-control-left-nowidth" ng-show="angCtrl.isNothingToReplace()" style="margin-top:15px;">
+            @RequestResource.NothingToBeReplaced
+        </div>
+        
+        <!-- Requestors -->
+        <div id="divRequestorPanel" name="divRequestorPanel" class="reget-panel-box" 
+             ng-show="(angCtrl.selectedUserToBeReplaced != null && angCtrl.replaceEntities.cg_requestors.length > 0)">
+            <div id="divRequestorHeader_divRequestor" class="reget-box-header reget-bold" onclick="togleReplaceDiv(this);">
+                <img id="impReplaceCollExp_divRequestor" src="~/Content/Images/Panel/Collapse.png" class="reget-appmatrix-expcolimg" title="@RequestResource.Hide" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.ReplaceRequestor {{angCtrl.selectedUserToBeReplaced.name_surname_first}}</span>
+            </div>
+
+            <div id="divReplace_divRequestor" style="padding:15px;">
+                @{
+                    MdAutocomplete mdAutoReplacer = new MdAutocomplete();
+                    mdAutoReplacer.RootTagId = "agReplaceRequestor";
+                    mdAutoReplacer.IsMandatory = true;
+                    mdAutoReplacer.LabelLeft = RequestResource.Replacer;
+                    mdAutoReplacer.LabelLeftCssClass = "reget-ang-lbl-control-left";
+                    mdAutoReplacer.MdSelectItem = "angCtrl.selectedReplaceRequestor";
+                    mdAutoReplacer.MdSearchText = "angCtrl.searchstringreplacerequestor";
+                    mdAutoReplacer.OnSelectedItemChange = "angCtrl.replaceRequestorSelectedItemChange(item, 'agReplaceRequestor" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                    mdAutoReplacer.MdItems = "item in angCtrl.searchParticipant(angCtrl.searchstringreplacerequestor)";
+                    mdAutoReplacer.MdItemText = "item.name_surname_first";
+                    mdAutoReplacer.Placeholder = RequestResource.WhoWillReplace;
+                    mdAutoReplacer.MdInputId = "txtReplaceRequestor";
+                    mdAutoReplacer.MdItemTemplate = strAutoUserItem;
+                    mdAutoReplacer.OnBlur = "angCtrl.replaceRequestorOnBlur('agReplaceAppMan" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                    mdAutoReplacer.CssClass = "reget-user-auto";
+                    mdAutoReplacer.MinLength = 2;
+                }
+                @Html.Raw(mdAutoReplacer.RenderControlHtml())
+
+               
+
+                <div style="clear:both"></div>
+
+                <div id="divReplace_divRequestor" style="padding-top:15px;padding-bottom:15px;">
+                    <div id="wrapRequestors" class="reget-ang-div-container-readonly" style="padding-top:5px!important">
+                        <label id="lblRequestors" class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.Area :</label>
+                        <md-input-container id="ctCgParticipants" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.Area</label>
+
+                            <div flex-xs flex="50" style="width:300px">
+                                <md-checkbox aria-label="@RequestResource.SelectAll"
+                                             ng-checked="angCtrl.isAllChecked(angCtrl.replaceEntities.cg_requestors)"
+                                             md-indeterminate="angCtrl.isIndeterminate(angCtrl.replaceEntities.cg_requestors)"
+                                             ng-click="angCtrl.toggleAllCgReplace(angCtrl.replaceEntities.cg_requestors)">
+                                    @RequestResource.SelectAll
+                                </md-checkbox>
+                            </div>
+
+                            <div flex="100" ng-repeat="item in angCtrl.replaceEntities.cg_requestors">
+                                @*<div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in CurrenciesList">*@
+                                <md-checkbox id="cgreq_{{item.cg_id}}" aria-label="{{item.name}}" class="reget-blue" ng-checked="item.is_selected" ng-click="angCtrl.toggleReplace(item)">
+                                    <div style="float:left;margin-top:2px!important;">{{ item.name }}</div>
+                                    <md-button class="reget-btn-info" style="margin-left:5px!important;margin-bottom:3px!important;" ng-click="angCtrl.displayCentreGroup(item.cg_id, $event)">
+                                        <md-tooltip>@RequestResource.Area</md-tooltip>
+                                    </md-button>
+
+                                </md-checkbox>
+                            </div>
+
+                        </md-input-container>
+                    </div>
+                </div>
+
+
+                <hr />
+
+                <button id="btnReplaceRequestor"
+                        type="button"
+                        value="@RequestResource.Replace"
+                        class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save reget-btn-left-margin"
+                        ng-click="angCtrl.saveReplaceRequestor();"
+                        style="margin-top:10px;">
+                    @RequestResource.Replace
+                </button>
+
+                <div class="ng-binding reget-ang-controll-invalid-msg-no-ag reget-btn-left-margin">
+                    {{angCtrl.replaceRequestorErrMsg}}
+                </div>
+            </div>
+        </div>
+
+        <!-- App Man -->
+        <div id="divAppManPanel" name="divAppManPanel" class="reget-panel-box" ng-show="(angCtrl.selectedUserToBeReplaced != null && angCtrl.replaceEntities.cg_app_men.length > 0)">
+            <div id="divAppManHeader_divAppMan" class="reget-box-header reget-bold" onclick="togleReplaceDiv(this);">
+                <img id="impReplaceCollExp_divAppMan" src="~/Content/Images/Panel/Collapse.png" title="@RequestResource.Hide" class="reget-appmatrix-expcolimg" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.ReplaceAppMan {{angCtrl.selectedUserToBeReplaced.name_surname_first}}</span>
+            </div>
+            <div id="divReplace_divAppMan" style="padding:15px;">
+                @{
+                    MdAutocomplete mdAutoReplaceAppMan = new MdAutocomplete();
+                    mdAutoReplaceAppMan.RootTagId = "agReplaceAppMan";
+                    mdAutoReplaceAppMan.IsMandatory = true;
+                    mdAutoReplaceAppMan.LabelLeft = RequestResource.Replacer;
+                    mdAutoReplaceAppMan.LabelLeftCssClass = "reget-ang-lbl-control-left";
+                    mdAutoReplaceAppMan.MdSelectItem = "angCtrl.selectedReplaceAppMan";
+                    mdAutoReplaceAppMan.MdSearchText = "angCtrl.searchstringreplaceappman";
+                    mdAutoReplaceAppMan.OnSelectedItemChange = "angCtrl.replaceAppManSelectedItemChange(item, 'agReplaceAppMan" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                    mdAutoReplaceAppMan.MdItems = "item in angCtrl.searchParticipant(angCtrl.searchstringreplaceappman)";
+                    mdAutoReplaceAppMan.MdItemText = "item.name_surname_first";
+                    mdAutoReplaceAppMan.Placeholder = RequestResource.WhoWillReplace;
+                    mdAutoReplaceAppMan.MdInputId = "txtReplaceAppMan";
+                    mdAutoReplaceAppMan.MdItemTemplate = strAutoUserItem;
+                    mdAutoReplaceAppMan.OnBlur = "angCtrl.replaceAppManOnBlur('agReplaceAppMan" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                    mdAutoReplaceAppMan.CssClass = "reget-user-auto";
+                    mdAutoReplaceAppMan.MinLength = 2;
+                }
+                @Html.Raw(mdAutoReplaceAppMan.RenderControlHtml())
+
+               
+
+                <div style="clear:both"></div>
+
+                <div id="divReplace_divRequestor" style="padding-top:15px;padding-bottom:15px;">
+                    <div id="wrapAppMen" class="reget-ang-div-container-readonly" style="padding-top:5px!important">
+                        <label id="lblAppMen" class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.Area :</label>
+                        <md-input-container id="ctCgAppMen" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.Area</label>
+
+                            <div flex-xs flex="50" style="width:300px">
+                                <md-checkbox aria-label="@RequestResource.SelectAll"
+                                             ng-checked="isAllChecked(angCtrl.replaceEntities.cg_app_men)"
+                                             md-indeterminate="angCtrl.isIndeterminate(angCtrl.replaceEntities.cg_app_men)"
+                                             ng-click="angCtrl.toggleAllCgReplace(angCtrl.replaceEntities.cg_app_men)">
+                                    @RequestResource.SelectAll
+                                </md-checkbox>
+                            </div>
+
+                            <div flex="100" ng-repeat="item in angCtrl.replaceEntities.cg_app_men">
+                                @*<div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in CurrenciesList">*@
+                                <md-checkbox id="curr_{{item.cg_id}}" aria-label="{{item.name}}" class="reget-blue" ng-checked="item.is_selected" ng-click="angCtrl.toggleReplace(item)">
+                                    <div style="float:left;margin-top:2px!important;">{{ item.name }}</div>
+                                    <md-button class="reget-btn-info" style="margin-left:5px!important;margin-bottom:3px!important;" ng-click="angCtrl.displayCentreGroup(item.cg_id, $event)">
+                                        <md-tooltip>@RequestResource.Area</md-tooltip>
+                                    </md-button>
+                                </md-checkbox>
+                            </div>
+
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <hr />
+
+                <button type="button"
+                        value="@RequestResource.Replace"
+                        class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save reget-btn-left-margin"
+                        ng-click="angCtrl.saveReplaceAppMan();"
+                        style="margin-top:10px;">
+                    @RequestResource.Replace
+                </button>
+
+                <div class="ng-binding reget-ang-controll-invalid-msg-no-ag reget-btn-left-margin">
+                    {{angCtrl.replaceAppManErrMsg}}
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Orderer -->
+        <div id="divOrdererPanel" name="divOrdererPanel" class="reget-panel-box" ng-show="(angCtrl.selectedUserToBeReplaced != null && angCtrl.replaceEntities.cg_orderers.length > 0)">
+            <div id="divOrdererHeader_divOrderer" class="reget-box-header reget-bold" onclick="togleReplaceDiv(this);">
+                <img id="impReplaceCollExp_divOrderer" src="~/Content/Images/Panel/Collapse.png" class="reget-appmatrix-expcolimg" title="@RequestResource.Hide" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.ReplaceOrderer {{angCtrl.selectedUserToBeReplaced.name_surname_first}}</span>
+            </div>
+            <div id="divReplace_divOrderer" style="padding:15px;">
+                @{
+                    MdAutocomplete mdAutoReplaceOrderer = new MdAutocomplete();
+                    mdAutoReplaceOrderer.RootTagId = "agReplaceOrderer";
+                    mdAutoReplaceOrderer.IsMandatory = true;
+                    mdAutoReplaceOrderer.LabelLeft = RequestResource.Replacer;
+                    mdAutoReplaceOrderer.LabelLeftCssClass = "reget-ang-lbl-control-left";
+                    mdAutoReplaceOrderer.MdSelectItem = "angCtrl.selectedReplaceOrderer";
+                    mdAutoReplaceOrderer.MdSearchText = "angCtrl.searchstringreplaceorderer";
+                    mdAutoReplaceOrderer.OnSelectedItemChange = "angCtrl.replaceOrdererSelectedItemChange(item, 'agReplaceOrderer" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                    mdAutoReplaceOrderer.MdItems = "item in angCtrl.searchParticipant(angCtrl.searchstringreplaceorderer)";
+                    mdAutoReplaceOrderer.MdItemText = "item.name_surname_first";
+                    mdAutoReplaceOrderer.Placeholder = RequestResource.WhoWillReplace;
+                    mdAutoReplaceOrderer.MdInputId = "txtReplaceOrderer";
+                    mdAutoReplaceOrderer.MdItemTemplate = strAutoUserItem;
+                    mdAutoReplaceOrderer.OnBlur = "angCtrl.supplierOnBlur('agReplaceOrderer" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                    mdAutoReplaceOrderer.CssClass = "reget-user-auto";
+                    mdAutoReplaceOrderer.MinLength = 2;
+                }
+                @Html.Raw(mdAutoReplaceOrderer.RenderControlHtml())
+
+               
+
+                <div style="clear:both"></div>
+
+                <div id="divReplace_divRequestor" style="padding-top:15px;padding-bottom:15px;">
+                    <div id="wrapOrderer" class="reget-ang-div-container-readonly" style="padding-top:5px!important">
+                        <label id="lblOrderer" class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.Area :</label>
+                        <md-input-container id="ctCgAppMen" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.Area</label>
+
+                            <div flex-xs flex="50" style="width:300px">
+                                <md-checkbox aria-label="@RequestResource.SelectAll"
+                                             ng-checked="angCtrl.isAllChecked(angCtrl.replaceEntities.cg_orderers)"
+                                             md-indeterminate="angCtrl.isIndeterminate(angCtrl.replaceEntities.cg_orderers)"
+                                             ng-click="angCtrl.toggleAllCgReplace(angCtrl.replaceEntities.cg_orderers)">
+                                    @RequestResource.SelectAll
+                                </md-checkbox>
+                            </div>
+
+                            <div flex="100" ng-repeat="item in angCtrl.replaceEntities.cg_orderers">
+                                @*<div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in CurrenciesList">*@
+                                <md-checkbox id="curr_{{item.cg_id}}" aria-label="{{item.name}}" class="reget-blue" ng-checked="item.is_selected" ng-click="angCtrl.toggleReplace(item)">
+                                    <div style="float:left;margin-top:2px!important;">{{ item.name }}</div>
+                                    <md-button class="reget-btn-info" style="margin-left:5px!important;margin-bottom:3px!important;" ng-click="angCtrl.displayCentreGroup(item.cg_id, $event)">
+                                        <md-tooltip>@RequestResource.Area</md-tooltip>
+                                    </md-button>
+                                </md-checkbox>
+                            </div>
+
+
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <hr />
+
+                <button type="button"
+                        value="@RequestResource.Replace"
+                        class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save reget-btn-left-margin"
+                        ng-click="angCtrl.saveReplaceOrderer();"
+                        style="margin-top:10px;">
+                    @RequestResource.Replace
+                </button>
+
+                <div class="ng-binding reget-ang-controll-invalid-msg-no-ag">
+                    {{angCtrl.replaceOrdererErrMsg}}
+                </div>
+
+            </div>
+        </div>
+
+        
+        @if (participantController.CurrentUser.UserName == "syka") {
+            <!-- Pending requests -->
+            @*<div>Pending requests ..</div>*@
+        }
+        
+
+        <div id="divCentrePanel" name="divCentrePanel" class="reget-panel-box" ng-show="(angCtrl.selectedUserToBeReplaced != null && angCtrl.replaceEntities.centre_man.length > 0)">
+            <div id="divOrdererHeader_divCentre" class="reget-box-header reget-bold" onclick="togleReplaceDiv(this);">
+                <img id="impReplaceCollExp_divCentre" src="~/Content/Images/Panel/Collapse.png" class="reget-appmatrix-expcolimg" title="@RequestResource.Hide" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.ReplaceCentreMan {{angCtrl.selectedUserToBeReplaced.name_surname_first}}</span>
+            </div>
+            <div id="divReplace_divCentre" style="padding:15px;">
+                @{
+                    MdAutocomplete mdAutoReplaceCentreMan = new MdAutocomplete();
+                    mdAutoReplaceCentreMan.RootTagId = "agReplaceCentreMan";
+                    mdAutoReplaceCentreMan.IsMandatory = true;
+                    mdAutoReplaceCentreMan.LabelLeft = RequestResource.Replacer;
+                    mdAutoReplaceCentreMan.LabelLeftCssClass = "reget-ang-lbl-control-left";
+                    mdAutoReplaceCentreMan.MdSelectItem = "angCtrl.selectedReplaceCentreMan";
+                    mdAutoReplaceCentreMan.MdSearchText = "angCtrl.searchstringreplacecentreman";
+                    mdAutoReplaceCentreMan.OnSelectedItemChange = "angCtrl.replaceCentreManSelectedItemChange(item, 'agReplaceCentreMan" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                    mdAutoReplaceCentreMan.MdItems = "item in angCtrl.searchParticipant(angCtrl.searchstringreplacecentreman)";
+                    mdAutoReplaceCentreMan.MdItemText = "item.name_surname_first";
+                    mdAutoReplaceCentreMan.Placeholder = RequestResource.WhoWillReplace;
+                    mdAutoReplaceCentreMan.MdInputId = "txtReplaceCentreMan";
+                    mdAutoReplaceCentreMan.MdItemTemplate = strAutoUserItem;
+                    mdAutoReplaceCentreMan.OnBlur = "angCtrl.replaceCentreManOnBlur('agReplaceCentreMan" + BaseController.ANG_ERR_MSG_MANDATORY + "')";
+                    mdAutoReplaceCentreMan.CssClass = "reget-user-auto";
+                    mdAutoReplaceCentreMan.MinLength = 2;
+                }
+                @Html.Raw(mdAutoReplaceCentreMan.RenderControlHtml())
+
+               
+
+                <div style="clear:both"></div>
+
+                <div id="divReplace_divRequestor" style="padding-top:15px;padding-bottom:15px;">
+                    <div id="wrapCentre" class="reget-ang-div-container-readonly" style="padding-top:5px!important">
+                        <label id="lblCentre" class="control-label hidden-xs reget-ang-lbl-control-left">@RequestResource.Centre :</label>
+                        <md-input-container id="ctCentre" class="reget-ang-md-input-container-readonly  md-input-has-value" style="vertical-align:top!important;vertical-align: text-top!important;">
+                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top" style="margin-bottom:5px;">@RequestResource.Centre</label>
+
+                            <div flex-xs flex="50" style="width:300px">
+                                <md-checkbox aria-label="@RequestResource.SelectAll"
+                                             ng-checked="angCtrl.isAllChecked(angCtrl.replaceEntities.centre_man)"
+                                             md-indeterminate="angCtrl.isIndeterminate(angCtrl.replaceEntities.centre_man)"
+                                             ng-click="angCtrl.toggleAllCgReplace(angCtrl.replaceEntities.centre_man)">
+                                    @RequestResource.SelectAll
+                                </md-checkbox>
+                            </div>
+
+                            <div flex="100" ng-repeat="item in angCtrl.replaceEntities.centre_man">
+                                <md-checkbox id="curr_{{item.cg_id}}" aria-label="{{item.name}}" class="reget-blue" ng-checked="item.is_selected" ng-click="angCtrl.toggleReplace(item)">
+                                    <div style="float:left;margin-top:2px!important;">{{ item.name }}</div>
+                                    <md-button class="reget-btn-info" style="margin-left:5px!important;margin-bottom:3px!important;" ng-click="angCtrl.displayCentre($event)">
+                                        <md-tooltip>@RequestResource.Centre</md-tooltip>
+                                    </md-button>
+                                </md-checkbox>
+                            </div>
+
+
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <hr />
+
+                <button type="button"
+                        value="@RequestResource.Replace"
+                        class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save reget-btn-left-margin"
+                        ng-click="angCtrl.saveReplaceCentreMan();"
+                        style="margin-top:10px;">
+                    @RequestResource.Replace
+                </button>
+
+                <div class="ng-binding reget-ang-controll-invalid-msg-no-ag reget-btn-left-margin">
+                    {{angCtrl.replaceCentreManErrMsg}}
+                </div>
+            </div>
+        </div>
+
+        <div style="display:none;">
+            <input id="UserToBeReplacedId" value="@ViewBag.UserToBeReplacedId" />
+            <input id="UserToBeReplacedName" value="@ViewBag.UserToBeReplacedName" />
+
+            <input id="WarningText" value="@RequestResource.Warning" />
+            @*<input id="ErrorOccuredText" value="@RequestResource.Error" />*@
+            <input id="CloseText" value="@RequestResource.Close" />
+
+            <input id="EnterText" value="@RequestResource.Enter" />
+            <input id="RequestorText" value="@RequestResource.Requestor" />
+            <input id="OrdererText" value="@RequestResource.Orderer" />
+            <input id="ApproveManText" value="@RequestResource.ApproveMan" />
+            <input id="CentreManagerText" value="@RequestResource.CentreManager" />
+            <input id="ReplacerText" value="@RequestResource.Replacer" />
+        </div>
+
+    </div>
+</form>

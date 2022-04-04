@@ -1,0 +1,15 @@
+﻿<div>
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;padding-right:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow" >
+        <input type="text"  style="height:30px;padding-left:5px;padding-right:5px;" 
+               id="grdMail{{row.uid}}{{col.name}}"
+               ng-model="MODEL_COL_FIELD" aria-label="{{col}}" 
+               ng-change="grid.appScope.validateMultiEmailsGrid(row, col)" 
+               class="reget-grid-edit-cell-mandatory" />
+    </div>    
+</div>

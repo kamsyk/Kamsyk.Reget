@@ -1,0 +1,184 @@
+﻿@using System.Threading
+@using Kamsyk.Reget.Controllers
+
+@{
+
+    BaseController bc = (BaseController)ViewContext.Controller;
+    string currFlag = bc.GetRootUrl() + "Content/Images/Culture/uk.gif";
+    string currFlagText = "English";
+    string strCultureInfoName = Thread.CurrentThread.CurrentCulture.Name;
+    switch (strCultureInfoName) {
+        case BaseController.CULTURE_CZ:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/cz.gif";
+            currFlagText = "Česky";
+            break;
+        case BaseController.CULTURE_SK:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/sk.gif";
+            currFlagText = "Slovensky";
+            break;
+        case BaseController.CULTURE_PL:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/pl.gif";
+            currFlagText = "Polski";
+            break;
+        case BaseController.CULTURE_RO:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/ro.gif";
+            currFlagText = "Roman";
+            break;
+        case BaseController.CULTURE_BG:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/bg.gif";
+            currFlagText = "български";
+            break;
+        case BaseController.CULTURE_SL:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/sl.gif";
+            currFlagText = "Slovenski";
+            break;
+        case BaseController.CULTURE_SR:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/sr.gif";
+            currFlagText = "Srpski";
+            break;
+        case BaseController.CULTURE_HU:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/hu.gif";
+            currFlagText = "Magyar";
+            break;
+        default:
+            currFlag = bc.GetRootUrl() + "Content/Images/Culture/uk.gif";
+            currFlagText = "English";
+            break;
+    }
+
+
+}
+
+@functions{
+    public string GetLangUrl(string strCulture) {
+        var currentRouteValues = new RouteValueDictionary(Url.RequestContext.RouteData.Values);
+
+        //if (queryString.AllKeys.Contains("lang")) {
+        //    currentRouteValues["lang"] = strCulture;
+        //} else {
+        //    currentRouteValues.Add("lang", strCulture);
+        //}
+
+        string strUrl = Url.RouteUrl(currentRouteValues);
+
+        var queryString = Request.QueryString;
+        strUrl += "?";
+        string strQueryString = "";
+        foreach (var key in queryString.AllKeys) {
+            if (key == "lang") {
+                continue;
+            }
+
+            if (strQueryString.Length > 0) {
+                strQueryString += "&";
+            }
+            strQueryString += key + "=" + queryString[key];
+        }
+
+        if (strQueryString.Length > 0) {
+            strQueryString += "&";
+        }
+        strQueryString += "lang" + "=" + strCulture;
+
+        strUrl += strQueryString;
+
+        return strUrl;
+    }
+}
+
+
+<li id="mniLocalization" class="dropdown">
+    <a id="aCurrFlag" href="#" class="dropdown-toggle reget-navbar" data-toggle="dropdown" role="button" arial-haspopup="true" arial-expander="false">
+        <div id="divCurrFlag" >
+            <img id="imgCurrFlag" class="reget-menu-img-curr-culture" src="@currFlag" />
+            <span class="hidden-sm hidden-md hidden-lg">@currFlagText</span><span class="caret"></span>
+        </div>
+        @*<img id="imgCurrFlag" src="@currFlag" data-toggle="tooltip" title="@currFlagText" class="reget-localization-img" style="height:20px;"/>
+        <span class="hidden-sm hidden-md hidden-lg">@currFlagText</span><span class="caret"></span>*@
+    </a>
+
+    <ul class="dropdown-menu reget-dropdown-menu">
+        <li class="divider" style="margin:0px; padding:0px"></li>
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_EN) {
+                <li id="mniEN">
+                    <a id="aCulEn" href="@GetLangUrl(BaseController.CULTURE_EN)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/uk.gif" alt="English" class="reget-localization-img" />English
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_CZ) {
+                <li id="mniCZ">
+                    <a id="aCulCz" href="@GetLangUrl(BaseController.CULTURE_CZ)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/cz.gif" alt="Česky" class="reget-localization-img" />Česky
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_SK) {
+                <li id="mniSK">
+                    <a id="aCulSk" href="@GetLangUrl(BaseController.CULTURE_SK)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/sk.gif" alt="Slovensky" class="reget-localization-img" />Slovensky
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_PL) {
+                <li id="mniPL">
+                    <a id="aCulPl" href="@GetLangUrl(BaseController.CULTURE_PL)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/pl.gif" alt="Polski" class="reget-localization-img" />Polski
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_RO) {
+                <li id="mniRO">
+                    <a id="aCulRo" href="@GetLangUrl(BaseController.CULTURE_RO)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/ro.gif" alt="Roman" class="reget-localization-img" />Roman
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_BG) {
+                <li id="mniBG">
+                    <a id="aCulBg" href="@GetLangUrl(BaseController.CULTURE_BG)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/bg.gif" alt="български" class="reget-localization-img" />български
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_SL) {
+                <li id="mniSL">
+                    <a id="aCulSl" href="@GetLangUrl(BaseController.CULTURE_SL)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/sl.gif" alt="Slovenski" class="reget-localization-img" />Slovenski
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_SR) {
+                <li id="mniSR">
+                    <a id="aCulSr" href="@GetLangUrl(BaseController.CULTURE_SR)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/sr.gif" alt="Srpski" class="reget-localization-img" />Srpski
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+        @{ if (Thread.CurrentThread.CurrentCulture.Name != BaseController.CULTURE_HU) {
+                <li id="mniHU">
+                    <a id="aCulHu" href="@GetLangUrl(BaseController.CULTURE_HU)" class="reget-navbar reget-navbar-submenu reget-menu-item-level2 reget-display-loader" onclick="ShowLoader();">
+                        <img src="~/Content/Images/Culture/hu.gif" alt="Magyar" class="reget-localization-img" />Magyar
+                    </a>
+                </li>
+                <li class="divider" style="margin:0px; padding:0px"></li>
+            }
+        }
+    </ul>
+</li>

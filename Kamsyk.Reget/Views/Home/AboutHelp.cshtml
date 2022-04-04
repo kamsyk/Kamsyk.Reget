@@ -1,0 +1,234 @@
+﻿@using Resources;
+@using System.Collections;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.Model.Repositories;
+@using Kamsyk.Reget.Model;
+
+@{
+    var homeController = ViewContext.Controller as HomeController;
+
+}
+
+<div id="divAboutHelp" ng-cloak="" ng-app="RegetHomeInfoApp">
+    <md-content>
+        <md-tabs md-dynamic-height="" md-border-bottom="">
+            @*<md-tab label="@RequestResource.RegetInfo">
+                <md-content class="md-padding">
+                    <h2>@RequestResource.PurposeOfApp</h2>
+                    <p>
+                        Supports process of requirements for the indirect material & services (not directly associated with production ) e.g. Software, Hardware, Accommodation, Buffeting, Machine Maintenance, Mobile Phones, Car purchasing & leasing, Chemical Product, Tools, Service Activities etc.
+                        <ul>
+                            <li>Manages approval process</li>
+                            <li>Sets up automatically appropriate approval process for managers and buyers</li>
+                            <li>Supports ordering</li>
+                            <li>Allows to generate an order (xls, pdf, doc, ... file) and send it to supplier</li>
+                        </ul>
+                    </p>
+
+                    <hr />
+
+                    <h2>Reget Request Scope</h2>
+                    <p>
+                        The Reget handles the requests for material & services within organization
+                    </p>
+                    <img class="reget-info-image" src="~/Content/Images/Info/RegetScope.png" />
+
+                    <hr />
+
+                    <h2>Reget Main Rules</h2>
+
+                    <ul>
+                        <li>Each request is handled by at least 3 people (requestor, approval manager, buyer) before it leaves organization</li>
+                        <li>Each request must be approved by at least 1 approval manager, max. number of approval managers can be 6</li>
+                    </ul>
+
+                </md-content>
+            </md-tab>*@
+
+            @*<md-tab label="Approval Process">
+                <md-content class="md-padding">
+                    <h2>Request Workflow</h2>
+                    <img class="reget-info-image" src="~/Content/Images/Info/Workflow.png" />
+                    
+                </md-content>
+            </md-tab>*@
+
+            <md-tab label="Organization Structure">
+                <md-content class="md-padding">
+                    <img class="reget-info-image" src="~/Content/Images/Info/CentreGroup.png" />    
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Order Example">
+                <md-content class="md-padding">
+                    <img class="reget-info-image" src="~/Content/Images/Info/Order.png" style="border: 1px solid #222;" />
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Contacts">
+                <md-content class="md-padding">
+                    <div>
+                        <h4>COMPANY ADMINISTRATORS</h4>
+                    </div>
+                    @{
+
+                        foreach (var company in homeController.Companies) {
+                            if (!homeController.CurrentUser.ParticipantCompanyIds.Contains(company.id)) {
+                                continue;
+                            }
+
+                            var adminRoles = (from adminRolesDb in company.Participant_Office_Role
+                                              where adminRolesDb.office_id == company.id &&
+                                              adminRolesDb.role_id == (int)UserRepository.UserRole.OfficeAdministrator
+                                              select adminRolesDb).ToList();
+                            List<Participants> partAdmins = new List<Participants>();
+                            if (adminRoles != null && adminRoles.Count > 0) {
+                                foreach (var adminRole in adminRoles) {
+                                    Participants compAdmin = new Participants();
+                                    compAdmin.id = adminRole.Participants.id;
+                                    compAdmin.first_name = adminRole.Participants.first_name;
+                                    compAdmin.surname = adminRole.Participants.surname;
+                                    compAdmin.phone = adminRole.Participants.phone;
+                                    compAdmin.email = adminRole.Participants.email;
+                                    compAdmin.ParticipantPhoto = adminRole.Participants.ParticipantPhoto;
+                                    partAdmins.Add(compAdmin);
+                                }
+
+                                var sortAdmins = partAdmins.OrderBy(ca => ca.surname);
+
+                                <div style="width:100%;margin-top:20px;">
+                                            @{
+                                                switch (company.id) {
+                                                    case 0:
+                                                    case 2:
+                                                    case 11:
+                                                <img src="~/Content/Images/Culture/cz.gif" class="reget-localization-img" style="margin:10px;"/>
+                                                break;
+                                            case 1:
+                                                <img src="~/Content/Images/Culture/sk.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                            case 3:
+                                                <img src="~/Content/Images/Culture/ro.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                            case 4:
+                                                <img src="~/Content/Images/Culture/pl.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                            case 5:
+                                                <img src="~/Content/Images/Culture/bg.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                            case 6:
+                                                <img src="~/Content/Images/Culture/sl.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                            case 7:
+                                                <img src="~/Content/Images/Culture/sr.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                            case 8:
+                                                <img src="~/Content/Images/Culture/hu.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                            case 9:
+                                                <img src="~/Content/Images/Culture/uk.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                            case 10:
+                                                <img src="~/Content/Images/Culture/fr.gif" class="reget-localization-img" style="margin:10px;" />
+                                                break;
+                                        }
+                        }
+                                    <span style="vertical-align: middle;color:#000;font-size:large">@company.country_code</span>
+                                    <div style="clear:both"></div>
+                                </div>
+                                
+
+                                foreach (var sortAdmin in sortAdmins) {
+
+
+                                    <div class="reget-admin-info" style="background-color:#E8F5E9;">
+                                        @if(sortAdmin.ParticipantPhoto == null) {
+                                            <div style="float:left;"><img src="~/Content/Images/Info/UserNoImage.png" class="reget-admin-user-info-img" /></div>
+                                        } else {
+                                            <div style="float:left;"><img src="@homeController.GetRootUrl()Participant/UserPhoto?userId=@sortAdmin.id" class="reget-admin-user-info-img" /></div>
+                                        }
+
+                                        <div style="float:left;margin-left:25px;">
+                                            <div><b>@sortAdmin.first_name @sortAdmin.surname</b></div>
+                                            <div style="margin-top:10px;">
+                                                <div style="float:left;margin-right:10px;vertical-align:middle">
+                                                    <img src="~/Content/Images/Info/phone.png" />
+                                                </div>
+                                                <div style="float:left;vertical-align:middle;margin-top:2px;">
+                                                    @sortAdmin.phone
+                                                </div>
+                                                <div style="clear:both;"></div>
+                                                <div style="margin-top:10px;">
+                                                    <div style="float:left;margin-right:10px;">
+                                                        <img src="~/Content/Images/Info/mail.png" />
+                                                    </div>
+                                                    <div style="float:left;margin-top:2px;">
+                                                        <a href="mailto:@sortAdmin.email">@sortAdmin.email</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                }
+                                <div style="clear:both"></div>
+                                <hr />
+                            }
+                                    }
+                               
+
+                    <div style="clear:both"></div>
+
+
+                    <div style="margin-top:25px;">
+                        <h4>APPLICATION ADMINISTRATOR</h4>
+                    </div>
+
+                    foreach (var appAdmin in homeController.AppAdmins) {
+                    <div class="reget-admin-info" style="background-color:#FFFDE7;">
+
+                        @if (appAdmin.ParticipantPhoto == null) {
+                            <div style="float:left;"><img src="~/Content/Images/Info/UserNoImage.png" class="reget-admin-user-info-img" /></div>
+                        }
+                        else {
+                            <div style="float:left;"><img src="@homeController.GetRootUrl()Participant/UserPhoto?userId=@appAdmin.id" class="reget-admin-user-info-img" /></div>
+                        }
+                        
+                        <div style="float:left;margin-left:25px;">
+                            <div><b>@appAdmin.first_name @appAdmin.surname</b></div>
+                            <div style="margin-top:10px;">
+                                <div style="float:left;margin-right:10px;vertical-align:middle">
+                                    <img src="~/Content/Images/Info/phone.png" />
+                                </div>
+                                <div style="float:left;vertical-align:middle">
+                                    @appAdmin.phone
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div style="margin-top:10px;">
+                                <div style="float:left;margin-right:10px;">
+                                    <img src="~/Content/Images/Info/mail.png" />
+                                </div>
+                                <div style="float:left;">
+                                    <a href="mailto:@appAdmin.email">@appAdmin.email</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                                                }
+                    }
+
+                    <div style="clear:both"></div>
+
+
+                    <hr />
+                                        
+
+                </md-content>
+            </md-tab>
+
+
+        </md-tabs>
+    </md-content>
+</div>

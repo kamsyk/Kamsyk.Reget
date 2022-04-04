@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+@using Kamsyk.Reget.Controllers
+
+
+
+@if (Request.IsAuthenticated) {
+    @*@Html.AntiForgeryToken()*@
+    <div style="margin-left:auto;margin-right:auto">
+       @{
+           var controller = ViewContext.Controller as BaseController;
+           if (controller != null) {
+            <div style="float:left;margin-right: 20px;">
+                @controller.CurrentUser.ParticipantName
+            </div>
+            <div style="float:left;">
+                @{if (controller.CurrentUser.ParticipantRolesText != null) {
+                        for (int i = 0; i < controller.CurrentUser.ParticipantRolesText.Count; i++) {
+                            @Html.Raw("<div>" + controller.CurrentUser.ParticipantRolesText[i].Replace("&", "&amp;") + "</div>");
+
+                        }
+                  }
+                }
+            </div>
+            <div style="clear:both;"></div>
+           }
+    }
+    </div>
+}

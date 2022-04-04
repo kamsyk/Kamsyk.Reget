@@ -1,0 +1,897 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualPrice" xml:space="preserve">
+    <value>Trenutna cena</value>
+  </data>
+  <data name="AddInvoice" xml:space="preserve">
+    <value>Dodaj račun</value>
+  </data>
+  <data name="AddLimit" xml:space="preserve">
+    <value>Dodaj omejitev</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Naslov</value>
+  </data>
+  <data name="AddToShopBasket" xml:space="preserve">
+    <value>Dodaj v košarico</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Administracija</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Vse</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Vsota</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Odobritev</value>
+  </data>
+  <data name="ApprovalMatrix" xml:space="preserve">
+    <value>Odobritvena matrika</value>
+  </data>
+  <data name="ApprovalRequestMail" xml:space="preserve">
+    <value>Odobritveni zahtevek</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Odobriti</value>
+  </data>
+  <data name="ApproveConfirm" xml:space="preserve">
+    <value>Ali ste prepričani v odobritev tega zahtevka?</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Odobreno</value>
+  </data>
+  <data name="ApproveMan" xml:space="preserve">
+    <value>Direktor</value>
+  </data>
+  <data name="ApproverRemark" xml:space="preserve">
+    <value>Opomba direktorja</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Področje</value>
+  </data>
+  <data name="Attachements" xml:space="preserve">
+    <value>Priponke</value>
+  </data>
+  <data name="AttachmentLoadQuery" xml:space="preserve">
+    <value>Ali bi radi pripeli izbrano datoteko?</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Avgust</value>
+  </data>
+  <data name="AxisX" xml:space="preserve">
+    <value>Os X</value>
+  </data>
+  <data name="AxisY" xml:space="preserve">
+    <value>Os Y</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Nazaj</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Koledar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Prekliči</value>
+  </data>
+  <data name="CancelChanges" xml:space="preserve">
+    <value>Prekliči spremembe</value>
+  </data>
+  <data name="CancelConfirm" xml:space="preserve">
+    <value>Ali res želite preklicati naročilo?</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Preklicano</value>
+  </data>
+  <data name="CanceledByOrderer" xml:space="preserve">
+    <value>Preklicano s strani naročnika</value>
+  </data>
+  <data name="CanceledByRequestor" xml:space="preserve">
+    <value>Preklicano s strani izdajatelja zahtevka</value>
+  </data>
+  <data name="CanceledConfirm" xml:space="preserve">
+    <value>Ali ste prepričani, da želite preklicati zahtevek?</value>
+  </data>
+  <data name="Centre" xml:space="preserve">
+    <value>Stroškovno mesto</value>
+  </data>
+  <data name="Centres" xml:space="preserve">
+    <value>Stroškovna mesta</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>Spremenjeno od</value>
+  </data>
+  <data name="ChangedDate" xml:space="preserve">
+    <value>Zadnji spremenjeni datum</value>
+  </data>
+  <data name="ChangesWereSaved" xml:space="preserve">
+    <value>Spremembe so bile uspešno shranjene</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Mesto</value>
+  </data>
+  <data name="ClickOnRequest" xml:space="preserve">
+    <value>Kliknite na povezavo številke zahtevka in ko je zahtevek odprt, odobrite, zavrnite ali pošljite zahtevek nazaj k izdajatelju.</value>
+  </data>
+  <data name="ClickOnRequestOrder" xml:space="preserve">
+    <value>Kliknite na povezavo številke zahtevka in ko je zahtevek odprt, naročite ali pošljite naročilo nazaj k izdajatelju zahtevka.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zapri</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Ali ste prepričani, da želite zapreti zahtevek?</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Zaprto</value>
+  </data>
+  <data name="CompanyPrivate" xml:space="preserve">
+    <value>zasebno podjetja</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>Kontaktna oseba</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Država</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="CurrentUser" xml:space="preserve">
+    <value>Uporabnik</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Dan</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="DefaultFilter" xml:space="preserve">
+    <value>Privzeti filter</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Izbrisati</value>
+  </data>
+  <data name="DeleteAttConfirm" xml:space="preserve">
+    <value>Ali ste prepričani, da želite izbrisati priponko?</value>
+  </data>
+  <data name="Delivered" xml:space="preserve">
+    <value>Dostavljeno</value>
+  </data>
+  <data name="DeliveredMail" xml:space="preserve">
+    <value>Zahtevan material/storitve so dostavljene.</value>
+  </data>
+  <data name="DeliveriedDate" xml:space="preserve">
+    <value>Dostavljeno</value>
+  </data>
+  <data name="DIC" xml:space="preserve">
+    <value>Id za DDV</value>
+  </data>
+  <data name="DisplayAllSuppliers" xml:space="preserve">
+    <value>Prikaži vse dobavitelje</value>
+  </data>
+  <data name="DisplayHistory" xml:space="preserve">
+    <value>Prikaži zgodovino</value>
+  </data>
+  <data name="DisplayPrice" xml:space="preserve">
+    <value>Prikaži okvirno ceno naročila</value>
+  </data>
+  <data name="DisplayPurchseGroup" xml:space="preserve">
+    <value>Prikaži skupine izdelkov/storitev</value>
+  </data>
+  <data name="DisplayRequests" xml:space="preserve">
+    <value>Prikaži zahtevek</value>
+  </data>
+  <data name="DisplayStatistics" xml:space="preserve">
+    <value>Prikaži statistiko</value>
+  </data>
+  <data name="DisplayTop" xml:space="preserve">
+    <value>Prikaži vrh</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>Dokumentacija</value>
+  </data>
+  <data name="DoNotReplyMail" xml:space="preserve">
+    <value>Ne odgovorite na to eletkronsko pošto! Avtomatično je bila generirana in poslana iz sledečega elektronskega naslova</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Osnutek</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Uredi</value>
+  </data>
+  <data name="EndUserDocumentation" xml:space="preserve">
+    <value>Zaključi dokumentacijo uporabnika</value>
+  </data>
+  <data name="EnterSearchedSuppNameId" xml:space="preserve">
+    <value>Vpiši ime ali ID iskanega dobavitelja</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Napaka aplikacije. </value>
+  </data>
+  <data name="EstimatedPrice" xml:space="preserve">
+    <value>Okvirna cena</value>
+  </data>
+  <data name="EstPrice" xml:space="preserve">
+    <value>Okv. cena</value>
+  </data>
+  <data name="ExportApprovalMatrix" xml:space="preserve">
+    <value>Izvoz odobritvene matrike</value>
+  </data>
+  <data name="ExportApprovalMatrixtoExcel" xml:space="preserve">
+    <value>Izvoz odobritvene matrike v Excel</value>
+  </data>
+  <data name="ExportPriceChangeConfirm" xml:space="preserve">
+    <value>Ste prepričani, da želite shraniti nastavitve?r\nIf shranili ste nastavitve, možnosti -&gt; #E# je avtomatično nastavljeno v vašem naslednjem zahtevku za dobavitelja #S#.</value>
+  </data>
+  <data name="ExportPriceToOrder" xml:space="preserve">
+    <value>Prikaži okvirno ceno na naročilu</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Izvozi v Excel</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Faks</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Februar</value>
+  </data>
+  <data name="FillFixValues" xml:space="preserve">
+    <value>Izpolni, popravi vrednosti v označenih poljih</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Najti</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Pet</value>
+  </data>
+  <data name="FromTo_From" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="FromTo_To" xml:space="preserve">
+    <value>Za</value>
+  </data>
+  <data name="GeneratedBy" xml:space="preserve">
+    <value>Otisov notranji sistem naročil</value>
+  </data>
+  <data name="GenerateOrder" xml:space="preserve">
+    <value>Ustvari naročilo</value>
+  </data>
+  <data name="GenerateOrderConfirm" xml:space="preserve">
+    <value>Ste prepričani, da želite ustvariti naročilo?</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Ura</value>
+  </data>
+  <data name="ICO" xml:space="preserve">
+    <value>Številka dobavitelja</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="InProcessRequestList" xml:space="preserve">
+    <value>Zahtevek v obdelavi</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Vstavi</value>
+  </data>
+  <data name="InSum" xml:space="preserve">
+    <value>V vsoti</value>
+  </data>
+  <data name="InternalRequestList" xml:space="preserve">
+    <value>Notranji seznam zahtevkov</value>
+  </data>
+  <data name="InvoiceMissing" xml:space="preserve">
+    <value>Zahtevek ne more biti zaprt. Račun ni bil vnesen.</value>
+  </data>
+  <data name="InvoiceNr" xml:space="preserve">
+    <value>Številka računa</value>
+  </data>
+  <data name="IssuedDate" xml:space="preserve">
+    <value>Datum izdaje</value>
+  </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>Količina</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Januar</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Julij</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>Junij</value>
+  </data>
+  <data name="LeadTime" xml:space="preserve">
+    <value>Dobavni rok</value>
+  </data>
+  <data name="Less" xml:space="preserve">
+    <value>manj</value>
+  </data>
+  <data name="LoadAll" xml:space="preserve">
+    <value>Naloži vse</value>
+  </data>
+  <data name="LoadingData" xml:space="preserve">
+    <value>Nalagam podatke …</value>
+  </data>
+  <data name="LowerLimit" xml:space="preserve">
+    <value>Spodnji limit</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>elektronsko sporočilo</value>
+  </data>
+  <data name="MailAutomaticGenerate" xml:space="preserve">
+    <value>To sporočilo je avtomatično generiral {0}</value>
+  </data>
+  <data name="MailBodyDelivered" xml:space="preserve">
+    <value>Zahtevan material/storitve iz zahtevka so dobavljene.</value>
+  </data>
+  <data name="MailBodyL" xml:space="preserve">
+    <value>Uporabnik {0} prosi za odobritev njegovega zahtevka št. {1}</value>
+  </data>
+  <data name="MailBodyOrder" xml:space="preserve">
+    <value>Uporabnik {0} zahteva oblikovanje naročila iz zahtevka št. {1}</value>
+  </data>
+  <data name="MailBodyRejected" xml:space="preserve">
+    <value>Uporabnik {0} je zavrnil vaš zahtevek št. {1}</value>
+  </data>
+  <data name="MailBodySentBack" xml:space="preserve">
+    <value>Uporabnik {0} vam je vrnil zahtevek št. {1} v popravek.</value>
+  </data>
+  <data name="MailLanguage" xml:space="preserve">
+    <value>Jezik elektronskega sporočila</value>
+  </data>
+  <data name="MailRecipient" xml:space="preserve">
+    <value>Prejemnik</value>
+  </data>
+  <data name="MailRequestAlreadyApprovedBy" xml:space="preserve">
+    <value>Zahtevek je že odobril {0}</value>
+  </data>
+  <data name="ManagerSubstitution" xml:space="preserve">
+    <value>Zamenjava direktorja</value>
+  </data>
+  <data name="MandatoryComboValue" xml:space="preserve">
+    <value>Polje je obvezno. Izberite vrednost.</value>
+  </data>
+  <data name="MandatoryTextField" xml:space="preserve">
+    <value>Polje je obvezno. Vstavite vrednost.</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Marec</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Maj</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minuta</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Mobilni telefon</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Pon</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Mesec</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>več</value>
+  </data>
+  <data name="MultiOrdererInfo" xml:space="preserve">
+    <value>Zahtevek bo poslan vsem naročnikom, ko bo odobren. Zahtevek se bo prenesel na osebo, ki ga bo prva odprla.</value>
+  </data>
+  <data name="MyRequestsOnly" xml:space="preserve">
+    <value>Samo moj zahtevek</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ime</value>
+  </data>
+  <data name="NewInternalRequest" xml:space="preserve">
+    <value>Nov notranji zahtevek</value>
+  </data>
+  <data name="NoAttachmentSelected" xml:space="preserve">
+    <value>Nobena priloga ni bila izbrana.</value>
+  </data>
+  <data name="NoLimit" xml:space="preserve">
+    <value>Neomejeno</value>
+  </data>
+  <data name="NoPendingRequestsFound" xml:space="preserve">
+    <value>Žiadna požiadavka nečeká na Vaše schválenie</value>
+  </data>
+  <data name="NoRequestMeetsCriterions" xml:space="preserve">
+    <value>Noben zahtevek ne ustreza izbranim kriterijem.</value>
+  </data>
+  <data name="NoSupplierMatchCriterions" xml:space="preserve">
+    <value>Noben dobavitelj ni bil najden.</value>
+  </data>
+  <data name="NotAllowedToApprove" xml:space="preserve">
+    <value>Niste pooblaščeni za odobritev tega zahtevka!</value>
+  </data>
+  <data name="NotAllowedUser" xml:space="preserve">
+    <value>Uporabniku … ni dovoljena uporaba aplikacije.</value>
+  </data>
+  <data name="NotDelivered" xml:space="preserve">
+    <value>Ni dobavljeno</value>
+  </data>
+  <data name="NotDisplayPrice" xml:space="preserve">
+    <value>Ne prikaži okvirne cene v naročilo</value>
+  </data>
+  <data name="NotOrdered" xml:space="preserve">
+    <value>Ni naročeno</value>
+  </data>
+  <data name="NotRequired" xml:space="preserve">
+    <value>Ni zahtevano</value>
+  </data>
+  <data name="NotSavedInvoices" xml:space="preserve">
+    <value>V računih zahtevkov so neshranjene spremembe. Bi radi nadaljevali?</value>
+  </data>
+  <data name="NotSavedInvoicesCannotClose" xml:space="preserve">
+    <value>V računih zahtevkov so neshranjene spremembe. Zahteveka se ne more zaključiti.</value>
+  </data>
+  <data name="NotSent" xml:space="preserve">
+    <value>Ni poslano</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Oktober</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Odprto</value>
+  </data>
+  <data name="OpenFileTip" xml:space="preserve">
+    <value>V primeru, da se zahtevana datoteka ne odpre avtomatično, kliknite na spodnjo povezavo.</value>
+  </data>
+  <data name="OpenHistoryInfo" xml:space="preserve">
+    <value>Klikni na to ikono za odprtje zgodovine zahtevkov.</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Naročilo</value>
+  </data>
+  <data name="OrderConfirm" xml:space="preserve">
+    <value>Ste prepričani, da želite naročiti ali zapreti zahtevek?</value>
+  </data>
+  <data name="Ordered" xml:space="preserve">
+    <value>Naročeno</value>
+  </data>
+  <data name="OrderedConfirm" xml:space="preserve">
+    <value>Ali ste prepričani, da želite spremeniti stanje zahtevka v "Naročeno"?</value>
+  </data>
+  <data name="Orderer" xml:space="preserve">
+    <value>Naročnik</value>
+  </data>
+  <data name="OrdererAttachment" xml:space="preserve">
+    <value>Priponke naročila</value>
+  </data>
+  <data name="OrdererMail" xml:space="preserve">
+    <value>Zahtevki za naročilo</value>
+  </data>
+  <data name="OrdererRemark" xml:space="preserve">
+    <value>Opomba naročnika</value>
+  </data>
+  <data name="OrdererRequestHandedOverByOrderer" xml:space="preserve">
+    <value>Naročnik {0} je že predal zahtevek.</value>
+  </data>
+  <data name="Orderers" xml:space="preserve">
+    <value>Naročniki</value>
+  </data>
+  <data name="OrdererSupplier" xml:space="preserve">
+    <value>Naročniki nastavljeni kot dobavitelj</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Drugi</value>
+  </data>
+  <data name="OtisInternalRequest" xml:space="preserve">
+    <value>Notranji zahtevek</value>
+  </data>
+  <data name="OtisItemsCatalog" xml:space="preserve">
+    <value>Otisov katalog</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Obdobje</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Cena</value>
+  </data>
+  <data name="PriceChangedSendBack" xml:space="preserve">
+    <value>Cena se je zvišala, nova odobritev je potrebna. Pošlji zahtevek nazaj izdajatelju zahtevka.</value>
+  </data>
+  <data name="PriceOverflow" xml:space="preserve">
+    <value>Zahtevek ne more biti obdelan! Maksimalni finančni limit za'{0}' je {1}.</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Tiskaj</value>
+  </data>
+  <data name="PurchaseGroup" xml:space="preserve">
+    <value>Izdelki/storitve</value>
+  </data>
+  <data name="PurchMatIncluded" xml:space="preserve">
+    <value>Vključi nabavaljen material v osnovna sredstva.</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Zavrni</value>
+  </data>
+  <data name="RejectConfirm" xml:space="preserve">
+    <value>Ste prepričani, da želite zavrnili zahtevek?</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Zavrnjeno</value>
+  </data>
+  <data name="RejectMail" xml:space="preserve">
+    <value>Zavrnjeno</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Opombe</value>
+  </data>
+  <data name="RemoveLimit" xml:space="preserve">
+    <value>Odstrani limit</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Zahtevek</value>
+  </data>
+  <data name="RequestCanceled" xml:space="preserve">
+    <value>Zahtevek je bil preklican.</value>
+  </data>
+  <data name="RequestCount" xml:space="preserve">
+    <value>Številka zahtevka</value>
+  </data>
+  <data name="RequestDate" xml:space="preserve">
+    <value>Datum zahtevka</value>
+  </data>
+  <data name="RequestForCentre" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="RequestHistory" xml:space="preserve">
+    <value>Zgodovina zahtevka št.</value>
+  </data>
+  <data name="RequestNr" xml:space="preserve">
+    <value>Št. zahtevka</value>
+  </data>
+  <data name="Requestor" xml:space="preserve">
+    <value>Izdajatelj</value>
+  </data>
+  <data name="RequestorAttachment" xml:space="preserve">
+    <value>Priponke izdajatelja zahtevka</value>
+  </data>
+  <data name="Requestors" xml:space="preserve">
+    <value>Izdajatelji zahtevkov</value>
+  </data>
+  <data name="RequestRejected" xml:space="preserve">
+    <value>Zahtevek je bil zavrnjen!!</value>
+  </data>
+  <data name="RequestSentBack" xml:space="preserve">
+    <value>Zahtevek je bil vrnjen, da bo dopolnjen, ponovno napisan …</value>
+  </data>
+  <data name="RequestSentForApproval" xml:space="preserve">
+    <value>Zahtevek je bil uspešno poslan v odobritev.</value>
+  </data>
+  <data name="RequestStatus" xml:space="preserve">
+    <value>Status zahtevka</value>
+  </data>
+  <data name="RequestText" xml:space="preserve">
+    <value>Besedilo zahtevka</value>
+  </data>
+  <data name="ReturnRequestTo" xml:space="preserve">
+    <value>Zahtevek poslan nazaj k</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Sob</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Shrani</value>
+  </data>
+  <data name="SaveAsDraft" xml:space="preserve">
+    <value>Shrani kot osnutek</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Shrani spremembe</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Napaka med shranjevanjem!!! Podatki niso bili shranjeni!!!</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>Shrani filter</value>
+  </data>
+  <data name="SearchSupplierTitle" xml:space="preserve">
+    <value>Iskanje dobavitelja</value>
+  </data>
+  <data name="SearchSupplierWatermark" xml:space="preserve">
+    <value>Ime, ID</value>
+  </data>
+  <data name="SelectApproveMan" xml:space="preserve">
+    <value> &lt;&lt;&lt; Izberi odobritelja-direktor &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectArea" xml:space="preserve">
+    <value>Izberi področje</value>
+  </data>
+  <data name="SelectFromList" xml:space="preserve">
+    <value>Izberi iz seznama</value>
+  </data>
+  <data name="SelectOrderer" xml:space="preserve">
+    <value> &lt;&lt;&lt; Izberi naročnika &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectPurchaseGroup" xml:space="preserve">
+    <value> &lt;&lt;&lt; Izberi izdelek/storitev &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstitute" xml:space="preserve">
+    <value> &lt;&lt;&lt; Izberi zamenjavo &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSubstituted" xml:space="preserve">
+    <value> &lt;&lt;&lt; Izberi zamenjanega &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectSupplier" xml:space="preserve">
+    <value> &lt;&lt;&lt; Izberi dobavitelja &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelectValue" xml:space="preserve">
+    <value> &lt;&lt;&lt; Izberi valuto &gt;&gt;&gt;</value>
+  </data>
+  <data name="SelfOrderedCategory" xml:space="preserve">
+    <value>Izdajatelj zahtevka naroči zahtevek.</value>
+  </data>
+  <data name="SendBackConfirm" xml:space="preserve">
+    <value>Ali ste prepričani, da želite poslati zahtevek nazaj, da bo ponovno napisan oz. dopolnjen, …?</value>
+  </data>
+  <data name="SendBackMail" xml:space="preserve">
+    <value>Pošlji nazaj izdajatelju zahtevka</value>
+  </data>
+  <data name="SendBackReason" xml:space="preserve">
+    <value>Pošlji nazaj razlog</value>
+  </data>
+  <data name="SendBackToRequestor" xml:space="preserve">
+    <value>Pošlji nazaj avtorju zahtevka</value>
+  </data>
+  <data name="SendConfirm" xml:space="preserve">
+    <value>Ste prepričani, da želite poslati zahtevek v potrditev?</value>
+  </data>
+  <data name="SendForApproval" xml:space="preserve">
+    <value>Poslati v potrditev</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="ShipToAddress" xml:space="preserve">
+    <value>Odpremiti na naslov</value>
+  </data>
+  <data name="ShoppingCart" xml:space="preserve">
+    <value>Nakupovalni seznam</value>
+  </data>
+  <data name="SortAscend" xml:space="preserve">
+    <value>Razvrsti naraščajoče</value>
+  </data>
+  <data name="SortDescsend" xml:space="preserve">
+    <value>Razvrsti padajoče</value>
+  </data>
+  <data name="StatExchangeRateMissing" xml:space="preserve">
+    <value>Statistični podatki niso dopolnjeni zaradi manjkajočega menjalnega tečaja med {0} and {1}.</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistika</value>
+  </data>
+  <data name="StatisticsType" xml:space="preserve">
+    <value>Tip statistike</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Ulica</value>
+  </data>
+  <data name="Substitute" xml:space="preserve">
+    <value>Zamenjava</value>
+  </data>
+  <data name="Substituted" xml:space="preserve">
+    <value>Zamenjeno</value>
+  </data>
+  <data name="SubstituteMsg" xml:space="preserve">
+    <value>Sedaj vas je zamenjal '{0}'. Lahko prekličete zamenjavo v tabeli zamenjav.</value>
+  </data>
+  <data name="SumCostCount" xml:space="preserve">
+    <value>Vsi stroški/ količina</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Ned</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Dobavitelj</value>
+  </data>
+  <data name="SupplierInfo" xml:space="preserve">
+    <value>Informacija o dobavitelju</value>
+  </data>
+  <data name="SupplierOutOfList" xml:space="preserve">
+    <value>Dobavitelj ni na seznamu</value>
+  </data>
+  <data name="Suppliers" xml:space="preserve">
+    <value>Dobavitelji</value>
+  </data>
+  <data name="SuppliersSynchronized" xml:space="preserve">
+    <value>Seznan dobaviteljev je bil posodobljen.</value>
+  </data>
+  <data name="SupplierUpdate" xml:space="preserve">
+    <value>Posodobitev dobaviteljev</value>
+  </data>
+  <data name="SupplierUpdateConfirm" xml:space="preserve">
+    <value>Res želite posodobiti seznam zaposlenih?</value>
+  </data>
+  <data name="TakeOverConfirm" xml:space="preserve">
+    <value>Res želite prevzeti zahtevek?</value>
+  </data>
+  <data name="TakeOverRequest" xml:space="preserve">
+    <value>Prevzem zahtevka</value>
+  </data>
+  <data name="Thustday" xml:space="preserve">
+    <value>Čet</value>
+  </data>
+  <data name="TooLargeAttachements" xml:space="preserve">
+    <value>Zahtevek vsebuje tudi priloge, ki niso bile poslane zaradi prevelikega obsega.</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Skupno</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tor</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Cena enote</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Posodobi</value>
+  </data>
+  <data name="UpperLimit" xml:space="preserve">
+    <value>Zgornji limit</value>
+  </data>
+  <data name="WaitForApproval" xml:space="preserve">
+    <value>Čakamo na odobritev</value>
+  </data>
+  <data name="WaitForOrder" xml:space="preserve">
+    <value>Čakamo na naročilo</value>
+  </data>
+  <data name="Wendesday" xml:space="preserve">
+    <value>Sre</value>
+  </data>
+  <data name="WoVat" xml:space="preserve">
+    <value>Brez DDV</value>
+  </data>
+  <data name="WrongDataTypeDecimal" xml:space="preserve">
+    <value>Napačen tip datuma. Vnesi številko.</value>
+  </data>
+  <data name="WrongDataTypeInteger" xml:space="preserve">
+    <value>Napačen tip datuma. Vnesi celo število.</value>
+  </data>
+  <data name="WrongDate" xml:space="preserve">
+    <value>Napačen datum</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Leto</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Poštna številka</value>
+  </data>
+</root>

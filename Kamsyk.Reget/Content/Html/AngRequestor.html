@@ -1,0 +1,44 @@
+﻿
+<div class="reget-chip">
+    <span style="padding:5px;vertical-align: middle;">{{surname}} {{firstname}}</span>
+    <span style="vertical-align: middle;">
+        <md-button class="md-fab md-mini reget-circle-btn" aria-label="{{removetext}}" ng-click="deleterequestor();">
+            <img ng-src="{{rooturl}}Content/Images/Controll/Remove.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{removetext}}</md-tooltip>
+        </md-button>
+        <md-button id="btnExpandReq_{{userid}}_{{centreid}}" class="md-fab md-mini reget-circle-btn" aria-label="{{displaydetailtext}}" ng-click="expandrequestor()" style="background-color:#337ab7;">
+            <img ng-src="{{rooturl}}Content/Images/Controll/ExpandArrow.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{displaydetailtext}}</md-tooltip>
+        </md-button>
+        <md-button id="btnCollapseReq_{{userid}}_{{centreid}}" class="md-fab md-mini reget-circle-btn" aria-label="{{hidedetailtext}}" ng-click="collapserequestor();" style="background-color:#337ab7;display:none;">
+            <img ng-src="{{rooturl}}Content/Images/Controll/CollapseArrow.png" style="width:16px!important;height:16px!important;" />
+            <md-tooltip>{{hidedetailtext}}</md-tooltip>
+        </md-button>
+    </span>
+
+    <div id="divReq_{{userid}}_{{centreid}}" style="display:none;margin-left:10px;margin-right:10px;font-weight:normal;">
+        <hr />
+
+        <!--<div>
+            <md-checkbox id="ckbDefaultRequestor" 
+                         aria-label="Default Requestor" class="reget-blue" 
+                         ng-model="isdefault" 
+                         ng-true-value="'true'"
+                         ng-false-value="'false'"
+                         ng-change="checkdefaultrequestor()">
+                {{defaultrequestortext}}
+            </md-checkbox>
+        </div>-->
+        <div>
+            <md-checkbox id="ckbAllRequestor"
+                         aria-label="All" class="reget-blue" 
+                         ng-model="isall"  
+                         ng-true-value="'true'" 
+                         ng-false-value="'false'" 
+                         ng-change="checkallrequestor()" >
+                {{allrequestortext}}
+            </md-checkbox>
+        </div>
+    </div>
+</div>
+

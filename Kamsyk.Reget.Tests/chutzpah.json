@@ -1,0 +1,58 @@
+﻿{
+  "Compile": {
+    "Mode": "External",
+    "Extensions": [ ".ts" ],
+    "ExtensionsWithNoOutput": [ ".d.ts" ]
+  },
+
+  "References": [
+    { "Path": "../Kamsyk.Reget/Scripts/jquery-3.2.1.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/jquery.validate.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/modernizr-2.8.3.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/bootstrap.min.js" },
+
+    { "Path": "../Kamsyk.Reget/Scripts/angular.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/angular-animate.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/angular-route.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/angular-aria.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/angular-messages.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/angular-material.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/angular-touch.min.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/ui-grid.min.js" },
+
+    { "Path": "../Kamsyk.Reget/Scripts/Moment.min.js" },
+
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/Base/reget-base.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/Base/reget-common.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/Base/reget-data-convert.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/Base/reget-entity.js" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/Base/reget-base-grid.js" },
+
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/Chutzpah/JasmineTest.ts" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/centre.ts" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/cg-admin.ts" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/user-substitution.ts" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/user-substitution-detail.ts" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/statistics.ts" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/request.ts" },
+    { "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript/request-list.ts" }
+
+    //If next block is active DEBUG doeas not work in Visual Studio
+    //{
+    //  "Path": "../Kamsyk.Reget/Scripts/RegetTypeScript",
+    //  "Include": "*.ts",
+    //  "Exclude": "*Resource*"
+    //}
+
+  ],
+
+  "Tests": [
+    {
+      "Includes": [
+        "*/Scripts/Test/*.ts"
+      ],
+      "Excludes": [ "*/Scripts/Test/*.d.ts" ]
+    }
+  ]
+
+}

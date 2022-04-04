@@ -1,0 +1,119 @@
+﻿<div id="divtranslatedirective" style="position:absolute;z-index:100;
+    background-color:#FFF;border:solid 2px #555;border-radius:6px;padding:15px;visibility:hidden;">
+    <div style="margin-top:5px; margin-bottom:5px;">
+        <div style="float:left;margin-right:3px;"><img ng-src="{{flag1}}" class="reget-img-flag" height="24" width="35"/></div>
+        <div style="float:left;">
+            <table>
+                <tr>
+                    <td style="padding-left:5px;padding-right:5px;">
+                        <label class="control-label hidden-xs" style="min-width:75px;text-align:right;">{{label1}}:*</label>
+                    </td>
+                    <td>
+                        <md-input-container class="reget-ang-md-input-container">
+                            <input required name="txtParentPgTrans1" id="txtParentPgTrans1" ng-model="text1" class="reget-ang-data-control reget-parentpg-locname" ng-change="text1changed({updatedText:text1});" />
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr id="trLocErr1">
+                    <td></td>
+                    <td>
+                        <div id="txt1LocErr" style="color:maroon;display:none;" role="alert">
+                            <div class="reget-ang-controll-invalid-msg" >{{mandatorytext}}</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+                  
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div style="margin-top:5px; margin-bottom:5px;" ng-hide="isdefaultlang">
+        <div style="float:left;margin-right:3px;"><img ng-src="{{flag2}}" class="reget-img-flag" height="24" width="35"/></div>
+        <div style="float:left;">
+            <table>
+                <tr>
+                    <td style="padding-left:5px;padding-right:5px;">
+                        <label class="control-label hidden-xs" style="min-width:75px;text-align:right;">{{label2}}:*</label>
+                    </td>
+                    <td>
+                        <md-input-container class="reget-ang-md-input-container">
+                            <input required name="txtParentPgTrans2" id="txtParentPgTrans2" ng-model="text2" class="reget-ang-data-control reget-parentpg-locname" ng-change="text2changed({updatedText:text2});" />
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr id="trLocErr2">
+                    <td></td>
+                    <td>
+                        <div id="txt2LocErr" style="color:maroon;display:none;" role="alert">
+                            <div class="reget-ang-controll-invalid-msg">{{mandatorytext}}</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <!--<div style="margin-top:5px; margin-bottom:5px;" ng-show="text3 != null && text3 != undefined">
+        <div style="float:left;margin-right:3px;"><img ng-src="{{flag3}}" class="reget-img-flag" height="24" width="35"/></div>
+        <div style="float:left;">
+            <table>
+                <tr>
+                    <td style="padding-left:5px;padding-right:5px;">
+                        <label class="control-label hidden-xs" style="min-width:75px;text-align:right;">{{label3}}:*</label>
+                    </td>
+                    <td>
+                        <md-input-container class="reget-ang-md-input-container">
+                            <input required name="txtParentPgTrans3" id="txtParentPgTrans3" ng-model="text3" class="reget-ang-data-control reget-parentpg-locname" ng-change="text3changed({updatedText:text3});" />
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr id="trLocErr3">
+                    <td></td>
+                    <td>
+                        <div id="txt3LocErr" style="color:maroon;display:none;" role="alert">
+                            <div class="reget-ang-controll-invalid-msg">{{mandatorytext}}</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+    </div>
+
+    <div style="clear:both;"></div>-->
+
+    <hr />
+
+    <div>
+        <button type="button"
+                id="btnSave"
+                value="{{savetext}}"
+                class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save"
+                ng-click="saveparentpgtrans();">
+            {{savetext}}
+        </button>
+
+        <button type="button" value="{{canceltext}}"
+                class="btn btn-primary reget-btn-blue reget-btn-back"
+                style="margin-left:30px"
+                ng-click="closeparentpgtrans();">
+            {{canceltext}}
+        </button>
+    </div>
+    <div class="ng-binding reget-ang-controll-invalid-msg-no-ag">
+        {{translateerrormsg}}
+    </div>
+</div>
+
+
+
+
+<div id="divRegetToolTip" class="reget-tooltip" ng-mouseleave="angCtrl.tooltipLeave()">
+
+    <!--<span id="spanRegetTooltipText" class="reget-tooltiptext"></span>-->
+
+</div>

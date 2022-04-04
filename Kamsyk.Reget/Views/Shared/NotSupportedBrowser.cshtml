@@ -1,0 +1,189 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using System.Threading;
+@{
+    Layout = null;
+    var baseController = ViewContext.Controller as BaseController;
+    string cultureInfo = Thread.CurrentThread.CurrentCulture.Name;
+}
+
+
+
+<!DOCTYPE html>
+
+<html style="background-color:#fff!important">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Not Supported Browser</title>
+    
+    @*@Styles.Render("~/RegetContent/css")
+    @Styles.Render("~/Reget/css")*@
+    <style>
+    .reget-navbar-top {
+        border-top: 5px solid #4caf50;
+        /*border-top-width: 5px solid #4caf50;
+        border-top-color:#4caf50;*/
+        border-bottom-width:0px;
+        background-color:#222!important;
+        background-image: url('../../Content/Images/body_bg.png')!important;
+        background-repeat: repeat!important;
+        z-index:80!important; /*because angular dropdowm - md-select-menu-container must have bigger z-index (90)*/
+    }
+
+    .reget-logo-text {
+    color: #7ffe7f;
+    float: left;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:2px;
+    padding-right:10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+        </style>
+</head>
+<body style="background-color:#fff!important;color:#000!important;font-family:Helvetica, Arial, sans-serif;">
+    <div class="reget-navbar-top" style="width:100%;border-top-color:#ff0000;">
+        <img src="~/Content/Images/Reget.png" style="float:left;padding-left:25px;padding-right:25px;padding-top:8px" /><span class="reget-logo-text">Reget</span>
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <div style="background-color:#fff!important;color:#000!important;padding:25px;">
+        <div >
+            <img id="errImg" src="~/Content/Images/Error.png" style="float:left;margin-right:15px;" width="65" />
+
+            <div style="float:left;padding-top: 15px;">
+                <h4>@RequestResource.BrowserNotSupported</h4>
+                
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+
+        <hr style="margin-top:25px;margin-bottom:25px;" />
+                
+        <div style="background-color:#fff;color:#000">
+            @RequestResource.FollowInstructions:
+        </div>
+
+        <div style="margin:25px;">
+            1. @RequestResource.CheckBrowserVersion
+            <div>
+                @{
+                    if (cultureInfo.ToUpper() == BaseController.CULTURE_CZ.ToUpper()) {
+                        @Html.Raw("<img src=\"" + baseController.GetRootUrl() + "Content/Images/Browser/IeSettings_CZ.jpg\" />");
+                    } else {
+                        @Html.Raw("<img src=\"" + baseController.GetRootUrl() + "Content/Images/Browser/IeSettings_EN.jpg\" />");
+                    }
+                }
+            </div>
+            
+        </div>
+
+        <div style="margin:25px;">
+            2. @RequestResource.BrowserVersionIfOlder
+        </div>
+
+        <hr />
+
+        <div style="margin:25px;">
+            3. @RequestResource.BrowserVersionIfOK:
+           
+            <div style="margin:25px;">
+                a) @RequestResource.BrowserCompatibilityViewSettingsCheck
+                <div style="margin:15px;">
+                    <div>
+                        @{
+                            if (cultureInfo.ToUpper() == BaseController.CULTURE_CZ.ToUpper()) {
+                                @Html.Raw("<img src=\"" + baseController.GetRootUrl() + "Content/Images/Browser/IeCompatibility_CZ.jpg\" />");
+                            } else {
+                                @Html.Raw("<img src=\"" + baseController.GetRootUrl() + "Content/Images/Browser/IeCompatibility_EN.jpg\" />");
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin:25px;">
+                b) @RequestResource.RemoveCombatibilityViewSettings
+                <div style="margin:15px;">
+                    @{
+                        List<string> httpPaths = new List<string>();
+                        string[] httpItems = Request.Url.AbsoluteUri.Split('/');
+                        //string[] httpItems = "http://intranetcz.cz.eu.otis.utc.com/reget/Home/NotSupportedBrowser".Split('/');
+                        var rootUrl = httpItems[2];
+                        string[] rootUrlParts = rootUrl.Split('.');
+                        List<string> urlPartsCheck = new List<string>();
+                        string strUrl = "";
+                        for (int i = rootUrlParts.Length - 1; i >= 0; i--) {
+                            if (strUrl.Length > 0) {
+                                strUrl = "." + strUrl;
+                            }
+                            strUrl = rootUrlParts[i] + strUrl;
+                            urlPartsCheck.Add(strUrl);
+                        }
+                        <ul>
+                            @foreach (var urlPartCheck in urlPartsCheck) {
+                                if (String.IsNullOrEmpty(urlPartCheck)) {
+                                    continue;
+                                }
+                                @Html.Raw("<li>" + urlPartCheck + "</li>");
+                            }
+                        </ul>
+                    }
+
+                    <div>
+              </div>
+                        @{
+                            if (cultureInfo.ToUpper() == BaseController.CULTURE_CZ.ToUpper()) {
+                                @Html.Raw("<img src=\"" + baseController.GetRootUrl() + "Content/Images/Browser/IeCompatibilityRem_CZ.jpg\" />");
+                            } else {
+                                @Html.Raw("<img src=\"" + baseController.GetRootUrl() + "Content/Images/Browser/IeCompatibilityRem_EN.jpg\" />");
+                            }
+                        }
+                    </div>
+                </div>
+        </div>
+        
+                        
+        <div style="clear:both;"></div>
+        
+        <hr style="margin-top:25px;margin-bottom:25px;"/>
+               
+          @{
+              string semicolon = ": ";
+              if (baseController.AppAdmins != null && baseController.AppAdmins.Count > 0) {
+                <div style="background-color:#fff!important;color:#000!important">
+                    @RequestResource.ContactAdminForSupport
+                </div>
+                  foreach (var appAdmin in baseController.AppAdmins) {
+                      string userName = "";
+                      string phoneNr = "";
+                      string email = "";
+
+                      if (!String.IsNullOrEmpty(appAdmin.first_name)) {
+                          userName = appAdmin.first_name.Trim();
+                      }
+
+                      if (!String.IsNullOrEmpty(appAdmin.surname)) {
+                          if (!String.IsNullOrEmpty(userName)) {
+                              userName += " ";
+                          }
+                          userName += appAdmin.surname.Trim();
+                      }
+
+                      if (!String.IsNullOrEmpty(appAdmin.phone)) {
+                          phoneNr = appAdmin.phone.Trim();
+                      }
+
+                      if (!String.IsNullOrEmpty(appAdmin.email)) {
+                          email = appAdmin.email.Trim();
+                      }
+                    <b>@userName</b>@Html.Raw(", ") @RequestResource.Phone@semicolon <b>@phoneNr</b> @Html.Raw(", ") @RequestResource.Mail@semicolon @Html.Raw("<a href=\"mailto:" + @email+ "\"><b>" + @email + "</b></a>");
+                  }
+
+              }
+        }
+
+</body>
+</html>

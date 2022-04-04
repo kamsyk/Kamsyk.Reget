@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WcfReget.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WcfReget_WsConcordeSuplier_InternalRequest" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://intranetcz.cz.otis.com/ConcordeWebService/internalrequest.asmx</Value>
+    </Setting>
+    <Setting Name="WcfReget_WsSupplier_WsSupplier" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.68.33.190/wsinternalrequest/wssupplier.asmx</Value>
+    </Setting>
+    <Setting Name="WcfReget_WsBaan_Baan" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:48128/Baan.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

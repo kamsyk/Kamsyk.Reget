@@ -1,0 +1,136 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var regetAdminController = ViewContext.Controller as RegetAdminController;
+}
+
+<form name="frmMultiplyAppLevel" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="MultiplyAppLevelController as angCtrl" layout="column" ng-cloak>
+
+        @Html.Partial("_NavigationBar")
+
+        <div class="reget-panel-box-pad" style="padding-top:10px;padding-bottom:10px;padding-left:25px;padding-right:25px;">
+            <div>
+                @{
+                    MdInputDecimalContainer mdDecMultipl = new MdInputDecimalContainer(BaseController.DecimalSeparator);
+                    mdDecMultipl.FormName = "frmMultiplyAppLevel";
+                    mdDecMultipl.NgModel = "angCtrl.multiplText";
+                    mdDecMultipl.LabelLeft = RequestResource.MultiplicationFactor;
+                    mdDecMultipl.RootTagId = "MultiFactor";
+                    mdDecMultipl.MandatoryErrMsg = RequestResource.Enter + " " + RequestResource.MultiplicationFactor + " (" + RequestResource.MultiplicationFactor + " > 0)";
+                    mdDecMultipl.IsMandatory = true;
+                    mdDecMultipl.Width = 190;
+                    mdDecMultipl.LabelLeftCssClass = "reget-ang-lbl-control-left-0";
+                    mdDecMultipl.OnChange = "angCtrl.multiplWasChanged(angCtrl.multiplText, angCtrl.angScopeAny.frmMultiplyAppLevel['txtMultiFactor'])";
+
+                }
+                @Html.Raw(mdDecMultipl.RenderControlHtml())
+                                
+            </div>
+
+            <div style="padding-top:15px;padding-bottom:1px;">
+                <md-radio-group ng-model="angCtrl.copyOption">
+                    <md-radio-button value="Selected" class="md-primary">@RequestResource.MultiplySelectedLimits</md-radio-button>
+                    <md-radio-button value="All">@RequestResource.MultiplyAllLimits</md-radio-button>
+                </md-radio-group>
+            </div>
+
+            <hr />
+
+            <div style="padding-top:10px;padding-bottom:10px;">
+                <div>
+                    <md-checkbox id="ckbSelectAll"
+                                 aria-label="@RequestResource.SelectAll"
+                                 ng-checked="angCtrl.isAllCompaniesChecked()"
+                                 md-indeterminate="angCtrl.isIndeterminate()"
+                                 ng-click="angCtrl.toggleAllCompanies()"
+                                 style="vertical-align:middle;margin-top:8px;margin-bottom:4px;margin-left:5px">
+                        @RequestResource.SelectAll
+                    </md-checkbox>
+                </div>
+
+
+                <div ng-repeat="compItem in angCtrl.userAdminCompanies">
+
+                    <md-checkbox id="country_{{compItem.company_id}}" aria-label="{{compItem.country_code}}"
+                                 ng-checked="compItem.is_selected"
+                                 ng-click="angCtrl.toggleCompany(compItem)"
+                                 class="reget-blue"
+                                 style="vertical-align:middle;margin-top:8px;margin-bottom:4px;margin-left:5px">
+                        {{compItem.country_code}}
+                    </md-checkbox>
+
+
+                </div>
+                <div id="divErrCompany" class="md-input-message-animation ng-scope ng-enter ng-enter-active" style="position:relative;color:maroon;display:none;" role="alert">
+                    <div style="line-height:14px;color:rgb(221,24,0);padding-top:5px;font-size:12px;">
+                        <div class="reget-ang-controll-invalid-msg">
+                            @RequestResource.SelectCompany
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="reget-btn-hr" />
+            
+            <md-button id="btnCalculate"
+                       class="btn btn-primary reget-btn reget-btn-green reget-btn-multiply-big"
+                       aria-label="Multiply"
+                       style="margin-left:0px;margin-top:0px;"
+                       ng-click="angCtrl.multiplyAppLevels()">
+                @RequestResource.Multiply
+            </md-button>
+
+            <div class="ng-binding reget-ang-controll-invalid-msg-no-ag">
+                {{angCtrl.substErrMsg}}
+            </div>
+
+            <div id="divPgLimitMultiplyErr" ng-show="angCtrl.multiplyLimitResult!=null &&  angCtrl.multiplyLimitResult.err_msg != null && angCtrl.multiplyLimitResult.err_msg.length > 0">
+                <hr />
+                <div id="divErrCompany" class="md-input-message-animation ng-scope ng-enter ng-enter-active" style="position:relative;color:maroon;display:block;" role="alert">
+                    <div style="line-height:14px;color:rgb(221,24,0);padding-top:5px;font-size:12px;">
+                        <div class="reget-ang-controll-invalid-msg">
+                            <div style="padding-bottom:5px;"><b>@RequestResource.ErrorList</b></div>
+                            <div ng-repeat="errItem in angCtrl.multiplyLimitResult.err_msg">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:15px;padding-bottom:5px;">
+                                            <a href="@regetAdminController.GetRootUrl()RegetAdmin?cgId={{errItem.cgId}}" target="_blank" style="color:#fff;text-decoration:underline;">{{errItem.cgName}}</a>
+                                        </td>
+                                        <td style="padding-left:15px;padding-bottom:5px;">
+                                            {{errItem.pgName}}
+                                        </td>
+                                        <td style="padding-left:15px;padding-bottom:5px;">
+                                            {{errItem.err_msg}}
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        @Html.Partial("_LocalizationTextBasic")
+
+        <div style="display:none;">
+            @*<input id="EnterDecimalNumberText" value="@RequestResource.Enter @RequestResource.MultiplicationFactor (@RequestResource.MultiplicationFactor > 0)" />*@
+            @*<input id="SelectCompanyText" value="@RequestResource.SelectCompany" />*@
+            <input id="MultiplyText" value="@RequestResource.Multiply" />
+            <input id="AppLevelMultiplyAllConfirmText" value="@RequestResource.AppLevelMultiplyAllConfirm" />
+            <input id="AppLevelMultiplySelectedConfirmText" value="@RequestResource.AppLevelMultiplySelectedConfirm" />
+            <input id="LimitMultiplyResultText" value="@RequestResource.LimitMultiplyResult" />
+            <input id="FinishedText" value="@RequestResource.Finished" />
+            <input id="MultiplPgLimitErrorText" value="@RequestResource.MultiplPgLimitError" />
+            <input id="EnterMandatoryValuesText" value="@RequestResource.EnterMandatoryValues" />
+        </div>
+
+    </div>
+</form>
+

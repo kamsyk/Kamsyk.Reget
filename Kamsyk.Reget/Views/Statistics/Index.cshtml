@@ -1,0 +1,549 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var statisticsController = ViewContext.Controller as StatisticsController;
+
+}
+
+<script>
+    var isCancelEvent = false;
+
+    $(document).ready(function () {
+
+        $("#divChartSettingsHeader").click(function () {
+            ToggleChartSetings();
+        });
+
+        $("#divChartDataHeader").click(function () {
+            ToggleChartData();
+        });
+
+        $("#divXItemsFilterHeader").click(function () {
+            ToggleXItemsFilter();
+        });
+    });
+
+    function ToggleChartSetings(isHide) {
+        if ($("#divChartSettings").is(':visible') || isHide) {
+            $("#divChartSettings").slideUp();
+            $("#imgCgExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+            $("#imgCgExpand").attr("title", "@Html.Raw(RequestResource.Display)");
+        } else {
+            $("#divChartSettings").show("slow");
+            $("#imgCgExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+            $("#imgCgExpand").attr("title", "@Html.Raw(RequestResource.Hide)");
+        }
+    }
+
+    function ToggleChartData(isHide) {
+        if ($("#divChartData").is(':visible') || isHide) {
+                $("#divChartData").slideUp();
+            $("#imgCgExpandData").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+                $("#imgCgExpandData").attr("title", "@Html.Raw(RequestResource.Display)");
+            } else {
+                $("#divChartData").show("slow");
+            $("#imgCgExpandData").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+                $("#imgCgExpandData").attr("title", "@Html.Raw(RequestResource.Hide)");
+            }
+    }
+
+    function ToggleXItemsFilter(isHide) {
+        if ($("#divXItemsfilterBody").is(':visible') || isHide) {
+            $("#divXItemsfilterBody").slideUp();
+            $("#imgXItemsFilterExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Expand.png");
+            $("#imgXItemsFilterExpand").attr("title", "@Html.Raw(RequestResource.Display)");
+        } else {
+            $("#divXItemsfilterBody").show("slow");
+            $("#imgXItemsFilterExpand").attr("src", GetRegetRootUrl() + "Content/Images/Panel/Collapse.png");
+            $("#imgXItemsFilterExpand").attr("title", "@Html.Raw(RequestResource.Hide)");
+        }
+    }
+</script>
+
+<form name="frmStatistics" class="reget-form" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="StatisticsController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div id="divChartSettingsPanel" class="reget-panel-box no-print" style="overflow:auto">
+            <div id="divChartSettingsHeader" class="reget-box-header reget-bold">
+                <img id="imgCgExpand" src="~/Content/Images/Panel/Collapse.png" class="reget-appmatrix-expcolimg" data-toggle="collapse tooltip" data-target="#divChartSettings" title="@RequestResource.Hide" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.ChartSettings</span>
+            </div>
+            <div id="divChartSettings" class="collapse in" style="margin:25px;">
+                <div style="margin-bottom:20px;margin-left:20px;">
+                    <div style="padding-top:1px;padding-bottom:10px;">
+
+
+                        <div style="float:left;">
+                            @{
+                                MdDatePicker mdDateFrom = new MdDatePicker(statisticsController.GetRootUrl(), Request.Browser.Browser);
+                                mdDateFrom.FormName = "frmStatistics";
+                                mdDateFrom.NgModel = "angCtrl.filterFromDate";
+                                mdDateFrom.LabelLeft = RequestResource.FromTo_From;
+                                mdDateFrom.RootTagId = "FromDate";
+                                mdDateFrom.IsMandatory = true;
+                                mdDateFrom.LabelLeftCssClass = "reget-ang-lbl-control-left-nowidth";
+                            }
+                            @Html.Raw(mdDateFrom.RenderControlHtml())
+
+                            @*@Html.Raw(statisticsController.GetAngularDatePicker(
+                               "frmStatistics",
+                               "angCtrl.filterFromDate",
+                               RequestResource.FromTo_From,
+                               RequestResource.FromTo_From,
+                               "FromDate",
+                               false,
+                               true,
+                               "reget-ang-lbl-control-left-nowidth"))*@
+
+
+                        </div>
+
+                        <div style="float:left;">
+                            @{
+                                MdDatePicker mdDateTo = new MdDatePicker(statisticsController.GetRootUrl(), Request.Browser.Browser);
+                                mdDateTo.FormName = "frmStatistics";
+                                mdDateTo.NgModel = "angCtrl.filterToDate";
+                                mdDateTo.LabelLeft = RequestResource.FromTo_To;
+                                mdDateTo.RootTagId = "ToDate";
+                                mdDateTo.IsMandatory = true;
+                                mdDateTo.LabelLeftCssClass = "reget-ang-lbl-control-left-nowidth";
+                            }
+                            @Html.Raw(mdDateTo.RenderControlHtml())
+
+                            @*@Html.Raw(statisticsController.GetAngularDatePicker(
+                               "frmStatistics",
+                               "angCtrl.filterToDate",
+                               RequestResource.FromTo_To,
+                               RequestResource.FromTo_To,
+                               "ToDate",
+                               false,
+                               true,
+                               "reget-ang-lbl-control-left-nowidth"))*@
+                        </div>
+
+                        <div style="clear:both;"></div>
+                    </div>
+
+                    <div>
+                        <div flex="100" style="float:left;margin-right:15px;margin-top:10px;">
+                            <md-checkbox aria-label="@RequestResource.SelectAll"
+                                         id="ckbAll"
+                                         ng-checked="angCtrl.isAllCompaniesChecked()"
+                                         md-indeterminate="angCtrl.isCompaniesIndeterminate()"
+                                         ng-click="angCtrl.toggleAllCompanies()">
+                                @RequestResource.SelectAll
+                            </md-checkbox>
+                        </div>
+
+                        <div flex="100" ng-repeat="item in angCtrl.userCompanies" style="float:left;margin-right:20px;margin-top:10px;">
+
+                            <md-checkbox id="comp_{{item.id}}"
+                                         aria-label="{{item.country_code}}"
+                                         class="reget-blue"
+                                         ng-checked="item.is_selected"
+                                         ng-click="angCtrl.toggleCompany(item)">
+                                {{ item.country_code }}
+                            </md-checkbox>
+                        </div>
+
+                        <div style="clear:both;"></div>
+                    </div>
+
+                </div>
+                <hr />
+
+                <div style="padding-top:20px;">
+                    <table style="border-collapse:separate;">
+                        <!-- border collapse unset is important, otherwise the checkox tick image is not visible-->
+                        <tr>
+                            <td><img src="~/Content/Images/Chart/AxYArrow.png" style="vertical-align:bottom;" /></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="reget-chart-y-line"></td>
+                            <td style="padding:20px;">
+                                <div style="float:left;margin-right:20px;">
+                                    <div style="margin-bottom:20px;">
+                                        @{
+                                            MdSelect mdCmbYAxis = new MdSelect();
+                                            mdCmbYAxis.FormName = "frmStatistics";
+                                            mdCmbYAxis.AgSourceList = "angCtrl.axisYItemsList";
+                                            mdCmbYAxis.AgModel = "angCtrl.selectedAxisYItem";
+                                            mdCmbYAxis.AgIdItem = "id";
+                                            mdCmbYAxis.AgTextItem = "name";
+                                            mdCmbYAxis.RootTagId = "AxisYItems";
+                                            mdCmbYAxis.LabelLeft = RequestResource.AxisY;
+                                            mdCmbYAxis.OnSelectFunct = "angCtrl.setAxisYItem()";
+                                            mdCmbYAxis.IsMandatory = true;
+                                        }
+                                        @Html.Raw(mdCmbYAxis.RenderControlHtml())
+
+                                       
+                                    </div>
+
+                                    @*<div>
+                                            <md-radio-group ng-model="data.group1">
+                                                <md-radio-button value="Cost" class="md-primary">Cost</md-radio-button>
+                                                <md-radio-button value="Requests" class="md-primary">Number of request</md-radio-button>
+                                            </md-radio-group>
+                                        </div>*@
+                                </div>
+
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><img src="~/Content/Images/Chart/AxXYCorner.png" /></td>
+                            <td class="reget-chart-x-line"></td>
+                            <td><img src="~/Content/Images/Chart/AxXArrow.png" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="padding-left:20px;padding-right:20px;">
+                                <div style="margin-bottom:20px;float:left;margin-right:20px;">
+                                    @{
+                                        MdSelect mdCmbXAxis = new MdSelect();
+                                        mdCmbXAxis.FormName = "frmStatistics";
+                                        mdCmbXAxis.AgSourceList = "angCtrl.axisXItemsList";
+                                        mdCmbXAxis.AgModel = "angCtrl.selectedAxisXItem";
+                                        mdCmbXAxis.AgIdItem = "id";
+                                        mdCmbXAxis.AgTextItem = "name";
+                                        mdCmbXAxis.RootTagId = "AxisXItems";
+                                        mdCmbYAxis.OnSelectFunct = "angCtrl.setAxisXItem()";
+                                        mdCmbXAxis.LabelLeft = RequestResource.AxisX;
+                                        mdCmbXAxis.IsMandatory = true;
+                                    }
+                                    @Html.Raw(mdCmbXAxis.RenderControlHtml())
+
+                                    
+                                </div>
+
+
+
+                                <div style="margin-bottom:20px;float:left;margin-right:20px;">
+                                    @{
+                                        MdSelect mdCmbXPeriod = new MdSelect();
+                                        mdCmbXPeriod.FormName = "frmStatistics";
+                                        mdCmbXPeriod.AgSourceList = "angCtrl.axisXPeriodItemsList";
+                                        mdCmbXPeriod.AgModel = "angCtrl.selectedAxisXPeriodItem";
+                                        mdCmbXPeriod.AgIdItem = "id";
+                                        mdCmbXPeriod.AgTextItem = "name";
+                                        mdCmbXPeriod.RootTagId = "AxisXPeriodItems";
+                                        mdCmbXPeriod.OnSelectFunct = "angCtrl.setAxisXPeriodItem()";
+                                        mdCmbXPeriod.LabelLeft = RequestResource.Period;
+                                        mdCmbXPeriod.IsMandatory = true;
+                                    }
+                                    @Html.Raw(mdCmbXPeriod.RenderControlHtml())
+
+                                    
+                                </div>
+
+                                <div ng-show="angCtrl.selectedAxisXPeriodItem==10" style="margin-bottom:20px;float:left;">
+                                    @{
+                                        MdSelect mdCmbXTopList = new MdSelect();
+                                        mdCmbXTopList.FormName = "frmStatistics";
+                                        mdCmbXTopList.AgSourceList = "angCtrl.axisXTopList";
+                                        mdCmbXTopList.AgModel = "angCtrl.selectedAxisXTop";
+                                        mdCmbXTopList.AgIdItem = "id";
+                                        mdCmbXTopList.AgTextItem = "name";
+                                        mdCmbXTopList.RootTagId = "AxisXTopItems";
+                                        mdCmbXTopList.OnSelectFunct = "angCtrl.setAxisXTopItem()";
+                                        mdCmbXTopList.LabelLeft = RequestResource.DisplayTop;
+                                        mdCmbXTopList.IsMandatory = true;
+                                    }
+                                    @Html.Raw(mdCmbXTopList.RenderControlHtml())
+
+                                    @*@Html.Raw(statisticsController.GetAngularDropdownBox(
+                                         "frmStatistics",
+                                         "angCtrl.axisXTopList",
+                                         "angCtrl.selectedAxisXTop",
+                                         "id",
+                                         "name",
+                                         null,
+                                         "AxisXTopItems",
+                                         "angCtrl.setAxisXTopItem()",
+                                         RequestResource.DisplayTop,
+                                         RequestResource.DisplayTop,
+                                         "reget-ang-lbl-control-left-nowidth",
+                                         false,
+                                         true,
+                                         false,
+                                         true,
+                                         false,
+                                         0,
+                                         null,
+                                         null))*@
+                                </div>
+
+                                <div style="clear:both;"></div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <div>
+
+                        <hr ng-if="angCtrl.isSelectXItemsAvailable == true" />
+                        <div ng-show="angCtrl.isSelectXItemsAvailable == true" class="reget-panel-box no-print" style="margin-top: 20px;">
+                            <div id="divXItemsFilterHeader" class="reget-box-header reget-box-header-level2 reget-bold">
+                                <img id="imgXItemsFilterExpand" src="~/Content/Images/Panel/Collapse.png" class="reget-appmatrix-expcolimg" data-toggle="collapse tooltip" data-target="#divXItemsfilterBody" title="@RequestResource.Hide" style="vertical-align: middle;" />
+                                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.XItemsFilter</span>
+                            </div>
+                            <div id="divXItemsfilterBody" class="collapse in" style="margin:20px;">
+                                <div ng-hide="angCtrl.isFilterUserOnly">
+                                    <div style="margin-bottom:20px;margin-right:20px;float:left;">
+                                        <md-autocomplete id="acXFilter"
+                                                         md-input-minlength="0"
+                                                         md-min-length="0"
+                                                         md-item-text="item.name"
+                                                         md-search-text="angCtrl.searchstringitem"
+                                                         md-items="item in angCtrl.searchFilterItems(angCtrl.searchstringitem)"
+                                                         md-selected-item="angCtrl.filterselecteditem"
+                                                         md-no-cache="true"
+                                                         md-delay="300"
+                                                         placeholder="{{angCtrl.filterPlaceholder}}"
+                                                         md-selected-item-change="angCtrl.filterSelectedItemChange(item)"
+                                                         md-hide-autocomplete-on-enter
+                                                         class="reget-autocomplete reget-ang-autocomplete-statistics"
+                                                         style="margin-top:5px;"
+                                                         md-input-id="acXFilterInput">
+
+                                            <md-item-template>
+                                                <div>
+                                                    <img ng-src="{{angCtrl.getSelectedImgUrl()}}" ng-if="item.is_selected" />
+                                                    <img ng-src="{{item.flag_url}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                                    <span md-highlight-text="angCtrl.searchstringitem" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.name}}</span>
+                                                </div>
+                                            </md-item-template>
+
+                                            <md-not-found>
+                                                "{{angCtrl.searchstringitem}}" {{angCtrl.locNotFoundText}}.
+                                            </md-not-found>
+
+                                        </md-autocomplete>
+                                    </div>
+
+                                    <div style="float:left;margin-top:7px;">
+                                        <input id="btnSelectAll"
+                                               type="button"
+                                               class="btn btn-primary reget-btn-plus"
+                                               style="margin-right:15px;margin-bottom:10px;"
+                                               value="@RequestResource.DisplayAll"
+                                               ng-click="angCtrl.filterSelectAll()" />
+
+                                        <input id="btnRemoveAll"
+                                               type="button"
+                                               class="btn btn-primary reget-btn-minus"
+                                               style="margin-right:15px;margin-bottom:10px;"
+                                               value="@RequestResource.RemoveAll"
+                                               ng-click="angCtrl.filterRemoveAll()" />
+                                    </div>
+                                </div>
+                                <div style="clear:both;" ng-hide="angCtrl.isFilterUserOnly"></div>
+
+                                <div ng-hide="angCtrl.isFilterUserOnly">
+                                    @{
+                                        MdCheckBox mdCkbActiveOnly = new MdCheckBox(statisticsController.GetRootUrl());
+                                        mdCkbActiveOnly.RootTagId = "ckbActiveOnly";
+                                        mdCkbActiveOnly.CkbText = RequestResource.ActiveOnly;
+                                        mdCkbActiveOnly.AgIsChecked = "angCtrl.isActiveOnly";
+                                        mdCkbActiveOnly.OnClick = "angCtrl.toggleActiveOnly();";
+                                        mdCkbActiveOnly.IsReadOnly = false;
+                                    }
+                                    @Html.Raw(mdCkbActiveOnly.RenderControlHtml())
+
+                                    @*@Html.Raw(statisticsController.GetAngularCheckbox(
+                                        "ckbActiveOnly",
+                                        @RequestResource.ActiveOnly,
+                                        "angCtrl.isActiveOnly",
+                                        "angCtrl.toggleActiveOnly()",
+                                        false))*@
+                                </div>
+
+                                <div style="clear:both;"></div>
+
+                                <hr ng-hide="angCtrl.isFilterUserOnly" />
+
+                                <span ng-hide="angCtrl.isSelectedXItems || angCtrl.isFilterUserOnly">@RequestResource.DisplayAll</span>
+
+                                <div>
+                                    <div ng-repeat="item in angCtrl.xFilterMsg">
+                                        <b>{{item.company}}</b> {{item.msg}}
+                                    </div>
+                                </div>
+
+                                <div id="divFilterItems" style="padding-top: 10px">
+                                    <filter_item ng-repeat="item in angCtrl.filterItems | localeOrderBy:'name'"
+                                                 ng-if="item.is_selected"
+                                                 id="{{item.id}}"
+                                                 name="{{item.name}}"
+                                                 rooturl="{{angCtrl.rootUrl}}"
+                                                 flagurl="{{item.flag_url}}"
+                                                 removetext="@RequestResource.Delete"
+                                                 deleteitem="angCtrl.deleteFilterItem(item.id)"
+                                                 style="float:left;"></filter_item>
+
+                                </div>
+                                <div style="clear:both;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div style="padding-top:15px;">
+                    <input id="btnDisplay"
+                           type="button"
+                           class="btn btn-primary reget-btn-chart"
+                           style="margin-right:15px;"
+                           value="@RequestResource.Display"
+                           ng-click="angCtrl.getChartData()" />
+
+
+                </div>
+                <div class="ng-binding reget-ang-controll-invalid-msg-no-ag">
+                    {{angCtrl.chartErrorMsg}}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="reget-panel-box">
+            <div id="chartWrap" style="display:none;margin-top:10px;padding:10px;">
+                <canvas id="regetChart" height="500"></canvas>
+            </div>
+                       
+
+            <div style="margin-bottom:45px;padding:15px;" ng-hide="angCtrl.regetChart==null">
+                <hr />
+
+                <div style="float:left;margin-right:20px;">
+                    @{
+                        MdSelect mdCmbChartType = new MdSelect();
+                        mdCmbChartType.FormName = "frmStatistics";
+                        mdCmbChartType.AgSourceList = "angCtrl.chartTypeItemsList";
+                        mdCmbChartType.AgModel = "angCtrl.selectedChartTypeItem";
+                        mdCmbChartType.AgIdItem = "id";
+                        mdCmbChartType.AgTextItem = "name";
+                        mdCmbChartType.RootTagId = "ChartType";
+                        mdCmbChartType.OnSelectFunct = "angCtrl.setChartType()";
+                        mdCmbChartType.LabelLeft = RequestResource.ChartType;
+                        mdCmbChartType.IsMandatory = true;
+                    }
+                    @Html.Raw(mdCmbChartType.RenderControlHtml())
+
+
+                </div>
+                <div style="float:left;margin-right:20px;" ng-show="angCtrl.isCost">
+                    @{
+                        MdSelect mdCmbCurrency = new MdSelect();
+                        mdCmbCurrency.FormName = "frmStatistics";
+                        mdCmbCurrency.AgSourceList = "angCtrl.currenciesList";
+                        mdCmbCurrency.AgModel = "angCtrl.selectedCurrencyId";
+                        mdCmbCurrency.AgIdItem = "id";
+                        mdCmbCurrency.AgTextItem = "currency_code_name";
+                        mdCmbCurrency.RootTagId = "Currency";
+                        mdCmbCurrency.OnSelectFunct = "angCtrl.setCurrency()";
+                        mdCmbCurrency.LabelLeft = RequestResource.Currency;
+                        mdCmbCurrency.IsMandatory = true;
+                    }
+                    @Html.Raw(mdCmbCurrency.RenderControlHtml())
+
+
+                </div>
+                <div style="float:left;margin-top:4px;">
+                    <input id="btnChangeColor"
+                           type="button"
+                           class="btn btn-primary reget-btn-color"
+                           style="margin-right:15px;"
+                           value="@RequestResource.ChangeColors"
+                           ng-click="angCtrl.changeChartColors()" />
+
+                    <input id="btnExportExcell"
+                           type="button"
+                           class="btn btn-primary reget-btn-excel"
+                           style="margin-right:15px;"
+                           value="@RequestResource.ExportToExcel"
+                           ng-click="angCtrl.exportToExcel()" />
+                </div>
+            </div>
+        </div>
+
+        <div id="divChartDataPanel" class="reget-panel-box no-print" ng-hide="angCtrl.regetChart==null">
+            <div id="divChartDataHeader" class="reget-box-header reget-bold">
+                <img id="imgCgExpandData" src="~/Content/Images/Panel/Collapse.png" class="reget-appmatrix-expcolimg" data-toggle="collapse tooltip" data-target="#divChartData" title="@RequestResource.Hide" style="vertical-align: middle;" />
+                <span style="margin-left:10px;vertical-align: middle;">@RequestResource.ChartData</span>
+            </div>
+            <div id="divChartData" class="collapse in" style="margin:15px;padding:10px;overflow:auto">
+
+                <table>
+                    <thead>
+                        <tr class="reget-tr-underline-header">
+                            <th class="reget-td-readonly"></th>
+                            <th ng-repeat="label in angCtrl.chartItems.ChartData.labels track by $index" class="reget-td-readonly">
+                                {{label}}
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tr ng-repeat="dataset in angCtrl.chartItems.ChartData.datasets track by $index" class="reget-tr-underline">
+                        <td class="reget-td-readonly" style="text-align:left;font-weight:bold;">{{dataset.label}}</td>
+                        <td ng-repeat="dataItem in dataset.data track by $index" class="reget-td-readonly" style="text-align:right;">
+                            {{dataItem}}
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+
+
+        @Html.Partial("_LocalizationTextBasic")
+
+
+        <div style="display:none;">
+            <input id="WarningText" value="@RequestResource.Warning" />
+            <input id="CloseText" value="@RequestResource.Close" />
+            <input id="ErrMsgText" value="@RequestResource.Error" />
+            <input id="PriceText" value="@RequestResource.Cost" />
+            <input id="NumOfRequestsText" value="@RequestResource.RequestCount" />
+            <input id="AllText" value="@RequestResource.All" />
+            <input id="YearText" value="@RequestResource.Year" />
+            <input id="MonthText" value="@RequestResource.Month" />
+            <input id="SelectRequestorsText" value="@RequestResource.SelectRequestors" />
+            <input id="OrdererText" value="@RequestResource.Orderer" />
+            <input id="ApproveManText" value="@RequestResource.ApproveMan" />
+            <input id="CentreText" value="@RequestResource.Centre" />
+            <input id="SupplierText" value="@RequestResource.Supplier" />
+            <input id="PurchaseGroupText" value="@RequestResource.PurchaseGroup" />
+            <input id="SelectCompanyText" value="@RequestResource.SelectCompany" />
+            <input id="SelectDateFromText" value="@RequestResource.SelectDateFrom" />
+            <input id="SelectDateToText" value="@RequestResource.SelectDateTo" />
+            <input id="SelectAxisXText" value="@RequestResource.SelectAxisX" />
+            <input id="SelectAxisYText" value="@RequestResource.SelectAxisY" />
+            <input id="SelectPeriodText" value="@RequestResource.SelectPeriod" />
+            <input id="AreaText" value="@RequestResource.Area" />
+            <input id="ExchangeRateMissingText" value="@RequestResource.ExchangeRateMissing" />
+            <input id="StatisticsAuthorizedOwnRequestOnlyText" value="@RequestResource.StatisticsAuthorizedOwnRequestOnly" />
+            <input id="StatisticsAuthorizedCgRequestOnlyText" value="@RequestResource.StatisticsAuthorizedCgRequestOnly" />
+            <input id="NotAuthorizedText" value="@RequestResource.NotAuthorized" />
+            <input id="ItemWasAddedToFilterText" value="@RequestResource.ItemWasAddedToFilter" />
+            <input id="StatisticsRequestorNotAllowedText" value="@RequestResource.StatisticsRequestorNotAllowed" />
+            <input id="StatisticsOrdererNotAllowedText" value="@RequestResource.StatisticsOrdererNotAllowed" />
+            <input id="StatisticsAppManNotAllowedText" value="@RequestResource.StatisticsAppManNotAllowed" />
+            <input id="StatisticsCentreNotAllowedText" value="@RequestResource.StatisticsCentreNotAllowed" />
+            <input id="StatisticsAreaNotAllowedText" value="@RequestResource.StatisticsAreaNotAllowed" />
+            <input id="StatisticsPgNotAllowedText" value="@RequestResource.StatisticsPgNotAllowed" />
+            <input id="StatisticsSupplierNotAllowedText" value="@RequestResource.StatisticsSupplierNotAllowed" />
+            <input id="EnterMandatoryValuesText" value="@RequestResource.EnterMandatoryValues" />
+        </div>
+    </div>
+</form>

@@ -1,0 +1,34 @@
+﻿<div style="margin-top:5px; margin-bottom:5px;">
+    <div style="float:left;margin-right:3px;"><img ng-src="{{flag1}}" height="24" width="35"/></div>
+    <div style="float:left;">
+        <label class="control-label hidden-xs" style="min-width:75px;text-align:right;">{{label1}}:</label>
+        <md-input-container class="reget-ang-md-input-container">
+            <input required name="txtLang1" ng-model="text1" class="reget-ang-data-control reget-pgname"  />
+        </md-input-container>
+    </div>
+</div>
+
+<div style="clear:both"></div>
+
+<div style="margin-top:5px; margin-bottom:5px;" ng-show="text2 != null && text2 != undefined">
+    <div style="float:left;margin-right:3px;"><img ng-src="{{flag2}}" height="24" width="35"/></div>
+    <div style="float:left;">
+        <label class="control-label hidden-xs" style="min-width:75px;text-align:right;">{{label2}}:</label>
+        <md-input-container class="reget-ang-md-input-container">
+            <input required name="txtLang2" ng-model="text2" class="reget-ang-data-control reget-pgname"  ng-change="text2changed({updatedText : text2})" />
+       </md-input-container>
+    </div>
+</div>
+
+<div style="clear:both"></div>
+
+<div style="margin-top:5px; margin-bottom:5px;" ng-show="text3 != null && text3 != undefined">
+    <div style="float:left;margin-right:3px;"><img ng-src="{{flag3}}" height="24" width="35"/></div>
+    <div style="float:left;">
+        <label class="control-label hidden-xs" style="min-width:75px;text-align:right;">{{label3}}:</label>
+        <md-input-container class="reget-ang-md-input-container">
+            <input required name="txtLang3" ng-model="text3" class="reget-ang-data-control reget-pgname"  />
+        </md-input-container>
+    </div>
+    
+</div>

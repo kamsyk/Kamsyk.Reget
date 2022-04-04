@@ -1,0 +1,36 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var requestController = ViewContext.Controller as RequestController;
+}
+
+<form name="frmRequestList" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="RequestListController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div>
+            @{
+                UiGrid uiGrid = new UiGrid(requestController.GetRootUrl());
+                uiGrid.RootTagId = "grdRequestList_rg";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.InternalRequestList;
+                uiGrid.AddNewText = null;
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+        </div>
+
+        @Html.Partial("_LocalizationTextBasic")
+        @Html.Partial("_DataGrid")
+
+        <div style="display:none;">
+            <input id="RequestNrText" value="@RequestResource.RequestNr" />
+            <input id="RequestorText" value="@RequestResource.Requestor" />
+            <input id="CentreText" value="@RequestResource.Centre" />
+            <input id="PurchaseGroupText" value="@RequestResource.PurchaseGroup" />
+            <input id="EstimatedPriceText" value="@RequestResource.EstimatedPrice" />
+            <input id="CreatedText" value="@RequestResource.IssuedDate" />
+        </div>
+    </div>
+</form>

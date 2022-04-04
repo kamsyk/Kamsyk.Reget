@@ -1,0 +1,26 @@
+﻿<div>
+    <table>
+        <tr>
+            <td style="vertical-align:top;" ng-hide="isonlyone=='true'">
+
+                <md-checkbox id="ckbAddress_{{id}}"
+                             class="reget-blue"
+                             aria-label="SelectAddress"
+                             ng-model="addressitem.is_selected"
+                             ng-change="addresscheck()"
+                             style="border-collapse:separate;">
+
+                </md-checkbox>
+            </td>
+            <td>
+                <div>{{addressitem.company_name}}</div>
+                <div>{{addressitem.street}}</div>
+                <div>
+                    <span>{{addressitem.zip}}&nbsp;{{addressitem.city}}</span>
+                </div>
+                <div>{{addressitem.country}}</div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="clear:both"></div>

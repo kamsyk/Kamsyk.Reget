@@ -1,0 +1,36 @@
+﻿<div>
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{COL_FIELD}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow" style="">
+        <md-autocomplete id="gridFieldAutoAddress"
+                         md-input-minlength="0"
+                         md-min-length="0"
+                         md-item-text="item.address_text"
+                         md-search-text="angCtrl.searchstringaddress"
+                         md-items="item in grid.appScope.searchAddress(angCtrl.searchstringaddress, row.entity.company_name)"
+                         md-selected-item="MODEL_COL_FIELD"
+                         md-no-cache="true"
+                         md-delay="300"
+                         md-input-id="intGridAddressAutocomplete"
+                         placeholder="{{grid.appScope.locAddressText}}"
+                         md-selected-item-change="grid.appScope.addressSelectedItemChange(item)"
+                         md-search-text-change="grid.appScope.addressTextChanged(false)"
+                         class="ui-grid-autocomplete-white"
+                         aria-label="{{COL_FIELD}}">
+            <md-item-template>
+                <div>
+                    <span md-highlight-text="searchstringaddress" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.address_text}}</span>
+                </div>
+            </md-item-template>
+
+            <md-not-found>
+                "{{angCtrl.searchstringaddress}}" {{grid.appScope.locNotFoundText}}.
+            </md-not-found>
+
+        </md-autocomplete>
+    </div>    
+</div>

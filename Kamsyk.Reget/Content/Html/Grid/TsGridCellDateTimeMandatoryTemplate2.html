@@ -1,0 +1,31 @@
+﻿<div>
+    <div ng-click="grid.appScope.cellClicked(row,col)"
+         ng-if="!row.entity.editrow" style="height:30px;display: table; width:100%;">
+        <div style="vertical-align: middle;display:table-cell;padding-left:5px;">
+            {{grid.appScope.getDateTimeString(COL_FIELD)}}
+        </div>
+    </div>
+    <div ng-if="row.entity.editrow"
+         class="reget-disabled"
+         style="height:30px;display: table; width:100%;">
+        <div ng-if="!row.entity.is_date_time_ro2" style="vertical-align: middle;display:table-cell;padding-left:0px;" class="reget-grid-edit-cell-mandatory div-date-edit">
+            <griddatetimedirective id="grdDateTo_{{COL_FIELD}}"
+                                   ismandatory="true"
+                                   placeholder="Date Time"
+                                   datetimeformat="{{grid.appScope.dateTimeMomentFormatText}}"
+                                   ng-model="MODEL_COL_FIELD">
+
+            </griddatetimedirective>
+            <!--<img src="{{grid.appScope.getRegetRootUrl()}}Content/Images/Controll/DateTimePickerCalendar.png"
+             ng-click="ctrl.isOpen=true" style="margin-right:5px;" />
+        <md-datepicker id="grdDateTimePicker" ng-model="MODEL_COL_FIELD"
+                       md-placeholder="{{grid.appScope.locEnterDateText}}"
+                       md-is-open="ctrl.isOpen"
+                       md-hide-icons="all"></md-datepicker>-->
+
+        </div>
+        <div ng-if="row.entity.is_date_time_ro2" style="vertical-align: middle;display:table-cell;padding-left:5px;" class="div-date-ro">
+            {{grid.appScope.getDateTimeString(COL_FIELD)}}
+        </div>
+    </div>  
+</div>

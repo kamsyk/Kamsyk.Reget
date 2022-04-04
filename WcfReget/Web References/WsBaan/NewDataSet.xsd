@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns="" id="NewDataSet" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element msdata:IsDataSet="true" msdata:UseCurrentLocale="true" name="NewDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TTTPMC201">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="T_x0024_UVER" type="xs:string" />
+              <xs:element minOccurs="0" name="T_x0024_UREL" type="xs:string" />
+              <xs:element minOccurs="0" name="T_x0024_UCUS" type="xs:string" />
+              <xs:element minOccurs="0" name="T_x0024_CSOL" type="xs:string" />
+              <xs:element minOccurs="0" name="T_x0024_RSTA" type="xs:int" />
+              <xs:element minOccurs="0" name="dependency_status" type="xs:string" />
+              <xs:element minOccurs="0" name="is_ok" type="xs:boolean" />
+              <xs:element minOccurs="0" name="parent_pmc" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

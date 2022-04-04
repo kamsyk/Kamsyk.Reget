@@ -1,0 +1,45 @@
+﻿@using Kamsyk.Reget.Controllers;
+@{
+    var baseController = ViewContext.Controller as BaseController;
+    string controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+    string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+    string notActiveSelectCss = "reget-navbar";
+    string activeSelectCss = "reget-navbar reget-navbar-active";
+    string cssToggle = (controllerName == "Participant" && actionName == "CurrentUserInfo") ? activeSelectCss : notActiveSelectCss;
+}
+
+
+<li class="reget-menu-divider hidden-sm hidden-md hidden-lg"></li>
+
+<li id="mniUserName" onmouseover="showTooltip(this, '@baseController.CurrentUser.ParticipantName')" onmouseleave="hideTooltip()" >
+
+    @*<a onclick="ShowLoader();" class="@cssToggle" href="@baseController.GetRootUrl()Participant/CurrentUserInfo" 
+       style="padding-top:8px;padding-bottom:8px;" data-tooltip-append-to-body="true" data-tooltip="Button3">
+        <div style="margin-top:1px;">
+            @{ if (baseController.CurrentUser.IsHasParticipantPhoto) {
+                    <img src="@baseController.GetRootUrl()Participant/UserPhoto?userId=@baseController.CurrentUser.Participant.id"
+                         style="border-color:#fff;border-style:solid;border-width:2px;border-radius:20px;" width="34" />
+                } else {
+                    <span style="border-color:#fff;border-style:solid;border-width:2px;border-radius:20px;
+                        font-weight:bolder;font-size:18px;
+                        display:inline-block;min-width:32px;text-align:center;
+                        padding-left:8px;padding-right:8px;padding-top:5px;padding-bottom:5px;">@baseController.CurrentUser.Participant.first_name.Substring(0, 1).ToUpper()</span>
+
+                }
+            }
+
+
+            <span class="reget-current-user-text hidden-sm hidden-md hidden-lg" id="spUserName" style="margin-left:10px;">@baseController.CurrentUser.ParticipantName</span>
+            
+        </div>
+    </a>*@
+    <a onclick="ShowLoader();" class="@cssToggle" href="@baseController.GetRootUrl()Participant/CurrentUserInfo" 
+        data-tooltip-append-to-body="true" data-tooltip="CurrentLanguage" >
+        <div>
+            <span class="reget-menu-user-letter">@baseController.CurrentUser.Participant.first_name.Substring(0, 1).ToUpper()</span>
+            @*<span class="hidden-xs">&nbsp;</span>*@
+            <span class="reget-current-user-text hidden-sm hidden-md hidden-lg" id="spUserName">@baseController.CurrentUser.ParticipantName</span>
+        </div>
+        
+    </a>
+</li>

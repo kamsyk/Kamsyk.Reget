@@ -1,0 +1,16 @@
+﻿<div ng-if="!row.entity.editrow" style="height:100%;padding-left:0px;">
+    <!--<input type="button" value="" class="btn btn-primary reget-btn-edit reget-grid-button" ng-click="" />-->
+    <md-button class="reget-btn-grid-edit reget-grid-action-button" aria-label="edit" ng-click="grid.appScope.GridEditRow(row.entity)">
+        <md-tooltip>{{grid.appScope.EditText}}</md-tooltip>
+    </md-button>
+    
+</div>
+
+<div ng-if="row.entity.editrow" class="reget-grid-edit-action" style="height:100%;padding-left:0px;">
+    <md-button class="btn btn-success reget-btn-save reget-grid-button reget-btn-grid-save" aria-label="save" ng-click="grid.appScope.GridSaveRow()">
+        <md-tooltip>{{grid.appScope.SaveText}}</md-tooltip>
+    </md-button>
+    <md-button class="btn btn-primary reget-btn-back reget-grid-button reget-btn-blue" aria-label="cancel" ng-click="grid.appScope.GridCancelEdit()">
+        <md-tooltip>{{grid.appScope.CancelText}}</md-tooltip>
+    </md-button>
+</div>

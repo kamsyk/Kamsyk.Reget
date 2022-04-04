@@ -1,0 +1,11 @@
+﻿<div style="height:100%;padding-left:0px;">
+    <!--<input type="button" value="" class="btn btn-primary reget-btn-edit reget-grid-button" ng-click="" />-->
+    <md-button ng-if="!row.entity.is_approve_hidden" class="btn reget-grid-action-button reget-btn-grid-approve" aria-label="Approve" ng-click="grid.appScope.gridApproveRow(row.entity, $event)">
+        <md-tooltip>{{grid.appScope.locApproveText}}</md-tooltip>
+    </md-button>
+    <md-button ng-if="!row.entity.is_reject_hidden" class="btn reget-grid-action-button reget-btn-grid-reject" aria-label="Reject" ng-click="grid.appScope.gridRejectRow(row.entity, $event)">
+        <md-tooltip>{{grid.appScope.locRejectText}}</md-tooltip>
+    </md-button>
+    
+</div>
+

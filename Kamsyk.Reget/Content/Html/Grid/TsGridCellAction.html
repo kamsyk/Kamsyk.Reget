@@ -1,0 +1,18 @@
+﻿<div ng-if="!row.entity.editrow" style="height:100%;padding-left:0px;">
+    <!--<input type="button" value="" class="btn btn-primary reget-btn-edit reget-grid-button" ng-click="" />-->
+    <md-button ng-if="!row.entity.is_edit_hidden" class="reget-btn-grid-edit reget-grid-action-button" aria-label="Edit" ng-click="grid.appScope.gridEditRow(row.entity)" ng-hide="grid.appScope.hideEditGridButton(row.entity)">
+        <md-tooltip>{{grid.appScope.locEditText}}</md-tooltip>
+    </md-button>
+    <md-button ng-if="!row.entity.is_delete_hidden" class="reget-btn-grid-delete reget-grid-action-button" aria-label="Delete" ng-click="grid.appScope.gridDeleteRow(row.entity, $event)" ng-hide="grid.appScope.hideDeleteGridButton(row.entity)">
+        <md-tooltip>{{grid.appScope.locDeleteText}}</md-tooltip>
+    </md-button>
+</div>
+
+<div ng-if="row.entity.editrow" class="reget-grid-edit-action" style="height:100%;padding-left:0px;">
+    <md-button class="btn reget-btn reget-btn-green reget-btn-save reget-grid-button reget-btn-grid-save" aria-label="Save" ng-click="grid.appScope.gridSaveRow()" >
+        <md-tooltip>{{grid.appScope.locSaveText}}</md-tooltip>
+    </md-button>
+    <md-button class="btn btn-primary reget-btn-back reget-grid-button reget-btn-blue reget-btn-grid-back" aria-label="Cancel" ng-click="grid.appScope.gridCancelEdit()">
+        <md-tooltip>{{grid.appScope.locCancelText}}</md-tooltip>
+    </md-button>
+</div>

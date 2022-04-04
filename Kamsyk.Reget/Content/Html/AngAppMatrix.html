@@ -1,0 +1,901 @@
+﻿<script>
+    function togglePgNameLoc() {
+
+        if ($("#divPgNameLoc").is(':visible')) {
+            $("#divPgNameLoc").slideUp();
+        } else {
+            $("#divPgNameLoc").show("slow");
+        }
+    }
+</script>
+
+<div id="divAppMatrixEdit">
+    <div class="reget-ang-div-container">
+        <label class="control-label hidden-xs">{{angCtrl.parentPgNameText}}*:</label>
+        <md-input-container class="reget-ang-md-input-container">
+            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.parentPgNameText}}*</label>
+            <md-select id="cmbParentPg"
+                       name="cmbParentPg" ng-model="angCtrl.editPurchaseGroup.parent_pg_id"
+                       ng-show="angCtrl.adminRoles.is_cg_property_admin"
+                       ng-change="angCtrl.parentPgChanged()"
+                       class="reget-ang-data-control reget-ang-mandatory-cmb-field"
+                       required md-no-asterisk>
+                <!--<md-option><em>Select Parent Purchase Group</em></md-option>-->
+                <md-option ng-repeat="parentPurchaseGroup in angCtrl.parentPurchaseGroups" ng-value="parentPurchaseGroup.id">
+                    {{parentPurchaseGroup.name}}
+                </md-option>
+            </md-select>
+            <div ng-messages="angCtrl.angScopeAny.frmCgAdmin.cmbParentPg.$error" style="color:maroon" role="alert">
+                <div ng-message="required" class="reget-ang-controll-invalid-msg">{{angCtrl.mandatoryText}}</div>
+            </div>
+            <div ng-hide="angCtrl.adminRoles.is_cg_property_admin" style="margin-bottom:2px;">{{angCtrl.editPurchaseGroup.parent_pg_loc_name}}</div>
+        </md-input-container>
+
+    </div>
+
+
+    <hr class="reget-hr-bold" />
+
+    <div>
+        <div class="reget-ang-div-container" style="margin-right:20px;float:left;">
+            <label class="control-label hidden-xs">{{angCtrl.purchaseGroupNameText}}*:</label>
+            <md-input-container class="reget-ang-md-input-container">
+                <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.purchaseGroupNameText}}</label>
+                <input required
+                       id="txtPgName"
+                       name="txtPgName"
+                       ng-model="angCtrl.editPurchaseGroup.local_text[0].text"
+                       ng-show="angCtrl.adminRoles.is_cg_property_admin"
+                       class="reget-ang-data-control reget-ang-mandatory-field reget-pgname"
+                       aria-label="{{angCtrl.purchaseGroupNameText}}" />
+                <div ng-messages="angCtrl.angScopeAny.frmCgAdmin.txtPgName.$error" style="color:maroon" role="alert">
+                    <div ng-message="required" class="reget-ang-controll-invalid-msg">{{angCtrl.mandatoryText}}</div>
+                </div>
+                <div ng-hide="angCtrl.adminRoles.is_cg_property_admin" style="margin-bottom:2px;">{{angCtrl.editPurchaseGroup.local_text[0].text}}</div>
+            </md-input-container>
+        </div>
+    </div>
+
+    <md-button id="btnTranslate" type="button" value="Translate"
+               class="btn reget-ang-control-right-btn reget-btn-img reget-btn-blue reget-btn-translate reget-md-btn-float"
+               ng-show="angCtrl.adminRoles.is_cg_property_admin"
+               style="float:left;"
+               onclick="togglePgNameLoc()">
+        {{angCtrl.translateText}}
+    </md-button>
+
+    <div style="clear:both;"></div>
+
+    <div id="divPgNameLoc" style="display:none;">
+        <regettranslate text1="angCtrl.editPurchaseGroup.local_text[0].text"
+                        text2="angCtrl.editPurchaseGroup.local_text[1].text"
+                        text3="angCtrl.editPurchaseGroup.local_text[2].text"
+                        label1="{{angCtrl.editPurchaseGroup.local_text[0].label}}"
+                        label2="{{angCtrl.editPurchaseGroup.local_text[1].label}}"
+                        label3="{{angCtrl.editPurchaseGroup.local_text[2].label}}"
+                        flag1="{{angCtrl.editPurchaseGroup.local_text[0].flag_url}}"
+                        flag2="{{angCtrl.editPurchaseGroup.local_text[1].flag_url}}"
+                        flag3="{{angCtrl.editPurchaseGroup.local_text[2].flag_url}}"
+                        text1changed="angCtrl.localtext1changed(updatedText)"
+                        text2changed="angCtrl.localtext2changed(updatedText)"
+                        text3changed="angCtrl.localtext3changed(updatedText)">
+        </regettranslate>
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <hr class="reget-hr-bold" />
+
+    <div>
+        <div ng-show="angCtrl.adminRoles.is_cg_appmatrix_admin" style="float:left;margin-left:5px;margin-top:10px;margin-bottom:5px;">
+            <md-checkbox aria-label="angCtrl.isAppNeeded"
+                         class="reget-blue"
+                         style="margin-bottom:5px;"
+                         ng-checked="angCtrl.editPurchaseGroup.is_approval_needed"
+                         ng-click="angCtrl.togglePgApprovalNeeded(angCtrl.editPurchaseGroup)">
+                {{angCtrl.approvalNeededText}}
+            </md-checkbox>
+        </div>
+
+        <div ng-hide="angCtrl.adminRoles.is_cg_appmatrix_admin">
+            <div ng-hide="angCtrl.editPurchaseGroup.is_approval_needed">
+                <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Check20.png" class="reget-check-readonly" />
+                <div class="reget-check-readonly-text">{{angCtrl.approvalNeededText}}</div>
+            </div>
+            <div ng-hide="!angCtrl.editPurchaseGroup.is_approval_needed">
+                <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/UnCheck20.png" class="reget-check-readonly" />
+                <div class="reget-check-readonly-text">{{angCtrl.approvalNeededText}}</div>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+    </div>
+
+    <div>
+        <div ng-show="angCtrl.adminRoles.is_cg_appmatrix_admin" style="float:left;margin-left:5px;margin-top:10px;margin-bottom:5px;">
+            <md-checkbox aria-label="angCtrl.isOrderNeeded"
+                         class="reget-blue"
+                         style="margin-bottom:5px;"
+                         ng-checked="angCtrl.editPurchaseGroup.is_order_needed"
+                         ng-click="angCtrl.togglePgOrderNeeded(angCtrl.editPurchaseGroup)">
+                {{angCtrl.orderAllowedText}}
+            </md-checkbox>
+        </div>
+
+        <div ng-hide="angCtrl.adminRoles.is_cg_appmatrix_admin">
+            <div ng-hide="angCtrl.editPurchaseGroup.is_order_needed">
+                <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Check20.png" class="reget-check-readonly" />
+                <div class="reget-check-readonly-text">{{angCtrl.orderAllowedText}}</div>
+            </div>
+            <div ng-hide="!angCtrl.editPurchaseGroup.is_order_needed">
+                <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/UnCheck20.png" class="reget-check-readonly" />
+                <div class="reget-check-readonly-text">{{angCtrl.orderAllowedText}}</div>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+    </div>
+
+    <hr class="reget-hr-bold" />
+
+
+    <!-- ********************* Approval Matrix *******************************************************************************************-->
+    <div ng-show="angCtrl.editPurchaseGroup.is_approval_needed">
+        <table class="hidden-xs" ng-show="angCtrl.adminRoles.is_cg_appmatrix_admin" style="margin-top:20px;">
+            <thead>
+                <tr class="reget-tr-underline-header-cgedit">
+                    <th class="reget-td-readonly"></th>
+                    <th class="reget-td-readonly"></th>
+                    <th class="reget-td-readonly">{{angCtrl.lowerLimitText}}  ({{angCtrl.selectedCurrencyCode}})*</th>
+                    <th class="reget-td-readonly">{{angCtrl.upperLimitText}}  ({{angCtrl.selectedCurrencyCode}})*</th>
+                    <th class="reget-td-readonly">{{angCtrl.approveManText}}*</th>
+                </tr>
+            </thead>
+
+            <tr id="trLimit_{{$index}}" ng-repeat="limitItem in angCtrl.editPurchaseGroup.purchase_group_limit" ng-class="limitItem.is_visible ? 'reget-tr-underline-cgedit' : 'reget-hidden'" style="vertical-align:top">
+                <td class="reget-td-edit">
+                    <md-button class="md-fab md-mini reget-circle-btn" aria-label="{{angCtrl.removeText}}"
+                               ng-click="angCtrl.deleteLimit(limitItem.limit_id);">
+                        <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Remove.png" style="width:16px;height:16px;" />
+                        <md-tooltip>{{angCtrl.removeText}}</md-tooltip>
+                    </md-button>
+                </td>
+                <td style="max-width:100px;vertical-align:top;padding-top:10px;">
+                    <div>
+                        <md-button id="btnUp_{{limitItem.limit_id}}"
+                                   ng-class="{'reget-hidden' : limitItem.is_first == true, 'md-fab md-mini md-primary reget-circle-btn' : limitItem.is_first == false}"
+                                   aria-label="{{angCtrl.upText}}" style="background-color:#337ab7;"
+                                   ng-click="angCtrl.moveLimitUp(limitItem.limit_id);">
+                            <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Up.png" style="width:16px;height:16px;" />
+                            <md-tooltip>{{angCtrl.upText}}</md-tooltip>
+                        </md-button>
+                    </div>
+                    <div>
+                        <md-button ng-class="{'reget-hidden' : limitItem.is_last == true, 'md-fab md-mini md-primary reget-circle-btn' : limitItem.is_last == false}"
+                                   aria-label="{{angCtrl.downText}}" style="background-color:#337ab7;float:right"
+                                   ng-click="angCtrl.moveLimitDown(limitItem.limit_id);">
+                            <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Down.png" style="width:16px;height:16px;" />
+                            <md-tooltip>{{angCtrl.downText}}</md-tooltip>
+                        </md-button>
+                    </div>
+                </td>
+                <td class="reget-td-edit" style="text-align:left">
+                    <div style="padding-top:8px">
+                        <div style="vertical-align:middle;margin-right:15px;margin-left:15px;">
+                            <md-input-container class="reget-ang-md-input-container" ng-class="limitItem.is_bottom_unlimited ? 'reget-hidden' : 'reget-display'"
+                                                style="margin-bottom:10px;">
+                                <input required
+                                       id="txtLimitBottom_{{limitItem.limit_id}}"
+                                       name="txtLimitBottom_{{limitItem.limit_id}}"
+                                       type="text"
+                                       onkeydown="validateDecimalNumber(event)"
+                                       ng-model="limitItem.limit_bottom_text"
+                                       class="reget-ang-data-control reget-ang-data-control-number reget-app-matrix-limit-text reget-ang-mandatory-field"
+                                       aria-label="{{angCtrl.lowerLimitText}}"
+                                       ng-change="angCtrl.checkAppLimitBottomLowerThanTop(limitItem, true);" />
+
+                                <md-tooltip>{{angCtrl.lowerLimitText}}</md-tooltip>
+                                <div ng-messages="angCtrl.angScopeAny.frmCgAdmin['txtLimitBottom_' + limitItem.limit_id].$error" style="color:maroon" role="alert">
+                                    <div ng-message="required" class="reget-ang-controll-invalid-msg">{{angCtrl.mandatoryDecimal}}</div>
+                                    <div ng-message="bottomhighererror" class="reget-ang-controll-invalid-msg">{{angCtrl.lowerLimitText}} > {{angCtrl.upperLimitText}}</div>
+                                </div>
+
+                            </md-input-container>
+
+                        </div>
+
+                        <div style="vertical-align:middle;padding-top:5px;margin-left:15px;margin-right:15px;">
+                            <md-checkbox ng-checked="limitItem.is_bottom_unlimited"
+                                         aria-label="{{angCtrl.noLimitText}}" class="reget-blue" style="border-collapse:separate;"
+                                         ng-click="angCtrl.toggleBottomUnlimited(limitItem)">
+                                {{angCtrl.noLimitText}}
+                            </md-checkbox>
+
+                        </div>
+
+                        <div ng-hide="limitItem.is_bottom_unlimited" style="vertical-align:middle;padding-top:5px;margin-left:15px;margin-right:15px;">
+                            <md-checkbox id="ckbLimitBottomMulti_{{limitItem.limit_id}}" ng-checked="limitItem.is_limit_bottom_multipl"
+                                         aria-label="BottomMultipl" class="reget-blue" style="border-collapse:separate;"
+                                         ng-click="angCtrl.toggleBottomMultipl(limitItem)">
+                                {{angCtrl.multiplText}}
+                            </md-checkbox>
+
+                        </div>
+                    </div>
+                </td>
+
+                <td class="reget-td-edit" style="text-align:left">
+                    <div style="padding-top:8px;">
+                        <div style="vertical-align:middle;margin-right:15px;margin-left:15px;">
+                            <md-input-container class="reget-ang-md-input-container" ng-class="limitItem.is_top_unlimited ? 'reget-hidden' : 'reget-display'"
+                                                style="margin-bottom:10px;">
+                                <input required
+                                       id="txtLimitTop_{{limitItem.limit_id}}"
+                                       name="txtLimitTop_{{limitItem.limit_id}}"
+                                       type="text"
+                                       onkeydown="validateDecimalNumber(event)"
+                                       ng-model="limitItem.limit_top_text"
+                                       class="reget-ang-data-control reget-ang-data-control-number reget-app-matrix-limit-text reget-ang-mandatory-field"
+                                       aria-label="{{angCtrl.upperLimitText}}"
+                                       ng-change="angCtrl.checkAppLimitBottomLowerThanTop(limitItem, false);" />
+                                <md-tooltip>{{angCtrl.upperLimitText}}</md-tooltip>
+                                <div ng-messages="angCtrl.angScopeAny.frmCgAdmin['txtLimitTop_' + limitItem.limit_id].$error" style="color:maroon" role="alert">
+                                    <div ng-message="required" class="reget-ang-controll-invalid-msg">{{angCtrl.mandatoryDecimal}}</div>
+                                    <div ng-message="bottomhighererror" class="reget-ang-controll-invalid-msg">{{angCtrl.lowerLimitText}} > {{angCtrl.upperLimitText}}</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+
+                        <div style="vertical-align:middle;padding-top:5px;margin-left:15px;margin-right:15px;">
+                            <md-checkbox id="ckbLimitTopUnlimited_{{limitItem.limit_id}}" aria-label="{{angCtrl.noLimitText}}"
+                                         ng-checked="limitItem.is_top_unlimited" class="reget-blue" style="border-collapse:separate;"
+                                         ng-click="angCtrl.toggleTopUnlimited(limitItem)">
+                                {{angCtrl.noLimitText}}
+                            </md-checkbox>
+
+                        </div>
+
+                        <div ng-hide="limitItem.is_top_unlimited" style="vertical-align:middle;padding-top:5px;margin-left:15px;margin-right:15px;">
+                            <md-checkbox id="ckbLimitTopMulti_{{limitItem.limit_id}}" ng-checked="limitItem.is_limit_top_multipl"
+                                         aria-label="TopMultipl" class="reget-blue" style="border-collapse:separate;"
+                                         ng-click="angCtrl.toggleTopMultipl(limitItem)">
+                                {{angCtrl.multiplText}}
+                            </md-checkbox>
+
+                        </div>
+                    </div>
+                </td>
+
+                <td class="reget-td-edit">
+                    <div>
+                        <app_manager ng-repeat="managerRole in limitItem.manager_role"
+                                     deleteappman="angCtrl.deleteAppManager(limitItem.limit_id, $index)"
+                                     limitid="{{limitItem.limit_id}}"
+                                     userid="{{managerRole.participant_id}}"
+                                     surname="{{managerRole.participant.surname}}"
+                                     firstname="{{managerRole.participant.first_name}}"
+                                     removetext="{{angCtrl.removeText}}"
+                                     rooturl="{{angCtrl.getRegetRootUrl()}}"
+                                     style="float:left;">
+                        </app_manager>
+
+                        <div ng-class="limitItem.is_app_man_selected ? 'reget-hidden':'reget-ang-controll-invalid-msg-no-ag'"
+                             aria-live="assertive" style="float:left;margin-top:13px;vertical-align:bottom;">
+                            {{angCtrl.selectAppManUserText}}
+                        </div>
+
+                        <md-button id="btnAddManager_{{limitItem.limit_id}}"
+                                   class="md-fab md-mini reget-circle-btn"
+                                   aria-label="{{angCtrl.addText}}"
+                                   style="background-color:#4caf50;float:right;"
+                                   ng-click="angCtrl.displayAppManAutoCompl(limitItem.limit_id, false);">
+                            <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                            <md-tooltip>{{angCtrl.addText}}</md-tooltip>
+                        </md-button>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div>
+                        <md-autocomplete id="appManAutoCompl_{{limitItem.limit_id}}"
+                                         md-input-id="txtAppManAutoCompl_{{limitItem.limit_id}}"
+                                         md-min-length="0"
+                                         md-item-text="item.name_surname_first"
+                                         md-search-text="angCtrl.searchstringappman"
+                                         md-items="item in angCtrl.searchParticipant(angCtrl.searchstringappman)"
+                                         md-selected-item="angCtrl.selectedAppMan"
+                                         md-delay="300"
+                                         md-no-cache="true"
+                                         placeholder="{{angCtrl.selectAppManUserText}}"
+                                         md-selected-item-change="angCtrl.appManSelectedItemChange(item, limitItem.limit_id, false)"
+                                         class="reget-autocomplete"
+                                         style="min-width:300px;margin-top:5px;display:none">
+                            <md-item-template>
+                                <div>
+                                    <img ng-src="{{item.country_flag}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                    <span md-highlight-text="angCtrl.searchstringappman" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                                </div>
+                            </md-item-template>
+
+                            <md-not-found>
+                                "{{angCtrl.searchstringappman}}" {{angCtrl.notFoundText}}.
+                            </md-not-found>
+
+                        </md-autocomplete>
+                    </div>
+
+                </td>
+
+            </tr>
+
+        </table>
+        <!--******************************************************************************************************************************-->
+        <!-- Smart phone Start -->
+        <div id="divSmartphone" class="hidden-sm hidden-md hidden-lg" ng-show="angCtrl.adminRoles.is_cg_appmatrix_admin">
+            <div ng-repeat="limitItem in angCtrl.editPurchaseGroup.purchase_group_limit" ng-show="limitItem.is_visible" style="margin-bottom:10px;">
+                <div id="divLimitHeader_{{limitItem.limit_id}}" class="reget-box-header reget-box-header-level2" ng-click="angCtrl.toggleAppLimit(limitItem.limit_id);">
+                    <img id="imgLimitCollExp_{{limitItem.limit_id}}" src="../Content/Images/Panel/Expand.png" class="reget-appmatrix-expcolimg" data-target="#divCgParam" title="@RequestResource.Display"
+                         style="float:left;vertical-align:middle;width:20px;height:20px;margin-right:10px;" />
+                    <span><b>{{angCtrl.editPurchaseGroup.local_text[0].text}}</b></span><span style="font-weight:normal;font-size:small;"> ({{angCtrl.aprovalLevelText}} {{$index + 1}})</span>
+                </div>
+
+                <div id="divLimitContent_{{limitItem.limit_id}}" style="display:none;padding-top:10px;">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="border-bottom:1px #999 solid;max-width:50px;width:50px;min-width:50px;">
+
+                                <!--</td>
+                            <td style="border-bottom:1px #999 solid;max-width:100px;width:20%;">-->
+                                <div>
+                                    <md-button id="btnUp_{{limitItem.limit_id}}"
+                                               ng-class="{'reget-hidden' : limitItem.is_first == true, 'md-fab md-mini md-primary reget-circle-btn' : limitItem.is_first == false}"
+                                               aria-label="{{angCtrl.upText}}" style="background-color:#337ab7;float:left;"
+                                               ng-click="angCtrl.moveLimitUp(limitItem.limit_id);">
+                                        <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Up.png" style="width:16px;height:16px;" />
+                                        <md-tooltip>{{angCtrl.upText}}</md-tooltip>
+                                    </md-button>
+                                </div>
+                                <div>
+                                    <md-button ng-class="{'reget-hidden' : limitItem.is_last == true, 'md-fab md-mini md-primary reget-circle-btn' : limitItem.is_last == false}"
+                                               aria-label="{{angCtrl.downText}}" style="background-color:#337ab7;float:left;"
+                                               ng-click="moveLimitDown(limitItem.limit_id);">
+                                        <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Down.png" style="width:16px;height:16px;" />
+                                        <md-tooltip>{{angCtrl.downText}}</md-tooltip>
+                                    </md-button>
+                                </div>
+
+                                <div style="padding-top:10px;">
+
+                                    <md-button class="md-fab md-mini reget-circle-btn" aria-label="{{angCtrl.removeText}}"
+                                               ng-click="angCtrl.deleteLimit(limitItem.limit_id);" style="float:left;">
+                                        <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Remove.png" style="width:16px;height:16px;" />
+                                        <md-tooltip>{{angCtrl.removeText}}</md-tooltip>
+                                    </md-button>
+                                </div>
+                            </td>
+
+                            <td style="border-bottom:1px #999 solid;width:90%;padding-left:15px;">
+
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="padding-top:15px;">
+                                            <div>
+                                                <div>
+                                                    <label ng-show="limitItem.is_bottom_unlimited" class="reget-ang-lbl-control-top" style="font-size:11px;">{{angCtrl.lowerLimitText}} {{$index + 1}} ({{angCtrl.selectedCurrencyCode}})</label>
+                                                    <md-input-container class="reget-ang-md-input-container md-input-has-value" ng-hide="limitItem.is_bottom_unlimited" style="margin-top:10px;">
+                                                        <label class="reget-ang-lbl-control-top">{{angCtrl.lowerLimitText}} {{$index + 1}} ({{angCtrl.selectedCurrencyCode}})</label>
+                                                        <input required
+                                                               id="txtLimitBottomMobile_{{limitItem.limit_id}}"
+                                                               name="txtLimitBottomMobile_{{limitItem.limit_id}}"
+                                                               type="text"
+                                                               onkeydown="validateDecimalNumber(event)"
+                                                               ng-model="limitItem.limit_bottom_text"
+                                                               class="reget-ang-data-control reget-ang-data-control-number reget-ang-mandatory-field"
+                                                               aria-label="{{angCtrl.lowerLimitText}}"
+                                                               ng-change="angCtrl.checkAppLimitBottomLowerThanTop(limitItem, true);" />
+
+                                                        <md-tooltip>{{angCtrl.lowerLimitText}}</md-tooltip>
+                                                        <div ng-messages="angCtrl.angScopeAny.frmCgAdmin['txtLimitBottomMobile_' + limitItem.limit_id].$error" style="color:maroon" role="alert">
+                                                            <div ng-message="required" class="reget-ang-controll-invalid-msg">{{angCtrl.mandatoryDecimal}}</div>
+                                                            <div ng-message="bottomhighererror" class="reget-ang-controll-invalid-msg">{{angCtrl.lowerLimitText}} > {{angCtrl.upperLimitText}}</div>
+                                                        </div>
+                                                    </md-input-container>
+
+                                                </div>
+
+                                                <div style="vertical-align:middle;padding-top:15px;margin-left:15px;margin-right:15px;">
+                                                    <md-checkbox ng-checked="limitItem.is_bottom_unlimited"
+                                                                 aria-label="{{angCtrl.noLimitText}}" class="reget-blue" style="border-collapse:separate;"
+                                                                 ng-click="angCtrl.toggleBottomUnlimited(limitItem)">
+                                                        {{angCtrl.noLimitText}}
+                                                    </md-checkbox>
+
+                                                </div>
+
+                                                <div ng-hide="limitItem.is_bottom_unlimited" style="vertical-align:middle;margin-left:15px;margin-right:15px;">
+                                                    <md-checkbox ng-checked="limitItem.is_limit_bottom_multipl"
+                                                                 aria-label="BottomMultipl" class="reget-blue" style="border-collapse:separate;"
+                                                                 ng-click="angCtrl.toggleBottomMultipl(limitItem)">
+                                                        {{angCtrl.multiplText}}
+                                                    </md-checkbox>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <hr />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding-top:15px;">
+                                            <div>
+                                                <div>
+                                                    <label ng-show="limitItem.is_top_unlimited" class="reget-ang-lbl-control-top" style="font-size:11px;">{{angCtrl.upperLimitText}} {{$index + 1}} ({{angCtrl.selectedCurrencyCode}})</label>
+                                                    <md-input-container class="reget-ang-md-input-container md-input-has-value" ng-hide="limitItem.is_top_unlimited" style="margin-top:10px;">
+                                                        <label class="reget-ang-lbl-control-top">{{angCtrl.upperLimitText}} {{$index + 1}} ({{angCtrl.selectedCurrencyCode}})</label>
+                                                        <input required
+                                                               id="txtLimitTopMobile_{{limitItem.limit_id}}"
+                                                               name="txtLimitTopMobile_{{limitItem.limit_id}}"
+                                                               type="text"
+                                                               onkeydown="validateDecimalNumber(event)"
+                                                               ng-model="limitItem.limit_top_text"
+                                                               class="reget-ang-data-control reget-ang-data-control-number reget-ang-mandatory-field"
+                                                               aria-label="{{angCtrl.upperLimitText}}"
+                                                               ng-change="angCtrl.checkAppLimitBottomLowerThanTop(limitItem, false);" />
+                                                        <md-tooltip>{{angCtrl.upperLimitText}}</md-tooltip>
+                                                        <div ng-messages="angCtrl.angScopeAny.frmCgAdmin['txtLimitTopMobile_' + limitItem.limit_id].$error" style="color:maroon" role="alert">
+                                                            <div ng-message="required" class="reget-ang-controll-invalid-msg">{{angCtrl.mandatoryDecimal}}</div>
+                                                            <div ng-message="bottomhighererror" class="reget-ang-controll-invalid-msg">{{angCtrl.lowerLimitText}} > {{angCtrl.upperLimitText}}</div>
+                                                        </div>
+
+                                                    </md-input-container>
+
+                                                </div>
+
+                                                <div style="vertical-align:middle;padding-top:15px;margin-left:15px;margin-right:15px;">
+                                                    <md-checkbox id="ckbLimitTopPhone_{{limitItem.limit_id}}" aria-label="{{angCtrl.noLimitText}}"
+                                                                 ng-checked="limitItem.is_top_unlimited" class="reget-blue" style="border-collapse:separate;"
+                                                                 ng-click="angCtrl.toggleTopUnlimited(limitItem)">
+                                                        {{angCtrl.noLimitText}}
+                                                    </md-checkbox>
+
+                                                </div>
+
+                                                <div ng-hide="limitItem.is_top_unlimited" style="vertical-align:middle;margin-left:15px;margin-right:15px;">
+                                                    <md-checkbox ng-checked="limitItem.is_limit_top_multipl"
+                                                                 aria-label="angCtrl.topMultipl" class="reget-blue" style="border-collapse:separate;"
+                                                                 ng-click="angCtrl.toggleTopMultipl(limitItem)">
+                                                        {{angCtrl.multiplText}}
+                                                    </md-checkbox>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div style="clear:both;"></div>
+
+                                <hr />
+
+                                <div style="margin-bottom:10px;">
+                                    <div>
+                                        <app_manager ng-repeat="managerRole in limitItem.manager_role"
+                                                     deleteappman="angCtrl.deleteAppManager(limitItem.limit_id, $index)"
+                                                     limitid="{{limitItem.limit_id}}"
+                                                     userid="{{managerRole.participant_id}}"
+                                                     surname="{{managerRole.participant.surname}}"
+                                                     firstname="{{managerRole.participant.first_name}}"
+                                                     removetext="{{angCtrl.removeText}}"
+                                                     rooturl="{{angCtrl.getRegetRootUrl()}}"
+                                                     style="float:left;">
+                                        </app_manager>
+
+                                        <div ng-class="limitItem.is_app_man_selected ? 'reget-hidden':'reget-ang-controll-invalid-msg-no-ag'"
+                                             aria-live="assertive" style="float:left;margin-top:13px;vertical-align:bottom;">
+                                            {{angCtrl.selectAppManUserText}}
+                                        </div>
+
+                                        <md-button class="md-fab md-mini reget-circle-btn"
+                                                   aria-label="{{angCtrl.addText}}"
+                                                   style="background-color:#4caf50;float:left;"
+                                                   ng-click="angCtrl.displayAppManAutoCompl(limitItem.limit_id, true);">
+                                            <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                                            <md-tooltip>{{angCtrl.addText}}</md-tooltip>
+                                        </md-button>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div>
+                                        <md-autocomplete id="appManAutoComplMobile_{{limitItem.limit_id}}"
+                                                         md-min-length="0"
+                                                         md-item-text="item.name_surname_first"
+                                                         md-search-text="angCtrl.searchstringappman"
+                                                         md-items="item in angCtrl.searchParticipant(angCtrl.searchstringappman)"
+                                                         md-selected-item="angCtrl.selectedAppMan"
+                                                         md-no-cache="true"
+                                                         md-delay="300"
+                                                         placeholder="{{angCtrl.selectAppManUserText}}"
+                                                         md-selected-item-change="angCtrl.appManSelectedItemChange(item, limitItem.limit_id, true)"
+                                                         class="reget-autocomplete"
+                                                         style="min-width:300px;margin-top:5px;display:none">
+                                            <md-item-template>
+                                                <div>
+                                                    <img ng-src="{{item.country_flag}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                                    <span md-highlight-text="angCtrl.searchstringappman" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                                                </div>
+                                            </md-item-template>
+
+                                            <md-not-found>
+                                                "{{angCtrl.searchstringappman}}" {{angCtrl.notFoundText}}.
+                                            </md-not-found>
+
+                                        </md-autocomplete>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Smart phone End -->
+        <!-- Read Only table Start -->
+        <div ng-if="!angCtrl.adminRoles.is_cg_appmatrix_admin">
+            <table style="margin-bottom:20px;margin-top:20px;">
+                <thead>
+                    <tr class="reget-tr-underline-header-cgedit">
+                        <th class="reget-td-readonly">
+                            <span class="hidden-xs">{{angCtrl.lowerLimitText}}</span>
+                            <span class="hidden-sm hidden-md hidden-lg">{{angCtrl.fromText}}</span> ({{angCtrl.selectedCurrencyCode}})*
+                        </th>
+                        <th class="reget-td-readonly">
+                            <span class="hidden-xs">{{angCtrl.upperLimitText}}</span>
+                            <span class="hidden-sm hidden-md hidden-lg">{{angCtrl.toText}}</span> ({{angCtrl.selectedCurrencyCode}})*
+                        </th>
+                        <th class="reget-td-readonly">{{angCtrl.approveManText}}*</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="limitItem in angCtrl.editPurchaseGroup.purchase_group_limit" m.prototype.$digest ng-class="limitItem.is_visible ? 'reget-tr-underline-cgedit' : 'reget-hidden'">
+                    <td class="reget-td-readonly" style="text-align:right;">
+                        <span style="padding-left:10px;padding-left:10px;" ng-class="limitItem.is_bottom_unlimited ? 'reget-hidden' : 'reget-dBisplay'">{{limitItem.limit_bottom}}</span>
+                        <span style="padding-left:10px;padding-left:10px;" ng-show="limitItem.is_bottom_unlimited">
+                            {{angCtrl.noLimitText}}
+                        </span>
+                    </td>
+                    <td class="reget-td-readonly" style="text-align:right;">
+                        <span style="padding-left:10px;padding-left:10px;" ng-hide="limitItem.is_top_unlimited">{{limitItem.limit_top}}</span>
+                        <span style="padding-left:10px;padding-left:10px;" ng-show="limitItem.is_top_unlimited">
+                            {{angCtrl.noLimitText}}
+                        </span>
+
+                    </td>
+                    <td class="reget-td-readonly">
+                        <div ng-repeat="appMan in limitItem.manager_role">
+                            <div>
+                                {{appMan.participant.surname}} {{appMan.participants.first_name}}
+                                <span ng-hide="(angCtrl.isStringValueNullOrEmpty(appMan.participant.substituted_by))">&nbsp;(@RequestResource.ManagerSubstitution {{appMan.participant.substituted_by}} @RequestResource.To {{appMan.participant.substituted_until}})</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- Read Only table End -->
+
+        <md-button id="btnAddLimit"
+                   ng-show="angCtrl.adminRoles.is_cg_appmatrix_admin"
+                   class="md-fab md-mini reget-circle-btn" aria-label="{{angCtrl.addText}}" style="background-color:#4caf50;margin:13px;" ng-click="angCtrl.addAppLimit();">
+            <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+            <md-tooltip>{{angCtrl.addText}}</md-tooltip>
+        </md-button>
+
+        <hr class="reget-hr-bold" />
+    </div>
+
+    <!-- ***************************** Requestors *********************************************************** -->
+
+    <div style="">
+        <div ng-repeat="centre in angCtrl.editPurchaseGroup.centre">
+
+            <div ng-show="angCtrl.adminRoles.is_cg_requestor_admin">
+                <div style="float:left;padding-top:5px;">
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth" style="margin-left:0px;">{{angCtrl.requestorsText}} {{centre.name}}:</label>
+                    <md-input-container class="reget-ang-md-input-container md-input-has-value">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.requestorsText}} {{centre.name}}</label>
+                        <div class="reget-ang-margin-top-bigger-phone">
+                            <requestoredit ng-repeat="requestor in angCtrl.editPurchaseGroup.requestor"
+                                           ng-if="requestor.centre_id == centre.id"
+                                           expandrequestor="angCtrl.displayRequestorDetail(requestor.participant_id, centre.id)"
+                                           collapserequestor="angCtrl.hideRequestorDetail(requestor.participant_id, centre.id)"
+                                           deleterequestor="angCtrl.deleteRequestor(requestor.participant_id, centre.id, $index, $event)"
+                                           checkallrequestor="angCtrl.checkAllRequestorToggle(requestor.participant_id, centre.id)"
+                                           userid="{{requestor.participant_id}}"
+                                           centreid="{{centre.id}}"
+                                           surname="{{requestor.surname}}"
+                                           firstname="{{requestor.first_name}}"
+                                           removetext="{{angCtrl.removeText}}"
+                                           displaydetailtext="{{angCtrl.displayDetailText}}"
+                                           hidedetailtext="{{angCtrl.hideDetailText}}"
+                                           allrequestortext="{{angCtrl.allRequestorText}}"
+                                           rooturl="{{angCtrl.getRegetRootUrl()}}"
+                                           style="float:left;">
+                            </requestoredit>
+
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div style="float:left;padding-top:2px;">
+                    <md-button id="btnAddRequestor"
+                               class="md-fab md-mini reget-circle-btn"
+                               aria-label="{{angCtrl.addText}}"
+                               style="background-color:#4caf50;float:left;"
+                               ng-click="angCtrl.displayRequestorAutoCompl(centre.id);">
+                        <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                        <md-tooltip>{{angCtrl.addText}}</md-tooltip>
+                    </md-button>
+                </div>
+
+                <div style="float:left;margin-bottom:10px;">
+                    <md-autocomplete id="autoRequestor_{{centre.id}}"
+                                     md-input-id="txtAutoRequestor_{{limitItem.limit_id}}"
+                                     md-min-length="0"
+                                     md-item-text="item.name_surname_first"
+                                     md-search-text="angCtrl.searchstringrequestor"
+                                     md-items="item in angCtrl.searchParticipant(angCtrl.searchstringrequestor)"
+                                     md-selected-item="angCtrl.selectedRequestor"
+                                     md-no-cache="true"
+                                     md-delay="300"
+                                     placeholder="{{angCtrl.selectRequestorText}} ({{centre.name}})"
+                                     md-selected-item-change="angCtrl.requestorSelectedItemChange(item, centre.id)"
+                                     class="reget-autocomplete"
+                                     style="min-width:300px;margin-top:5px;display:none">
+                        <md-item-template>
+                            <div>
+                                <img ng-src="{{item.country_flag}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                <span md-highlight-text="angCtrl.searchstringrequestor" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                            </div>
+                        </md-item-template>
+
+                        <md-not-found>
+                            "{{angCtrl.searchstringrequestor}}" {{angCtrl.NotFoundText}}.
+                        </md-not-found>
+
+                    </md-autocomplete>
+                </div>
+
+
+            </div>
+
+            <div ng-hide="angCtrl.adminRoles.is_cg_requestor_admin">
+                <div class="reget-ang-div-container" style="margin-right:20px;float:left;">
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth" style="margin-left:0px;">{{angCtrl.requestorsText}} {{centre.name}}:</label>
+                    <md-input-container class="reget-ang-md-input-container md-input-has-value" style="min-width:300px;">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.requestorsText}} {{centre.name}}</label>
+                        <div style="float:left;margin-left:5px;" ng-repeat="requestor in angCtrl.editPurchaseGroup.requestor">
+                            <span style="float:left">{{requestor.first_name}} {{requestor.surname}}</span>
+                            <span style="float:left" ng-class="$index == (angCtrl.editPurchaseGroup.requestor.length - 1) ? 'reget-hidden' : 'reget-display'">, </span>
+                        </div>
+                    </md-input-container>
+                </div>
+
+            </div>
+
+            <div style="clear:both;"></div>
+            <hr class="reget-hr-bold" />
+        </div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+        <div id="divOrderers_{{angCtrl.editPurchaseGroup.id}}" ng-hide="angCtrl.editPurchaseGroup.is_order_needed == false">
+
+            <div ng-show="angCtrl.adminRoles.is_cg_orderer_admin">
+                <div class="reget-ang-div-container" style="margin-right:20px;">
+                    <div style="float: left;padding-top:5px;">
+                        <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth" style="margin-left:0px;">{{angCtrl.orderersText}} :</label>
+                        <md-input-container class="reget-ang-md-input-container md-input-has-value">
+                            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.orderersText}}</label>
+
+                            <div ng-show="angCtrl.adminRoles.is_cg_orderer_admin" class="reget-ang-margin-top-bigger-phone">
+                                <ordereredit ng-repeat="orderer in angCtrl.editPurchaseGroup.orderer"
+                                             expandorderer="angCtrl.displayOrdererDetail(orderer.participant_id)"
+                                             collapseorderer="angCtrl.hideOrdererDetail(orderer.participant_id)"
+                                             deleteorderer="angCtrl.deleteOrderer(orderer.participant_id, $index, $event)"
+                                             checkallorderer="angCtrl.checkAllOrdererToggle(orderer.participant_id)"
+                                             userid="{{orderer.participant_id}}"
+                                             surname="{{orderer.surname}}"
+                                             firstname="{{orderer.first_name}}"
+                                             removetext="{{angCtrl.removeText}}"
+                                             displaydetailtext="{{angCtrl.displayDetailText}}"
+                                             hidedetailtext="{{angCtrl.hideDetailText}}"
+                                             allorderertext="{{angCtrl.allOrdererText}}"
+                                             rooturl="{{angCtrl.getRegetRootUrl()}}"
+                                             style="float:left;">
+                                </ordereredit>
+
+
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <div style="float:left;padding-top:2px;">
+                        <md-button id="btnAddOrderer"
+                                   class="md-fab md-mini reget-circle-btn"
+                                   aria-label="{{angCtrl.addText}}"
+                                   style="background-color:#4caf50;float:left;"
+                                   ng-click="angCtrl.displayOrdererAutoCompl();"
+                                   ng-if="!angCtrl.editPurchaseGroup.self_ordered">
+                            <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Add.png" style="width:16px;height:16px;" />
+                            <md-tooltip>{{angCtrl.addText}}</md-tooltip>
+                        </md-button>
+                    </div>
+
+                    <div style="float:left;margin-bottom:10px;">
+                        <md-autocomplete id="autoOrderer"
+                                         md-input-id="txtAutoOrderer"
+                                         md-min-length="0"
+                                         md-item-text="item.name_surname_first"
+                                         md-search-text="angCtrl.searchstringorderer"
+                                         md-items="item in angCtrl.searchParticipant(angCtrl.searchstringorderer)"
+                                         md-selected-item="angCtrl.selectedOrderer"
+                                         md-no-cache="true"
+                                         md-delay="300"
+                                         placeholder="{{angCtrl.selectOrdererText}}"
+                                         md-selected-item-change="angCtrl.ordererSelectedItemChange(item)"
+                                         class="reget-autocomplete"
+                                         style="min-width:300px;margin-top:5px;display:none">
+                            <md-item-template>
+                                <div>
+                                    <img ng-src="{{item.country_flag}}" class="reget-img-border-dark" style="width:24px;height:16px;vertical-align: middle;" />
+                                    <span md-highlight-text="angCtrl.searchstringorderer" md-highlight-flags="i" style="vertical-align: middle; margin-left:5px;">{{item.surname}} {{item.first_name}}</span>
+                                </div>
+                            </md-item-template>
+
+                            <md-not-found>
+                                "{{angCtrl.searchstringorderer}}" {{angCtrl.notFoundText}}.
+                            </md-not-found>
+
+                        </md-autocomplete>
+                    </div>
+
+                    <div>
+                        <hr ng-if="!angCtrl.editPurchaseGroup.self_ordered" />
+                        <md-checkbox id="ckbSelfOrdered"
+                                     aria-label="SelfOrdered"
+                                     class="reget-blue"
+                                     ng-model="angCtrl.editPurchaseGroup.self_ordered"
+                                     ng-change="angCtrl.checkSelfOrdered()"
+                                     style="margin-bottom:0px;">
+                            {{angCtrl.selfOrderedText}}
+                        </md-checkbox>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--Orderer read only-->
+            <div ng-hide="angCtrl.adminRoles.is_cg_orderer_admin">
+                <div class="reget-ang-div-container" style="margin-right:20px;float:left;">
+                    <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth" style="margin-left:0px;">{{angCtrl.orderersText}}:</label>
+                    <md-input-container class="reget-ang-md-input-container md-input-has-value" style="min-width:300px;">
+                        <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.orderersText}}</label>
+
+                        <div style="float:left;margin-left:5px;" ng-repeat="orderer in angCtrl.editPurchaseGroup.orderer">
+                            <span style="float:left">{{orderer.first_name}} {{orderer.surname}}</span>
+                            <span style="float:left" ng-hide="angCtrl.isStringValueNullOrEmpty(orderer.substituted_by)">&nbsp;({{angCtrl.managerSubstitutionText}} {{orderer.substituted_by}} {{ToText}} {{orderer.substituted_until}})</span>
+                            <span style="float:left" ng-class="$index == (angCtrl.editPurchaseGroup.orderer.length - 1) ? 'reget-hidden' : 'reget-display'">, </span>
+                        </div>
+
+                    </md-input-container>
+
+                </div>
+
+                <div>
+                    <div ng-show="angCtrl.editPurchaseGroup.self_ordered">
+                        <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Check20.png" class="reget-check-readonly" />
+                        <div class="reget-check-readonly-text">{{angCtrl.selfOrderedText}}</div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <hr class="reget-hr-bold" ng-show="(pgItem.default_supplier || angCtrl.adminRoles.is_cg_appmatrix_admin) && angCtrl.editPurchaseGroup.is_order_needed" />
+
+    <div style="display:block;margin-top:20px;margin-bottom:20px;" ng-show="angCtrl.adminRoles.is_cg_appmatrix_admin && angCtrl.editPurchaseGroup.is_order_needed">
+        <label class="control-label hidden-xs reget-ang-lbl-control-left-nowidth" style="margin-left:0px;float:left;">{{angCtrl.defaultSupplierText}} :</label>
+        <md-input-container class="reget-ang-md-input-container md-input-has-value" style="float:left;">
+            <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.defaultSupplierText}}</label>
+        </md-input-container>
+
+        <div style="float:left;">
+            <md-autocomplete id="agDefaultSupplier"
+                             md-min-length="2"
+                             ng-disabled="false"
+                             md-no-cache="true"
+                             md-selected-item="angCtrl.selectedDefaultSupplier"
+                             md-search-text="angCtrl.searchstringdefaultsupplier"
+                             md-selected-item-change="angCtrl.defaultSupplierSelectedItemChange(item)"
+                             md-items="item in angCtrl.defaultSupplierQuerySearch(angCtrl.searchstringdefaultsupplier)"
+                             md-item-text="item.supp_name"
+                             md-delay="300"
+                             placeholder={{angCtrl.whoWillBeDefaultSupplierText}}
+                             md-input-id="txtDefaultSupplier"
+                             class="reget-autocomplete-white reget-pgname">
+                <md-item-template>
+                    <span md-highlight-text="angCtrl.searchstringdefaultsupplier" md-highlight-flags="i">{{item.supp_name}}</span>
+                </md-item-template>
+                <md-not-found>
+                    "{{angCtrl.searchstringdefaultsupplier}}" {{angCtrl.notFoundText}}.
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+
+        <!--<div ng-hide="angCtrl.isValueNullOrUndefined(angCtrl.selectedDefaultSupplier) || angCtrl.adminRoles.is_cg_appmatrix_admin">
+            <div class="reget-ang-div-container" style="margin-right:20px;float:left;">
+                <label class="control-label hidden-xs">{{angCtrl.defaultSupplierText}}:</label>
+                <md-input-container class="reget-ang-md-input-container" style="min-width:300px;">
+                    <label class="hidden-sm hidden-md hidden-lg reget-ang-lbl-control-top">{{angCtrl.defaultSupplierText}}</label>
+                    <input value="{{angCtrl.selectedDefaultSupplier.supp_name}}" ng-show="1==0" />
+                    <div style="margin-bottom:2px;">{{angCtrl.selectedDefaultSupplier.supp_name}}</div>
+                </md-input-container>
+            </div>
+        </div>-->
+
+        <div style="clear:both;"></div>
+    </div>
+
+    <div style="clear:both;"></div>
+    <hr class="reget-hr-bold" ng-show="angCtrl.adminRoles.is_cg_appmatrix_admin && angCtrl.editPurchaseGroup.is_order_needed" />
+
+    <div ng-show="angCtrl.adminRoles.is_cg_appmatrix_admin" ng-class="angCtrl.editPurchaseGroup.is_active?'active-cg':'non-active-cg'"
+         style="float:left;margin-left:5px;margin-top:10px;margin-bottom:10px;">
+        <md-checkbox aria-label="angCtrl.isCgActive"
+                     class="reget-blue"
+                     style="margin-bottom:5px;"
+                     ng-checked="angCtrl.editPurchaseGroup.is_active"
+                     ng-click="angCtrl.togglePgActive(angCtrl.editPurchaseGroup)">
+            {{angCtrl.activeText}}
+        </md-checkbox>
+    </div>
+
+    <div ng-hide="angCtrl.adminRoles.is_cg_appmatrix_admin">
+        <div ng-hide="!angCtrl.editPurchaseGroup.is_active">
+            <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/Check20.png" class="reget-check-readonly" />
+            <div class="reget-check-readonly-text">{{angCtrl.activeText}}</div>
+        </div>
+        <div ng-hide="angCtrl.editPurchaseGroup.is_active">
+            <img ng-src="{{angCtrl.getRegetRootUrl()}}Content/Images/Controll/UnCheck20.png" class="reget-check-readonly" />
+            <div class="reget-check-readonly-text">{{angCtrl.activeText}}</div>
+        </div>
+
+    </div>
+    
+    <div style="clear:both;"></div>
+    <hr class="reget-hr-bold" />
+
+    <div style="margin-top:25px;">
+        <md-button id="btnSave"
+                   class="btn reget-btn reget-btn-img reget-btn-green reget-btn-save"
+                   ng-click="angCtrl.savePurchaseGroup(angCtrl.dataWasSavedText, angCtrl.saveErrorText);">
+            {{angCtrl.saveText}}
+        </md-button>
+
+        <md-button class="btn reget-btn reget-btn-img reget-btn-blue reget-btn-back"
+                   ng-click="angCtrl.closePurchaseGroup();">
+            {{angCtrl.cancelText}}
+        </md-button>
+    </div>
+    <div class="ng-binding reget-ang-controll-invalid-msg-no-ag">
+        {{angCtrl.saveErrMsg}}
+    </div>
+</div>

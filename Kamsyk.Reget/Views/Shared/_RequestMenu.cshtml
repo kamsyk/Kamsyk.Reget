@@ -1,0 +1,495 @@
+﻿@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.Content.UrlParams;
+
+@{
+    string controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+    string actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+    var baseController = ViewContext.Controller as BaseController;
+    string notActiveSelectCss = "reget-navbar";
+    string activeSelectCss = "reget-navbar reget-navbar-active";
+    string notActiveToggleSelectCss = "dropdown-toggle reget-navbar";
+    string activeToggleSelectCss = "dropdown-toggle reget-navbar reget-navbar-active";
+    string notActiveSelectSubmenuCss = "reget-navbar reget-navbar-submenu";
+    string activeSelectSubmenuCss = "reget-navbar reget-navbar-submenu-selected";
+    //string notActiveSelectSubmenuLevel2Css = "reget-navbar reget-navbar-submenu reget-navbar-submenu-level2";
+    //string activeSelectSubmenuLevel2Css = "reget-navbar reget-navbar-submenu-selected reget-navbar-submenu-level2";
+    string css = null;
+    string cssToggle = null;
+
+    bool isUserInfo = (ViewBag.ActionDesc != null && ViewBag.ActionDesc == "CurrentUserInfo");
+
+    //Tmp property
+    bool isRequestVisible = (baseController.CurrentUser.Participant.id == 0);
+    isRequestVisible = isRequestVisible || baseController.CurrentUser.UserName == "syka" || baseController.CurrentUser.UserName == "burtk";
+}
+
+
+@if (isRequestVisible) {
+    <li id="mniNewRequest">
+        @{
+            css = (controllerName.ToUpper() == "REQUEST"
+                && (actionName.ToUpper() == "NEWREQUEST" || actionName.ToUpper() == "INDEX")
+                && !baseController.IsUrlContainsParam(UrlParams.ID)) ? activeSelectCss : notActiveSelectCss;
+            css += " reget-display-loader";
+        }
+        <a href='@Url.Action("Index", "Request")' class="@css" onclick="ShowLoader();">
+            <div class="reget-menu-div" style="background-size:17px 20px!important;background:url('@baseController.GetRootUrl()Content/Images/Menu/New16.png') no-repeat bottom left;">
+                <span id="spNewRequest">@RequestResource.NewInternalRequest</span>
+            </div>
+            @*<img src='@Url.Content("~/Content/Images/Menu/New16.png")' class="reget-menu-img hidden-sm hidden-md" />
+                <span id="spNewRequest">@RequestResource.NewInternalRequest</span>*@
+        </a>
+    </li>
+    <li class="reget-menu-divider hidden-sm hidden-md hidden-lg"></li>
+
+    <li id="mniRequests" class="dropdown">
+        @{
+            cssToggle = (
+                controllerName.ToUpper() == "REQUEST"
+                && (
+                    actionName.ToUpper() == "REQUESTLIST"
+                    || actionName.ToUpper() == "DASHBOARD")
+                ) ? activeToggleSelectCss : notActiveToggleSelectCss;
+
+            if (controllerName.ToUpper() == "REQUEST"
+                && (actionName.ToUpper() == "INDEX")
+                && baseController.IsUrlContainsParam(UrlParams.ID)) {
+                cssToggle = activeToggleSelectCss;
+            }
+        }
+        <a href="#" class="@cssToggle" data-toggle="dropdown" role="button" arial-haspopup="true" arial-expander="false">
+            <div class="reget-menu-div" style="background:url('@baseController.GetRootUrl()Content/Images/Menu/List16.png') no-repeat bottom left;">
+                <span>@RequestResource.InternalRequestList</span><span class="caret"></span>
+            </div>
+            @*<img src='@Url.Content("~/Content/Images/Menu/List16.png")' class="reget-menu-img hidden-sm hidden-md" />
+                @RequestResource.InternalRequestList <span class="caret"></span>*@
+        </a>
+        <ul class="dropdown-menu reget-dropdown-menu">
+            <li class="divider" style="margin:0px; padding:0px"></li>
+            <li id="mniDashboard">
+                @{
+                    cssToggle = (controllerName.ToUpper() == "REQUEST" && (actionName.ToUpper() == "DASHBOARD")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                }
+                <a href="@Url.Action("Dashboard", "Request")" class="@cssToggle  reget-menu-item-level2" onclick="ShowLoader();">
+                    <div class="reget-menu-item-img-div">
+                        <img src='@Url.Content("~/Content/Images/Menu/PendingRequests.png")' class="reget-menu-img reget-menu-dropdownheader-img" style="width:24px;height:24px;" />
+                    </div>
+                    <span>@RequestResource.InProcessRequestList</span>
+                </a>
+            </li>
+
+            <li class="divider" style="margin:0px; padding:0px"></li>
+            <li id="mniRequestList">
+                @{
+                    cssToggle = (controllerName.ToUpper() == "REQUEST" && (actionName.ToUpper() == "REQUESTLIST")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                }
+                <a href="@Url.Action("RequestList", "Request")" class="@cssToggle  reget-menu-item-level2" onclick="ShowLoader();">
+                    <div class="reget-menu-item-img-div">
+                        <img src='@Url.Content("~/Content/Images/Menu/List16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                    </div>
+                    <span>@RequestResource.InternalRequestList</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="reget-menu-divider hidden-sm hidden-md hidden-lg"></li>
+
+}
+@*<li id="mniStatistics">
+        @{ css = (controllerName == "Statistics") ? activeSelectCss : notActiveSelectCss;}
+        <a href='@Url.Action("Index", "Statistics")' class="@css" onclick="ShowLoader();">
+            <span><img src='@Url.Content("~/Content/Images/Menu/Statistics16.png")' class="reget-menu-img hidden-sm hidden-md" /></span>
+            <span>@RequestResource.Statistics</span>
+        </a>
+    </li>
+    <li class="reget-menu-divider hidden-sm hidden-md hidden-lg"></li>*@
+
+<li id="mniAdmin" class="dropdown">
+    @{
+        cssToggle = ((controllerName == "RegetAdmin" ||
+            controllerName == "Participant" ||
+            controllerName == "Centre" ||
+            controllerName == "Supplier" ||
+            controllerName == "Statistics" ||
+            controllerName == "ParentPg" ||
+            controllerName == "Event") && !isUserInfo) ? activeToggleSelectCss : notActiveToggleSelectCss;
+        //css += " reget-display-loader";
+    }
+    <a href="#" class="@cssToggle" data-toggle="dropdown" role="button" arial-haspopup="true" arial-expander="false">
+        <div class="reget-menu-div" style="background:url('@baseController.GetRootUrl()Content/Images/Menu/Admin16.png') no-repeat bottom left;">
+            <span>@RequestResource.Administration</span><span class="caret"></span>
+        </div>
+        @*<img src='@Url.Content("~/Content/Images/Menu/Admin16.png")' class="reget-menu-img reget-menu-dropdownheader-img hidden-sm hidden-md" />@RequestResource.Administration <span class="caret"></span>*@
+    </a>
+    <ul class="dropdown-menu reget-dropdown-menu">
+        <li class="divider" style="margin:0px; padding:0px"></li>
+        <li id="mniCg" class="dropdown-submenu">
+            @{
+                cssToggle = (controllerName == "RegetAdmin" && (actionName == "Index" || actionName == "CentreGroup" || actionName == "NewCentreGroup" || actionName == "MultiplyAppLevel")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+            }
+            <a href="#" onclick="TogleSubmenu(event, 'mnuArea')" class="@cssToggle reget-menu-item-level2" data-toggle="dropdown" role="button" arial-haspopup="true" arial-expander="false">
+                <div class="reget-menu-item-img-div">
+                    <img src='@Url.Content("~/Content/Images/Menu/Area16.png")' class="reget-menu-img" />
+                </div>
+                <span>@RequestResource.Area</span>
+            </a>
+
+            <ul id="mnuArea" class="dropdown-menu reget-dropdown-menu">
+                @if (baseController.CurrentUser.IsParticipantAreaPropAdmin) {
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniNewCg">
+                        @{
+                            cssToggle = (controllerName == "RegetAdmin" && (actionName == "NewCentreGroup")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("NewCentreGroup", "RegetAdmin")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/New16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.NewArea</span>
+                        </a>
+                    </li>
+
+                }
+                <li class="divider" style="margin:0px; padding:0px"></li>
+                <li id="mniCgSettings">
+                    @{
+                        cssToggle = (controllerName == "RegetAdmin" && (actionName == "Index" || actionName == "CentreGroup")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                    }
+                    <a href='@Url.Action("Index", "RegetAdmin")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                        <div class="reget-menu-item-img-div">
+                            <img src='@Url.Content("~/Content/Images/Menu/Admin16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                        </div>
+                        <span>@RequestResource.AreaSettings</span>
+                    </a>
+                </li>
+                @if (baseController.CurrentUser.IsParticipantCompanyAdmin) {
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniMultiplyAppLevel">
+                        @{
+                            cssToggle = (controllerName == "RegetAdmin" && actionName == "MultiplyAppLevel") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("MultiplyAppLevel", "RegetAdmin")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/Calculator16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.MultiplyAppLimit</span>
+                        </a>
+                    </li>
+                }
+
+                <li class="divider" style="margin:0px; padding:0px"></li>
+                <li id="mniAppMatrixExport">
+                    @{
+                        cssToggle = (controllerName == "RegetAdmin" && (actionName == "ApprovalMatrixExport")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                    }
+                    <a href='@Url.Action("ApprovalMatrixExport", "RegetAdmin")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                        <div class="reget-menu-item-img-div">
+                            <img src='@Url.Content("~/Content/Images/Menu/Excel16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                        </div>
+                        <span>@RequestResource.ExportApprovalMatrix</span>
+                    </a>
+                </li>
+                @if (baseController.CurrentUser.Participant.id == 0) {
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniAppMatrixImport">
+                        @{
+                            cssToggle = (controllerName == "RegetAdmin" && (actionName == "ApprovalMatrixImport")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("ApprovalMatrixImport", "RegetAdmin")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/Excel16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.ImportApprovalMatrix</span>
+                        </a>
+                    </li>
+                }
+                @if (baseController.CurrentUser.IsParticipantMatrixAdmin || baseController.CurrentUser.IsParticipantCompanyAdmin) {
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniAppMatrixCopy">
+                        @{
+                            cssToggle = (controllerName == "RegetAdmin" && (actionName == "AppMatrixCopy")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("AppMatrixCopy", "RegetAdmin")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/Copy16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.CopyAppMatrix</span>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </li>
+        @if (baseController.CurrentUser.ParticipantAdminCompanyIds != null && baseController.CurrentUser.ParticipantAdminCompanyIds.Count > 0) {
+            <li class="divider" style="margin:0px; padding:0px"></li>
+            <li id="mniCentre">
+                @{
+                    cssToggle = (controllerName == "Centre" && (actionName == "Centre" || actionName == "Index")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                }
+                <a href='@Url.Action("Index", "Centre")' class="@cssToggle reget-menu-item-level2" onclick="ShowLoader();">
+                    <div class="reget-menu-item-img-div">
+                        <img src='@Url.Content("~/Content/Images/Menu/Centre16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                    </div>
+                    <span>@RequestResource.Centres</span>
+                </a>
+            </li>
+
+        }
+
+        @if (baseController.CurrentUser.IsParticipantCompanyAdmin || baseController.CurrentUser.IsParticipantAppAdmin) {
+            <li class="divider" style="margin:0px; padding:0px"></li>
+            <li id="mniPpgPg" class="dropdown-submenu">
+                @{
+                    cssToggle = (controllerName == "ParentPg" && (actionName == "Index" || actionName == "UsedPg")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                }
+                <a href='#' onclick="TogleSubmenu(event, 'mnuPg')" class="@cssToggle reget-menu-item-level2">
+                    <div class="reget-menu-item-img-div">
+                        <img src='@Url.Content("~/Content/Images/Menu/Commodity16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                    </div>
+                    <span>@RequestResource.PurchaseGroup</span>
+                </a>
+                <ul id="mnuPg" class="dropdown-menu reget-dropdown-menu">
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniPpg">
+                        @{
+                            cssToggle = (controllerName == "ParentPg" && actionName == "Index") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("Index", "ParentPg")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/Commodity16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.ParentPg</span>
+                        </a>
+                    </li>
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniUsedPg">
+                        @{
+                            cssToggle = (controllerName == "ParentPg" && actionName == "UsedPg") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("UsedPg", "ParentPg")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/Commodity16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.PurchaseGroup</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        }
+
+
+        <li class="divider" style="margin:0px; padding:0px"></li>
+        <li id="mniParticipantRoot" class="dropdown-submenu">
+            @{
+                cssToggle = (controllerName == "Participant" && !isUserInfo) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+            }
+            <a href="#" onclick="TogleSubmenu(event, 'mnuUser')" class="@cssToggle reget-menu-item-level2" data-toggle="dropdown" role="button" arial-haspopup="true" arial-expander="false">
+                <div class="reget-menu-item-img-div">
+                    <img src='@Url.Content("~/Content/Images/Menu/User16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                </div>
+                <span>@RequestResource.Users</span>
+            </a>
+            <ul id="mnuUser" class="dropdown-menu reget-dropdown-menu">
+                @if (baseController.CurrentUser.IsParticipantCompanyAdmin) {
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniParticipants">
+                        @{
+                            cssToggle = (controllerName == "Participant" && actionName == "Index") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("Index", "Participant")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/User16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.Users</span>
+                        </a>
+                    </li>
+
+
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniUserInfo">
+                        @{
+                            cssToggle = (controllerName == "Participant" && actionName == "UserInfo") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("UserInfo", "Participant")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/Roles16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.UserRoles</span>
+                        </a>
+                    </li>
+
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniReplaceUser">
+                        @{
+                            cssToggle = (controllerName == "Participant" && actionName == "ReplaceUser") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("ReplaceUser", "Participant")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/ReplaceUser16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.ReplaceUser</span>
+                        </a>
+                    </li>
+
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniNonActiveUsers">
+                        @{
+                            cssToggle = (controllerName == "Participant" && actionName == "NonActiveUser") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("NonActiveUser", "Participant")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/NonActiveUser.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.NonActiveUser</span>
+                        </a>
+                    </li>
+                }
+
+                @if (baseController.CurrentUser.Participant.id == 0) {
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniCopyUser">
+                        @{
+                            cssToggle = (controllerName == "Participant" && actionName == "CopyUser") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("CopyUser", "Participant")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/ReplaceUser16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>Copy User</span>
+                        </a>
+                    </li>
+                }
+
+
+                <li class="divider" style="margin:0px; padding:0px"></li>
+                <li id="mniUserSubstitution">
+                    @{
+                        cssToggle = (controllerName == "Participant" && (actionName == "UserSubstitution" || actionName == "UserSubstitutionDetail")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                    }
+                    <a href='@Url.Action("UserSubstitution", "Participant")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                        <div class="reget-menu-item-img-div">
+                            <img src='@Url.Content("~/Content/Images/Menu/Substitution16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                        </div>
+                        <span>@RequestResource.ManagerSubstitution</span>
+                    </a>
+                </li>
+
+
+                @if (baseController.CurrentUser.Participant.id == 0) {
+                    <li class="divider" style="margin:0px; padding:0px"></li>
+                    <li id="mniUserRequestTransfer">
+                        @{
+                            cssToggle = (controllerName == "Participant" && actionName == "UserRequestTransfer") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                        }
+                        <a href='@Url.Action("UserRequestTransfer", "Participant")' class="@cssToggle reget-menu-item-level3" onclick="ShowLoader();">
+                            <div class="reget-menu-item-img-div">
+                                <img src='@Url.Content("~/Content/Images/Menu/Transfer16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                            </div>
+                            <span>@RequestResource.RequestTransfer</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+
+
+        @if (baseController.CurrentUser.Participant.id == 0) {
+            <li class="divider" style="margin:0px; padding:0px"></li>
+            <li id="mniAddress">
+                @{
+                    cssToggle = (controllerName == "Address" && (actionName == "Address" || actionName == "Index")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                }
+                <a href="@Url.Action("Index", "Address")" class="@cssToggle  reget-menu-item-level2" onclick="ShowLoader();">
+                    <div class="reget-menu-item-img-div">
+                        <img src='@Url.Content("~/Content/Images/Menu/Address16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                    </div>
+                    <span>@RequestResource.ShipToAddress</span>
+                </a>
+            </li>
+        }
+
+        <li class="divider" style="margin:0px; padding:0px"></li>
+        <li id="mniSupplier">
+            @{
+                cssToggle = (controllerName == "Supplier" && (actionName == "Supplier" 
+                    || actionName == "Index"
+                    || actionName == "Detail")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+            }
+            <a href="@Url.Action("Index", "Supplier")" class="@cssToggle  reget-menu-item-level2" onclick="ShowLoader();">
+                <div class="reget-menu-item-img-div">
+                    <img src='@Url.Content("~/Content/Images/Menu/Supplier16.png")' class="reget-menu-img reget-menu-dropdownheader-img" style="width:25px" />
+                </div>
+                <span>@RequestResource.Supplier</span>
+            </a>
+        </li>
+
+        <li class="divider" style="margin:0px; padding:0px"></li>
+        <li id="mniStatistics">
+            @{
+                cssToggle = (controllerName == "Statistics") ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+            }
+            <a href="@Url.Action("Index", "Statistics")" class="@cssToggle  reget-menu-item-level2" onclick="ShowLoader();">
+                <div class="reget-menu-item-img-div">
+                    <img src='@Url.Content("~/Content/Images/Menu/Statistics16.png")' class="reget-menu-img reget-menu-dropdownheader-img" style="width:25px" />
+                </div>
+                <span>@RequestResource.Statistics</span>
+            </a>
+
+        </li>
+
+        @if (baseController.CurrentUser.Participant.id == 0) {
+            <li class="divider" style="margin:0px; padding:0px"></li>
+            <li id="mniExport">
+                @{
+                    cssToggle = (controllerName == "DataExport" && (actionName == "DataExport" || actionName == "Index")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                }
+                <a href='@Url.Action("RequestList", "Request")' class="@cssToggle reget-menu-item-level2" onclick="ShowLoader();">
+                    <div class="reget-menu-item-img-div">
+                        <img src='@Url.Content("~/Content/Images/Menu/Export16.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                    </div>
+                    <span>@RequestResource.DataExport</span>
+                </a>
+            </li>
+
+            <li class="divider" style="margin:0px; padding:0px"></li>
+            <li id="mniEventViewer">
+                @{
+                    cssToggle = (controllerName == "EventViewer" && (actionName == "EventViewer" || actionName == "Index")) ? activeSelectSubmenuCss : notActiveSelectSubmenuCss;
+                }
+                <a href='@Url.Action("Index", "EventViewer")' class="@cssToggle reget-menu-item-level2" onclick="ShowLoader();">
+                    <div class="reget-menu-item-img-div">
+                        <img src='@Url.Content("~/Content/Images/Menu/Event.png")' class="reget-menu-img reget-menu-dropdownheader-img" />
+                    </div>
+                    <span>Event Viewer</span>
+                </a>
+            </li>
+        }
+    </ul>
+
+</li>
+@if (baseController.CurrentUser.Participant.id == 0) {
+    <li class="reget-menu-divider hidden-sm hidden-md hidden-lg"></li>
+    <li id="mniSearch" onmouseover="showTooltip(this, '@RequestResource.Search')" onmouseleave="hideTooltip()">
+        @{ css = (controllerName == "Search") ? activeSelectCss : notActiveSelectCss;}
+        <a id="aRegetInfo" href='@Url.Action("Index", "Search")' class="@css" onclick="ShowLoader();">
+            <div class="reget-menu-div-img-only" style="background:url('@baseController.GetRootUrl()Content/Images/Menu/Search16.png') no-repeat bottom left;">
+                <span class="hidden-sm hidden-md hidden-lg ">@RequestResource.Search</span>
+            </div>
+
+        </a>
+    </li>
+}
+<li class="reget-menu-divider hidden-sm hidden-md hidden-lg"></li>
+<li id="mniAbout">
+    @{ css = (controllerName == "Home" && actionName == "AboutHelp") ? activeSelectCss : notActiveSelectCss;}
+    <a id="aRegetInfo" href='@Url.Action("AboutHelp", "Home")' class="@css" onclick="ShowLoader();">
+        <div class="reget-menu-div-img-only" style="background:url('@baseController.GetRootUrl()Content/Images/Menu/Info16.png') no-repeat bottom left;">
+            @*<span class="hidden-xs">&nbsp;</span>*@
+            <span class="hidden-sm hidden-md hidden-lg ">@RequestResource.RegetInfo</span>
+        </div>
+        @*<img src='@Url.Content("~/Content/Images/Menu/Info16.png")' title="@RequestResource.About" class="reget-menu-img" style="border-radius:10px;" />
+            <span class="hidden-sm hidden-md hidden-lg ">@RequestResource.RegetInfo</span>*@
+    </a>
+</li>
+<li class="reget-menu-divider hidden-sm hidden-md hidden-lg"></li>

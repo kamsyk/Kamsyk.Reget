@@ -1,0 +1,84 @@
+﻿
+@using Resources;
+@using Kamsyk.Reget.Controllers;
+@using Kamsyk.Reget.AgControls;
+
+@{
+    var parentPgController = ViewContext.Controller as ParentPgController;
+
+}
+
+<form name="frmParentPg" style="overflow-x:auto" ng-app="RegetApp">
+    <div id="angContainer" ng-controller="ParentPgController as angCtrl" layout="column" ng-cloak>
+        @Html.Partial("_NavigationBar")
+
+        <div id="divGrdParentPg" style="margin-bottom:15px;">
+            @{
+                UiGrid uiGrid = new UiGrid(parentPgController.GetRootUrl());
+                uiGrid.RootTagId = "grdParentPg";
+                uiGrid.AgControlerName = "angCtrl";
+                uiGrid.Title = RequestResource.ParentPg;
+                uiGrid.AddNewText = RequestResource.AddParentPurchaseGroup;
+            }
+            @Html.Raw(uiGrid.RenderControlHtml())
+
+            @*@Html.Raw(parentPgController.GetDataGridTs(
+                "grdParentPg",
+                "angCtrl",
+                RequestResource.ParentPg,
+                RequestResource.AddParentPurchaseGroup))*@
+
+        </div>
+
+        <regettranslategrid text1="angCtrl.translateText1"
+                            text2="angCtrl.translateText2"
+                            label1="{{angCtrl.translateLabel1}}"
+                            label2="{{angCtrl.translateLabel2}}"
+                            flag1="{{angCtrl.translateFlagUrl1}}"
+                            flag2="{{angCtrl.translateFlagUrl2}}"
+                            translateerrormsg="angCtrl.translateErrorMsg"
+                            isdefaultlang="angCtrl.isDefaultLang"
+                            savetext="{{angCtrl.locSaveText}}"
+                            canceltext="{{angCtrl.locCancelText}}"
+                            mandatorytext="{{angCtrl.locMandatoryTextFieldText}}"
+                            text1changed="angCtrl.localtext1changed(updatedText)"
+                            text2changed="angCtrl.localtext2changed(updatedText)"
+                            saveparentpgtrans="angCtrl.saveTranslation()"
+                            closeparentpgtrans="angCtrl.closeTranslation()">
+        </regettranslategrid>
+
+        @Html.Partial("_LocalizationTextBasic")
+        @Html.Partial("_DataGrid")
+
+        <div style="display:none;">
+            <input id="WarningText" value="@RequestResource.Warning" />
+            <input id="ErrMsgText" value="@RequestResource.Error" />
+            <input id="CloseText" value="@RequestResource.Close" />
+            <input id="YesText" value="@RequestResource.Yes" />
+            <input id="NoText" value="@RequestResource.No" />
+            <input id="EditText" value="@RequestResource.Edit" />
+            <input id="DeleteText" value="@RequestResource.Delete" />
+            <input id="SaveText" value="@RequestResource.Save" />
+            <input id="CancelText" value="@RequestResource.Cancel" />
+            <input id="MissingMandatoryText" value="@RequestResource.MandatoryValueIsMissing" />
+            <input id="ParentPgUsedText" value="@RequestResource.ParentPgUsed" />
+            <input id="ParentPgUsedCompsText" value="@RequestResource.ParentPgUsedComps" />
+            <input id="DuplicityPgNameText" value="@RequestResource.DuplicityPgName" />
+            <input id="DuplicityParentPgNameText" value="@RequestResource.DuplicityParentPgName" />
+            <input id="NameText" value="@RequestResource.Name" />
+            <input id="MandatoryTextFieldText" value="@RequestResource.MandatoryTextField" />
+            <input id="TranslationText" value="@RequestResource.Translation" />
+            <input id="DeleteParentPgConfirmText" value="@RequestResource.DeleteParentPgConfirm" />
+            <input id="ConnectedPurchaseGroupsText" value="@RequestResource.ConnectedPurchaseGroups" />
+            <input id="LoadingLocalizationText" value="@RequestResource.LoadingLocalization" />
+
+            @{
+                if (parentPgController.IsDefaultLang) {
+                    <input id="IsDefaultLang" value="1" />
+                } else {
+                    <input id="IsDefaultLang" value="0" />
+                }
+            }
+        </div>
+    </div>
+</form>
